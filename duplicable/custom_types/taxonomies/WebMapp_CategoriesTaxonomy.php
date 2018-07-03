@@ -24,4 +24,9 @@ $args = array(
     'show_in_rest' => TRUE,
 );
 
-new WebMapp_RegisterTaxonomy('webmapp_category', 'poi', $args );
+new WebMapp_RegisterTaxonomy('webmapp_category', array(
+    'poi',
+    'track',
+    'route',
+    'map'
+), $args );

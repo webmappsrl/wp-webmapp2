@@ -13,17 +13,19 @@ class WebMapp_RegisterTaxonomy
 
     public $label_singular;
     public $label_plural;
-    public $object_type;
+    public $object_types;
 
-    function __construct( $tax_name , $object_type , $args )
+    function __construct( $tax_name , $object_types , $args )
     {
 
         $this->tax_name = $tax_name;
         $this->args = (array) $args;
-        $this->object_type = $object_type;
+        $this->object_types = $object_types;
 
-        if ( empty( $object_type ) || $object_type == 'route' )
-            $this->object_type = $this->get_object_type();
+        if ( empty( $object_types )
+            || ( is_array( $object_types ) && in_array('route' ,$object_types ) != false )
+        )
+            $this->object_types = $this->get_object_type();
 
 
         add_action( 'init', array( $this , 'register_taxonomy' ) );
@@ -35,18 +37,43 @@ class WebMapp_RegisterTaxonomy
      */
     public function get_object_type()
     {
+
+        $temp = $this->object_types;
         $project_has_route = WebMapp_Utils::project_has_route();
 
-        $main_tax = 'track';
-        if ( $project_has_route )
-            $main_tax = 'route';
 
-        return $main_tax;
+
+        if ( is_array( $temp )
+            && ( $i = array_search( 'route' , $temp ) ) !== false
+            && ! $project_has_route
+        )
+        {
+            unset ( $temp[$i] );
+        }
+        elseif( is_string($temp ) )
+        {
+            if ( $project_has_route )
+                $temp = 'route';
+            else
+                $temp = 'track';
+        }
+
+        /**
+         * Update object property
+         */
+        if ( $temp != $this->object_types )
+            $this->object_types = $temp;
+
+
+        return $temp;
     }
 
     public function register_taxonomy()
     {
-        $test = register_taxonomy( $this->tax_name, $this->object_type , $this->args );
+        if ( is_array( $this->object_types ) )
+            $this->object_types = array_values( $this->object_types );
+
+        $test = register_taxonomy( $this->tax_name, $this->object_types , $this->args );
     }
 }
 
