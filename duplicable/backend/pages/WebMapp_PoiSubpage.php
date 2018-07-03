@@ -12,7 +12,7 @@ add_action( '_admin_menu' , function()
     <div class='upload-kml'>
         <?php echo __("Upload a kml file", "webmap_net7")?><br>
         <input id='kml-upload-file' type='file' data-type="poi" name='async-upload'>
-        <span class='hidden-loader loader'><img src='<?php echo plugins_url() ?>/webmapp/includes/images/spinner.gif'><?php echo __("Loading", "webmap_net7") ?></span>
+        <span class='hidden-loader loader'><img src='<?php echo WebMapp_ASSETS ?>images/spinner.gif'><?php echo __("Loading", "webmap_net7") ?></span>
     </div>
     <form method="post" id="create_obj_from_kml" action="options.php">
         <div id="preview-import">
