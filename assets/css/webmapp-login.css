@@ -1,0 +1,12 @@
+.login h1 a {
+  background-image: url('../images/logowebmapp.png');
+}
+
+.login-action-lostpassword p#nav, p#backtoblog, .login-action-rp p#nav {
+  display: none;
+}
+
+#login h1 a {
+  pointer-events: none;
+  cursor: default;
+}
