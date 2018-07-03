@@ -37,11 +37,8 @@ class WebMapp_RegisterTaxonomy
      */
     public function get_object_type()
     {
-
         $temp = $this->object_types;
         $project_has_route = WebMapp_Utils::project_has_route();
-
-
 
         if ( is_array( $temp )
             && ( $i = array_search( 'route' , $temp ) ) !== false

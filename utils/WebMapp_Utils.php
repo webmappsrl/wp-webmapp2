@@ -6,6 +6,7 @@ class WebMapp_Utils
 
     /**
      * Todo check su path - filter
+     * Todo load sub directories
      * @param $rel_dir
      */
     static function load_dir( $rel_dir )

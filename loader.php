@@ -5,6 +5,7 @@
  *
  * Only files that contains WebMapp string in filename !!! todo?
  *
+ * Useful to debug code
  *
  */
 
@@ -49,18 +50,56 @@ WebMapp_Utils::load_dir('core/classes');
 
 /**
  * Enqueue custom post type registration
+ * init hooks
  */
 WebMapp_Utils::load_dir('duplicable/custom_types/post_types');
 
 /**
  * Enqueue custom taxonomies registration
+ * init hooks
  */
 WebMapp_Utils::load_dir('duplicable/custom_types/taxonomies');
 
 /**
- * Load admin pages or subpages
+ * Enqueue custom fields registration
+ * Enqueue custom fields in rest-api
+ * init hooks
  */
-WebMapp_Utils::load_dir('duplicable/backend/pages');
+WebMapp_Utils::load_dir('duplicable/custom_fields');
+
+/**
+ * Enqueue custom fields registration
+ * Enqueue custom fields in rest-api
+ * init hooks
+ */
+WebMapp_Utils::load_dir('duplicable/rest_routes');
+
+/**
+ * Enqueue custom taxonomies registration
+ * ac/ready hooks -> admin-columns-pro plugin hook
+ */
+WebMapp_Utils::load_dir('duplicable/admin/columns');
+
+/**
+ * Load admin pages or subpages
+ * _admin_menu and admin_menu hooks
+ */
+WebMapp_Utils::load_dir('duplicable/admin/pages');
+
+
+/**
+ *
+ * General hooks functions
+ *
+ */
+
+/**
+ * Hooks examples and functions
+ * wp hooks
+ * webmapp hooks
+ * plugins hooks
+ */
+WebMapp_Utils::load_dir('pluggable');
 
 
 
