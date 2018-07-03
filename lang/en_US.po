@@ -1,0 +1,96 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2016-12-15 12:59+0100\n"
+"PO-Revision-Date: 2016-12-15 12:59+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.5\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: webmap.php\n"
+
+#: webmap.php:32
+msgid "Add New POI"
+msgstr ""
+
+#: webmap.php:33
+msgid "New POI"
+msgstr ""
+
+#: webmap.php:34
+msgid "Edit POI"
+msgstr ""
+
+#: webmap.php:35
+msgid "View POI"
+msgstr ""
+
+#: webmap.php:36
+msgid "All POI"
+msgstr ""
+
+#: webmap.php:37
+msgid "Search POI"
+msgstr ""
+
+#: webmap.php:38
+msgid "Parent POI:"
+msgstr ""
+
+#: webmap.php:39
+msgid "No POI found."
+msgstr ""
+
+#: webmap.php:40
+msgid "No POI found in Trash."
+msgstr ""
+
+#: webmap.php:45
+msgid "Points of interests."
+msgstr ""
+
+#: webmap.php:67
+msgid "Add New Trail"
+msgstr ""
+
+#: webmap.php:68
+msgid "New Trail"
+msgstr ""
+
+#: webmap.php:69
+msgid "Edit Trail"
+msgstr ""
+
+#: webmap.php:70
+msgid "View Trail"
+msgstr ""
+
+#: webmap.php:71
+msgid "All Trails"
+msgstr ""
+
+#: webmap.php:72
+msgid "Search Trails"
+msgstr ""
+
+#: webmap.php:73
+msgid "Parent Trails:"
+msgstr ""
+
+#: webmap.php:74
+msgid "No Trails found."
+msgstr ""
+
+#: webmap.php:75
+msgid "No Trails found in Trash."
+msgstr ""
+
+#: webmap.php:80
+msgid "Description."
+msgstr ""

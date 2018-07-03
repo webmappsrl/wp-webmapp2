@@ -32,4 +32,23 @@ class WebMapp_Utils
             $r = true;
         return $r;
     }
+
+    static function build_custom_capabilities( $single_post_type_label )
+    {
+        $single = $single_post_type_label;
+        $plural = (string) $single . 's';
+        $capabilities = array(
+            'delete_others_posts' => "delete_others_$plural",
+            'delete_posts' => "delete_$plural",
+            'delete_private_posts' => "delete_private_$plural",
+            'delete_published_posts' => "delete_published_$plural",
+            'edit_others_posts' => "edit_others_$plural",
+            'edit_posts' => "edit_$plural",
+            'edit_private_posts' => "edit_private_$plural",
+            'edit_published_posts' => "edit_published_$plural",
+            'publish_posts' => "publish_$plural",
+            'read_private_posts' => "read_private_$plural"
+        );
+        return $capabilities;
+    }
 }

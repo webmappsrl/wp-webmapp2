@@ -52,7 +52,7 @@ $args = array(
     'publicly_queryable'    => true,
     'map_meta_cap'          => true,
     'capability_type'       => 'voucher',
-    'capabilities'          => array(),//set by class WebMapp_RegisterPostType
+    'capabilities'          => array(),//set by class WebMapp_RegisterPostType with custom_capabilities param set on true
     'show_in_rest'          => false,
 );
 

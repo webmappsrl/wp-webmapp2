@@ -1,0 +1,84 @@
+<wpml-config>
+  <custom-fields>
+      <custom-field action="translate">n7webmap_stop</custom-field>
+      <custom-field action="copy">n7webmap_coord</custom-field>
+      <custom-field action="copy">n7webmap_media_gallery</custom-field>
+      <custom-field action="copy">n7webmap_gpx</custom-field>
+      <custom-field action="copy">n7webmap_track_media_gallery</custom-field>
+      <custom-field action="copy">n7webmap_track_media_gallery</custom-field>
+      <custom-field action="translate">n7webmap_start</custom-field>
+      <custom-field action="copy">n7webmap_start_poi</custom-field>
+      <custom-field action="translate">n7webmap_end</custom-field>
+      <custom-field action="copy">n7webmap_end</custom-field>
+      <custom-field action="copy">n7webmap_related_poi</custom-field>
+      <custom-field action="copy">n7webmap_route_media_gallery</custom-field>
+      <custom-field action="translate">n7webmap_route_related_track</custom-field>
+      <custom-field action="copy">n7webmap_type</custom-field>
+      <custom-field action="copy">net7webmap_map_route</custom-field>
+      <custom-field action="copy">n7webmap_map_bbox</custom-field>
+       <!--   <custom-field action="copy">weight</custom-field>
+        <custom-field action="translate">custom-description</custom-field>
+        <custom-field action="ignore">date-added</custom-field>-->
+    </custom-fields>
+    <custom-types>
+        <custom-type translate="1">poi</custom-type>
+        <custom-type translate="1">route</custom-type>
+        <custom-type translate="1">track</custom-type>
+        <custom-type translate="1">map</custom-type>
+    </custom-types>
+       <taxonomies>
+            <taxonomy translate="1">webmapp_category</taxonomy>
+        </taxonomies>
+       <!--  <admin-texts>
+            <key name="my_plugins_options">
+                <key name="option_name_1" />
+                <key name="option_name_2" />
+                <key name="options_group_1">
+                    <key name="sub_option_name_11" />
+                    <key name="sub_option_name_12" />
+                </key>
+                <key name="options_group_2">
+                    <key name="sub_option_name_21" />
+                    <key name="sub_option_name_22" />
+                </key>
+            </key>
+            <key name="simple_string_option" />
+        </admin-texts>   -->
+        <language-switcher-settings>
+            <key name="icl_lang_sel_config">
+                <key name="font-current-normal">#444444</key>
+                <key name="font-current-hover">#000000</key>
+                <key name="background-current-normal">#ffffff</key>
+                <key name="background-current-hover">#eeeeee</key>
+                <key name="font-other-normal">#444444</key>
+                <key name="font-other-hover">#000000</key>
+                <key name="background-other-normal">#ffffff</key>
+                <key name="background-other-hover">#eeeeee</key>
+                <key name="border">#cdcdcd</key>
+            </key>
+            <key name="icl_lang_sel_footer_config">
+                <key name="font-current-normal">#444444</key>
+                <key name="font-current-hover">#000000</key>
+                <key name="background-current-normal">#ffffff</key>
+                <key name="background-current-hover">#eeeeee</key>
+                <key name="font-other-normal">#444444</key>
+                <key name="font-other-hover">#000000</key>
+                <key name="background-other-normal">#ffffff</key>
+                <key name="background-other-hover">#eeeeee</key>
+                <key name="border">#cdcdcd</key>
+            </key>
+            <key name="icl_language_switcher_sidebar">0</key>
+            <key name="icl_widget_title_show">0</key>
+            <key name="icl_lang_sel_type">dropdown</key>
+            <key name="icl_lso_link_empty">0</key>
+            <key name="icl_lso_flags">0</key>
+            <key name="icl_lso_native_lang">1</key>
+            <key name="icl_lso_display_lang">1</key>
+            <key name="icl_lang_sel_footer">0</key>
+            <key name="icl_post_availability">0</key>
+            <key name="icl_post_availability_position">below</key>
+            <key name="icl_post_availability_text">This post is also available in: %s</key>
+        </language-switcher-settings>
+    </wpml-config>
+
+

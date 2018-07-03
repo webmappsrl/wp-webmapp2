@@ -1,0 +1,299 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2017-03-03 09:37+0100\n"
+"PO-Revision-Date: 2017-03-03 09:37+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.5\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: webmap.php\n"
+"X-Poedit-SearchPath-1: admin\n"
+"X-Poedit-SearchPath-2: includes\n"
+"X-Poedit-SearchPath-3: .\n"
+"X-Poedit-SearchPathExcluded-0: includes/js/import-gpx.js\n"
+
+#: admin/admin-webmap.php:25
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: admin/admin-webmap.php:28
+msgid "Webmap Options"
+msgstr "Opzioni Webmap"
+
+#: includes/meta_box.php:10
+msgid "Choose Webmapp categories"
+msgstr ""
+
+#: includes/meta_box.php:17
+msgid "Open map on Openstreetmap"
+msgstr ""
+
+#: includes/meta_box.php:30
+msgid "Upload a gpx file to import it's POIs"
+msgstr ""
+
+#: includes/meta_box.php:33 webmap.php:36
+msgid "Loading"
+msgstr ""
+
+#: webmap.php:37
+msgid "Track imported succesfully."
+msgstr ""
+
+#: webmap.php:38
+msgid ""
+"You will see new imported tracks in the route's related tracks after route "
+"update"
+msgstr ""
+
+#: webmap.php:39
+msgid "view the track"
+msgstr ""
+
+#: webmap.php:55
+msgid "Search Webmapp categories"
+msgstr ""
+
+#: webmap.php:56
+msgid "All Webmapp categories"
+msgstr ""
+
+#: webmap.php:57
+msgid "Parent Webmapp category"
+msgstr ""
+
+#: webmap.php:58
+msgid "Parent Webmapp category:"
+msgstr ""
+
+#: webmap.php:59
+msgid "Edit Webmapp category"
+msgstr ""
+
+#: webmap.php:60
+msgid "Update Webmapp category"
+msgstr ""
+
+#: webmap.php:61
+msgid "Add New Webmapp category"
+msgstr ""
+
+#: webmap.php:62
+msgid "New Webmapp category Name"
+msgstr ""
+
+#: webmap.php:63
+msgid "Webmapp category"
+msgstr ""
+
+#: webmap.php:86
+msgid "Add New POI"
+msgstr "Aggiungi Nuovo POI"
+
+#: webmap.php:87
+msgid "New POI"
+msgstr "Nuovo POI"
+
+#: webmap.php:88
+msgid "Edit POI"
+msgstr "Modifica POI"
+
+#: webmap.php:89
+msgid "View POI"
+msgstr "Vedi POI"
+
+#: webmap.php:90
+msgid "All POI"
+msgstr "Tutti i POI"
+
+#: webmap.php:91
+msgid "Search POI"
+msgstr "Cerca POI"
+
+#: webmap.php:92
+msgid "Parent POI:"
+msgstr "POI Padre:"
+
+#: webmap.php:93
+msgid "No POI found."
+msgstr "Nessun POI trovato."
+
+#: webmap.php:94
+msgid "No POI found in Trash."
+msgstr "Nessun POI trovato nel cestino."
+
+#: webmap.php:99
+msgid "Points of interests."
+msgstr "Punti di interesse."
+
+#: webmap.php:123
+msgid "Add New Track"
+msgstr ""
+
+#: webmap.php:124
+msgid "New Track"
+msgstr ""
+
+#: webmap.php:125
+msgid "Edit Track"
+msgstr ""
+
+#: webmap.php:126
+msgid "View Track"
+msgstr ""
+
+#: webmap.php:127
+msgid "All Tracks"
+msgstr ""
+
+#: webmap.php:128
+msgid "Search Tracks"
+msgstr ""
+
+#: webmap.php:129
+msgid "Parent Tracks:"
+msgstr ""
+
+#: webmap.php:130
+msgid "No Tracks found."
+msgstr ""
+
+#: webmap.php:131
+msgid "No Tracks found in Trash."
+msgstr ""
+
+#: webmap.php:136
+msgid "Track in maps"
+msgstr ""
+
+#: webmap.php:160
+msgid "Add New Route"
+msgstr ""
+
+#: webmap.php:161
+msgid "New Route"
+msgstr "Nuovo Percorso"
+
+#: webmap.php:162
+msgid "Edit Route"
+msgstr ""
+
+#: webmap.php:163
+msgid "View Route"
+msgstr ""
+
+#: webmap.php:164
+msgid "All Routes"
+msgstr ""
+
+#: webmap.php:165
+msgid "Search Routes"
+msgstr ""
+
+#: webmap.php:166
+msgid "Parent Routes:"
+msgstr ""
+
+#: webmap.php:167
+msgid "No Routes found."
+msgstr ""
+
+#: webmap.php:168
+msgid "No Routes found in Trash."
+msgstr ""
+
+#: webmap.php:173
+msgid "Routes"
+msgstr "Percorsi"
+
+#: webmap.php:197
+msgid "Add New Map"
+msgstr ""
+
+#: webmap.php:198
+msgid "New Map"
+msgstr ""
+
+#: webmap.php:199
+msgid "Edit Map"
+msgstr ""
+
+#: webmap.php:200
+msgid "View Map"
+msgstr ""
+
+#: webmap.php:201
+msgid "All Maps"
+msgstr ""
+
+#: webmap.php:202
+msgid "Search Map"
+msgstr ""
+
+#: webmap.php:203
+msgid "Parent Map:"
+msgstr ""
+
+#: webmap.php:204
+msgid "No Map found."
+msgstr ""
+
+#: webmap.php:205
+msgid "No Map found in Trash."
+msgstr ""
+
+#: webmap.php:210
+msgid "Maps"
+msgstr "Mappe"
+
+#: webmap.php:271
+msgid "Failed loading GPX: "
+msgstr ""
+
+#: webmap.php:278
+msgid "Creating Track with name: "
+msgstr ""
+
+#: webmap.php:281
+msgid "No name given for this track"
+msgstr ""
+
+#~ msgid "Add some stops to your trail"
+#~ msgstr "Aggiungi delle tappe al tuo itinerario"
+
+#~ msgid "Add New Trail"
+#~ msgstr "Aggiungi Itinerario"
+
+#~ msgid "New Trail"
+#~ msgstr "Nuovo Itinerario"
+
+#~ msgid "Edit Trail"
+#~ msgstr "Modifica Itinerario"
+
+#~ msgid "View Trail"
+#~ msgstr "Vedi Itinerario"
+
+#~ msgid "All Trails"
+#~ msgstr "Tutti gli Itinerari"
+
+#~ msgid "Search Trails"
+#~ msgstr "Cerca Itinerario"
+
+#~ msgid "Parent Trails:"
+#~ msgstr "Itinerario Padre:"
+
+#~ msgid "No Trails found."
+#~ msgstr "Nessun itinerario trovato."
+
+#~ msgid "No Trails found in Trash."
+#~ msgstr "Nessun itinerario trovato nel cestino."
+
+#~ msgid "Trails in maps"
+#~ msgstr "Itinerari nelle mappe"

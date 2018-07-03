@@ -85,7 +85,7 @@ extract( $global_vars );
 
 add_filter( 'ac/column/value', 'my_column_meta_value_mask_key', 10, 3 );
 /**
- * Filters icon value, inserted in a class span
+ * Filters icon value, inserted in a span class
  * @param $value
  * @param $object_id
  * @param $column
