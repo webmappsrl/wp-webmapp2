@@ -5,7 +5,6 @@
 
 add_action( 'wp_ajax_nopriv_add_user_to_route', 'add_user_to_route' );
 add_action( 'wp_ajax_add_user_to_route', 'add_user_to_route' );
-
 function add_user_to_route() {
 
     $username = get_userdata($_REQUEST['user_id']);
@@ -45,7 +44,7 @@ function webmapp_manage_bulk_quick_save_bulk_edit() {
 
 }
 
-
+//ERROR?
 add_action('wp_ajax_webmapp_import_create_poi', 'webmapp_import_create_poi');
 add_action('wp_ajax_webmapp_import_create_poi', 'webmapp_import_create_poi');
 function webmapp_import_create_poi() {
@@ -303,6 +302,8 @@ function webmapp_parse_gpx($file, $response) {
 
     return $response;
 }
+
+
 
 
 
