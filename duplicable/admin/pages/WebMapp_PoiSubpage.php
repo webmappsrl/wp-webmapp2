@@ -10,9 +10,9 @@ add_action( '_admin_menu' , function()
 
     <h1><?php echo __('Import Poi from KML', WebMapp_TEXTDOMAIN); ?></h1>
     <div class='upload-kml'>
-        <?php echo __("Upload a kml file", "webmap_net7")?><br>
+        <?php echo __("Upload a kml file", WebMapp_TEXTDOMAIN)?><br>
         <input id='kml-upload-file' type='file' data-type="poi" name='async-upload'>
-        <span class='hidden-loader loader'><img src='<?php echo WebMapp_ASSETS ?>images/spinner.gif'><?php echo __("Loading", "webmap_net7") ?></span>
+        <span class='hidden-loader loader'><img src='<?php echo WebMapp_ASSETS ?>images/spinner.gif'><?php echo __("Loading", WebMapp_TEXTDOMAIN) ?></span>
     </div>
     <form method="post" id="create_obj_from_kml" action="options.php">
         <div id="preview-import">
@@ -20,14 +20,14 @@ add_action( '_admin_menu' , function()
 
     </form>
 
-    <div id="webmap_category_dialog"  title="<?php echo __("Choose Webmapp categories", "webmap_net7"); ?>">
+    <div id="webmap_category_dialog"  title="<?php echo __("Choose Webmapp categories", WebMapp_TEXTDOMAIN); ?>">
         <input type="hidden" value="" id="poi_el">
         <ul class="webmap_cat_checklist categorychecklist">
             <?php wp_terms_checklist(0, array("taxonomy" => "webmapp_category")); ?>
         </ul>
     </div>
 
-    <div id="webmap_osm_dialog" title="<?php echo __("Open map on Openstreetmap", "webmap_net7"); ?>">
+    <div id="webmap_osm_dialog" title="<?php echo __("Open map on Openstreetmap", WebMapp_TEXTDOMAIN); ?>">
         <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="" style="border: 1px solid black"></iframe>
         <br/><small><a href="" target="_blank">Visualizza mappa ingrandita</a></small>
     </div>

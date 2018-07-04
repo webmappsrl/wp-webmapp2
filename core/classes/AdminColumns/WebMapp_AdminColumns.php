@@ -23,6 +23,11 @@ class WebMapp_AdminColumns
     public $object_slug;
 
 
+    /**
+     * WebMapp_AdminColumns constructor.
+     * @param $object_slug
+     * @param $fields
+     */
     function __construct( $object_slug , $fields )
     {
         $this->object_slug = $object_slug;
@@ -34,11 +39,17 @@ class WebMapp_AdminColumns
 
     }
 
+    /**
+     * @return mixed
+     */
     public function get_object_slug()
     {
         return $this->object_slug;
     }
 
+    /**
+     *
+     */
     public function ac_register_columns()
     {
         ac_register_columns($this->get_object_slug() , $this->fields ) ;

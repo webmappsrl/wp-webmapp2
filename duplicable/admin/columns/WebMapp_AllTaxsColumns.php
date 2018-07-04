@@ -90,6 +90,14 @@ foreach( $taxonomies as $tax ) :
 endforeach;
 extract( $global_vars );
 
+
+/**
+ *
+ * CUSTOMIZATION
+ * of column value
+ *
+ */
+
 //check existence of global objects created with extract()
 //var_dump($WebMapp_AllTaxsColumns_activity );
 

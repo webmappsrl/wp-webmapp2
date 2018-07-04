@@ -343,7 +343,7 @@ class WebMapp_AdminOptionsPage implements WebMapp_Interface_AdminOptionsPage
             do_settings_sections($option_group );
             ?>
             <p>
-                <a href="<?php echo WebMapp_DIR; ?>../documentation/Piattaformaeditorialemuticanale.pdf" target="_blank"><?php echo __("Download documentazione", "webmap_net7"); ?></a>
+                <a href="<?php echo WebMapp_DIR; ?>../documentation/Piattaformaeditorialemuticanale.pdf" target="_blank"><?php echo __("Download documentazione", WebMapp_TEXTDOMAIN); ?></a>
             </p>
             <?php $this->print_settings(); ?>
             <?php submit_button(); ?>
