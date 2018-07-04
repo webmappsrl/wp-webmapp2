@@ -79,6 +79,12 @@ WebMapp_Utils::load_dir('duplicable/custom_fields');
 WebMapp_Utils::load_dir('duplicable/rest_routes');
 
 /**
+ * Register css/js resources
+ * admin_enqueue_scripts , login_enqueue_scripts , wp_enqueue_scripts hooks
+ */
+WebMapp_Utils::load_dir('duplicable/assets_enqueuer');
+
+/**
  * Enqueue custom taxonomies registration
  * ac/ready hooks -> admin-columns-pro plugin hook
  */

@@ -97,7 +97,6 @@ add_action('init', 'webmap_load_textdomain');
 
 
 function webmap_load_textdomain() {
-    load_plugin_textdomain('webmap_net7', FALSE, dirname(plugin_basename(__FILE__)) . '/lang');
     wp_enqueue_style("webmap_font_awesome", plugin_dir_url(__FILE__) . 'third-part/font-awesome-4.7.0/css/font-awesome.min.css');
     wp_enqueue_style("webmap_style_net7", plugin_dir_url(__FILE__) . 'includes/css/style.css');
     wp_enqueue_style("webmap_leaflet", plugin_dir_url(__FILE__) . 'third-part/leaflet/leaflet.css');
@@ -106,7 +105,7 @@ function webmap_load_textdomain() {
 }
 
 
-
+add_action('init', 'webmapp_load_gpx_script');
 function webmapp_load_gpx_script() {
     wp_enqueue_script('webmapp-import-gpx', plugin_dir_url(__FILE__) . 'includes/js/import-gpx.js', array('jquery'), '0.1.0', TRUE);
     wp_enqueue_script('webmapp-leaflet-map', plugin_dir_url(__FILE__) . 'includes/js/leaflet-map.js');
@@ -127,4 +126,3 @@ function webmapp_load_gpx_script() {
     wp_localize_script('webmapp-import-gpx', 'webmapp_config', $data);
 }
 
-add_action('init', 'webmapp_load_gpx_script');

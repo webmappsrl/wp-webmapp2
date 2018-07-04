@@ -17,12 +17,12 @@
 /**
  * Hook taxonomy registration arguments
  */
-$args = apply_filters( 'WebMapp_pre_register_taxonomy' , $this->args ,  $this->tax_name, $this->args );
+apply_filters( 'WebMapp_pre_register_taxonomy' , $this->args ,  $this->tax_name, $this->args );
 
 /**
  * Filter object types for taxonomy before registration
  */
-$object_types = apply_filters( 'WebMapp_taxonomy_object_types' , $object_types , $this->tax_name, $this->args );
+apply_filters( 'WebMapp_taxonomy_object_types' , $object_types , $this->tax_name, $this->args );
 
 
 
@@ -35,7 +35,7 @@ $object_types = apply_filters( 'WebMapp_taxonomy_object_types' , $object_types ,
 /**
  * Hook post type registration arguments
  */
-$args = apply_filters( 'WebMapp_pre_register_post_type', $this->args, $this->post_type, $this->project_has_route );
+apply_filters( 'WebMapp_pre_register_post_type', $this->args, $this->post_type, $this->project_has_route );
 
 
 /**
@@ -50,4 +50,14 @@ $args = apply_filters( 'WebMapp_pre_register_post_type', $this->args, $this->pos
 /**
  * Filter register_rest_field callback
  */
-$callback = apply_filters( 'WebMapp_pre_reg_field_rest-api', $callback , $object_type, $attribute );
+apply_filters( 'WebMapp_pre_reg_field_rest-api', $callback , $object_type, $attribute );
+
+
+/**
+ *
+ *
+ * CSS/JS ENQUEUER
+ *
+ *
+ */
+

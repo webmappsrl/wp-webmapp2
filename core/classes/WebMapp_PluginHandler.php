@@ -11,7 +11,7 @@ class WebMapp_PluginHandler
 
     function __construct()
     {
-        add_action( 'plugins_loaded', 'myplugin_load_textdomain' );
+        add_action( 'plugins_loaded', 'load_plugin_textdomain' );
 
 
     }
@@ -21,8 +21,8 @@ class WebMapp_PluginHandler
      *
      * @since 1.0.0
      */
-    function myplugin_load_textdomain() {
-        load_plugin_textdomain( 'my-plugin', false, basename( dirname( __FILE__ ) ) . '/languages' );
+    function load_plugin_textdomain() {
+        load_plugin_textdomain( WebMapp_TEXTDOMAIN, false, basename( dirname( WebMapp_TEXTDOMAIN ) ) . '/languages' );
     }
 
 }
