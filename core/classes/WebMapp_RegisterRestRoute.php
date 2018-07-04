@@ -1,11 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marco
- * Date: 03/07/18
- * Time: 22:04
- */
 
+
+/**
+ * Class WebMapp_RegisterRestRoute
+ *
+ *
+ */
 class WebMapp_RegisterRestRoute
 {
 
@@ -22,6 +22,9 @@ class WebMapp_RegisterRestRoute
         add_action( 'rest_api_init', array( $this , 'register_rest_route' ) );
     }
 
+    /**
+     * @reference https://developer.wordpress.org/reference/functions/register_rest_route/
+     */
     public function register_rest_route()
     {
         register_rest_route($this->namespace, $this->route,$this->args );

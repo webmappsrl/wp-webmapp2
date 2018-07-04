@@ -4,7 +4,7 @@ $tabs = array(
     'main' => _x( "Main", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN )
 );
 /**
- * Todo estendere argomenti
+ * Todo extend args
  */
 $generalOptionsPage = array(
     'google_api_key' => array(

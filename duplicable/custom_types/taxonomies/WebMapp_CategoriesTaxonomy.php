@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @reference https://developer.wordpress.org/reference/functions/register_taxonomy/
+ */
 
 $labels = array(
     'name' => _x('Webmapp categories', 'taxonomy general name', WebMapp_TEXTDOMAIN),

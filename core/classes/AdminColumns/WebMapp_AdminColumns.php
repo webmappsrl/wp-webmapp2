@@ -6,6 +6,13 @@
  * Time: 16:24
  */
 
+/**
+ * Class WebMapp_AdminColumns
+ *
+ * @property $object_names - string/array post_type/taxonomy slug to associate fields
+ * @property $args array - args for acf_add_local_field_group
+ * @property $fields array - options with arguments to print ( useful for REST-API )
+ */
 class WebMapp_AdminColumns
 {
     /**

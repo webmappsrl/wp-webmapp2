@@ -10,6 +10,12 @@ class WebMapp_RegisterFieldsGroup extends WebMapp_AbstractFields
     public $acfs = array();
 
     //todo -> filter route fields by option has_route
+
+    /**
+     * WebMapp_RegisterFieldsGroup constructor.
+     * @param $object_names
+     * @param $args
+     */
     function __construct( $object_names, $args )
     {
         parent::__construct($object_names, $args);

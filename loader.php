@@ -7,6 +7,8 @@
  *
  * Useful to debug code
  *
+ * TODO when subdirectory support ?
+ *
  */
 
 
@@ -39,6 +41,9 @@ WebMapp_Utils::load_dir('core/interfaces');
  * Core Classes :D
  */
 WebMapp_Utils::load_dir('core/classes');
+WebMapp_Utils::load_dir('core/classes/AbstractFields');
+WebMapp_Utils::load_dir('core/classes/AdminColumns');
+WebMapp_Utils::load_dir('core/classes/AdminOptionsPage');
 
 
 /**
@@ -68,8 +73,7 @@ WebMapp_Utils::load_dir('duplicable/custom_types/taxonomies');
 WebMapp_Utils::load_dir('duplicable/custom_fields');
 
 /**
- * Enqueue custom fields registration
- * Enqueue custom fields in rest-api
+ * Register rest-api routes
  * init hooks
  */
 WebMapp_Utils::load_dir('duplicable/rest_routes');
@@ -98,6 +102,7 @@ WebMapp_Utils::load_dir('duplicable/admin/pages');
  * wp hooks
  * webmapp hooks
  * plugins hooks
+ * pluggable functions?
  */
 WebMapp_Utils::load_dir('pluggable');
 

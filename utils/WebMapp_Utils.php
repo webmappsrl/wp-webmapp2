@@ -1,6 +1,13 @@
 <?php
 
-
+/**
+ * Class WebMapp_Utils
+ * General helpers methods class
+ *
+ * Here you will find:
+ * load_dir function that loads all plugin php
+ *
+ */
 class WebMapp_Utils
 {
 
@@ -24,6 +31,11 @@ class WebMapp_Utils
             }
     }
 
+    /**
+     * Check if in this project has routes checked in options page
+     * todo Move to RegisterPostType
+     * @return bool
+     */
     static function project_has_route()
     {
         $r = false;
@@ -33,6 +45,11 @@ class WebMapp_Utils
         return $r;
     }
 
+    /**
+     * Useful tool to create custom capabilities with singolar word provided
+     * @param $single_post_type_label
+     * @return array
+     */
     static function build_custom_capabilities( $single_post_type_label )
     {
         $single = $single_post_type_label;

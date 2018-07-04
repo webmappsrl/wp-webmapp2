@@ -14,6 +14,10 @@ $route_or_track_taxonomies = array(
 //todo - test
 $merge = $track_taxonomies + $route_or_track_taxonomies;
 
+/**
+ * @reference https://developer.wordpress.org/reference/functions/register_taxonomy/
+ */
+
 $taxonomies_to_register = array();
 foreach ( $merge as $tax_name => $labels ) :
     $label_singular = $labels[0];

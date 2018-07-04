@@ -7,6 +7,16 @@
   Author URI: http://www.netseven.it
  */
 
+/**
+ * Todo control plugins dependency, force reactivation of webmapp
+ * acf-pro
+ * admin-columns-pro
+ * acf-to-rest-api
+ * ac-addon-acf
+ * wpml ?
+ *
+ */
+
 
 /**
  * CONSTANTS
@@ -17,11 +27,14 @@ define ( 'WebMapp_TEXTDOMAIN' , 'webmap_net7' );
 //global const to get __FILE__ of main php page of project
 define ( 'WebMapp_FILE' , __FILE__ );
 
+//global const to get url of plugin root, useful to load resources as css/js
+define ( 'WebMapp_URL' , plugin_dir_url( WebMapp_FILE ) );
+
 //global const to get __DIR__ of main php page of project
 define ( 'WebMapp_DIR' , __DIR__ );
 
 //global const to get assets url
-define ( 'WebMapp_ASSETS' , plugin_dir_url( WebMapp_FILE ) . 'assets/' );
+define ( 'WebMapp_ASSETS' , WebMapp_URL . 'assets/' );
 
 
 

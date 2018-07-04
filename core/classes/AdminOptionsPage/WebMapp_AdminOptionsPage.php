@@ -8,20 +8,66 @@
 class WebMapp_AdminOptionsPage implements WebMapp_Interface_AdminOptionsPage
 {
 
+    /**
+     * @var string - defaul tab if isn't set in settings arguments
+     */
     public $default_tab = 'webmapp_general_options';
+
+    /**
+     * @var string - label for default tab
+     */
     public $default_tab_label = 'WebMapp Options';
+
+    /**
+     * @var string - current tab of options page
+     */
     public $current_tab = '';
 
 
+    /**
+     * @var string - menu slug identifier for menu element
+     */
     public $menu_slug;
+
+    /**
+     * @var string - menu label
+     */
     public $menu_title;
+
+    /**
+     * @var string - page title ( on the tabs )
+     */
     public $page_title;
+
+    /**
+     * @var array - settings must be registered in groups, 1 options_group per tab
+     */
     public $settings_groups = array();
+
+    /**
+     * @var string - associative array tab-slug => tab-label
+     */
     public $tabs = array();
+
+    /**
+     * @var array - all settings with arguments to render option in page
+     */
     public $settings;
 
+    /**
+     * @var string - user capability to control page visibility
+     */
     protected $capability;
 
+    /**
+     * WebMapp_AdminOptionsPage constructor.
+     * @param $page_title
+     * @param $menu_title
+     * @param string $capability
+     * @param string $menu_slug
+     * @param array $settings
+     * @param array $tabs
+     */
     function __construct( $page_title, $menu_title, $capability = 'manage_options', $menu_slug = 'webmapp', $settings = array(), $tabs = array() )
     {
         $this->page_title = $page_title;
@@ -34,10 +80,23 @@ class WebMapp_AdminOptionsPage implements WebMapp_Interface_AdminOptionsPage
         $this->start();
 
     }
+
+
+    /**
+     *
+     * Hooks to register options and add elements in admin menu
+     *
+     */
     public function start(){
         add_action( 'admin_init', array( $this , 'register_page_settings' ) );
         add_action( 'admin_menu', array( $this , 'add_menu_page' ) );
     }
+
+    /**
+     *
+     * Cp.
+     *
+     */
     public function register_page_settings()
     {
         $settings = $this->settings;
@@ -59,6 +118,13 @@ class WebMapp_AdminOptionsPage implements WebMapp_Interface_AdminOptionsPage
         }
 
     }
+
+
+    /**
+     *
+     * @reference : https://developer.wordpress.org/reference/functions/add_menu_page/
+     *
+     */
     public function add_menu_page()
     {
         add_menu_page($this->page_title,
@@ -68,6 +134,15 @@ class WebMapp_AdminOptionsPage implements WebMapp_Interface_AdminOptionsPage
             array( $this , 'render_menu_page' )
         );
     }
+
+    /**
+     *
+     * Main wrap of options page
+     * Contains methods to :
+     *  check user permissions
+     *  render tab navigation
+     *  render tab content
+     */
     public function render_menu_page()
     {
         $this->user_can_see_this_page();
@@ -88,14 +163,21 @@ class WebMapp_AdminOptionsPage implements WebMapp_Interface_AdminOptionsPage
 
     }
 
+    /**
+     * Todo : Protected
+     * @return string - return current tab of options page
+     */
     public function get_current_tab()
     {
         return isset( $_GET['tab'] ) && ! empty( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : array_keys( $this->tabs )[0];
     }
 
     /**
-     * Adds settings_group to
-     * @param $tab_slug
+     * Adds settings_group with tab slug provided
+     * ( For each tab a new settings_group )
+     * The format of settings groups names : "{$tab_slug}_{$this->menu_slug}"
+     *
+     * @param $tab_slug - necessary tab slug to build a new settings_group slug
      * @return string
      */
     protected function add_settings_group( $tab_slug )
@@ -109,6 +191,11 @@ class WebMapp_AdminOptionsPage implements WebMapp_Interface_AdminOptionsPage
         $this->settings_groups[$tab_slug] = $settings_group;
         return $settings_group;
     }
+
+    /**
+    *  Retrieve settings_group of current tab
+     * @return mixed|string
+     */
     protected function get_settings_group()
     {
         $settings_group = '';
@@ -117,6 +204,11 @@ class WebMapp_AdminOptionsPage implements WebMapp_Interface_AdminOptionsPage
 
         return $settings_group;
     }
+
+    /**
+     * Check user permissions
+     * can die !
+     */
     protected function user_can_see_this_page()
     {
         if ( ! current_user_can($this->capability ) )
@@ -124,6 +216,11 @@ class WebMapp_AdminOptionsPage implements WebMapp_Interface_AdminOptionsPage
             wp_die(_x('You do not have sufficient permissions to access this page.' , 'WebMapp option page capability error', WebMapp_TEXTDOMAIN ) );
         }
     }
+
+    /**
+     * Render tabs navigation menu
+     * todo add css classes ?
+     */
     protected function render_tab_nav() {
         ?>
         <nav class="nav-tab-wrapper">
@@ -180,6 +277,10 @@ class WebMapp_AdminOptionsPage implements WebMapp_Interface_AdminOptionsPage
                      */
                     switch ( $type )
                     {
+                        /**
+                         * Select type
+                         * todo support for multiselect?
+                         */
                         case 'select':
                             if ( isset( $setting_args['options'] ) && is_array($setting_args['options'] ) )
                             {
@@ -225,6 +326,13 @@ class WebMapp_AdminOptionsPage implements WebMapp_Interface_AdminOptionsPage
 
         echo "</div>";
     }
+
+    /**
+     *
+     * Render current tab options form
+     * todo submit_button support ?
+     *
+     */
     protected function render_tab_content()
     {
         ?>

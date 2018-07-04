@@ -1,4 +1,8 @@
 <?php
+/**
+ * Register track post type
+ * @reference https://developer.wordpress.org/reference/functions/register_post_type/
+ */
 $labels = array(
     'name' => _x('Tracks', 'post type general name', WebMapp_TEXTDOMAIN),
     'singular_name' => _x('Track', 'post type singular name', WebMapp_TEXTDOMAIN),

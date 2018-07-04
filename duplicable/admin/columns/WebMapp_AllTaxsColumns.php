@@ -1,6 +1,16 @@
 <?php
 
-
+/**
+ * Build with WebMapp_AdminColumns_Taxonomy, columns builder with admin-columns-pro plugin
+ *
+ * Columns of :
+ * 'webmapp_category',
+ * 'activity',
+ * 'theme',
+ * 'where',
+ * 'when',
+ * 'who
+ */
 $fields = array(
     array(
         'columns' => array(
