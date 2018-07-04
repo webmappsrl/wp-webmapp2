@@ -83,6 +83,9 @@ WebMapp_Utils::load_dir('duplicable/rest_routes');
  * admin_enqueue_scripts , login_enqueue_scripts , wp_enqueue_scripts hooks
  */
 WebMapp_Utils::load_dir('duplicable/assets_enqueuer');
+WebMapp_Utils::load_dir('duplicable/assets_enqueuer/admin');
+WebMapp_Utils::load_dir('duplicable/assets_enqueuer/login');
+WebMapp_Utils::load_dir('duplicable/assets_enqueuer/wp');
 
 /**
  * Enqueue custom taxonomies registration

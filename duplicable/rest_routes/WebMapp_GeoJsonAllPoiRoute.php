@@ -5,6 +5,8 @@
  * Returns all pois in geojson format
  *
  * @return object|null .
+ *
+ * webmapp_pois_geojson()
  */
 
 function WebMapp_V1GeoJsonAllPoiRoute( WP_REST_Request $request ) {
