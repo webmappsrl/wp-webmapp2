@@ -199,7 +199,6 @@ function kml_to_geojson($text) {
 }
 
 
-add_action('wp_ajax_webmapp_kml_upload', 'webmapp_kml_upload');
 function webmapp_kml_upload() {
 
     $data = isset($_FILES) ? $_FILES : array();
@@ -228,15 +227,15 @@ function webmapp_kml_upload() {
 new WebMapp_AjaxHandler( false ,'webmapp_kml_upload' );
 
 
-add_action('wp_ajax_webmapp_file_upload', 'webmapp_file_upload');
+
 
 function webmapp_file_upload() {
 
     $data = isset($_FILES) ? $_FILES : array();
 
     $temp_name = $data["webmapp_file_upload"]["tmp_name"];
-
     $fileName = $data["webmapp_file_upload"]["name"];
+
     $fileNameChanged = str_replace(" ", "_", $fileName);
 
     $filepath = WebMapp_DIR . "/uploads";
