@@ -10,7 +10,7 @@
 function WebMapp_V1BboxRoute($data) {
     $bbox = get_option('webmapp_bounding_box');
 
-    if (empty($bbox)) {
+    if ( empty( $bbox ) ) {
         return NULL;
     }
     $data = array("bounding_box" => $bbox);

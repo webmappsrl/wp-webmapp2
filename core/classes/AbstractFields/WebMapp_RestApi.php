@@ -68,7 +68,7 @@ class WebMapp_RestApi extends WebMapp_AbstractFields
 
     /**
      *
-     * Register multiple rest field associated to objecy_type
+     * Register multiple rest fields associated to objecy_type
      *
      * @param $post_type
      * @param $fields

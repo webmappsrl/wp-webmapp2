@@ -1,22 +1,11 @@
 <?php
 
 
+/**
+ * PRIVATE AJAX
+ */
 
 
-add_action( 'wp_ajax_nopriv_add_user_to_route', 'add_user_to_route' );
-add_action( 'wp_ajax_add_user_to_route', 'add_user_to_route' );
-function add_user_to_route() {
-
-    $username = get_userdata($_REQUEST['user_id']);
-
-    echo json_encode($username->data);
-
-    die();
-
-}
-
-
-add_action('wp_ajax_webmapp_manage_bulk_quick_save_bulk_edit', 'webmapp_manage_bulk_quick_save_bulk_edit');
 function webmapp_manage_bulk_quick_save_bulk_edit() {
     // we need the post IDs
     $post_ids = (isset($_POST['post_ids']) && !empty($_POST['post_ids'])) ? $_POST['post_ids'] : NULL;
@@ -43,10 +32,9 @@ function webmapp_manage_bulk_quick_save_bulk_edit() {
     }
 
 }
+new WebMapp_AjaxHandler( false ,'webmapp_manage_bulk_quick_save_bulk_edit' );
 
-//ERROR?
-add_action('wp_ajax_webmapp_import_create_poi', 'webmapp_import_create_poi');
-add_action('wp_ajax_webmapp_import_create_poi', 'webmapp_import_create_poi');
+
 function webmapp_import_create_poi() {
 
     $poi = $_POST["objects"];
@@ -79,8 +67,9 @@ function webmapp_import_create_poi() {
     echo json_encode($response);
     die;
 }
+new WebMapp_AjaxHandler( false ,'webmapp_import_create_poi' );
 
-add_action('wp_ajax_webmapp_create_track', 'webmapp_create_track');
+
 function webmapp_create_track() {
 
     $title = $_POST["track_name"] != "" ? $_POST["track_name"] : "undefined";
@@ -199,9 +188,9 @@ function webmapp_create_track() {
     echo json_encode($response);
     die;
 }
+new WebMapp_AjaxHandler( false ,'webmapp_create_track' );
 
-add_action('wp_ajax_webmapp_kml_upload', 'webmapp_kml_upload');
-add_action('wp_ajax_webmapp_kml_upload', 'webmapp_kml_upload');
+
 function webmapp_kml_upload() {
 
     $data = isset($_FILES) ? $_FILES : array();
@@ -227,6 +216,8 @@ function webmapp_kml_upload() {
 
     die();
 }
+new WebMapp_AjaxHandler( false ,'webmapp_kml_upload' );
+
 
 add_action('wp_ajax_webmapp_file_upload', 'webmapp_file_upload');
 function webmapp_file_upload() {
@@ -252,7 +243,7 @@ function webmapp_file_upload() {
         if ($ftype == "gpx") {
             $response = webmapp_parse_gpx($file, $response);
         }
-        elseif ($fype == "kml") {
+        elseif ($ftype == "kml") {
             $response = webmapp_parse_kml($file, $response);
         }
         else {
@@ -266,6 +257,9 @@ function webmapp_file_upload() {
 
     die();
 }
+new WebMapp_AjaxHandler( false ,'webmapp_file_upload' );
+
+
 function webmapp_parse_gpx($file, $response) {
 
     $gpx = simplexml_load_file($file);
@@ -302,16 +296,39 @@ function webmapp_parse_gpx($file, $response) {
 
     return $response;
 }
+function webmapp_parse_kml($file, $response) {
+
+    $kml = simplexml_load_file($file);
+    if ($kml === FALSE) {
+        $response["error"] = __("Failed loading KML: ", "webmap_net7");
+        foreach (libxml_get_errors() as $error) {
+            $response["error"] .= "<br>" . $error->message;
+        }
+    }
+    else {
 
 
-
-
-
-
-
-
-
-
-
-
-
+        foreach ($kml->Document->Placemark as $plm) {
+            if (count($plm->Point) > 0) {
+                $point = explode(",", $plm->Point->coordinates);
+                $response["poi"][] = array(
+                    'name' => (string) $plm->name,
+                    'desc' => (string) $plm->description,
+                    'lat' => (string) $point[1],
+                    'lon' => (string) $point[0]
+                );
+                unset($plm);
+            }
+            elseif (count($plm->LineString) > 0) {
+                $response["label"] = __("Creating Track with name: ", "webmap_net7");
+                $response["title"] = (string) $plm->name;
+                $plm->asXML($file);
+            }
+            else {
+                unset($plm);
+            }
+        }
+        $response["gpx_file"] = $file;
+    }
+    return $response;
+}

@@ -73,63 +73,6 @@ $fields = array (
         'mime_types' => 'png, jpg, jpeg',
     ),
 );
-$args = array (
-    'key' => 'wm_taxonomy_main',
-    'title' => 'Additional info',
-    'fields' => $fields,
-    'location' => array (
-        array (
-            array (
-                'param' => 'taxonomy',
-                'operator' => '==',
-                'value' => 'webmapp_category',
-            ),
-        ),
-        array (
-            array (
-                'param' => 'taxonomy',
-                'operator' => '==',
-                'value' => 'where',
-            ),
-        ),
-        array (
-            array (
-                'param' => 'taxonomy',
-                'operator' => '==',
-                'value' => 'when',
-            ),
-        ),
-        array (
-            array (
-                'param' => 'taxonomy',
-                'operator' => '==',
-                'value' => 'who',
-            ),
-        ),
-        array (
-            array (
-                'param' => 'taxonomy',
-                'operator' => '==',
-                'value' => 'theme',
-            ),
-        ),
-        array (
-            array (
-                'param' => 'taxonomy',
-                'operator' => '==',
-                'value' => 'activity',
-            ),
-        ),
-    ),
-    'menu_order' => 0,
-    'position' => 'normal',
-    'style' => 'default',
-    'label_placement' => 'top',
-    'instruction_placement' => 'label',
-    'hide_on_screen' => '',
-    'active' => 1,
-    'description' => '',
-);
 
 $taxonomies_with_this_fields = array(
     "webmapp_category",
@@ -140,7 +83,31 @@ $taxonomies_with_this_fields = array(
     "activity"
 );
 
-
+$location = array();
+foreach ( $taxonomies_with_this_fields as $tax_name )
+{
+    $location[] = array(
+        array(
+            'param' => 'taxonomy',
+            'operator' => '==',
+            'value' => $tax_name
+        )
+    );
+}
+$args = array (
+    'key' => 'wm_taxonomy_main',
+    'title' => 'Additional info',
+    'fields' => $fields,
+    'location' => $location,
+    'menu_order' => 0,
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'hide_on_screen' => '',
+    'active' => 1,
+    'description' => '',
+);
 
 
 $WebMapp_RegisterRouteFields = new WebMapp_RegisterFieldsGroup($taxonomies_with_this_fields ,$args );

@@ -105,7 +105,7 @@ $args = array(
     'methods' => 'POST',
     'callback' => 'WebMapp_V1SendMailRoute'
 );
-$WebMapp_V1SendMailRoute = new WebMapp_RegisterRestRoute( $namespace , $route, $args );
+new WebMapp_RegisterRestRoute( $namespace , $route, $args );
 
 
 /**
@@ -180,12 +180,12 @@ $args = array(
     'methods' => 'GET',
     'callback' => 'WebMapp_V1AuthorizeRequestRoute'
 );
-$WebMapp_V1AuthorizeRequestRoute = new WebMapp_RegisterRestRoute( $namespace , $route, $args );
+new WebMapp_RegisterRestRoute( $namespace , $route, $args );
 
 /**
  * @param WP_REST_Request $request
  * @return WP_REST_Response
- * webmapp_deny_request
+ * webmapp_deny_request()
  */
 function WebMapp_V1DenyRequestRoute(WP_REST_Request $request) {
 
@@ -246,4 +246,4 @@ $args = array(
     'methods' => 'GET',
     'callback' => 'WebMapp_V1DenyRequestRoute'
 );
-$WebMapp_V1DenyRequestRoute = new WebMapp_RegisterRestRoute( $namespace , $route, $args );
+new WebMapp_RegisterRestRoute( $namespace , $route, $args );

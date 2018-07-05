@@ -55,6 +55,12 @@ WebMapp_Utils::load_dir('core/classes/AdminOptionsPage');
 
 /**
  * Enqueue custom post type registration
+ * wp_ajax_ wp_ajax_nopriv_ hooks
+ */
+WebMapp_Utils::load_dir('duplicable/ajax');
+
+/**
+ * Enqueue custom post type registration
  * init hooks
  */
 WebMapp_Utils::load_dir('duplicable/custom_types/post_types');
@@ -80,7 +86,7 @@ WebMapp_Utils::load_dir('duplicable/rest_routes');
 
 /**
  * Register css/js resources
- * admin_enqueue_scripts , login_enqueue_scripts , wp_enqueue_scripts hooks
+ * hooks: admin_enqueue_scripts , login_enqueue_scripts , wp_enqueue_scripts hooks
  */
 WebMapp_Utils::load_dir('duplicable/assets_enqueuer');
 WebMapp_Utils::load_dir('duplicable/assets_enqueuer/admin');

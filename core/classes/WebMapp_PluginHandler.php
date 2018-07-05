@@ -11,7 +11,7 @@ class WebMapp_PluginHandler
 
     function __construct()
     {
-        add_action( 'plugins_loaded', 'load_plugin_textdomain' );
+        add_action( 'plugins_loaded', array( $this , 'load_plugin_textdomain' ) );
 
 
     }
