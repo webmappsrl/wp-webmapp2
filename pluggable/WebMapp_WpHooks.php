@@ -5,18 +5,7 @@
  */
 
 
-/**
- *
- * @param $mime_types
- * @return mixed
- */
-add_filter('upload_mimes', 'my_myme_types');
-function my_myme_types($mime_types) {
 
-    $mime_types['gpx'] = 'application/gpx+xml'; //Adding svg extension
-
-    return $mime_types;
-}
 
 
 
@@ -31,7 +20,7 @@ function new_excerpt_more($more) {
 
 add_filter( 'login_message', 'webmapp_login_message' );
 function webmapp_login_message( $message ) {
-    $action = $_REQUEST['action'];
+    $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
     if( $action == 'lostpassword' ) {
         $message = '<p class="message">Inserisci il tuo indirizzo email, poi controlla nella tua casella postale per il link che ti permette di resettare la password</p>';
         return $message;
@@ -53,16 +42,17 @@ function login_function() {
     }
 }
 
+add_filter( 'login_headerurl', 'custom_loginlogo_url' );
+function custom_loginlogo_url($url) {
+    return '#';
+}
 
 add_filter( 'lostpassword_redirect', 'my_redirect_home' );
 function my_redirect_home( $lostpassword_redirect ) {
     return wp_login_url().'?action=lostpassword&webmapp_close=true';
 }
 
-add_filter( 'login_headerurl', 'custom_loginlogo_url' );
-function custom_loginlogo_url($url) {
-    return '#';
-}
+
 
 add_action('save_post', 'webmapp_manage_qe_save_post', 10, 2);
 function webmapp_manage_qe_save_post($post_id, $post) {

@@ -15,12 +15,14 @@ class WebMapp_RegisterFieldsGroup extends WebMapp_AbstractFields
      * WebMapp_RegisterFieldsGroup constructor.
      * @param $object_names
      * @param $args
+     * @param bool $in_rest_api
      */
-    function __construct( $object_names, $args )
+    function __construct( $object_names, $args, $in_rest_api = true )
     {
         parent::__construct($object_names, $args);
         $this->acfs[] = new WebMapp_Acf( $object_names, $args );
-        $this->rest_apis[] = new WebMapp_RestApi( $object_names, $args );
+        if ( $in_rest_api )
+            $this->rest_apis[] = new WebMapp_RestApi( $object_names, $args );
     }
 
 

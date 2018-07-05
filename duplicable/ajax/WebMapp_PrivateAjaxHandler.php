@@ -189,7 +189,14 @@ function webmapp_create_track() {
     die;
 }
 new WebMapp_AjaxHandler( false ,'webmapp_create_track' );
-
+function gpx_to_geojson($text) {
+    $decoder = new gisconverter\GPX();
+    return $decoder->geomFromText($text)->toGeoJSON();
+}
+function kml_to_geojson($text) {
+    $decoder = new gisconverter\KML();
+    return $decoder->geomFromText($text)->toGeoJSON();
+}
 
 function webmapp_kml_upload() {
 
@@ -332,3 +339,4 @@ function webmapp_parse_kml($file, $response) {
     }
     return $response;
 }
+
