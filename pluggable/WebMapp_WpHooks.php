@@ -101,6 +101,15 @@ function webmapp_manage_qe_save_post($post_id, $post) {
 
 }
 
+
+add_action('save_post_route', 'route_save_meta');
+function route_save_meta($post_id) {
+    if (isset($_POST['n7webmapp_route_bbox'])) {
+        update_post_meta($post_id, 'n7webmapp_route_bbox', $_POST['n7webmapp_route_bbox']);
+    }
+}
+
+
 // BULK EDIT - QUICK EDIT
 
 add_filter('manage_posts_columns', 'webmapp_manage_posts_columns', 10, 2);

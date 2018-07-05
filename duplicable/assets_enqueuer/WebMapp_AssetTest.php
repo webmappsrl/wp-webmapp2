@@ -9,7 +9,7 @@
 
 $args = array(
     'my_test_mmm' => array(
-        'src' => WebMapp_URL . 'assets/js/leaflet-map.js',
+        'src' => WebMapp_ASSETS . 'js/leaflet-map.js',
         'deps' => '',
         'in_footer' => '',
         'screen_base' => '',//works only in admin pages
@@ -22,7 +22,7 @@ $args = array(
 
 );
 
-new WebMapp_AssetEnqueuer( $args , array( 'login' ), 'script' );
+//new WebMapp_AssetEnqueuer( $args , array( 'login' ), 'script' );
 
 /**
  * Open popup in current page with screen_base and screen_id info

@@ -21,6 +21,11 @@ L.tileLayer('http://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
  var geojsonLayer  = L.geoJSON(geojsonFeature).addTo(mymap);
 
+ console.log('herestart');
+ console.log(geojsonFeature);
+ console.log( mymap.fitBounds(geojsonLayer.getBounds()) );
+ console.log('hereend');
+
 mymap.fitBounds(geojsonLayer.getBounds());
 
 jQuery("#set_bbox").on("click", function(e){

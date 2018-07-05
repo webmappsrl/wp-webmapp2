@@ -50,7 +50,8 @@ function WebMapp_webmapp_import_gpx_localize_data()
         ),
         'webmapp-leaflet-map' => array(
             'src' => WebMapp_ASSETS . 'js/leaflet-map.js',
-            'deps' => array('jquery')
+            'deps' => array('jquery','webmap_leaflet_js'),
+            'in_footer' => false
         ),
         'webmapp-leaflet-vector-markers' => array(
             'src' => WebMapp_ASSETS . 'js/leaflet-vector-markers.min.js',
@@ -58,7 +59,8 @@ function WebMapp_webmapp_import_gpx_localize_data()
         ),
         'jquery-ui-dialog' => array(),//format to enqueue already registered handles
         'webmap_leaflet_js' => array(
-            'src' => WebMapp_URL . 'third-part/leaflet/leaflet.js'
+            'src' => WebMapp_URL . 'third-part/leaflet/leaflet.js',
+            'in_footer' => false
         ),
     );
 //use all sides

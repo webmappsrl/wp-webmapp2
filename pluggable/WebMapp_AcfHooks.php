@@ -43,7 +43,7 @@ function my_acf_admin_head() {
                     $('.acf-field-parse-gpx .acf-input #webmapp-gpx-import').append("<div class='acf-label'><?php echo __("Upload a gpx file to import it's POIs. Use filename with no special character, only the .gpx extension.", "webmap_net7")?></div>");
                     $('.acf-field-parse-gpx .acf-input #webmapp-gpx-import').append('<div><input id=\'gpx-upload-file\' type=\'file\' name=\'async-upload\'></div>');
 
-                    $('.acf-field-parse-gpx .acf-input').append("<span class='hidden-loader loader'><img src='<?php echo plugin_dir_url(__FILE__) ?>/images/spinner.gif'><?php echo __("Loading", "webmap_net7") ?></span>");
+                    $('.acf-field-parse-gpx .acf-input').append("<span class='hidden-loader loader'><img src='<?php echo WebMapp_ASSETS ?>images/spinner.gif'><?php echo __("Loading", "webmap_net7") ?></span>");
                     $('.acf-field-parse-gpx .acf-input').append('<div class=\'acf-repeater\' id=\'track-import-preview\'></div>');
                     $('#webmap_category_dialog').dialog(
                         {

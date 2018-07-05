@@ -15,7 +15,7 @@ function webmapp_manage_qe_admin_scripts() {
 add_action('admin_head-post.php', 'admin_head_route_editing');;
 function admin_head_route_editing() {
 
-    if ($_GET['add_user']) {
+    if ( isset( $_GET['add_user'] ) && $_GET['add_user'] ) {
         wp_enqueue_script('webmapp-add_user_to_route', trailingslashit(plugin_dir_url(__FILE__)) . 'includes/js/add_user_to_route.js', array(
             'jquery'
         ), '', TRUE);
