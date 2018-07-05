@@ -3,7 +3,7 @@
 // Position / Gallery / Address / Contact / Link / Info / Accessibility
 
 
-    $poi_fields = array(
+    $poi_fields1 = array(
         array(
             'key' => 'wm_poi_tab_coordinate',
             'label' => 'Position',
@@ -24,7 +24,7 @@
         ));
 
 
-    $poi_fields += array(
+    $poi_fields2 = array(
         array(
             'key' => 'wm_poi_tab_gallery',
             'label' => 'Gallery',
@@ -44,7 +44,7 @@
         ));
 
 
-    $poi_fields += array(
+    $poi_fields3 = array(
         array(
             'key' => 'wm_poi_tab_address',
             'label' => 'Address',
@@ -87,7 +87,7 @@
 
 
 
-    $poi_fields += array(
+    $poi_fields4 = array(
         array(
             'key' => 'wm_poi_tab_contact',
             'label' => 'Contact',
@@ -137,7 +137,7 @@
     );
 
 
-    $poi_fields += array(
+    $poi_fields5 = array(
         array(
             'key' => 'wm_poi_tab_link',
             'label' => 'Link',
@@ -165,7 +165,7 @@
     );
 
 
-    $poi_fields += array(
+    $poi_fields6 = array(
         array(
             'key' => 'wm_poi_tab_info',
             'label' => 'Info',
@@ -217,7 +217,7 @@
 
 
 
-    $poi_fields += array(
+    $poi_fields7 = array(
 
         // MOBILITY
         array(
@@ -338,7 +338,7 @@
 
 
 
-    $poi_fields += array(
+    $poi_fields8 = array(
         array(
             'key' => 'wm_poi_tab_advanced',
             'label' => 'Advanced',
@@ -366,10 +366,21 @@
 
         ));
 
+
+
     $args = array(
         'key' => 'group_58528c8aa5b2f',
         'title' => 'POI',
-        'fields' => $poi_fields,
+        'fields' => array_merge(
+            $poi_fields1,
+            $poi_fields2,
+            $poi_fields3,
+            $poi_fields4,
+            $poi_fields5,
+            $poi_fields6,
+            $poi_fields7,
+            $poi_fields8
+        ),
         'location' => array(
             array(
                 array(
@@ -382,6 +393,8 @@
         'menu_order' => 0,
         'active' => 1
     );
+
+    //var_dump( $poi_fields );
 
 
 $WebMapp_RegisterPoiFields = new WebMapp_RegisterFieldsGroup( 'poi', $args );

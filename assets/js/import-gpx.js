@@ -16,50 +16,50 @@ jQuery( document ).ajaxComplete(function( event, xhr, settings ) {
  jQuery(document).ready(function() {
   
 
-   jQuery('#kml-upload-file').on('change', prepareKmlUpload);    
-   
-  function prepareKmlUpload(event){    
-      var file = event.target.files;
-      var type  = jQuery(this).data("type");
-      var data = new FormData();
-      data.append("action", "webmapp_kml_upload");
-      data.append("post-type", type);
-      jQuery.each(file, function(key, value)
-      {
-      data.append("webmapp_file_upload", value);
-      });
-      
-      jQuery(".upload-kml .loader").removeClass("hidden-loader");
-      jQuery("#create_obj_from_kml #preview-import").empty();
-      jQuery('body').off("submit", "#create_obj_from_kml", handleImportKlm);
-      jQuery.ajax({
-          url: webmapp_config.ajax_url,
-          type: 'POST',
-          data: data,
-          cache: false,
-          dataType: 'json',
-          processData: false, // Don't process the files
-          contentType: false, // Set content type to false as jQuery will tell the server its a query string request      
-          success: function(data) {
-            jQuery(".upload-kml .loader").addClass("hidden-loader");            
-            jQuery('#create_obj_from_kml #preview-import').append("<h3>Preview of import</h3>");            
-            if(data["poi"].length > 0){
-              jQuery('#create_obj_from_kml #preview-import').append("<table class='acf-table'></table>");
-              jQuery('#create_obj_from_kml #preview-import table').append("<thead><tr><th>OSM</th><th>Name</th><th>Desc</th><th>Categories <a href='#' title='add POI categories' class='dashicons dashicons-plus-alt add-poi-cat'><input type='hidden' id='massive_selected_cat'></th><th>Import POI <input type='checkbox' name='check_all_rows' checked value=''></th></tr></thead>");
-              
-              data["poi"].forEach(function(entry, index){
-                jQuery('#create_obj_from_kml #preview-import table').append("<tr><td><a href='#' class='osm-dialog' data-lat='"+entry["lat"]+"' data-lon='"+entry["lon"]+"'><i class='fa fa-globe' aria-hidden='true'></i></a></td>"+
-                        "<td> <input type='text' name='object_name' disabled value='"+entry["name"]+"'><button type='button' class='button button-small hide-if-no-js enable-poi-edit' aria-label='Edit name'>Edit</button> </td><td>"+entry["desc"]+"</td><td class='poi_cat_cell'><a href='#' title='edit POI categories' class='dashicons dashicons-edit edit-poi-cat' data-poi='"+index+"'></a></td><td><input type='checkbox' name='poi_to_import' checked value='"+index+"'></td></tr>")
-              })
-            }
-            jQuery('#create_obj_from_kml #preview-import').prepend("<br><input type='submit' class='acf-button button button-primary' value='Import "+type+"'>" );
-            jQuery('#create_obj_from_kml #preview-import').append("<br><input type='submit' class='acf-button button button-primary' value='Import "+type+"'>" );
-            
-            jQuery('body').on("submit", "#create_obj_from_kml", data, handleImportKlm);
-          }
+   jQuery('#kml-upload-file').on('change', prepareKmlUpload);
 
-	});
-    }
+     function prepareKmlUpload(event){
+         var file = event.target.files;
+         var type  = jQuery(this).data("type");
+         var data = new FormData();
+         data.append("action", "webmapp_kml_upload");
+         data.append("post-type", type);
+         jQuery.each(file, function(key, value)
+         {
+             data.append("webmapp_file_upload", value);
+         });
+
+         jQuery(".upload-kml .loader").removeClass("hidden-loader");
+         jQuery("#create_obj_from_kml #preview-import").empty();
+         jQuery('body').off("submit", "#create_obj_from_kml", handleImportKlm);
+         jQuery.ajax({
+             url: webmapp_config.ajax_url,
+             type: 'POST',
+             data: data,
+             cache: false,
+             dataType: 'json',
+             processData: false, // Don't process the files
+             contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+             success: function(data) {
+                 jQuery(".upload-kml .loader").addClass("hidden-loader");
+                 jQuery('#create_obj_from_kml #preview-import').append("<h3>Preview of import</h3>");
+                 if(data["poi"].length > 0){
+                     jQuery('#create_obj_from_kml #preview-import').append("<table class='acf-table'></table>");
+                     jQuery('#create_obj_from_kml #preview-import table').append("<thead><tr><th>OSM</th><th>Name</th><th>Desc</th><th>Categories <a href='#' title='add POI categories' class='dashicons dashicons-plus-alt add-poi-cat'><input type='hidden' id='massive_selected_cat'></th><th>Import POI <input type='checkbox' name='check_all_rows' checked value=''></th></tr></thead>");
+
+                     data["poi"].forEach(function(entry, index){
+                         jQuery('#create_obj_from_kml #preview-import table').append("<tr><td><a href='#' class='osm-dialog' data-lat='"+entry["lat"]+"' data-lon='"+entry["lon"]+"'><i class='fa fa-globe' aria-hidden='true'></i></a></td>"+
+                             "<td> <input type='text' name='object_name' disabled value='"+entry["name"]+"'><button type='button' class='button button-small hide-if-no-js enable-poi-edit' aria-label='Edit name'>Edit</button> </td><td>"+entry["desc"]+"</td><td class='poi_cat_cell'><a href='#' title='edit POI categories' class='dashicons dashicons-edit edit-poi-cat' data-poi='"+index+"'></a></td><td><input type='checkbox' name='poi_to_import' checked value='"+index+"'></td></tr>")
+                     })
+                 }
+                 jQuery('#create_obj_from_kml #preview-import').prepend("<br><input type='submit' class='acf-button button button-primary' value='Import "+type+"'>" );
+                 jQuery('#create_obj_from_kml #preview-import').append("<br><input type='submit' class='acf-button button button-primary' value='Import "+type+"'>" );
+
+                 jQuery('body').on("submit", "#create_obj_from_kml", data, handleImportKlm);
+             }
+
+         });
+     }
     
     
     jQuery('#gpx-upload-file').on('change', prepareUpload);
@@ -91,6 +91,8 @@ jQuery( document ).ajaxComplete(function( event, xhr, settings ) {
           processData: false, // Don't process the files
           contentType: false, // Set content type to false as jQuery will tell the server its a query string request      
           success: function(data) {
+              console.log(data);
+
             jQuery(".acf-field-parse-gpx .loader").addClass("hidden-loader");            
              jQuery(".acf-field-parse-gpx .loader").addClass("hidden-loader");
             if(data["error"] && data["error"] != "" ){
@@ -117,6 +119,7 @@ jQuery( document ).ajaxComplete(function( event, xhr, settings ) {
               jQuery('.acf-field-parse-gpx').on("submit", "#webmapp-gpx-import", data, handleImportGpx);
               jQuery('.acf-field-parse-gpx').on("click", "#import_track",function(){
                 jQuery("#webmapp-gpx-import").submit();
+               
               })
             }
           }

@@ -5,6 +5,7 @@
 
 add_action('add_meta_boxes', 'addingtrack_meta_boxes', 10, 2);
 function addingtrack_meta_boxes($post_type, $post) {
+    var_dump( get_post_meta($post->ID) );
   if (get_post_meta($post->ID, "n7webmap_geojson", TRUE) != "" || get_post_meta($post->ID, 'n7webmap_route_related_track') != NULL) {
     add_meta_box(
       'webmapp-track-map',
@@ -33,7 +34,7 @@ function render_map_leaflet($post) {
 
   ?>
     <div id='track-leaflet-map'></div>
-    <?php var_dump(geojson_route_related_track($post->ID)) ?>
+
     <script>
 
             setLeafletMap('track-leaflet-map', <?php echo json_encode(geojson_track($post->ID)) ?>);

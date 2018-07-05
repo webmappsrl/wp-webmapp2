@@ -198,6 +198,8 @@ function kml_to_geojson($text) {
     return $decoder->geomFromText($text)->toGeoJSON();
 }
 
+
+add_action('wp_ajax_webmapp_kml_upload', 'webmapp_kml_upload');
 function webmapp_kml_upload() {
 
     $data = isset($_FILES) ? $_FILES : array();
@@ -207,7 +209,7 @@ function webmapp_kml_upload() {
     $fileName = $data["webmapp_file_upload"]["name"];
     $fileNameChanged = str_replace(" ", "_", $fileName);
 
-    $filepath = plugin_dir_path(__FILE__) . "uploads";
+    $filepath = WebMapp_DIR . "/uploads";
     $file = $filepath . "/" . $fileNameChanged;
 
     $response = array();
@@ -227,6 +229,7 @@ new WebMapp_AjaxHandler( false ,'webmapp_kml_upload' );
 
 
 add_action('wp_ajax_webmapp_file_upload', 'webmapp_file_upload');
+
 function webmapp_file_upload() {
 
     $data = isset($_FILES) ? $_FILES : array();
@@ -236,11 +239,17 @@ function webmapp_file_upload() {
     $fileName = $data["webmapp_file_upload"]["name"];
     $fileNameChanged = str_replace(" ", "_", $fileName);
 
-    $filepath = plugin_dir_path(__FILE__) . "uploads";
+    $filepath = WebMapp_DIR . "/uploads";
     $file = $filepath . "/" . $fileNameChanged;
 
+
     $response = array();
+    //$response["error"] = $temp_name ;
     $file_mvd = move_uploaded_file($temp_name, $file);
+    //$text = file_get_contents( $temp_name );
+
+    //$test = gpx_to_geojson ($text);
+
 
     if ($file_mvd) {
         $file_type = explode(".", $fileName);
@@ -259,6 +268,7 @@ function webmapp_file_upload() {
         $response["file_type"] = $ftype;
 
     }
+
 
     echo json_encode($response);
 
@@ -290,10 +300,10 @@ function webmapp_parse_gpx($file, $response) {
         foreach ($gpx->wpt as $wpt) {
             //        var_dump($wpt); die;
             $response["poi"][] = array(
-                name => (string) $wpt->name,
-                desc => (string) $wpt->desc,
-                lat => (string) $wpt["lat"],
-                lon => (string) $wpt["lon"],
+                'name' => (string) $wpt->name,
+                'desc' => (string) $wpt->desc,
+                'lat' => (string) $wpt["lat"],
+                'lon' => (string) $wpt["lon"],
             );
         }
         unset($gpx->wpt);
