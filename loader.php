@@ -99,11 +99,26 @@ WebMapp_Utils::load_dir('duplicable/assets_enqueuer/wp');
  */
 WebMapp_Utils::load_dir('duplicable/admin/columns');
 
-/**
- * Load admin pages or subpages
- * _admin_menu and admin_menu hooks
- */
-WebMapp_Utils::load_dir('duplicable/admin/pages');
+
+
+
+if ( is_admin() ) ://load only in admin side
+
+    /**
+     * Load admin pages or subpages
+     * _admin_menu and admin_menu hooks
+     */
+    WebMapp_Utils::load_dir('duplicable/admin/pages');
+
+else ://load in frontend side
+    
+    /**
+     * Load admin pages or subpages
+     * _admin_menu and admin_menu hooks
+     */
+    WebMapp_Utils::load_dir('duplicable/frontend/shortcodes');
+
+endif;
 
 
 /**
