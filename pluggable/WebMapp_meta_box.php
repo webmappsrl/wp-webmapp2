@@ -6,7 +6,9 @@
 add_action('add_meta_boxes', 'addingtrack_meta_boxes', 10, 2);
 function addingtrack_meta_boxes($post_type, $post) {
     //var_dump( get_post_meta($post->ID) );
-  if (get_post_meta($post->ID, "n7webmap_geojson", TRUE) != "" || get_post_meta($post->ID, 'n7webmap_route_related_track') != NULL) {
+  if ( get_post_meta($post->ID, "n7webmap_geojson", TRUE) != ""
+      || get_post_meta($post->ID, 'n7webmap_route_related_track') != NULL )
+  {
     add_meta_box(
       'webmapp-track-map',
       __('Track Map', "webmap_net7"),

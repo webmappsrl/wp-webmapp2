@@ -305,8 +305,8 @@ jQuery( document ).ajaxComplete(function( event, xhr, settings ) {
               function(response) {             
                 jQuery(".acf-field-parse-gpx #track-import-preview").empty();
                 if (response["redirect"] != ""){
-                  window.onbeforeunload = function() {};
-                  window.location = response["redirect"];
+                  //window.onbeforeunload = function() {};
+                  //window.location = response["redirect"];
                 }
                 jQuery('.acf-field-parse-gpx .acf-input #track-import-preview').append("<h3>"+webmapp_config.track_created_success+"</h3>");
   //              jQuery('.acf-field-parse-gpx .acf-input #track-import-preview').append("<h4>"+webmapp_config.track_created_subtitle+"</h4>");

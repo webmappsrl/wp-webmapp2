@@ -19,7 +19,7 @@ class WebMapp_AssetEnqueuer implements WebMapp_Interface_AssetsEnqueuer
      */
     protected $all_sides = array( 'admin' , 'login' , 'wp' );
 
-    protected $all_register_types = array( 'script' , 'style' );
+    protected $all_register_types = array( 'script' , 'style' );//todo
 
     protected $handlers;
     protected $srcs;
@@ -130,12 +130,15 @@ class WebMapp_AssetEnqueuer implements WebMapp_Interface_AssetsEnqueuer
     /**
      * Function to show a popup in current page to see screen base and id
      */
+    /**
+     * @param bool $more_info
+     */
     public static function see_where_i_am()
     {
         $hooks = array( 'wp_footer' , 'admin_footer' , 'login_footer' );
         foreach ( $hooks as $hook )
         {
-            add_action( $hook , function()
+            add_action( $hook , function( $more_info )
             {
                 $current_screen = get_current_screen();
                 $screen_id = $current_screen->id;//edit-artists
@@ -147,8 +150,10 @@ class WebMapp_AssetEnqueuer implements WebMapp_Interface_AssetsEnqueuer
                         <h1>Current page screen info</h1>
                         <h2>screen_base:</h2>
                         <p><?php echo $screen_base ?></p>
-                        <h2>screen_id:</h2>
+                        <h2>Screen_id:</h2>
                         <p><?php echo $screen_id ?></p>
+                        <h2>Var_dump current screen:</h2>
+                        <p><?php var_dump( $current_screen) ?></p>
                     </div>
                 </div>
                 <script type="text/javascript">
@@ -159,7 +164,6 @@ class WebMapp_AssetEnqueuer implements WebMapp_Interface_AssetsEnqueuer
                         wnd.document.write(i.outerHTML);
 
                     }
-
                 </script>
                 <?php
                 echo ob_get_clean();

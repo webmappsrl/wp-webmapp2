@@ -12,7 +12,7 @@ class WebMapp_PluginHandler
     function __construct()
     {
         add_action( 'plugins_loaded', array( $this , 'load_plugin_textdomain' ) );
-        add_filter('upload_mimes', array( $this , 'my_myme_types' ) );
+        add_filter('upload_mimes', array( $this , 'my_myme_types') );
 
 
     }

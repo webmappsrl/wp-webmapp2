@@ -1,0 +1,19 @@
+
+#acf_after_title-sortables {
+    position:absolute;
+    top: 0;
+    z-index: 100;
+}
+
+#acf-group_5853f89462666b4.postbox:not(#commentstatusdiv) {
+    opacity: 1;
+    height: 100%;
+}
+
+.postbox, #titlediv, .et_pb_toggle_builder_wrapper, #postdivrich, #commentstatusdiv {
+    opacity: 0;
+    height: 0;
+}
+
+
+
