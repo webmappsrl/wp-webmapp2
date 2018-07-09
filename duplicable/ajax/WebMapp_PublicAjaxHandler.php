@@ -37,7 +37,7 @@ function get_anypost_shortcode_page() {
         $atts
     ));
 
-    $output = '';
+
     $query_args = array();
 
     $term = isset( $term_id ) && is_numeric($term_id ) ? get_term( $term_id ) : '';
@@ -68,23 +68,47 @@ function get_anypost_shortcode_page() {
 
     endif;
 
-    if ( count( $query_args ) > 1 )
-    {
-        $query_args[ 'posts_per_page' ] = $posts_per_page;
-        $query_args[ 'paged' ] = $paged;
-    }
+   $query_args[ 'posts_per_page' ] = $posts_per_page;
+   $query_args[ 'paged' ] = $paged;
+
 
 
 
     $custom_posts = new WP_Query( $query_args );
+
+    /**
+     * Style operations
+     */
+    //$posts_per_row = ceil($posts_per_page / $row);
+    $posts_per_row_t = ceil($posts_per_page / $row);
+    $posts_per_row_t = $posts_per_row_t % 2 == 1 ? $posts_per_row_t + 1 : $posts_per_row_t;
+    $posts_per_row_t = $posts_per_row_t > 12 ? 12 : $posts_per_row_t;
+    $bootstrap_col_type = ceil(12 / $posts_per_row_t );//bootstrap grid system
+    $posts_per_row = 12 / $bootstrap_col_type;
+    $i = 0;
 
 
     ob_start();
     if ( $custom_posts->have_posts() ) :
         while ( $custom_posts->have_posts() ) : $custom_posts->the_post();
 
+    if ( $i%$posts_per_row == 0 )
+    {
+        if ( $i === 0 )
+            echo '<div class="row">';
+        elseif ( $i === $posts_per_page - 1 )
+            echo '</div>';
+        else
+        {
+            echo '</div>';
+            echo '<div class="row">';
+        }
+
+    }
+
        ?>
-        <article class="webmapp_shortcode_any_post post_type_<?php echo $post_type?>">
+
+            <div class="col-xs-12 col-sm-6 col-md-<?php echo $bootstrap_col_type?> col-lg-auto webmapp_shortcode_any_post post_type_<?php echo $post_type?>">
             <div class="webmapp_post-featured-img">
                 <?php the_post_thumbnail('medium') ?>
                 <?php if( $term ) :
@@ -101,16 +125,14 @@ function get_anypost_shortcode_page() {
             <div class="webmapp_post-other-terms">
 
             </div>
-        </article>
-
-
-
+        </div>
 
         <?php
         /**
          *  <h6><?php echo get_post_type( get_the_ID() ) ;?></h6>
         <p><?php the_content();?></p>
          */
+        $i ++;
         endwhile;
         wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly
 
@@ -126,7 +148,6 @@ function get_anypost_shortcode_page() {
     
     $return = array(
         'html' => $output,
-        'paged' => $paged,
         'max_num_pages' => $custom_posts->max_num_pages,
         'total' => $custom_posts->found_posts,
         'n_page' => $n_page
