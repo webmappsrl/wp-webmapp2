@@ -79,6 +79,7 @@ function WebMapp_V1UserRouteIdRoute( WP_REST_Request $request ) {
     foreach ($routes as $post) {
         $result[$post->ID] = array("active" => TRUE);
     }
+    
     return new WP_REST_Response($result, 200);
 }
 $namespace = 'webmapp/v1';

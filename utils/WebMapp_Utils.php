@@ -68,4 +68,24 @@ class WebMapp_Utils
         );
         return $capabilities;
     }
+
+   static public function get_unique_id()
+   {
+       return str_replace( '.' , '' , uniqid('webmapp_' , true ) );
+   }
+
+
+    static public function array_unique_terms( $terms )
+    {
+        $new_terms = array();
+        $terms_ids = array_map( function($e){ return isset($e->term_id) ? $e->term_id : null; },$terms );
+        $terms_ids = array_unique( $terms_ids );
+        foreach ( $terms_ids as $key => $term_id )
+            $new_terms[ $key ] = $terms[ $key ];
+        return $new_terms;
+    }
+
+
+
+
 }

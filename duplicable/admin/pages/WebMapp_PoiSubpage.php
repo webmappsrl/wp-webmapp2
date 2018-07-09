@@ -4,7 +4,6 @@
  */
 add_action( '_admin_menu' , function()
 {
-
     ob_start();
     ?>
 
@@ -44,7 +43,7 @@ add_action( '_admin_menu' , function()
     $html_pieces = array(
         'tab_1' => array(
             'html' => $html,
-            'info' => "short description",
+            'info' => "",
             'tab' => 'main'
         )
 

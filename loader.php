@@ -72,12 +72,19 @@ WebMapp_Utils::load_dir('duplicable/custom_types/post_types');
  */
 WebMapp_Utils::load_dir('duplicable/custom_types/taxonomies');
 
+
+/**
+ * Enqueue only rest api custom attributes
+ */
+WebMapp_Utils::load_dir('duplicable/rest_api');
+
 /**
  * Enqueue custom fields registration
  * Enqueue custom fields in rest-api
  * init hooks
  */
 WebMapp_Utils::load_dir('duplicable/custom_fields');
+
 
 /**
  * Register rest-api routes

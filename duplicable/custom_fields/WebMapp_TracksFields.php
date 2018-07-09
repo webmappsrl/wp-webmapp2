@@ -216,9 +216,3 @@ $args = array(
 
 $WebMapp_RegisterRouteFields = new WebMapp_RegisterFieldsGroup('track' ,$args );
 
-//out of group and only in rest api
-WebMapp_RestApi::register_rest_field( 'track' ,'n7webmap_geojson' ,
-    function ($obj_array, $field_name) {
-    return get_post_meta($obj_array['id'], $field_name, TRUE);
-    }
-);
