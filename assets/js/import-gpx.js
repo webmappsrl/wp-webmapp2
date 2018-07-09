@@ -48,7 +48,7 @@ jQuery(document).ready(function() {
                     jQuery('#create_obj_from_kml #preview-import table').append("<thead><tr><th>OSM</th><th>Name</th><th>Desc</th><th>Categories <a href='#' title='add POI categories' class='dashicons dashicons-plus-alt add-poi-cat'><input type='hidden' id='massive_selected_cat'></th><th>Import POI <input type='checkbox' name='check_all_rows' checked value=''></th></tr></thead>");
 
                     data["poi"].forEach(function(entry, index){
-                        jQuery('#create_obj_from_kml #preview-import table').append("<tr><td><a href='#' class='osm-dialog' data-lat='"+entry["lat"]+"' data-lon='"+entry["lon"]+"'><i class='fa fa-globe' aria-hidden='true'></i></a></td>"+
+                        jQuery('#create_obj_from_kml #preview-import table').append("<tr data-index='"+ index +"'><td><a href='#' class='osm-dialog' data-lat='"+entry["lat"]+"' data-lon='"+entry["lon"]+"'><i class='fa fa-globe' aria-hidden='true'></i></a></td>"+
                             "<td> <input type='text' name='object_name' disabled value='"+entry["name"]+"'><button type='button' class='button button-small hide-if-no-js enable-poi-edit' aria-label='Edit name'>Edit</button> </td><td>"+entry["desc"]+"</td><td class='poi_cat_cell'><a href='#' title='edit POI categories' class='dashicons dashicons-edit edit-poi-cat' data-poi='"+index+"'></a></td><td><input type='checkbox' name='poi_to_import' checked value='"+index+"'></td></tr>")
                     })
                 }
@@ -332,6 +332,7 @@ jQuery(document).ready(function() {
     }
 
     function handleImportKlm(event) {
+        console.log(event);
         event.stopPropagation(); // Stop stuff happening
         event.preventDefault(); // Totally stop stuff happening
         var data = event.data;
@@ -345,15 +346,16 @@ jQuery(document).ready(function() {
             objects[jQuery(this).val()] = "";
         })
 
-        for (var i = 0; i < objects.length; i++){
-            var row = jQuery("input[name='poi_to_import']").eq(i).parents("tr");
+        for (var i = 0; i < objects.length; i++)
+        {
+            var $row = jQuery("tr[data-index='" + i + "']");
             var cats = "";
-            jQuery(row).find("span[data-cat]").each(function(){
+            $row.find("span[data-cat]").each(function(){
                 cats += jQuery(this).data("cat")+",";
             })
 
             var p = objects[i];
-            objects[i]["name"] = jQuery(row).find("input[name='object_name']").val();
+            objects[i]["name"] = $row.find("input[name='object_name']").val();
             p["cats"] = cats.slice(0, -1);
             objects[i] = p;
         }

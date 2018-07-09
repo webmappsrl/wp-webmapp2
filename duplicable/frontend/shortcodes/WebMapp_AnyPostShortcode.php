@@ -30,15 +30,13 @@ function WebMapp_AnyPostShortcode( $atts ) {
         </nav>
     </section>
     <script>
+        if ( ! shortcode_conf )
         var shortcode_conf = {
             ajaxurl : '/wp-admin/admin-ajax.php',
             nonce: '<?php echo wp_create_nonce('webmapp_anypost_shortcode') ?>'
         };
 
-
-
-
-            var webmapp_posts_ajax_call = ( paged = 1 ) =>
+            var webmapp_posts_ajax_call_<?php echo $id ?> = ( paged = 1 ) =>
             {
                 let $current_section = $('#<?php echo $id ?>');
                 let loader_img = $current_section.find('.webmapp_loader_img');
@@ -69,7 +67,7 @@ function WebMapp_AnyPostShortcode( $atts ) {
                         let n_page = json.n_page;
                         let $pagination_wrap = $current_section.find( '.pagination' );
                         let $pagination_links = $pagination_wrap.find( '.pagination_link' );
-                        if ( $pagination_links.length < n_page )
+                        if ( $pagination_links.length < n_page && $pagination_links.length > 1 )
                         {
                             let new_link;
                             $pagination_wrap.empty();
@@ -82,7 +80,7 @@ function WebMapp_AnyPostShortcode( $atts ) {
                                 new_link.on('click', function(e)
                                 {
                                     e.preventDefault();
-                                    webmapp_posts_ajax_call( i );
+                                    webmapp_posts_ajax_call_<?php echo $id ?>( i );
                                     $('.pagination_link_wrapper.active').removeClass('active');
                                     $(this).addClass('active');
                                 }
@@ -104,7 +102,7 @@ function WebMapp_AnyPostShortcode( $atts ) {
 
             };
 
-        webmapp_posts_ajax_call();
+        webmapp_posts_ajax_call_<?php echo $id ?>();
 
 
     </script>
