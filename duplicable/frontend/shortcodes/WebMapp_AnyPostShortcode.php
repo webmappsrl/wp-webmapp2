@@ -10,7 +10,8 @@ function WebMapp_AnyPostShortcode( $atts ) {
             'term_id' => '',
             'rows' => '2',
             'posts_per_page' => get_option( 'posts_per_page' ),
-            'post_id' => ''
+            'post_id' => '',
+            'posts_count' => ''
         ),
         $atts
     ));
@@ -19,6 +20,7 @@ function WebMapp_AnyPostShortcode( $atts ) {
     $id = WebMapp_Utils::get_unique_id();
 
     ob_start();
+
 
     ?>
 
@@ -40,19 +42,16 @@ function WebMapp_AnyPostShortcode( $atts ) {
             nonce: '<?php echo wp_create_nonce('webmapp_anypost_shortcode') ?>'
         };
 
-            var webmapp_posts_ajax_call = ( paged = 1 ) =>
+
+            var webmapp_posts_ajax_call_<?php echo $id ?> = ( paged = 1 ) =>
             {
                 let $current_section = $('#<?php echo $id ?>');
                 let $posts_wrapper = $current_section.find('.posts');
-                let $posts_controller = $current_section.find('.webmapp_posts_controller');
                 let $loader_img = $current_section.find('.webmapp_loader_img');
-                let posts_wrapper_height = $posts_wrapper.outerHeight();
+                let $posts_controller = $current_section.find('.webmapp_posts_controller');
 
-                console.log( posts_wrapper_height );
-                console.log( $posts_controller );
-                console.log( posts_wrapper_height.toString() + 'px' );
 
-                $posts_controller.css( 'height' , posts_wrapper_height.toString() + 'px' );
+
 
                 //loader image
                 $posts_wrapper.fadeOut();
@@ -68,7 +67,8 @@ function WebMapp_AnyPostShortcode( $atts ) {
                         posts_per_page : '<?php echo $posts_per_page ?>',
                         rows : '<?php echo $rows ?>',
                         paged : paged,
-                        post_type : '<?php echo $post_type ?>'
+                        post_type : '<?php echo $post_type ?>',
+                        posts_count : '<?php echo $posts_count ?>'
                     }
                 )
                     .done( function( response )
@@ -80,14 +80,14 @@ function WebMapp_AnyPostShortcode( $atts ) {
                         $posts_wrapper.empty().append( json.html );
                         $loader_img.fadeOut();
                         $posts_wrapper.fadeIn();
-                        $posts_controller.css( 'height' , '' );
 
 
                         //pagination
                         let n_page = json.n_page;
                         let $pagination_wrap = $current_section.find( '.pagination' );
                         let $pagination_links = $pagination_wrap.find( '.pagination_link' );
-                        if ( $pagination_links.length < n_page || $pagination_links.length > 1 )
+
+                        if ( n_page !== 1 && $pagination_links.length === 0 )
                         {
                             let new_link;
                             $pagination_wrap.empty();
@@ -99,8 +99,8 @@ function WebMapp_AnyPostShortcode( $atts ) {
                                 new_link.on('click', function(e)
                                 {
                                     e.preventDefault();
-                                    webmapp_posts_ajax_call( i );
-                                    $('.pagination_link_wrapper.active').removeClass('active');
+                                    webmapp_posts_ajax_call_<?php echo $id ?>( i );
+                                    $current_section.find('.pagination_link_wrapper.active').removeClass('active');
                                     $(this).addClass('active');
                                 }
                                 );
@@ -108,8 +108,9 @@ function WebMapp_AnyPostShortcode( $atts ) {
                             $current_section.find('[data-paged="' + paged + '"]').parent().addClass('active');
                         }
 
-
-                    }
+                        let posts_wrapper_height = $posts_wrapper.innerHeight();
+                        $posts_controller.css( 'height' , posts_wrapper_height.toString() + 'px' );
+                    }//end done
                     )
                     .fail( function( response )
                         {
@@ -117,17 +118,15 @@ function WebMapp_AnyPostShortcode( $atts ) {
                             $loader_img.fadeOut();
                             $posts_wrapper.fadeIn();
 
-                            console.log( 'ERROR' );
+                            console.log( 'FAIL' );
                         }
-                    );
 
-
-
-
+            )
 
             };
 
-        webmapp_posts_ajax_call();
+        webmapp_posts_ajax_call_<?php echo $id ?>();
+
 
 
     </script>
