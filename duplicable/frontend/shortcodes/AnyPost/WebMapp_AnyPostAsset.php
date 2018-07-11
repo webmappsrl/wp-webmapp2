@@ -8,7 +8,7 @@
 
 
 $args = array(
-    'my_test_mmm' => array(
+    'webmapp_anypost_js' => array(
         'src' => WebMapp_URL . 'duplicable/frontend/shortcodes/AnyPost/assets/main.js',
         'deps' => array('jquery'),
         'in_footer' => 'false',
@@ -26,7 +26,7 @@ $args = array(
 new WebMapp_AssetEnqueuer( $args , 'wp', 'script' );
 
 $args = array(
-    'my_test_mmm' => array(
+    'webmapp_anypost_css' => array(
         'src' => WebMapp_URL . 'duplicable/frontend/shortcodes/AnyPost/assets/style.css'
     )
 

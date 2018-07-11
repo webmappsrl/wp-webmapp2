@@ -127,6 +127,7 @@ else ://load in frontend side
      */
     WebMapp_Utils::load_dir('duplicable/frontend/shortcodes');
     WebMapp_Utils::load_dir('duplicable/frontend/shortcodes/AnyPost');
+    WebMapp_Utils::load_dir('duplicable/frontend/shortcodes/AnyTerm');
 
 endif;
 

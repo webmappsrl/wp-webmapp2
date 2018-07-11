@@ -1,0 +1,32 @@
+
+
+.wm-list-terms ul.wm-terms li {
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.wm-list-terms ul.wm-terms li span {
+    color: #466434;
+}
+
+.wm-list-terms ul.wm-terms li a {
+    color: #466434;
+}
+
+
+
+
+.wm-list-terms ul.wm-terms {
+    list-style: none;
+    padding-left: 0;
+    margin: 15px 0;
+}
+
+.wm-list-terms ul.wm-terms li span {
+    margin-right: 5px;
+}
+
+.wm-list-terms ul.wm-terms li i {
+    font-size: 13px;
+    margin-left: 5px;
+}
