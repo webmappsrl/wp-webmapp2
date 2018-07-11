@@ -33,6 +33,7 @@ require_once('third-part/gisconverter/gisconverter.php');
  */
 
 
+
 /**
  * User interfaces - esemplificate php classes
  */
@@ -125,6 +126,7 @@ else ://load in frontend side
      * add_shortcode and admin_menu hooks
      */
     WebMapp_Utils::load_dir('duplicable/frontend/shortcodes');
+    WebMapp_Utils::load_dir('duplicable/frontend/shortcodes/AnyPost');
 
 endif;
 

@@ -1,0 +1,171 @@
+/**
+
+
+
+OPTIONS
+
+
+ */
+
+/* FONTS */
+
+/*@font-1*/
+.webmapp_shortcode_any_post .webmapp_post-title h2 a
+{
+    color: #466434;
+}
+
+/*@font-2*/
+.webmapp_main_tax i.webmapp_icon_single,
+.webmapp_main_tax i.webmapp_icon_multiple,
+.webmapp_main_tax_single span.webmapp_single_term a
+{
+    color: #fff;
+}
+
+/*@font-3*/
+div.webmapp_post_terms .webmapp_single_term a
+{
+    color : #666;
+}
+
+/* COLORS */
+
+/*@icons color*/
+div.webmapp_post_terms .webmapp_single_term a i
+{
+    color : #666;
+}
+
+/*@colore-1 opacity 50%*/
+.webmapp_main_tax {
+    background: rgba(70, 100, 52, 0.5);
+}
+/*@colore-1*/
+.webmapp_main_tax i
+{
+    background:  rgba(70, 100, 52 , 1);
+}
+
+/**
+
+
+
+END OPTIONS
+
+
+ */
+
+
+/**
+PAGINATION
+ */
+
+.webmapp-pagination{
+    position: absolute;
+    bottom: -100px;
+}
+.webmapp_anypost_shortcode
+{
+    position: relative;
+    min-height: 300px;
+    margin-bottom: 74px;
+}
+
+/**
+IMG
+ */
+
+.webmapp_post-featured-img
+{
+    position: relative;
+}
+.webmapp_post_image
+{
+    overflow:hidden; /*hide bounds of image */
+    margin:0;   /*reset margin of figure tag*/
+    /* display: table-row; */
+    /* height: 100px; */
+}
+.webmapp_post_image img
+{
+    display:block; /*remove inline-block spaces*/
+    width:100%; /*make image streatch*/
+}
+
+
+
+
+/**
+TITLE
+ */
+.webmapp_shortcode_any_post .webmapp_post-title h2 a
+{
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 770px)
+{
+    .webmapp_shortcode_any_post .webmapp_post-title h2 a {
+        font-size: 18px!important;
+    }
+}
+
+
+/**
+TERMS
+ */
+
+.webmapp_main_tax {
+    z-index: 999;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: inline-flex;
+    font-weight: 500;
+}
+
+.webmapp_main_tax_single
+{
+    padding: 0 10px 0 0;
+}
+
+
+
+
+.webmapp_main_tax i
+{
+    width: 33px;
+    display: table-cell;
+    text-align:  center;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+i.webmapp_icon_multiple {
+    height: 33px;
+}
+
+
+div.webmapp_post_terms .webmapp_single_term a
+{
+    margin-right: 10px;
+}
+
+
+.webmapp_main_tax .webmapp_single_term span
+{
+    padding: 3px 0 0 10px;
+    display: table-cell;
+    height: 27px;
+}
+
+.webmapp_single_term a span {
+    font-size: 18px;
+}
+.webmapp_single_term a i {
+    font-size: 15px;
+}
+
