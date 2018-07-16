@@ -32,6 +32,16 @@ class WebMapp_Utils
     }
 
     /**
+     * Alias of get_tax_archive_link method
+     *
+     * @param $tax_name
+     */
+    public static function get_tax_archive_link( $tax_name )
+    {
+        return WebMapp_TemplatesRedirect::get_tax_archive_link( $tax_name );
+    }
+
+    /**
      * Check if in this project has routes checked in options page
      * todo Move to RegisterPostType
      * @return bool

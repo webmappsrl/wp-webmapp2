@@ -23,7 +23,7 @@
  * Load generic utilities class ( has loader method )
  */
 require_once('utils/WebMapp_Utils.php');
-require_once('third-part/gisconverter/gisconverter.php');
+//require_once('third-part/gisconverter/gisconverter.php');
 
 
 /**
@@ -54,6 +54,11 @@ WebMapp_Utils::load_dir('core/classes/AdminOptionsPage');
  *
  */
 
+/**
+ * WP Customizer modules
+ */
+WebMapp_Utils::load_dir('duplicable/admin/theme_customizer');
+WebMapp_Utils::load_dir('duplicable/admin/theme_customizer/ShortcodesCustomizer');
 
 /**
  * Enqueue custom post type registration

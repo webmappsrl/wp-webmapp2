@@ -6,16 +6,19 @@ function get_anypost_shortcode_page() {
     // Attributes
     extract( shortcode_atts(
         array(
-            'post_type' => 'post',
+            'post_type' => 'any',
             'term_id' => '',
             'rows' => '2',
             'posts_per_page' => get_option( 'posts_per_page' ),
             'post_id' => '',
             'paged' => '1',
-            'posts_count' => ''
+            'posts_count' => '',
+            'main_tax' => ''
         ),
         $atts
     ));
+
+
 
 
 
@@ -27,7 +30,7 @@ function get_anypost_shortcode_page() {
     if ( $post_id && is_numeric( $post_id ) ){
 
         $temp = get_post($post_id );
-        if ( $post_type == 'post' && isset( $temp->post_type ) )
+        if ( $post_type == 'any' && isset( $temp->post_type ) )
             $post_type = $temp->post_type;//
         $query_args['p'] = intval($post_id );
         $query_args[ 'posts_per_page' ] = '1';
@@ -42,7 +45,7 @@ function get_anypost_shortcode_page() {
         $query_args[ 'posts_per_page' ] = $posts_per_page;
 
     }//end elseif
-    elseif ( $post_type && post_type_exists( $post_type ) )
+    elseif ( $post_type && ( post_type_exists( $post_type ) || $post_type = 'any' ) )
     {
         if ( $term_id && $taxonomy )//set tax query
             $query_args ['tax_query'] = array(
@@ -62,26 +65,35 @@ function get_anypost_shortcode_page() {
     $query_args['post_type'] = $post_type;
 
 
+
+
     $custom_posts = new WP_Query( $query_args );
 
     /**
      * Style operations
      */
-    $twelve_odd_divider = array( 1 , 3 );
+
     //$posts_per_row = ceil($posts_per_page / $rows);
     $posts_per_row_t = ceil($posts_per_page / $rows);//calculate posts per row
 
-    switch( $posts_per_row_t ){
-        case 1 :
-    }
-    $posts_per_row_t = $posts_per_row_t!=1 && $posts_per_row_t % 2 == 1 ? $posts_per_row_t + 1 : $posts_per_row_t;//odd to even, doesn't use odd rows numbers!
+    $posts_per_row_t = $posts_per_row_t != 1
+                        && $posts_per_row_t != 3
+                        && $posts_per_row_t % 2 == 1
+                        ? $posts_per_row_t + 1 : $posts_per_row_t;//odd to even, doesn't use odd rows numbers!
 
 
     $bootstrap_col_type = ceil(12 / $posts_per_row_t );//bootstrap grid system
 
     $i = 0; $j = 0; $j_prop = true; $rows_closed = false;
 
-    ob_start();
+
+
+    ob_start();//start register html
+
+
+
+
+
 
     //var_dump( $query_args );
 
@@ -94,6 +106,24 @@ function get_anypost_shortcode_page() {
             $temporaney_post = $custom_posts->posts[0];//posts exists and are not empty
             $global_taxonomies = get_object_taxonomies( $temporaney_post );
         }
+
+        if ( $posts_count && $posts_count < $custom_posts->found_posts && $term )
+        {
+            $term_link = get_term_link( $term );
+            echo "<p class='webmapp_anypost_show_all'><a class='webmapp_anypost_show_all_linka' href='$term_link'>" . __( 'Show all' , WebMapp_TEXTDOMAIN ) . "<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></p>";
+        }
+
+
+        $main_tax_c = '';
+        if ( $post_type != 'poi' )
+            $main_tax_c = 'activity';
+        elseif( $post_type == 'poi' )
+            $main_tax_c = 'webmapp_category';
+
+        if ( $main_tax && taxonomy_exists( $main_tax ) )
+            $main_tax_c = $main_tax;
+
+
 
 
         /**
@@ -121,16 +151,18 @@ function get_anypost_shortcode_page() {
             }
 
             $title_link = get_the_permalink();
+            $get_the_post_thumbanil = get_the_post_thumbnail(get_the_ID() ,'full');
+
 
             ?>
 
             <div class="col-xs-12 col-sm-6 col-md-<?php echo $bootstrap_col_type?> webmapp_shortcode_any_post post_type_<?php echo $post_type?>">
 
                     <?php
-                    $where_html = '';
-                    $activity_html = '';
-                    $others_html = '';
+
                     $activity_level = 1;
+
+                    $taxs_htmls = array();
 
                     if ( $post_type == 'route' )
                     {
@@ -138,6 +170,8 @@ function get_anypost_shortcode_page() {
                     }
 
                     foreach( $global_taxonomies as $tax_name ) :
+
+                        $taxs_htmls[$tax_name] = '';
 
                         if ( $post_type == 'route' && $tax_name == 'activity' )
                         {
@@ -153,43 +187,35 @@ function get_anypost_shortcode_page() {
                          * Manage multiple terms in image overlay
                          */
                         $multiple = false;
-                        if (
-                                ( $post_type == 'poi' && $tax_name == 'webmapp_category' )
-                                ||
-                                ( $tax_name == 'activity' && $post_type !== 'poi' )
-                        )
+                        if ( $tax_name == $main_tax_c )
                         {
                             if ( count($terms ) > 1 )
                                 $multiple = true;
                         }
 
 
+
                         if ( $terms && is_array( $terms ) )
                         {
-
 
                             foreach ( $terms as $term )
                             {
                                 $term_link = get_term_link( $term->term_id );
                                 if ( $tax_name == 'where' )
                                 {
-                                    $where_html .= "<span class='webmapp_single_$tax_name webmapp_single_term'><a class='webmapp_single_{$tax_name}_link' href='$term_link' title='$term->name'><span class='webmapp_single_{$tax_name}_name'>$term->name</span></a></span>";
+                                    $taxs_htmls[$tax_name] .= "<span class='webmapp_single_$tax_name webmapp_single_term'><a class='webmapp_single_{$tax_name}_link' href='$term_link' title='$term->name'><span class='webmapp_single_{$tax_name}_name'>$term->name</span></a></span>";
                                 }
-                                elseif (
-                                        ( $tax_name == 'activity' && $post_type !== 'poi' )
-                                        ||
-                                        ( $tax_name == 'webmapp_category' && $post_type == 'poi' )
-                                )
+                                elseif ( $main_tax_c == $tax_name )
                                 {
                                     $term_icon = get_field( 'wm_taxonomy_icon',$term );
                                     if ( $term_icon )
                                     {
                                         $i_class = $multiple ? 'webmapp_icon_multiple' : 'webmapp_icon_single';
-                                        $activity_html .= "<span class='webmapp_single_$tax_name webmapp_single_{$tax_name}_{$activity_level} webmapp_single_term'><a class='webmapp_single_{$tax_name}_link' href='$term_link' title='$term->name'><i class='$term_icon $i_class'></i>";
+                                        $taxs_htmls[$tax_name] .= "<span class='webmapp_single_$tax_name webmapp_single_{$tax_name}_{$activity_level} webmapp_single_term'><a class='webmapp_single_{$tax_name}_link' href='$term_link' title='$term->name'><i class='$term_icon $i_class'></i>";
                                         if ( ! $multiple )
-                                            $activity_html .= "<span class='webmapp_single_{$tax_name}_name'>$term->name</span>";
+                                            $taxs_htmls[$tax_name] .= "<span class='webmapp_single_{$tax_name}_name'>$term->name</span>";
 
-                                        $activity_html .= "</a></span>";
+                                        $taxs_htmls[$tax_name] .= "</a></span>";
                                         $activity_level++;
                                     }
 
@@ -198,7 +224,7 @@ function get_anypost_shortcode_page() {
                                 {
                                     $term_icon = get_field( 'wm_taxonomy_icon',$term );
                                     if ( $term_icon )
-                                        $others_html .= "<span class='webmapp_single_$tax_name webmapp_single_term'><a class='webmapp_single_{$tax_name}_link ' href='$term_link' title='$term->name'><i class='$term_icon'></i></a></span>";
+                                        $taxs_htmls[$tax_name] .= "<span class='webmapp_single_$tax_name webmapp_single_term'><a class='webmapp_single_{$tax_name}_link ' href='$term_link' title='$term->name'><i class='$term_icon'></i></a></span>";
                                 }
 
 
@@ -212,6 +238,7 @@ function get_anypost_shortcode_page() {
 
 
 
+
                     ?>
 
                 <div class="webmapp_post-featured-img">
@@ -219,12 +246,15 @@ function get_anypost_shortcode_page() {
                     echo "<a href='$title_link' title=\"".get_the_title()."\">";
                     ?>
                     <figure class="webmapp_post_image">
-                    <?php the_post_thumbnail('full'); ?>
+                    <?php echo $get_the_post_thumbanil; ?>
                     </figure>
                     <?php
                     echo "</a>";
                     $main_tax_class = $multiple ? 'webmapp_main_tax_multiple' : 'webmapp_main_tax_single';
-                    echo "<div class='webmapp_main_tax $main_tax_class'>" . $activity_html . "</div>";
+                    $main_tax_html = isset( $taxs_htmls[$main_tax_c] ) ? $taxs_htmls[$main_tax_c] : '' ;
+
+                    if ( ! empty( $get_the_post_thumbanil ) )
+                        echo "<div class='webmapp_main_tax $main_tax_class'>" . $main_tax_html . "</div>";
                     ?>
                 </div>
                 <div class="webmapp_post-title">
@@ -234,8 +264,13 @@ function get_anypost_shortcode_page() {
                 </div>
                     <div class="webmapp_post_terms">
                         <?php
-                        echo $where_html;
-                        echo $others_html;
+                        if ( isset( $taxs_htmls['where'] ) )
+                            echo $taxs_htmls['where'];
+                        foreach ( $taxs_htmls as $key => $tax_html )
+                        {
+                            if ( $key != $main_tax_c && 'where' != $key )
+                                echo $tax_html;
+                        }
                         ?>
                     </div>
 

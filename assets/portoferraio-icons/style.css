@@ -1,0 +1,74 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?rar2w');
+  src:  url('fonts/icomoon.eot?rar2w#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?rar2w') format('truetype'),
+    url('fonts/icomoon.woff?rar2w') format('woff'),
+    url('fonts/icomoon.svg?rar2w#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-icon-icon-hour:before {
+  content: "\e906";
+}
+.icon-icon-icon-half-hour:before {
+  content: "\e907";
+}
+.icon-icon-2-4-hours:before {
+  content: "\e919";
+}
+.icon-icon-24-hours:before {
+  content: "\e91a";
+}
+.icon-icon-pets:before {
+  content: "\e908";
+}
+.icon-icon-spring:before {
+  content: "\e90b";
+}
+.icon-icon-culture:before {
+  content: "\e900";
+}
+.icon-icon-friends:before {
+  content: "\e901";
+}
+.icon-icon-beach:before {
+  content: "\e902";
+}
+.icon-icon-couple:before {
+  content: "\e903";
+}
+.icon-icon-crafts:before {
+  content: "\e904";
+}
+.icon-icon-fall:before {
+  content: "\e905";
+}
+.icon-icon-family:before {
+  content: "\e90c";
+}
+.icon-icon-food:before {
+  content: "\e90d";
+}
+.icon-icon-summer:before {
+  content: "\e909";
+}
+.icon-icon-winter:before {
+  content: "\e90a";
+}

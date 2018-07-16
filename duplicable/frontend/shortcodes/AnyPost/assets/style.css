@@ -1,21 +1,7 @@
-/**
 
 
 
-OPTIONS
 
-
- */
-
-/* FONTS */
-
-/*@font-1*/
-.webmapp_shortcode_any_post .webmapp_post-title h2 a
-{
-    color: #466434;
-}
-
-/*@font-2*/
 .webmapp_main_tax i.webmapp_icon_single,
 .webmapp_main_tax i.webmapp_icon_multiple,
 .webmapp_main_tax_single span.webmapp_single_term a
@@ -23,53 +9,62 @@ OPTIONS
     color: #fff;
 }
 
-/*@font-3*/
-div.webmapp_post_terms .webmapp_single_term a
-{
-    color : #666;
-}
-
-/* COLORS */
-
-/*@icons color*/
 div.webmapp_post_terms .webmapp_single_term a i
 {
-    color : #666;
+    filter: brightness(140%);
 }
 
-/*@colore-1 opacity 50%*/
-.webmapp_main_tax {
-    background: rgba(70, 100, 52, 0.5);
+
+
+.webmapp_loader_img {
+    position:  absolute;
+    /* vertical-align: middle; */
+    /* margin: 0 auto; */
+    max-width: 200px;
+    z-index: 99999;
+
 }
-/*@colore-1*/
-.webmapp_main_tax i
-{
-    background:  rgba(70, 100, 52 , 1);
+
+.webmapp-on-pagination {
+    position: relative;
+    display: block;
 }
-
-/**
-
-
-
-END OPTIONS
-
-
- */
-
 
 /**
 PAGINATION
  */
 
 .webmapp-pagination{
-    position: absolute;
-    bottom: -100px;
+    /* position: absolute; */
+    /* bottom: -100px; */
+    display: table;
+    width: auto;
+    margin: 15px auto;
+    text-align:  center;
 }
 .webmapp_anypost_shortcode
 {
-    position: relative;
+    /* position: relative; */
     min-height: 300px;
     margin-bottom: 74px;
+    display: table-cell;
+}
+
+.pagination_link_wrapper
+{
+    cursor: pointer;
+    display:  inline-block;
+    margin:  0 auto;
+    font-size: 0;
+    /* color:  transparent; */
+}
+
+.pagination_link {
+    display: block;
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+    margin: 0 2px;
 }
 
 /**
@@ -169,3 +164,11 @@ div.webmapp_post_terms .webmapp_single_term a
     font-size: 15px;
 }
 
+/**
+SHOW ALL LINKS
+ */
+
+.webmapp_anypost_show_all
+{
+    text-align: right;
+}

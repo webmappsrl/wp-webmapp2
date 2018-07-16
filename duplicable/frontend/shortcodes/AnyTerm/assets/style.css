@@ -1,32 +1,36 @@
-
-
-.wm-list-terms ul.wm-terms li {
+.webmapp-list-terms ul.webmapp-terms li {
+    list-style:  none;
     font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
 }
 
-.wm-list-terms ul.wm-terms li span {
-    color: #466434;
+.webmapp-list-terms .webmapp-any-terms-title {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 5px;
 }
 
-.wm-list-terms ul.wm-terms li a {
-    color: #466434;
+.wm-list-terms .webmapp-any-terms-subtitle {
+    font-size: 14px;
 }
 
 
 
-
-.wm-list-terms ul.wm-terms {
-    list-style: none;
+.webmapp-list-terms ul.webmapp-terms {
+    list-style: darkslateblue;
     padding-left: 0;
     margin: 15px 0;
 }
 
-.wm-list-terms ul.wm-terms li span {
+.webmapp-list-terms ul.webmapp-terms li span {
     margin-right: 5px;
 }
 
-.wm-list-terms ul.wm-terms li i {
+.webmapp-list-terms ul.webmapp-terms li i {
     font-size: 13px;
-    margin-left: 5px;
+
+}
+
+.webmapp-list-terms ul.webmapp-terms li i.fa
+{
+    margin-left: 10px;
 }

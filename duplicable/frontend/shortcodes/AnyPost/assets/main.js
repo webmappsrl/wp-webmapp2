@@ -1,14 +1,38 @@
 
 
-var webmapp_posts_ajax_call = ( id , paged = 1 , term_id, post_id, posts_per_page, rows, post_type, posts_count ) =>
+var webmapp_posts_ajax_call =
+    ( id , paged = 1 , term_id, post_id, posts_per_page, rows, post_type, posts_count, main_tax ) =>
 {
 
     (function($){
 
 
+        console.log( 'main_tax' );
+        console.log( main_tax );
+
+
         let $current_section = $('#' + id );
         let $posts_wrapper = $current_section.find('.posts');
         let $loader_img = $current_section.find('.webmapp_loader_img');
+        let $up_pagination = $current_section.find('.webmapp-on-pagination');
+        let $posts_controller = $current_section.find('.webmapp_posts_controller');
+
+
+        //set height of posts div, fix pagination position
+        let up_pagination_height = $up_pagination.outerHeight();
+        if ( up_pagination_height > 0 )
+            $up_pagination.outerHeight( up_pagination_height );
+
+        //center loader img
+        let loader_img_height = $loader_img.outerHeight();
+        let loader_img_width = $loader_img.outerWidth();
+        let up_pagination_width = $up_pagination.outerWidth();
+        let center_loader_in_height = ( up_pagination_height / 2 ) - ( loader_img_height / 2 );
+        let center_loader_in_width = ( up_pagination_width / 2 ) - ( loader_img_width / 2 );
+        $loader_img.css( {
+            top: center_loader_in_height,
+            left: center_loader_in_width
+        } );
 
         //loader image
         $posts_wrapper.fadeOut();
@@ -25,7 +49,8 @@ var webmapp_posts_ajax_call = ( id , paged = 1 , term_id, post_id, posts_per_pag
                 rows : rows,
                 paged : paged,
                 post_type : post_type,
-                posts_count : posts_count
+                posts_count : posts_count,
+                main_tax : main_tax
             }
         )
             .done( function( response )
@@ -55,7 +80,7 @@ var webmapp_posts_ajax_call = ( id , paged = 1 , term_id, post_id, posts_per_pag
                                 {
                                     'margin' : '-' + img_margin + 'px' + ' 0',
                                 });
-                            console.log('cropped');
+                            //console.log('cropped');
                         }
 
 
@@ -63,13 +88,15 @@ var webmapp_posts_ajax_call = ( id , paged = 1 , term_id, post_id, posts_per_pag
 
                     }).each(function() {
                         if(this.complete) $(this).load();
+
                     });
 
                     //pagination
                     let n_page = json.n_page;
-                    let $pagination_wrap = $current_section.find( '.pagination' );
+                    let $pagination_wrap = $current_section.find( '.webmapp-pagination-numbers' );
                     let $pagination_links = $pagination_wrap.find( '.pagination_link' );
 
+                    //pagination
                     if ( n_page !== 1 && $pagination_links.length === 0 )
                     {
                         let new_link;
@@ -82,7 +109,7 @@ var webmapp_posts_ajax_call = ( id , paged = 1 , term_id, post_id, posts_per_pag
                             new_link.on('click', function(e)
                                 {
                                     e.preventDefault();
-                                    webmapp_posts_ajax_call( id , i , term_id, post_id, posts_per_page, rows, post_type, posts_count);
+                                    webmapp_posts_ajax_call( id , i , term_id, post_id, posts_per_page, rows, post_type, posts_count, main_tax );
                                     $current_section.find('.pagination_link_wrapper.active').removeClass('active');
                                     $(this).addClass('active');
                                 }
@@ -90,6 +117,18 @@ var webmapp_posts_ajax_call = ( id , paged = 1 , term_id, post_id, posts_per_pag
                         }
                         $current_section.find('[data-paged="' + paged + '"]').parent().addClass('active');
                     }
+
+
+                    setTimeout( function(){
+                        //fix posts height
+                        let posts_controller_height = $posts_controller.outerHeight();
+
+                        if ( posts_controller_height > up_pagination_height )
+                            $up_pagination.css( 'height' , posts_controller_height );
+                    }, 300 );
+
+
+
 
                 }//end done
             )
