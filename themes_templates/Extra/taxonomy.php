@@ -11,6 +11,7 @@ $term = get_queried_object();
             $featured_image = get_field( 'wm_taxonomy_featured_image' , $term );
             $featured_title = get_field( 'wm_taxonomy_title' , $term );
             $term_icon = get_field( 'wm_taxonomy_icon',$term );
+            $term_description = term_description( $term );
 
             if ( isset( $featured_image['url'] ) )
             {
@@ -44,8 +45,13 @@ $term = get_queried_object();
                     <?php if ( $featured_title ) { ?>
                         <div class="container">
                             <h3 class="webmapp-term-featured-title"><?php echo $featured_title ?></h3>
+                            <?php if ( $term_description ) { ?>
+                                <p class="webmapp-term-featured-description"><?php echo $term_description ?></p>
+                            <?php } ?>
                         </div>
                     <?php } ?>
+
+
 
                     <?php
 

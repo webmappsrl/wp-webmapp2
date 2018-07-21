@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 
 <div id="main-content">
+
 	<div class="container">
 		<div id="content-area" class="<?php extra_sidebar_class(); ?> clearfix">
 			<div class="et_pb_extra_column_main">

@@ -7,6 +7,7 @@
  */
 
 $term = get_queried_object();
+$term_description = term_description( $term );
 
 get_header(); ?>
 
@@ -41,6 +42,9 @@ if ( $term && $term instanceof WP_Term  )
                     {
                         if ( $featured_title ) { ?>
                             <h2 class="webmapp-term-title"><?php echo $featured_title ?></h2>
+                            <?php if ( $term_description ) { ?>
+                                <p class="webmapp-term-featured-description"><?php echo $term_description ?></p>
+                            <?php } ?>
                         <?php }
 
                         echo do_shortcode("[webmapp_anypost posts_per_page='9' rows='3' term_id='$term->term_id' main_tax='$term->taxonomy']");
