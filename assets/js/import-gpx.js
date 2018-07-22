@@ -19,6 +19,8 @@ jQuery(document).ready(function() {
     jQuery('#kml-upload-file').on('change', prepareKmlUpload);
 
     function prepareKmlUpload(event){
+        console.log( "event prepareKmlUpload()");
+        console.log( event );
         var file = event.target.files;
         var type  = jQuery(this).data("type");
         var data = new FormData();
@@ -32,6 +34,7 @@ jQuery(document).ready(function() {
         jQuery(".upload-kml .loader").removeClass("hidden-loader");
         jQuery("#create_obj_from_kml #preview-import").empty();
         jQuery('body').off("submit", "#create_obj_from_kml", handleImportKlm);
+        console.log( data );
         jQuery.ajax({
             url: webmapp_config.ajax_url,
             type: 'POST',
@@ -54,6 +57,9 @@ jQuery(document).ready(function() {
                 }
                 jQuery('#create_obj_from_kml #preview-import').prepend("<br><input type='submit' class='acf-button button button-primary' value='Import "+type+"'>" );
                 jQuery('#create_obj_from_kml #preview-import').append("<br><input type='submit' class='acf-button button button-primary' value='Import "+type+"'>" );
+
+                console.log( "after ajax data prepareKmlUpload()");
+                console.log( data );
 
                 jQuery('body').on("submit", "#create_obj_from_kml", data, handleImportKlm);
             }
@@ -332,6 +338,7 @@ jQuery(document).ready(function() {
     }
 
     function handleImportKlm(event) {
+        console.log( "event handleImportKlm()" );
         console.log(event);
         event.stopPropagation(); // Stop stuff happening
         event.preventDefault(); // Totally stop stuff happening

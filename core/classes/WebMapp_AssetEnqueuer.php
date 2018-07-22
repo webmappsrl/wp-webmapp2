@@ -210,9 +210,17 @@ class WebMapp_AssetEnqueuer implements WebMapp_Interface_AssetsEnqueuer
      */
     public function enqueue_script( $handle , $src , $deps , $in_footer )
     {
-        if ( $src )
-            wp_register_script($handle, $src, $deps, null, $in_footer);
-        wp_enqueue_script($handle);
+        if ( $handle == 'wp-media-upload' )
+        {
+            wp_enqueue_media();
+        }
+        else
+        {
+            if ( $src )
+                wp_register_script($handle, $src, $deps, null, $in_footer);
+            wp_enqueue_script($handle);
+        }
+
 
         //localize script with this handle
         if ( isset( $this->localizes[$handle] ) && ! empty( $this->localizes[$handle] ) )
@@ -237,13 +245,13 @@ class WebMapp_AssetEnqueuer implements WebMapp_Interface_AssetsEnqueuer
 
         if ( isset( $this->screen_ids[ $handle ] )
             && ! empty( $this->screen_ids[ $handle ] )
-            && $this->current_screen->screen_id != $this->screen_ids[ $handle ]
+            && $this->current_screen->id != $this->screen_ids[ $handle ]
         )
             $r = false;
 
         if ( isset( $this->screen_bases[ $handle ] )
             && ! empty( $this->screen_bases[ $handle ] )
-            && $this->current_screen->screen_base != $this->screen_bases[ $handle ]
+            && $this->current_screen->base != $this->screen_bases[ $handle ]
         )
             $r = false;
 

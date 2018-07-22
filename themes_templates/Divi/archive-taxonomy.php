@@ -1,14 +1,41 @@
-<?php get_header(); ?>
+<?php get_header();
+
+global $wp_query;
+
+$tax = isset( $wp_query->query['taxonomy'] ) ? $wp_query->query['taxonomy'] : '';
+
+?>
 
 <div id="main-content">
 	<div class="container">
+
+        <?php
+        if ( $tax )
+        {
+            $option_image = get_option( $tax . '_featured_img' );
+            $featured_title = get_option( $tax . '_featured_title' );
+            $featured_image = $option_image ? wp_get_attachment_link( $option_image , 'full') : '';
+
+            if ( ! empty( $featured_image ) )
+            {
+                ?>
+                <div class="webmapp-term-featured-image" style="background: url('<?php echo $featured_image; ?>')">
+                    <?php if ( $featured_title ) { ?>
+                        <h2 class="webmapp-term-featured-name"><?php echo $featured_title ?></h2>
+                    <?php } ?>
+                </div>
+                <?php
+            }
+
+        }
+
+        ?>
+
 		<div id="content-area" class="clearfix">
 			<div id="left-area">
 		<?php
 
-        global $wp_query;
 
-        $tax = isset( $wp_query->query['taxonomy'] ) ? $wp_query->query['taxonomy'] : '';
 
         if ( $tax )
         {

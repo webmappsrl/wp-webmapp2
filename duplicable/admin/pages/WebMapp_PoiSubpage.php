@@ -1,6 +1,8 @@
 <?php
 /**
  * Hook is necessary to permit wp_terms_checklist() works properly
+ * _admin_menu hook is fired BEFORE admin_menu ( where pages are added in wp-admin menu )
+ * remember to use hooks fired before admin_menu !
  */
 add_action( '_admin_menu' , function()
 {

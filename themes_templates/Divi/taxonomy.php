@@ -1,68 +1,87 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: marco
- * Date: 12/07/18
- * Time: 17:26
- */
+<?php get_header();
 
-$term = get_queried_object();
-$term_description = term_description( $term );
+global $wp_query;
 
-get_header(); ?>
+$tax = isset( $wp_query->query['taxonomy'] ) ? $wp_query->query['taxonomy'] : '';
 
-    <div id="main-content">
-    <div class="container">
-<?php
-if ( $term && $term instanceof WP_Term  )
-{
-    $featured_image = get_field( 'wm_taxonomy_featured_image' , $term );
-
-    if ( isset( $featured_image['url'] ) )
-    {
-        ?>
-        <div class="webmapp-term-featured-image" style="background: url('<?php echo $featured_image['url'];; ?>')">
-            <?php if ( $featured_title ) { ?>
-                <h2 class="webmapp-term-featured-name"><?php echo $featured_title ?></h2>
-            <?php } ?>
-        </div>
-        <?php
-    }
-
-}
 
 ?>
 
-        <div id="content-area" class="clearfix">
-            <div id="left-area">
+    <div id="main-content">
+
+        <?php
+        if ( $tax )
+        {
+            $option_image = get_option( $tax . '_featured_img' );
+            $featured_title = get_option( $tax . '_featured_title' );
+            $featured_image = $option_image ? wp_get_attachment_image_src( $option_image , 'full') : '';
+            $featured_image = isset( $featured_image[0] ) ? $featured_image[0] : '';
+
+            if ( ! empty( $featured_image ) )
+            {
+                ?>
+                <div class="webmapp-term-featured-image">
+                    <div class="webmapp-term-featured-image-img">
+                        <img src="<?php echo $featured_image ?>">
+                        <?php if ( $featured_title ) : ?>
+                            <div class="container">
+                                <h2 class='webmapp-term-name'>
+                                    <span><?php echo $featured_title ?></span>
+                                </h2>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <?php
+            }
+
+        }
+
+        ?>
+
+
+
+        <div class="container">
+
+            <div id="content-area" class="<?php extra_sidebar_class(); ?> clearfix">
+                <div id="left-area">
+
                     <?php
-                    $featured_title = get_field( 'wm_taxonomy_title' , $term );
 
-                    if ( $term && $term instanceof WP_Term  )
+
+
+                    if ( $tax )
                     {
-                        if ( $featured_title ) { ?>
-                            <h2 class="webmapp-term-title"><?php echo $featured_title ?></h2>
-                            <?php if ( $term_description ) { ?>
-                                <p class="webmapp-term-featured-description"><?php echo $term_description ?></p>
-                            <?php } ?>
-                        <?php }
+                        $terms = get_terms( array(
+                                'hide_empty' => true,
+                                'taxonomy' => $tax
+                            )
+                        );
+                        if ( $terms && ! is_wp_error( $terms ) )
+                        {
+                            $tax_details = get_taxonomy( $tax );
+                            if ( $tax_details )
+                                echo "<h2>$tax_details->label</h2>";
 
-                        echo do_shortcode("[webmapp_anypost posts_per_page='9' rows='3' term_id='$term->term_id' main_tax='$term->taxonomy']");
+                            foreach ( $terms as $term )
+                            {
+                                $icon = get_field('wm_taxonomy_icon' , $term);
+                                echo "<h3><i class='$icon'></i>$term->name</h3>";
+                                echo do_shortcode("[webmapp_anypost posts_per_page='3' rows='1' posts_count='3' term_id='$term->term_id' main_tax='$term->taxonomy']");
+                            }
+
+                        }
+
+
                     }
 
-                if ( function_exists( 'wp_pagenavi' ) )
-                wp_pagenavi();
-                else
-                get_template_part( 'includes/navigation', 'index' );
+                    ?>
 
-                ?>
-            </div> <!-- #left-area -->
+                </div>
+                <?php get_sidebar(); ?>
 
-            <?php get_sidebar(); ?>
-        </div> <!-- #content-area -->
-    </div> <!-- .container -->
+            </div> <!-- #content-area -->
+        </div> <!-- .container -->
     </div> <!-- #main-content -->
 
-<?php
-
-get_footer();
+<?php get_footer();

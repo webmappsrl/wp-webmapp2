@@ -36,6 +36,11 @@ class WebMapp_Utils
      *
      * @param $tax_name
      */
+
+    /**
+     * @param $tax_name
+     * @return string
+     */
     public static function get_tax_archive_link( $tax_name )
     {
         return WebMapp_TemplatesRedirect::get_tax_archive_link( $tax_name );
@@ -50,6 +55,20 @@ class WebMapp_Utils
     {
         $r = false;
         $option = get_option('webmapp_has_route');
+        if ( ! empty( $option ) && $option != false )
+            $r = true;
+        return $r;
+    }
+
+    /**
+     * Check if in this project tracks post type have webmapp_category
+     * todo Move to RegisterPostType
+     * @return bool
+     */
+    static function tracks_has_webmapp_category()
+    {
+        $r = false;
+        $option = get_option('webmapp_tracks_has_webmapp_category');
         if ( ! empty( $option ) && $option != false )
             $r = true;
         return $r;
@@ -96,6 +115,59 @@ class WebMapp_Utils
     }
 
 
+    /**
+     * @param $files - array of post media id, values of inputs
+     * @param string $input_name - input name
+     *
+     * @return string - input html
+     */
+    static public function upload_files_input ( $files , $input_name = 'img' ) {
+        
+        if ( $files && is_string( $files ) )
+            $files = array( $files );
+
+        $id = WebMapp_Utils::get_unique_id();
 
 
+        ob_start();
+        ?>
+        <div id="<?php echo $id?>" class="custom-file-container" data-input="<?php echo $input_name?>">
+            <?php
+            if ( ! empty( $files ) ) {
+                foreach ( $files as $file ) {
+
+                    $your_img_src = wp_get_attachment_image($file , 'thumbnail', true);
+                    ?>
+                    <div class="file-container">
+                        <div class="webmapp-file-box">
+                            <?php echo $your_img_src ?>
+                            <input type="button" class="webmapp-remove-element remove-this-file button" value="X" style="display:none"/>
+                            <input type="hidden" class="<?php echo $input_name ?>" name="<?php echo $input_name ?>" value="<?php echo $file ?>" />
+                        </div>
+                        <?php echo "<p><a href='" . wp_get_attachment_url($file) . "' target='blank'>" . get_the_title($file) . "</a></p>" ?>
+                    </div>
+                    <?php
+                }//end foreach
+            }
+            ?>
+
+        <!-- Your add & remove image links -->
+        <a class="upload-custom-file button">
+            <?php _e('Add') ?>
+        </a>
+        </div>
+        <script>
+            jQuery(document).ready( function( $ )
+            {
+                $('#<?php echo $id?>').webmappFileInput({
+                    name : "<?php echo $input_name ?>"
+                });
+            }
+            );
+        </script>
+        <?php
+
+        return ob_get_clean();
+
+    }
 }

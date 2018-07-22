@@ -29,7 +29,5 @@ $args = array(
 
 new WebMapp_RegisterTaxonomy('webmapp_category', array(
     'poi',
-    'track',
-    'route',
-    'map'
+    'track'
 ), $args );

@@ -42,57 +42,61 @@ class WebMapp_RegisterTaxonomy
      */
     function __construct( $tax_name , $object_types , $args )
     {
-
         $this->tax_name = $tax_name;
-        $this->args = (array) $args;
-        $this->object_types = $object_types;
+        $this->args = $args;
+
+        if ( is_string( $object_types ) )
+        {
+            if ( $object_types == '' )
+                $this->object_types = array();
+            else
+                $this->object_types = array( $object_types );
+        }
+        else
+            $this->object_types = (array) $object_types;
+
 
         /**
          * Filter object types for taxonomy before registration
          */
-        $object_types = apply_filters( 'WebMapp_taxonomy_object_types' , $this->object_types , $this->tax_name, $this->args );
+        $this->object_types = apply_filters( 'WebMapp_taxonomy_object_types' , $this->object_types , $this->tax_name, $this->args );
+
+        /**
+         * Todo
+         * below two methods with same functions
+         * found better way if filters options are more than these
+         */
 
 
-        if ( empty( $object_types )
-            || ( is_array( $object_types ) && in_array('route' ,$object_types ) != false )
+
+        if ( in_array('route' ,$this->object_types ) != false )
+        {
+            $project_has_route = WebMapp_Utils::project_has_route();
+            if ( ! $project_has_route )
+                $this->object_types = array( 'track' );
+            else
+                $this->object_types = array( 'route' );
+        }
+
+
+
+
+        /**
+         * Filter taxonomyes
+         */
+        $tracks_has_webmapp_category = WebMapp_Utils::tracks_has_webmapp_category();
+        if ( $this->tax_name == 'webmapp_category'
+           && ( $i = array_search('track',$this->object_types ) ) !== false
+            && ! $tracks_has_webmapp_category
         )
-            $this->object_types = $this->get_object_type();
+            unset( $this->object_types[$i] );
+
+
 
         add_action( 'init', array( $this , 'register_taxonomy' ) );
     }
 
-    /**
-     * Return filtered object type
-     * @return string/array
-     */
-    public function get_object_type()
-    {
-        $temp = $this->object_types;
-        $project_has_route = WebMapp_Utils::project_has_route();
 
-        if ( is_array( $temp )
-            && ( $i = array_search( 'route' , $temp ) ) !== false
-            && ! $project_has_route
-        )
-        {
-            unset ( $temp[$i] );
-        }
-        elseif( is_string($temp ) )
-        {
-            if ( $project_has_route )
-                $temp = 'route';
-            else
-                $temp = 'track';
-        }
-
-        /**
-         * Update object property
-         */
-        if ( $temp != $this->object_types )
-            $this->object_types = $temp;
-
-        return $temp;
-    }
 
     /**
      * Register taxonomy after check format of object_types
@@ -102,6 +106,7 @@ class WebMapp_RegisterTaxonomy
     {
         if ( is_array( $this->object_types ) )
             $this->object_types = array_values( $this->object_types );
+
 
         /**
          * Hook taxonomy registration arguments

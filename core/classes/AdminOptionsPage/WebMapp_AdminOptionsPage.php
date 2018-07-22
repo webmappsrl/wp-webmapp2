@@ -304,6 +304,10 @@ class WebMapp_AdminOptionsPage implements WebMapp_Interface_AdminOptionsPage
                             $checked = checked($value, 'true', false );
                             echo "<input type=\"$type\" name=\"$setting_name\" id=\"$setting_name\" value=\"true\" $attrs_to_print $checked/>";
                             break;
+
+                        case 'media':
+                            echo WebMapp_Utils::upload_files_input( $value,$setting_name );
+                            break;
                         default:
                             echo "<input type=\"$type\" name=\"$setting_name\" id=\"$setting_name\" value=\"$value\" $attrs_to_print/>";
                             break;

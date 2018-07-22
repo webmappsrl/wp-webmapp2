@@ -76,7 +76,7 @@ if ( ! empty( $current_args ) )
 foreach ( $route_or_track_taxonomies as $tax_name => $labels ) :
     $current_args = isset( $taxonomies_to_register[$tax_name] ) ? $taxonomies_to_register[$tax_name] : array();
     if ( ! empty( $current_args ) )
-        new WebMapp_RegisterTaxonomy( $tax_name ,'', $current_args );
+        new WebMapp_RegisterTaxonomy( $tax_name ,array('route','track'), $current_args );
 endforeach;
 
 

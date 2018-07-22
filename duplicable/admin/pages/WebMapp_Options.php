@@ -1,12 +1,52 @@
 <?php
 
 $tabs = array(
-    'main' => _x( "Main", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN )
+    'main' => _x( "Main", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
+    'custom_types' =>  _x( "Custom Types", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
+    'taxonomies' =>  _x( "Taxonomies Details", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
 );
+
+
+
+
+$taxonomies_inputs = array();
+
+
+foreach ( WebMapp_TAXS as $tax_name ) :
+
+    $taxonomies_inputs[ $tax_name . '_title' ] = array(
+        'type' => 'html',
+        'tab' => 'taxonomies',
+        'html' => "<h3>$tax_name</h3>"
+    );
+
+    $input_name1 = $tax_name . '_featured_img';
+    $taxonomies_inputs[ $input_name1 ] = array(
+        'label' => _x( "Add $tax_name featured image" , WebMapp_TEXTDOMAIN ),
+        'info' => _x( '' , WebMapp_TEXTDOMAIN),
+        'type' => 'media',
+        'tab' => 'taxonomies'
+    );
+
+    $input_name2 = $tax_name . '_featured_title';
+    $taxonomies_inputs[ $input_name2 ] = array(
+        'label' => _x( "Add $tax_name featured title" , WebMapp_TEXTDOMAIN ),
+        'info' => _x( '' , WebMapp_TEXTDOMAIN),
+        'type' => 'text',
+        'tab' => 'taxonomies'
+    );
+
+
+endforeach;
+
+
 /**
  * Todo extend args
  */
 $generalOptionsPage = array(
+    /**
+     * MAIN
+     */
     'google_api_key' => array(
         'label' => _x( "Google Maps API Key", "Option label in webmapp settings page" , WebMapp_TEXTDOMAIN ),
         'info' => "<em><a target=\"_blank\" href=\"https://developers.google.com/maps/documentation/javascript/get-api-key\">" . _x( "Get a Google API Key","Option info in webmapp settings page", WebMapp_TEXTDOMAIN ) . "</a></em>",
@@ -81,14 +121,28 @@ $generalOptionsPage = array(
         'tab' => 'main',
         'options' => array( 'true' => 'Sì' , 'false' => 'No' )
     ),
+    /**
+     * CUSTOM TYPES
+     */
     'webmapp_has_route' => array(
         'label' => _x( "Active Route Custom Post Type" , WebMapp_TEXTDOMAIN ),
         'info' => _x( 'Il sito utilizza almeno una route' , WebMapp_TEXTDOMAIN),
-        'type' => 'checkbox'
+        'type' => 'checkbox',
+        'tab' => 'custom_types'
+    ),
+    'webmapp_tracks_has_webmapp_category' => array(
+        'label' => _x( "Activate webmapp_category for track" , WebMapp_TEXTDOMAIN ),
+        'info' => _x( '' , WebMapp_TEXTDOMAIN),
+        'type' => 'checkbox',
+        'tab' => 'custom_types'
     ),
 
-);
 
+);
+/**
+ * TAXONOMIES
+ */
+$generalOptionsPage = array_merge( $generalOptionsPage , $taxonomies_inputs );
 $WEBMAPP_GeneralOptionsPage = new WebMapp_AdminOptionsPage(
     'Webmapp Options',
     'Webmapp',
