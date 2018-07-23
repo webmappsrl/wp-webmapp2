@@ -52,7 +52,7 @@ jQuery(document).ready(function() {
 
                     data["poi"].forEach(function(entry, index){
                         jQuery('#create_obj_from_kml #preview-import table').append("<tr data-index='"+ index +"'><td><a href='#' class='osm-dialog' data-lat='"+entry["lat"]+"' data-lon='"+entry["lon"]+"'><i class='fa fa-globe' aria-hidden='true'></i></a></td>"+
-                            "<td> <input type='text' name='object_name' disabled value='"+entry["name"]+"'><button type='button' class='button button-small hide-if-no-js enable-poi-edit' aria-label='Edit name'>Edit</button> </td><td>"+entry["desc"]+"</td><td class='poi_cat_cell'><a href='#' title='edit POI categories' class='dashicons dashicons-edit edit-poi-cat' data-poi='"+index+"'></a></td><td><input type='checkbox' name='poi_to_import' checked value='"+index+"'></td></tr>")
+                            "<td> <input type='text' name='object_name' disabled value=\""+entry["name"]+"\"><button type='button' class='button button-small hide-if-no-js enable-poi-edit' aria-label='Edit name'>Edit</button> </td><td>"+entry["desc"]+"</td><td class='poi_cat_cell'><a href='#' title='edit POI categories' class='dashicons dashicons-edit edit-poi-cat' data-poi='"+index+"'></a></td><td><input type='checkbox' name='poi_to_import' checked value='"+index+"'></td></tr>")
                     })
                 }
                 jQuery('#create_obj_from_kml #preview-import').prepend("<br><input type='submit' class='acf-button button button-primary' value='Import "+type+"'>" );
