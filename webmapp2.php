@@ -36,16 +36,6 @@ define ( 'WebMapp_DIR' , __DIR__ );
 //global const to get assets url
 define ( 'WebMapp_ASSETS' , WebMapp_URL . 'assets/' );
 
-//defines all taxonomies names, used for options page
-define ( 'WebMapp_TAXS' , array(
-    'theme',
-    'where',
-    'when',
-    'who',
-    'activity',
-    'webmapp_category'
-    )
-);
 
 
 

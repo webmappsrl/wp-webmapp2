@@ -11,8 +11,15 @@ $tabs = array(
 
 $taxonomies_inputs = array();
 
-
-foreach ( WebMapp_TAXS as $tax_name ) :
+$plugin_taxs = array(
+    'theme',
+    'where',
+    'when',
+    'who',
+    'activity',
+    'webmapp_category'
+);
+foreach ( $plugin_taxs as $tax_name ) :
 
     $taxonomies_inputs[ $tax_name . '_title' ] = array(
         'type' => 'html',
