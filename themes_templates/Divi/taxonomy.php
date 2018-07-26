@@ -1,82 +1,67 @@
 <?php get_header();
 
-global $wp_query;
-
-$tax = isset( $wp_query->query['taxonomy'] ) ? $wp_query->query['taxonomy'] : '';
-
+$term = get_queried_object();
 
 ?>
 
     <div id="main-content">
-
         <?php
-        if ( $tax )
+        if ( $term && $term instanceof WP_Term  )
         {
-            $option_image = get_option( $tax . '_featured_img' );
-            $featured_title = get_option( $tax . '_featured_title' );
-            $featured_image = $option_image ? wp_get_attachment_image_src( $option_image , 'full') : '';
-            $featured_image = isset( $featured_image[0] ) ? $featured_image[0] : '';
+            $featured_image = get_field( 'wm_taxonomy_featured_image' , $term );
+            $featured_title = get_field( 'wm_taxonomy_title' , $term );
+            $term_icon = get_field( 'wm_taxonomy_icon',$term );
+            $term_description = term_description( $term );
 
-            if ( ! empty( $featured_image ) )
+            if ( isset( $featured_image['url'] ) )
             {
+                /**
+                 *
+                 * style="background-image: url('<?php echo $featured_image['url']; ?>')"
+                 */
+
                 ?>
                 <div class="webmapp-term-featured-image">
                     <div class="webmapp-term-featured-image-img">
-                        <img src="<?php echo $featured_image ?>">
-                        <?php if ( $featured_title ) : ?>
-                            <div class="container">
-                                <h2 class='webmapp-term-name'>
-                                    <span><?php echo $featured_title ?></span>
-                                </h2>
-                            </div>
-                        <?php endif; ?>
+                        <img src="<?php echo $featured_image['url']; ?>">
+                        <div class="container">
+                            <h2 class='webmapp-term-name'>
+                                <i class='<?php echo $term_icon?>'></i>
+                                <span><?php echo $term->name ?></span>
+                            </h2>
+                        </div>
                     </div>
+
                 </div>
                 <?php
             }
 
         }
-
         ?>
-
-
-
         <div class="container">
-
-            <div id="content-area" class="<?php extra_sidebar_class(); ?> clearfix">
+            <div id="content-area" class="clearfix">
                 <div id="left-area">
+
+                    <?php if ( $featured_title ) { ?>
+                        <div class="container">
+                            <h3 class="webmapp-term-featured-title"><?php echo $featured_title ?></h3>
+                            <?php if ( $term_description ) { ?>
+                                <p class="webmapp-term-featured-description"><?php echo $term_description ?></p>
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
+
+
 
                     <?php
 
 
-
-                    if ( $tax )
+                    if ( $term && $term instanceof WP_Term  )
                     {
-                        $terms = get_terms( array(
-                                'hide_empty' => true,
-                                'taxonomy' => $tax
-                            )
-                        );
-                        if ( $terms && ! is_wp_error( $terms ) )
-                        {
-                            $tax_details = get_taxonomy( $tax );
-                            if ( $tax_details )
-                                echo "<h2>$tax_details->label</h2>";
-
-                            foreach ( $terms as $term )
-                            {
-                                $icon = get_field('wm_taxonomy_icon' , $term);
-                                echo "<h3><i class='$icon'></i>$term->name</h3>";
-                                echo do_shortcode("[webmapp_anypost posts_per_page='3' rows='1' posts_count='3' term_id='$term->term_id' main_tax='$term->taxonomy']");
-                            }
-
-                        }
-
-
+                        echo do_shortcode("[webmapp_anypost posts_per_page='9' rows='3' term_id='$term->term_id' main_tax='$term->taxonomy']");
                     }
 
                     ?>
-
                 </div>
                 <?php get_sidebar(); ?>
 
