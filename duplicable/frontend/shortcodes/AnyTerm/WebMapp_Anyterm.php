@@ -30,6 +30,9 @@ function WebMapp_AnyTermShortcode( $atts ) {
 
     $args['hide_empty'] = true;
 
+    /**
+     * todo
+     */
     $terms = get_terms($args);
 
 

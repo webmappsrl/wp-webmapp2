@@ -64,7 +64,7 @@ $term = get_queried_object();
                             $attr_post_type = 'route';
 
 
-                        echo do_shortcode("[webmapp_anypost posts_per_page='9' rows='3' post_type='$attr_post_type' term_id='$term->term_id' main_tax='$term->taxonomy']");
+                        echo do_shortcode("[webmapp_anypost posts_per_page='9' rows='3' post_type='$attr_post_type' term_id='$term->term_id']");
                     }
 
                     ?>
