@@ -54,7 +54,12 @@ $tax = isset( $wp_query->query['taxonomy'] ) ? $wp_query->query['taxonomy'] : ''
                 {
                     $icon = get_field('wm_taxonomy_icon' , $term);
                     echo "<h3><i class='$icon'></i>$term->name</h3>";
-                    echo do_shortcode("[webmapp_anypost posts_per_page='3' rows='1' posts_count='3' term_id='$term->term_id' main_tax='$term->taxonomy']");
+                    $attr_post_type = 'any';
+                    $project_has_route = WebMapp_Utils::project_has_route();
+                    if ( $project_has_route )
+                        $attr_post_type = 'route';
+
+                    echo do_shortcode("[webmapp_anypost posts_per_page='3' rows='1' posts_count='3' post_type='$attr_post_type' term_id='$term->term_id' main_tax='$term->taxonomy']");
                 }
 
             }
