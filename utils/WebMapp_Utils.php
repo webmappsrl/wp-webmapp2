@@ -170,4 +170,9 @@ class WebMapp_Utils
         return ob_get_clean();
 
     }
+
+    public static function get_option( $option_name )
+    {
+        return WebMapp_AdminOptionsPage::get_option( $option_name );
+    }
 }

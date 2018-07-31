@@ -12,7 +12,7 @@
  * todo add media support
  * todo get file extension to inference registration type !!
  */
-class WebMapp_AssetEnqueuer implements WebMapp_Interface_AssetsEnqueuer
+class WebMapp_AssetEnqueuer
 {
     /**
      * @var array

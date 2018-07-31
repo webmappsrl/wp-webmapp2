@@ -40,19 +40,18 @@ foreach ( $plugin_taxs as $tax_name ) :
         'label' => _x( "Add $tax_name featured title" , WebMapp_TEXTDOMAIN ),
         'info' => _x( '' , WebMapp_TEXTDOMAIN),
         'type' => 'text',
-        'tab' => 'taxonomies'
+        'tab' => 'taxonomies',
+        'multilang' => true
     );
 
 
 endforeach;
 
 
-/**
- * Todo extend args
- */
+
 $generalOptionsPage = array(
     /**
-     * MAIN
+     * MAIN TAB
      */
     'google_api_key' => array(
         'label' => _x( "Google Maps API Key", "Option label in webmapp settings page" , WebMapp_TEXTDOMAIN ),
@@ -129,7 +128,7 @@ $generalOptionsPage = array(
         'options' => array( 'true' => 'Sì' , 'false' => 'No' )
     ),
     /**
-     * CUSTOM TYPES
+     * CUSTOM TYPES TAB
      */
     'webmapp_has_route' => array(
         'label' => _x( "Active Route Custom Post Type" , WebMapp_TEXTDOMAIN ),
@@ -147,9 +146,13 @@ $generalOptionsPage = array(
 
 );
 /**
- * TAXONOMIES
+ * TAXONOMIES TAB
  */
 $generalOptionsPage = array_merge( $generalOptionsPage , $taxonomies_inputs );
+
+/**
+ * Create admin page
+ */
 $WEBMAPP_GeneralOptionsPage = new WebMapp_AdminOptionsPage(
     'Webmapp Options',
     'Webmapp',

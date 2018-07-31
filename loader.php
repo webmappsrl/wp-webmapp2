@@ -35,11 +35,6 @@ require_once('utils/WebMapp_Utils.php');
 
 
 /**
- * User interfaces - esemplificate php classes
- */
-WebMapp_Utils::load_dir('core/interfaces');
-
-/**
  * Core Classes :D
  */
 WebMapp_Utils::load_dir('core/classes');

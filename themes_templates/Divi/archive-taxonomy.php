@@ -13,13 +13,14 @@ $tax = isset( $wp_query->query['taxonomy'] ) ? $wp_query->query['taxonomy'] : ''
         if ( $tax )
         {
             $option_image = get_option( $tax . '_featured_img' );
-            $featured_title = get_option( $tax . '_featured_title' );
-            $featured_image = $option_image ? wp_get_attachment_link( $option_image , 'full') : '';
+            $featured_title = WebMapp_Utils::get_option( $tax . '_featured_title' );
+            $featured_image = $option_image ? wp_get_attachment_image_src( $option_image , 'full')[0] : '';
+
 
             if ( ! empty( $featured_image ) )
             {
                 ?>
-                <div class="webmapp-term-featured-image" style="background: url('<?php echo $featured_image; ?>')">
+                <div class="webmapp-term-featured-image" style="min-height:300px;background: url('<?php echo $featured_image; ?>')">
                     <?php if ( $featured_title ) { ?>
                         <h2 class="webmapp-term-featured-name"><?php echo $featured_title ?></h2>
                     <?php } ?>

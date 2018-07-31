@@ -140,18 +140,24 @@ class WebMapp_TemplatesRedirect
 
     public static function get_tax_archive_link( $tax_name )
     {
-        $home = home_url();
+        $home = site_url();
         $link = '';
 
         if ( ! taxonomy_exists( $tax_name ) )
             return $link;
 
-        $link = $home . '/index.php?taxonomy=' . $tax_name ;
+        $link = WebMapp_TemplatesRedirect::get_partial_tax_archive_link( $tax_name );
 
+        return $home . $link;
+    }
+
+    public static function get_partial_tax_archive_link( $tax_name )
+    {
+        $link = '/index.php?taxonomy=' . $tax_name ;
         $structure = get_option( 'permalink_structure' );
 
         if ( $structure == '/%postname%/')
-            $link = $home . '/taxonomy/' . $tax_name;
+            $link = '/taxonomy/' . $tax_name;
 
         return $link;
     }

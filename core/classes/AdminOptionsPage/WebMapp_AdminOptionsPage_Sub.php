@@ -3,7 +3,7 @@
  * Questa interfaccia rappresenta la classe ( e subclassi )  WebMapp_OptionsPage
  */
 
-class WebMapp_AdminOptionsPage_Sub extends WebMapp_AdminOptionsPage implements WebMapp_Interface_AdminOptionsPage
+class WebMapp_AdminOptionsPage_Sub extends WebMapp_AdminOptionsPage
 {
     public $parent_slug;
     public $html_pieces;

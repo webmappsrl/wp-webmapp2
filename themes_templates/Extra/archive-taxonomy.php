@@ -13,7 +13,7 @@ $tax = isset( $wp_query->query['taxonomy'] ) ? $wp_query->query['taxonomy'] : ''
     if ( $tax )
     {
         $option_image = get_option( $tax . '_featured_img' );
-        $featured_title = get_option( $tax . '_featured_title' );
+        $featured_title = WebMapp_Utils::get_option( $tax . '_featured_title' );
         $featured_image = $option_image ? wp_get_attachment_image_src( $option_image , 'full') : '';
         $featured_image = isset( $featured_image[0] ) ? $featured_image[0] : '';
 

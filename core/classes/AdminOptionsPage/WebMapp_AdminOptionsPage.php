@@ -5,7 +5,7 @@
 /*
  *
  */
-class WebMapp_AdminOptionsPage implements WebMapp_Interface_AdminOptionsPage
+class WebMapp_AdminOptionsPage
 {
 
     /**
@@ -74,8 +74,29 @@ class WebMapp_AdminOptionsPage implements WebMapp_Interface_AdminOptionsPage
         $this->menu_title = $menu_title;
         $this->menu_slug = sanitize_title($menu_slug );
         $this->capability = $capability;
-        $this->settings = $settings;
         $this->tabs = $tabs;
+
+        $temp = $settings;
+        if ( has_filter('wpml_default_language' ) && has_filter('wpml_current_language' ) )
+        {
+            $default_language = apply_filters('wpml_default_language', NULL );
+            $current_language = apply_filters( 'wpml_current_language', NULL );
+            if ( $default_language != $current_language )
+            {
+                $temp = array();
+                foreach ( $settings as $name => $setting )
+                {
+                    if ( isset( $setting['multilang'] ) && $setting['multilang'] )
+                        $temp[$name.'_'.$current_language] = $setting;
+                    else
+                        $temp[$name] = $setting;
+                }
+            }
+
+        }
+        $this->settings = $temp;
+
+        
 
         $this->start();
 
@@ -353,6 +374,23 @@ class WebMapp_AdminOptionsPage implements WebMapp_Interface_AdminOptionsPage
             <?php submit_button(); ?>
         </form>
         <?php
+    }
+
+    public static function get_option( $option_name )
+    {
+        $language_suffix = '';
+        if ( has_filter('wpml_current_language') && has_filter('wpml_default_language') )
+        {
+            $current_language = apply_filters( 'wpml_current_language', NULL );
+            $default_language = apply_filters('wpml_default_language', NULL );
+            if ( $current_language != $default_language )
+                $language_suffix = '_' . $current_language;
+
+        }
+
+        return get_option( $option_name . $language_suffix );
+
+
     }
 
 
