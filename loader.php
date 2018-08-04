@@ -52,61 +52,61 @@ WebMapp_Utils::load_dir('core/classes/AdminOptionsPage');
 /**
  * WP Customizer modules
  */
-WebMapp_Utils::load_dir('duplicable/admin/theme_customizer');
-WebMapp_Utils::load_dir('duplicable/admin/theme_customizer/ShortcodesCustomizer');
+WebMapp_Utils::load_dir('pluggable/duplicable/admin/theme_customizer');
+WebMapp_Utils::load_dir('pluggable/duplicable/admin/theme_customizer/ShortcodesCustomizer');
 
 /**
  * Enqueue custom post type registration
  * wp_ajax_ wp_ajax_nopriv_ hooks
  */
-WebMapp_Utils::load_dir('duplicable/ajax');
+WebMapp_Utils::load_dir('pluggable/duplicable/ajax');
 
 /**
  * Enqueue custom post type registration
  * init hooks
  */
-WebMapp_Utils::load_dir('duplicable/custom_types/post_types');
+WebMapp_Utils::load_dir('pluggable/duplicable/custom_types/post_types');
 
 /**
  * Enqueue custom taxonomies registration
  * init hooks
  */
-WebMapp_Utils::load_dir('duplicable/custom_types/taxonomies');
+WebMapp_Utils::load_dir('pluggable/duplicable/custom_types/taxonomies');
 
 
 /**
  * Enqueue only rest api custom attributes
  */
-WebMapp_Utils::load_dir('duplicable/rest_api');
+WebMapp_Utils::load_dir('pluggable/duplicable/rest_api');
 
 /**
  * Enqueue custom fields registration
  * Enqueue custom fields in rest-api
  * init hooks
  */
-WebMapp_Utils::load_dir('duplicable/custom_fields');
+WebMapp_Utils::load_dir('pluggable/duplicable/custom_fields');
 
 
 /**
  * Register rest-api routes
  * init hooks
  */
-WebMapp_Utils::load_dir('duplicable/rest_routes');
+WebMapp_Utils::load_dir('pluggable/duplicable/rest_routes');
 
 /**
  * Register css/js resources
  * hooks: admin_enqueue_scripts , login_enqueue_scripts , wp_enqueue_scripts hooks
  */
-WebMapp_Utils::load_dir('duplicable/assets_enqueuer');
-WebMapp_Utils::load_dir('duplicable/assets_enqueuer/admin');
-WebMapp_Utils::load_dir('duplicable/assets_enqueuer/login');
-WebMapp_Utils::load_dir('duplicable/assets_enqueuer/wp');
+WebMapp_Utils::load_dir('pluggable/duplicable/assets_enqueuer');
+WebMapp_Utils::load_dir('pluggable/duplicable/assets_enqueuer/admin');
+WebMapp_Utils::load_dir('pluggable/duplicable/assets_enqueuer/login');
+WebMapp_Utils::load_dir('pluggable/duplicable/assets_enqueuer/wp');
 
 /**
  * Enqueue custom taxonomies registration
  * ac/ready hooks -> admin-columns-pro plugin hook
  */
-WebMapp_Utils::load_dir('duplicable/admin/columns');
+WebMapp_Utils::load_dir('pluggable/duplicable/admin/columns');
 
 
 
@@ -117,17 +117,17 @@ if ( is_admin() ) ://load only in admin side
      * Load admin pages or subpages
      * _admin_menu and admin_menu hooks
      */
-    WebMapp_Utils::load_dir('duplicable/admin/pages');
+    WebMapp_Utils::load_dir('pluggable/duplicable/admin/pages');
 
-else ://load in frontend side
+else ://load in frontend side ( login too )
 
     /**
      * Load shorcodes
      * add_shortcode and admin_menu hooks
      */
-    WebMapp_Utils::load_dir('duplicable/frontend/shortcodes');
-    WebMapp_Utils::load_dir('duplicable/frontend/shortcodes/AnyPost');
-    WebMapp_Utils::load_dir('duplicable/frontend/shortcodes/AnyTerm');
+    WebMapp_Utils::load_dir('pluggable/duplicable/frontend/shortcodes');
+    WebMapp_Utils::load_dir('pluggable/duplicable/frontend/shortcodes/AnyPost');
+    WebMapp_Utils::load_dir('pluggable/duplicable/frontend/shortcodes/AnyTerm');
 
 endif;
 

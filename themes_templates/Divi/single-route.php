@@ -2,6 +2,10 @@
 get_header();
 $additional_class = '';
 global $post;
+
+
+load_template( __DIR__ . '/single-webmapp-type.php' );
+
 ?>
     <div id="main-content">
         <?php $featured_image = get_the_post_thumbnail_url( $post->ID, 'et-pb-post-main-image-fullwidth');

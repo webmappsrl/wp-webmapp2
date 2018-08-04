@@ -1,5 +1,6 @@
 <?php get_header();
 
+
 global $wp_query;
 
 $tax = isset( $wp_query->query['taxonomy'] ) ? $wp_query->query['taxonomy'] : '';

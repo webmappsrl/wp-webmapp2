@@ -29,7 +29,7 @@ function WebMapp_AnyPostShortcode( $atts ) {
 
         <div class="webmapp-on-pagination">
             <img id="<?php echo $id?>_loader_image" class="webmapp_loader_img" src="<?php echo WebMapp_ASSETS . 'images/loader_new.gif'?>">
-            <div class="webmapp_posts_controller">
+            <div class="webmapp_posts_controller webmapp-grid-system">
                 <div class="posts container-fluid"></div>
             </div>
         </div>

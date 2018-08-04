@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class WebMapp_WpmlLangSwitcher
+ *
+ * fix wpml language switcher for custom templates ( archive-taxonomy )
+ */
 class WebMapp_WpmlLangSwitcher
 {
 

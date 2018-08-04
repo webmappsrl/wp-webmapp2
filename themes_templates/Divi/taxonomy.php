@@ -43,7 +43,7 @@ $term = get_queried_object();
                 <div id="left-area">
 
                     <?php if ( $featured_title ) { ?>
-                        <div class="container">
+                        <div class="webmapp-term-wrapper">
                             <h3 class="webmapp-term-featured-title"><?php echo $featured_title ?></h3>
                             <?php if ( $term_description ) { ?>
                                 <p class="webmapp-term-featured-description"><?php echo $term_description ?></p>
