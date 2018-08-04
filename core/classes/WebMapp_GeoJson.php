@@ -46,7 +46,7 @@ class WebMapp_GeoJson
         if ( $this->debug_mode || $bool )
         {
             $t = "https://api.webmapp.it/a/$this->debug_domain/geojson/$this->debug_id.geojson";
-            var_dump( "Curl Url: " . $t );
+            var_dump( "DEBUG MODE ACTIVE. Curl Url: " . $t );
 
         }
         else

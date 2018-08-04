@@ -147,3 +147,22 @@ var webmapp_posts_ajax_call =
 
 
 };//end function
+
+
+jQuery( document ).ready( function($){
+
+    var property_added = false;
+
+    //fix fucking divi grid system conflicts on window resize
+    $( window ).resize( function()
+    {
+        if ( ! property_added )
+        {
+            $( '.webmapp-grid-system .row' ).css( 'display' , 'initial' );
+            property_added = true;
+        }
+
+    } );
+
+
+} );

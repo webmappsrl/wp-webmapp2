@@ -10,7 +10,7 @@
 
 $args = array(
     'webmapp_anyterm_css' => array(
-        'src' => WebMapp_URL . 'duplicable/frontend/shortcodes/AnyTerm/assets/style.css'
+        'src' => WebMapp_URL . 'pluggable/duplicable/frontend/shortcodes/AnyTerm/assets/style.css'
     )
 
 );

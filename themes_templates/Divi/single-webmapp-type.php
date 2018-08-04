@@ -6,17 +6,17 @@ global $wp_query;
 $post_id = get_the_ID();
 $post_type = get_post_type( $post_id );
 
-$geoJson = new WebMapp_GeoJson( $post_id );//ge geoJson
-$geoJson_php = $geoJson->get_php();
+$geoJson = new WebMapp_GeoJson( $post_id );//get geoJson
+$geoJson_php = $geoJson->get_php();//json_decode
 
 
-$template_functions = new WebMapp_Single( $geoJson_php );
+$template_functions = new WebMapp_Single( $geoJson_php );//template support class
 
 
 
-var_dump($template_functions->getShortInfo() );
-var_dump($template_functions->getInfo() );
-var_dump($template_functions->getRelatedObjects() );
+//var_dump($template_functions->getShortInfo() );
+//var_dump($template_functions->getInfo() );
+//var_dump($template_functions->getRelatedObjects() );
 
 
 
@@ -98,7 +98,7 @@ $tem_has_info = $template_functions->getInfo() == true ;
 
 
                     <!-- START GRID -->
-                    <div class="container-fluid">
+                    <div class="webmapp-container-fluid">
 
                         <!-- LAYER 2 -->
                         <div id="webmapp-layer-2" class="row">
