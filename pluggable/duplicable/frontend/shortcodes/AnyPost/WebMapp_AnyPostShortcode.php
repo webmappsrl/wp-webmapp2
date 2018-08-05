@@ -12,13 +12,17 @@ function WebMapp_AnyPostShortcode( $atts ) {
             'posts_per_page' => get_option( 'posts_per_page' ),
             'post_id' => '',
             'posts_count' => '',
-            'main_tax' => ''
+            'main_tax' => '',
+            'post_ids' => '',
+            'template' => ''// available templates: '', 'compact'
         ),
         $atts
     ));
 
 
     $id = WebMapp_Utils::get_unique_id();
+
+    $template_class = $template ? " webmapp-anypost-template-$template" : " webmapp-anypost-template-full";
 
     ob_start();
 
@@ -29,7 +33,7 @@ function WebMapp_AnyPostShortcode( $atts ) {
 
         <div class="webmapp-on-pagination">
             <img id="<?php echo $id?>_loader_image" class="webmapp_loader_img" src="<?php echo WebMapp_ASSETS . 'images/loader_new.gif'?>">
-            <div class="webmapp_posts_controller webmapp-grid-system">
+            <div class="webmapp_posts_controller webmapp-grid-system<?php echo $template_class; ?>">
                 <div class="posts webmapp-container-fluid"></div>
             </div>
         </div>
@@ -49,7 +53,9 @@ function WebMapp_AnyPostShortcode( $atts ) {
                 '<?php echo $rows ?>',//rows per page, please set it
                 '<?php echo $post_type ?>',//posts post_type
                 '<?php echo $posts_count ?>',//number of posts to display
-                '<?php echo $main_tax ?>'//main taxonomy
+                '<?php echo $main_tax ?>',//main taxonomy
+                '<?php echo $post_ids ?>',//post ids separate by commas
+                '<?php echo $template ?>'//shortcode template
             );
         } );
     </script>

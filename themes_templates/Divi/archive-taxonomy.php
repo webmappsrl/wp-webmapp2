@@ -21,10 +21,15 @@ $tax = isset( $wp_query->query['taxonomy'] ) ? $wp_query->query['taxonomy'] : ''
             if ( ! empty( $featured_image ) )
             {
                 ?>
-                <div class="webmapp-term-featured-image" style="min-height:300px;background: url('<?php echo $featured_image; ?>')">
-                    <?php if ( $featured_title ) { ?>
-                        <h2 class="webmapp-term-featured-name"><?php echo $featured_title ?></h2>
-                    <?php } ?>
+                <div class="webmapp-featured-image">
+                    <div class="webmapp-featured-image-img">
+                        <img src="<?php echo $featured_image; ?>">
+                        <div class="container">
+                            <h2 class='webmapp-main-tax-name'>
+                                <span><?php echo $featured_title ?></span>
+                            </h2>
+                        </div>
+                    </div>
                 </div>
                 <?php
             }

@@ -21,11 +21,11 @@ $term = get_queried_object();
                  */
 
                 ?>
-                <div class="webmapp-term-featured-image">
-                    <div class="webmapp-term-featured-image-img">
+                <div class="webmapp-featured-image">
+                    <div class="webmapp-featured-image-img">
                         <img src="<?php echo $featured_image['url']; ?>">
                         <div class="container">
-                            <h2 class='webmapp-term-name'>
+                            <h2 class='webmapp-main-tax-name'>
                                 <i class='<?php echo $term_icon?>'></i>
                                 <span><?php echo $term->name ?></span>
                             </h2>
@@ -60,7 +60,7 @@ $term = get_queried_object();
                     {
                         $attr_post_type = 'any';
                         $project_has_route = WebMapp_Utils::project_has_route();
-                        if ( $project_has_route )
+                        if ( $project_has_route && $term->taxonomy != 'webmapp_category' )
                             $attr_post_type = 'route';
 
 

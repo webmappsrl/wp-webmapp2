@@ -175,4 +175,47 @@ class WebMapp_Utils
     {
         return WebMapp_AdminOptionsPage::get_option( $option_name );
     }
+
+    public static function get_main_tax( $post_id )
+    {
+        $post_type = get_post_type( $post_id );
+        $main_tax_c = '';
+        if ( $post_type != 'poi' )
+            $main_tax_c = 'activity';
+        elseif( $post_type == 'poi' )
+            $main_tax_c = 'webmapp_category';
+        return $main_tax_c;
+    }
+
+    public static function getShortInfo()
+    {
+        $template_functions = new WebMapp_TemplateSingle();
+
+        return $template_functions->getShortInfo();
+    }
+
+    public static function theShortInfo()
+    {
+        $template_functions = new WebMapp_TemplateSingle();
+        $template_functions->theShortInfo();
+    }
+
+    public static function object_to_array( $object )
+    {
+        if ( ! is_object( $object) )
+            return $object;
+
+        else
+        {
+            $array = get_object_vars ( $object );
+            foreach ( $array as $key => $value )
+            {
+                if ( is_object( $value ) )
+                    $array[$key] = WebMapp_Utils::object_to_array( $value );
+            }
+
+            return $array;
+        }
+    }
+
 }

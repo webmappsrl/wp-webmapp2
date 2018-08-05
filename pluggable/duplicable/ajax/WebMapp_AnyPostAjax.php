@@ -13,14 +13,12 @@ function get_anypost_shortcode_page() {
             'post_id' => '',
             'paged' => '1',
             'posts_count' => '',
-            'main_tax' => ''
+            'main_tax' => '',
+            'post_ids' => '',
+            'template' => ''
         ),
         $atts
     ));
-
-
-
-
 
     $query_args = array();
 
@@ -36,6 +34,10 @@ function get_anypost_shortcode_page() {
         $query_args[ 'posts_per_page' ] = '1';
         $rows = 1;
         $posts_per_page = 1;
+    }
+    elseif ( $post_ids && strpos($post_ids , ',') !== false )
+    {
+        $query_args[ 'post__in' ] = explode(',',$post_ids );
     }
     elseif  ( $post_type == 'route'
         && $taxonomy == 'activity'
@@ -114,14 +116,7 @@ function get_anypost_shortcode_page() {
         }
 
 
-        $main_tax_c = '';
-        if ( $post_type != 'poi' )
-            $main_tax_c = 'activity';
-        elseif( $post_type == 'poi' )
-            $main_tax_c = 'webmapp_category';
 
-        if ( $main_tax && taxonomy_exists( $main_tax ) )
-            $main_tax_c = $main_tax;
 
 
 
@@ -152,6 +147,12 @@ function get_anypost_shortcode_page() {
 
             $title_link = get_the_permalink();
             $get_the_post_thumbanil = get_the_post_thumbnail(get_the_ID() ,'full');
+            $current_post_type = get_post_type();
+
+            $main_tax_c = WebMapp_Utils::get_main_tax(get_the_ID() );
+
+            if ( $main_tax && taxonomy_exists( $main_tax ) )
+                $main_tax_c = $main_tax;
 
 
             ?>
@@ -164,16 +165,17 @@ function get_anypost_shortcode_page() {
 
                     $taxs_htmls = array();
 
-                    if ( $post_type == 'route' )
+                    if ( $current_post_type == 'route' )
                     {
                         $global_taxonomies[] = 'activity';
                     }
 
+                    //prepare main tax overlay
                     foreach( $global_taxonomies as $tax_name ) :
 
                         $taxs_htmls[$tax_name] = '';
 
-                        if ( $post_type == 'route' && $tax_name == 'activity' )
+                        if ( $current_post_type == 'route' && $tax_name == 'activity' )
                         {
                             $terms = WebMapp_ActivityRoute::get_route_activities(get_the_ID());
                         }
@@ -201,11 +203,8 @@ function get_anypost_shortcode_page() {
                             foreach ( $terms as $term )
                             {
                                 $term_link = get_term_link( $term->term_id );
-                                if ( $tax_name == 'where' )
-                                {
-                                    $taxs_htmls[$tax_name] .= "<span class='webmapp_single_$tax_name webmapp_single_term'><a class='webmapp_single_{$tax_name}_link' href='$term_link' title='$term->name'><span class='webmapp_single_{$tax_name}_name'>$term->name</span></a></span>";
-                                }
-                                elseif ( $main_tax_c == $tax_name )
+
+                                if ( $main_tax_c == $tax_name )
                                 {
                                     $term_icon = get_field( 'wm_taxonomy_icon',$term );
                                     if ( $term_icon )
@@ -236,10 +235,43 @@ function get_anypost_shortcode_page() {
 
 
 
+                    /**
+                     * PREPARE TITLE
+                     */
+                    ob_start();
+                    ?>
 
+                    <div class="webmapp_post-title">
+                        <h2>
+                            <?php echo "<a href='$title_link' title=\"".get_the_title()."\">" . get_the_title() . "</a>"; ?>
+                        </h2>
+                    </div>
 
+                    <?php
+                    $post_title = ob_get_clean();
+
+                    /**
+                     * PREPARE TAXONOMIES
+                     */
+                    $main_tax_class = $multiple ? 'webmapp_main_tax_multiple' : 'webmapp_main_tax_single';
+                    $main_tax_html = isset( $taxs_htmls[$main_tax_c] ) ? $taxs_htmls[$main_tax_c] : '' ;
+                    ob_start();
+                    if ( ! empty( $get_the_post_thumbanil ) )
+                        echo "<div class='webmapp_main_tax $main_tax_class'>" . $main_tax_html . "</div>";
+                    $post_taxonomies = ob_get_clean();
 
                     ?>
+
+                <?php
+
+                if ( $template == 'compact' )
+                {
+                    //echo $post_taxonomies;
+                    echo $post_title;
+                    WebMapp_Utils::theShortInfo();
+                }
+                ?>
+
 
                 <div class="webmapp_post-featured-img">
                     <?php
@@ -250,18 +282,30 @@ function get_anypost_shortcode_page() {
                     </figure>
                     <?php
                     echo "</a>";
-                    $main_tax_class = $multiple ? 'webmapp_main_tax_multiple' : 'webmapp_main_tax_single';
-                    $main_tax_html = isset( $taxs_htmls[$main_tax_c] ) ? $taxs_htmls[$main_tax_c] : '' ;
 
-                    if ( ! empty( $get_the_post_thumbanil ) )
-                        echo "<div class='webmapp_main_tax $main_tax_class'>" . $main_tax_html . "</div>";
-                    ?>
+
+
+                    if( $template == '' )
+                        echo $post_taxonomies;
+
+                   ?>
                 </div>
-                <div class="webmapp_post-title">
-                    <h2>
-                    <?php echo "<a href='$title_link' title=\"".get_the_title()."\">" . get_the_title() . "</a>"; ?>
-                    </h2>
-                </div>
+
+                <?php
+
+                    if ( $template == '' )
+                        echo $post_title;
+                    elseif( $template == 'compact' )
+                        the_excerpt();
+                ?>
+
+
+
+
+
+                <?php if ( $template == '' ) : ?>
+
+
                     <div class="webmapp_post_terms">
                         <?php
                         if ( isset( $taxs_htmls['where'] ) )
@@ -273,6 +317,8 @@ function get_anypost_shortcode_page() {
                         }
                         ?>
                     </div>
+
+            <?php endif;//if ( $template == '' ) : ?>
 
                 </div>
             <?php

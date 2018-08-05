@@ -31,6 +31,19 @@ div.webmapp_post_terms .webmapp_single_term a i
 }
 
 /**
+LAYOUT
+ */
+
+.webmapp_anypost_shortcode
+{
+
+
+
+    width: 100%;
+
+}
+
+/**
 PAGINATION
  */
 
@@ -42,13 +55,7 @@ PAGINATION
     margin: 15px auto;
     text-align:  center;
 }
-.webmapp_anypost_shortcode
-{
-    /* position: relative; */
-    min-height: 300px;
-    margin-bottom: 74px;
-    display: table-cell;
-}
+
 
 .pagination_link_wrapper
 {

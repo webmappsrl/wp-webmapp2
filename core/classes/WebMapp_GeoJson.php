@@ -13,7 +13,7 @@ class WebMapp_GeoJson
 
     //debug environment
     public $debug_domain = 'sgt.be.webmapp.it';
-    public $debug_id = 1457;//sgt poi
+    public $debug_id = 1299;//sgt track
 
     function __construct( $id , $term = false, $debug_mode = false )
     {
@@ -30,6 +30,7 @@ class WebMapp_GeoJson
         {
             $this->curl_geoJson = $temp;
             $this->curl_response_array = json_decode( $temp );
+            add_action( 'wp_footer' , array( $this , 'addGeoJsonInFooter' ) , 999 );
         }
 
 
@@ -40,13 +41,18 @@ class WebMapp_GeoJson
         return $this->curl_response_array;
     }
 
+    public function get_json()
+    {
+        return $this->curl_geoJson;
+    }
+
     private function build_geoJson_server_url()
     {
         $bool = strpos( $this->current_domain , '.local' ) !== false;
         if ( $this->debug_mode || $bool )
         {
             $t = "https://api.webmapp.it/a/$this->debug_domain/geojson/$this->debug_id.geojson";
-            var_dump( "DEBUG MODE ACTIVE. Curl Url: " . $t );
+            echo "<h3 style='color:red'>" . "DEBUG MODE ACTIVE. Curl Url: " . $t . "</h3>";
 
         }
         else
@@ -71,6 +77,19 @@ class WebMapp_GeoJson
         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
         return ($httpcode>=200 && $httpcode<300) ? $data : false;
+    }
+
+    public function addGeoJsonInFooter()
+    {
+        ob_start();
+        ?>
+
+        <script type="text/javascript">
+            var geoJson_<?php echo $this->id?> = <?php echo $this->get_json()?> ;
+        </script>
+        <?php
+
+        echo ob_get_clean();
     }
 
 }
