@@ -376,6 +376,11 @@ class WebMapp_AdminOptionsPage
         <?php
     }
 
+    /**
+     * Get option with WPML compatibility
+     * @param $option_name
+     * @return mixed
+     */
     public static function get_option( $option_name )
     {
         $language_suffix = '';

@@ -4,10 +4,15 @@
 class WebMapp_TemplateSingle
 {
     public $geoJson_php;
+    public $geoJson_properties = array();
 
     function __construct( $geoJson_php = '' )
     {
         $this->geoJson_php = $geoJson_php;
+
+        if ( isset( $this->geoJson_php->properties ) )
+            $this->geoJson_properties = WebMapp_Utils::object_to_array( $this->geoJson_php->properties );
+
     }
 
     function getShortInfo()
@@ -20,7 +25,7 @@ class WebMapp_TemplateSingle
             'difficulty' => 'difficulty',//capacity
             'rating' => 'wm_poi_stars',//rating
             'ascent' => 'ascent',//ascent
-            'discent' => 'discent',//discent
+            'descent' => 'descent',//discent
             'distance' => 'distance',//distance
             'duration' => 'duration:forward'//duration:forward
         );
@@ -46,10 +51,11 @@ class WebMapp_TemplateSingle
 
     function getInfo()
     {
+        //todo controllare i fields a seconda del post type
         $fields_key = array(
-            'phone' => 'field_58db8898b886d',//phone
-            'email' => 'field_58db8898b886e',//email
-            'links' => 'field_585cdc9229191'//links
+            'phone' => 'contact:phone',//phone
+            'email' => 'contact:email',//email
+            'links' => 'net7webmap_related_url'//links
         );
 
         $t = $this->getFields( $fields_key );
@@ -86,10 +92,10 @@ class WebMapp_TemplateSingle
         $r = false;
 
         $fields_key = array(
-            'street' => 'field_58db8898b885d',//street
-            'house_number' => 'field_58db8898b885e',//house number
-            'postcode' => 'field_58db8898b885f',//postcode
-            'city' => 'field_58db8898b885g'//city
+            'street' => 'addr:street',//street
+            'house_number' => 'addr:housenumber',//house number
+            'postcode' => 'addr:postcode',//postcode
+            'city' => 'addr:city'//city
         );
 
         $address_fields = $this->getFields( $fields_key );
@@ -120,13 +126,25 @@ class WebMapp_TemplateSingle
     function getFields( $fields , $post_id = '' )
     {
         $t = array();
+
         if ( !$post_id )
             $post_id = get_the_ID();
+
         foreach( $fields as $key => $field )
         {
-            $temp = get_field($field ,$post_id);
-            if ( $temp && ! empty( $temp) )
-                $t[$key] = $temp;
+            if ( ! empty( $this->geoJson_properties )
+                && isset( $this->geoJson_properties[$field] )
+                && ! empty( $this->geoJson_properties[$field] )
+            )
+                $t[$key] = $this->geoJson_properties[$field];//get field from geoJson
+            else
+            {
+                $temp = get_field($field ,$post_id);//get field from wp database
+                if ( $temp && ! empty( $temp) )
+                    $t[$key] = $temp;
+            }
+
+
 
         }
 

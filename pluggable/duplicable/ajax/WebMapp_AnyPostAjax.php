@@ -25,6 +25,10 @@ function get_anypost_shortcode_page() {
     $term = isset( $term_id ) && is_numeric($term_id ) ? get_term( $term_id ) : '';
     $taxonomy = isset( $term->taxonomy ) && taxonomy_exists( $term->taxonomy ) ? $term->taxonomy : '';
 
+
+    /**
+     * Start elaborate quary args
+     */
     if ( $post_id && is_numeric( $post_id ) ){
 
         $temp = get_post($post_id );
@@ -62,17 +66,16 @@ function get_anypost_shortcode_page() {
     }//end elseif //endif
 
 
+    //set query arguments
     $query_args[ 'paged' ] = $paged;
     $query_args[ 'post_status' ] = 'publish';
     $query_args['post_type'] = $post_type;
 
-
-
-
+    //Query
     $custom_posts = new WP_Query( $query_args );
 
     /**
-     * Style operations
+     * Bootstrap grid
      */
 
     //$posts_per_row = ceil($posts_per_page / $rows);
@@ -86,21 +89,16 @@ function get_anypost_shortcode_page() {
 
     $bootstrap_col_type = ceil(12 / $posts_per_row_t );//bootstrap grid system
 
-    $i = 0; $j = 0; $j_prop = true; $rows_closed = false;
-
+    $i = 0; $j_prop = true; $rows_closed = false;
 
 
     ob_start();//start register html
 
 
-
-
-
-
     //var_dump( $query_args );
 
+    //Start Loop
     if ( $custom_posts->have_posts() ) :
-
 
         //taxonomies initialization
         if ( $i == 0 )
@@ -115,19 +113,13 @@ function get_anypost_shortcode_page() {
             echo "<p class='webmapp_anypost_show_all'><a class='webmapp_anypost_show_all_linka' href='$term_link'>" . __( 'Show all' , WebMapp_TEXTDOMAIN ) . "<i class=\"fa fa-arrow-right\" aria-hidden=\"true\"></i></a></p>";
         }
 
-
-
-
-
-
-
         /**
          * The Loop Starts
          */
         while ( $custom_posts->have_posts() && $j_prop ) : $custom_posts->the_post();
 
             /**
-             * Rows
+             * Bootstrap Rows
              */
             if ( $i%$posts_per_row_t == 0 )
             {
@@ -210,9 +202,9 @@ function get_anypost_shortcode_page() {
                                     if ( $term_icon )
                                     {
                                         $i_class = $multiple ? 'webmapp_icon_multiple' : 'webmapp_icon_single';
-                                        $taxs_htmls[$tax_name] .= "<span class='webmapp_single_$tax_name webmapp_single_{$tax_name}_{$activity_level} webmapp_single_term'><a class='webmapp_single_{$tax_name}_link' href='$term_link' title='$term->name'><i class='$term_icon $i_class'></i>";
+                                        $taxs_htmls[$tax_name] .= "<span class='webmapp_single_$tax_name webmapp_single_{$tax_name}_{$activity_level} webmapp_single_term webmapp_shortcodes_color1-background-color'><a class='webmapp_single_{$tax_name}_link' href='$term_link' title='$term->name'><i class='$term_icon $i_class'></i>";
                                         if ( ! $multiple )
-                                            $taxs_htmls[$tax_name] .= "<span class='webmapp_single_{$tax_name}_name'>$term->name</span>";
+                                            $taxs_htmls[$tax_name] .= "<span class='webmapp_single_{$tax_name}_name webmapp_shortcodes_font2-font-family webmapp_shortcodes_size2-font-size'>$term->name</span>";
 
                                         $taxs_htmls[$tax_name] .= "</a></span>";
                                         $activity_level++;
@@ -223,7 +215,7 @@ function get_anypost_shortcode_page() {
                                 {
                                     $term_icon = get_field( 'wm_taxonomy_icon',$term );
                                     if ( $term_icon )
-                                        $taxs_htmls[$tax_name] .= "<span class='webmapp_single_$tax_name webmapp_single_term'><a class='webmapp_single_{$tax_name}_link ' href='$term_link' title='$term->name'><i class='$term_icon'></i></a></span>";
+                                        $taxs_htmls[$tax_name] .= "<span class='webmapp_single_$tax_name webmapp_single_term'><a class='webmapp_single_{$tax_name}_link webmapp_shortcodes_color3-color webmapp_shortcodes_font2-font-family webmapp_shortcodes_size5-font-size' href='$term_link' title='$term->name'><span>$term->name</span><i class='$term_icon webmapp_shortcodes_color1-color'></i></a></span>";
                                 }
 
 
@@ -243,7 +235,7 @@ function get_anypost_shortcode_page() {
 
                     <div class="webmapp_post-title">
                         <h2>
-                            <?php echo "<a href='$title_link' title=\"".get_the_title()."\">" . get_the_title() . "</a>"; ?>
+                            <?php echo "<a href='$title_link' title=\"".get_the_title()."\" class='webmapp_shortcodes_color1-color webmapp_shortcodes_font1-font-family webmapp_shortcodes_size2-font-size'>" . get_the_title() . "</a>"; ?>
                         </h2>
                     </div>
 
@@ -279,6 +271,7 @@ function get_anypost_shortcode_page() {
                     ?>
                     <figure class="webmapp_post_image">
                     <?php echo $get_the_post_thumbanil; ?>
+
                     </figure>
                     <?php
                     echo "</a>";

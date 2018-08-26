@@ -29,9 +29,7 @@ function WebMapp_GeoJsonMapShortcode( $atts ) {
                     tracks: "white",
                     routes: '',
                     map_center : '',
-                    post_id : '<?php echo $post_id ?>',
-                    initialLat: '',
-                    initialLng: ''
+                    post_id : '<?php echo $post_id ?>'
                 }
             );
         });

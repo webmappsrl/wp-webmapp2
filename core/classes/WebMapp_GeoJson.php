@@ -52,11 +52,13 @@ class WebMapp_GeoJson
         if ( $this->debug_mode || $bool )
         {
             $t = "https://api.webmapp.it/a/$this->debug_domain/geojson/$this->debug_id.geojson";
-            echo "<h3 style='color:red'>" . "DEBUG MODE ACTIVE. Curl Url: " . $t . "</h3>";
+            //echo "<h3 style='color:red'>" . "DEBUG MODE ACTIVE. Curl Url: " . $t . "</h3>";
 
         }
         else
             $t = "https://api.webmapp.it/a/$this->current_domain/geojson/$this->id.geojson";
+
+        $t = "https://api.webmapp.it/a/$this->current_domain/geojson/$this->id.geojson";
 
 
 

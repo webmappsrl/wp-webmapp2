@@ -171,6 +171,11 @@ class WebMapp_Utils
 
     }
 
+    /**
+     * Get multilanguage option with WPML ( "_{ lang_code }" postfix in option name )
+     * @param $option_name
+     * @return mixed
+     */
     public static function get_option( $option_name )
     {
         return WebMapp_AdminOptionsPage::get_option( $option_name );
@@ -187,13 +192,18 @@ class WebMapp_Utils
         return $main_tax_c;
     }
 
+    /**
+     * Alias function
+     */
     public static function getShortInfo()
     {
         $template_functions = new WebMapp_TemplateSingle();
-
         return $template_functions->getShortInfo();
     }
 
+    /**
+     * Alias function
+     */
     public static function theShortInfo()
     {
         $template_functions = new WebMapp_TemplateSingle();
@@ -217,5 +227,8 @@ class WebMapp_Utils
             return $array;
         }
     }
+
+
+    
 
 }

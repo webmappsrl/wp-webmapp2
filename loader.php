@@ -41,6 +41,7 @@ WebMapp_Utils::load_dir('core/classes');
 WebMapp_Utils::load_dir('core/classes/AbstractFields');
 WebMapp_Utils::load_dir('core/classes/AdminColumns');
 WebMapp_Utils::load_dir('core/classes/AdminOptionsPage');
+WebMapp_Utils::load_dir('core/classes/ThemeCustomizer');
 
 
 /**
@@ -53,7 +54,7 @@ WebMapp_Utils::load_dir('core/classes/AdminOptionsPage');
  * WP Customizer modules
  */
 WebMapp_Utils::load_dir('pluggable/duplicable/admin/theme_customizer');
-WebMapp_Utils::load_dir('pluggable/duplicable/admin/theme_customizer/ShortcodesCustomizer');
+//WebMapp_Utils::load_dir('pluggable/duplicable/admin/theme_customizer/ShortcodesCustomizer');
 
 /**
  * Enqueue custom post type registration
@@ -120,6 +121,11 @@ if ( is_admin() ) ://load only in admin side
     WebMapp_Utils::load_dir('pluggable/duplicable/admin/pages');
 
 else ://load in frontend side ( login too )
+
+    /**
+     * Load generic frontend elements
+     */
+    WebMapp_Utils::load_dir('pluggable/duplicable/frontend/');
 
     /**
      * Load shorcodes

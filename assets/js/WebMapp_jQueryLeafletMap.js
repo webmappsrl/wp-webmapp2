@@ -24,11 +24,52 @@
             $('.leaflet-control-zoom').css('visibility', 'hidden');
         },
 
-        onEachFeature : ( settings, e, marker ) => {
+        onEachFeature : ( settings, e, layer ) => {
+
+            let imageurl = e.properties.image;
+            let name = e.properties.name;
+            let taxonomies = e.properties.taxonomy;
+
+            let taxonomy_string = '';
+
+            $.each( taxonomies ,  function( i , e )
+            {
+                $.each( e , function( i2 , e2 )
+                {
+                    taxonomy_string += e2;
+                }
+                );
+            } );
 
 
-            marker.bindPopup( 'test' );
-            console.log( marker );
+
+            let html = "<div class='webmapp-geoJsonmap-popup'><img src='" +
+                imageurl + "'/>" +
+                "<h5>" + taxonomy_string + "</h5>" +
+                "<h6>" + name + "</h6>" +
+                "</div>";
+
+
+            layer.bindPopup( html );
+
+
+
+            if ( settings.post_id !== data.current_post_id )
+            {
+
+            }
+
+            /**
+             * immagine
+             * Nome categoria
+             * Nome
+             * ( inserire link all'oggetto, tranne per quello corrente )
+             * todo
+             *
+             * Caricare elemento del template +
+             * https://api.webmapp.it/a/sgt.be.webmapp.it/geojson/345_poi_related.geojson (type: FeatureCollection, geometry types: Point).
+             * se esiste ( sono eventuali related ) non neighbors
+             */
 
             /**
 
@@ -76,8 +117,13 @@
                 } ).addTo( map );
 
 
+            map.fitBounds(
+                geojsonLayer.getBounds(),
+                {
+                    maxZoom : parseInt( settings.zoom )
+                }
+            );
 
-            map.fitBounds( geojsonLayer.getBounds() );
 
         },
 
@@ -179,8 +225,8 @@
                 routes: '',
                 map_center : '',
                 post_id : '',
-                initialLat: '',
-                initialLng: '',
+                initialLat: 43.689740,//pisa
+                initialLng: 10.392279,//pisa
                 appUrl: data.appUrl,
                 label: data.label,
                 zoom: data.zoom,
@@ -198,7 +244,7 @@
         var mapId = settings.id,
             postId = settings.post_id,
             modalMapId = WebMapp_LeafletMapMethods.uniqueidGenerator.apply( this ),
-            modal = '<div id="' + modalMapId + '"><div class="modal-content"><i class="fa fa-times close-modal" aria-hidden="true"></i><iframe src="' + settings.appUrl + '/#/poi/' + postId + '/' + settings.zoom + '" width="100%"></iframe></div></div>',
+            modal = '<div id="' + modalMapId + '"><div class="modal-content"><i class="fa fa-times close-modal" aria-hidden="true"></i></div></div>',
             icon_class = '',//todo
             color = '',//todo
             mapContainer = $("<div id='" + mapId + "'></div>"),
@@ -207,7 +253,11 @@
 
         this.append(mapContainer);
 
-        var map = L.map( mapId ).setView([settings.initialLat, settings.initialLng], settings.zoom);
+        var map = L.map( mapId , {
+            center: [settings.initialLat, settings.initialLng],
+            zoom: settings.zoom,
+            scrollWheelZoom: false
+        } );//parseInt( settings.zoom )
 
         L.tileLayer( settings.tilesUrl, {
             layers: [
@@ -220,6 +270,19 @@
             //maxZoom: 17
         }).addTo(map);
 
+
+        //show expand
+        if ( data.show_expand === 'true' )
+        {
+            let link_url = settings.appUrl + '/#/poi/' + postId + '/' + settings.zoom;
+                let html =
+                '<a target="_blank" class="open-modal-map" href="' + link_url + '" title="apri tutta la mappa"><span class="wm-icon-arrow-expand"></span></a>';
+            mapContainer.prepend( html );
+        }
+
+
+
+
         var marker_settings = {
             color : color,
             icon_class : icon_class,
@@ -230,6 +293,7 @@
             lng: settings.initialLng,
             lat: settings.initialLat
         };
+
 
         //isset geojson in settings
         if ( geoJson )
@@ -257,29 +321,7 @@
             });
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // Greenify the collection based on the settings variable.
-        return this.css({
-            color: settings.color,
-            backgroundColor: settings.backgroundColor
-        });
+        return this;
 
     };//end $.fn.WebMapp_LeafletMap = function( options )
 

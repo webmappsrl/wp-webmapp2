@@ -83,7 +83,7 @@ $tax = isset( $wp_query->query['taxonomy'] ) ? $wp_query->query['taxonomy'] : ''
 			?>
 			</div> <!-- #left-area -->
 
-			<?php get_sidebar(); ?>
+			<?php //get_sidebar(); ?>
 		</div> <!-- #content-area -->
 	</div> <!-- .container -->
 </div> <!-- #main-content -->

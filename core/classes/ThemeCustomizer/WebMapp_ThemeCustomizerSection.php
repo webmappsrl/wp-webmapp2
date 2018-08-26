@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marco
- * Date: 14/07/18
- * Time: 13:17
- */
+
 
 /**
  * Contains methods for customizing the theme customization screen.
@@ -12,13 +7,15 @@
  * @link http://codex.wordpress.org/Theme_Customization_API
  * @since WebMapp 2.0
  */
-class WebMapp_ThemeCustomizer {
+class WebMapp_ThemeCustomizerSection {
 
 
     private $wp_customize;
+
     private $section_id;
     private $section_title;
     private $frontend_css = '' ;
+
     private $settings ;
     private $js_url;
     private $section_description;
@@ -38,10 +35,10 @@ class WebMapp_ThemeCustomizer {
         // Setup the Theme Customizer settings and controls...
         add_action( 'customize_register' , array( $this , 'register' ) );
 
-// Output custom CSS to live site
+        // Output custom CSS to live site
         add_action( 'wp_head' , array( $this , 'header_output' ) );
 
-// Enqueue live preview javascript in Theme Customizer admin screen
+        // Enqueue live preview javascript in Theme Customizer admin screen
         add_action( 'customize_preview_init' , array( $this , 'live_preview' ) );
 
     }
@@ -150,8 +147,6 @@ class WebMapp_ThemeCustomizer {
         }
 
 
-
-
     }
 
     /**
@@ -195,6 +190,7 @@ class WebMapp_ThemeCustomizer {
             );
 
     }
+
 
     /**
      * This will generate a line of CSS for use in header output. If the setting

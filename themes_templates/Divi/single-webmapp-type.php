@@ -43,11 +43,26 @@ function my_print_r( $arr )
 
 
 $template_fields_key = array(
-    'gallery' => 'field_5853f586c83cd'
+    'gallery' => 'n7webmap_track_media_gallery'
 );
 
 $template_fields = $template_functions->getFields( $template_fields_key );
 extract( $template_fields );
+
+
+
+$gallery = isset( $gallery ) && is_array( $gallery ) ?
+    array_filter (
+            array_map(
+                    function( $i )
+                    {
+                        $r = isset( $i['ID'] ) ? $i['ID'] : '';
+                        return $r;
+                        } ,
+                    $gallery
+            )
+    )
+    : array();
 
 
 /**
@@ -86,8 +101,6 @@ $tem_has_info = $template_functions->getInfo() == true ;
         $terms = get_the_terms( $post_id , $main_tax );
 
 
-
-
         if ( $featured_image )
         {
             ?>
@@ -122,10 +135,6 @@ $tem_has_info = $template_functions->getInfo() == true ;
 
         <div class="container">
 
-
-
-
-
             <div id="content-area" class="clearfix">
                 <div id="left-area" class="webmapp-grid-system" style="width: 100%;padding: 23px 0px 0px !important;float: none !important;">
                     <!-- START GRID -->
@@ -141,29 +150,23 @@ $tem_has_info = $template_functions->getInfo() == true ;
                                     if ( $taxonomy != $main_tax )
                                     {
                                         $terms = get_the_terms( $post_id , $taxonomy );
-                                        foreach ( $terms as $term ) :
-                                            $term_icon = get_field( 'wm_taxonomy_icon',$term );
-                                            $term_link = get_term_link( $term );
-                                            echo "<span class=\"webmapp-term-short webmapp-term-short-$term->slug\"><i class=\"$term_icon\"></i><span><a href='$term_link'>$term->name</a></span></span>";
-                                        endforeach;
+                                        if ( $terms && is_array( $terms ) )
+                                            foreach ( $terms as $term ) :
+                                                $term_icon = get_field( 'wm_taxonomy_icon',$term );
+                                                $term_link = get_term_link( $term );
+                                                echo "<span class=\"webmapp-term-short webmapp-term-short-$term->slug\"><i class=\"$term_icon\"></i><span><a href='$term_link'>$term->name</a></span></span>";
+                                            endforeach;
                                     }
                                 }
 
 
                                 $getShortInfo = $template_functions->getShortInfo();
                                 if ( $getShortInfo ) : ?>
-                                    <h2>
-                                        GET SHORT INFO
-                                    </h2>
                                     <?php
                                     $template_functions->theShortInfo();
                                     ?>
 
                                 <?php endif; ?>
-
-                                <h2>
-                                    EXCERPT
-                                </h2>
 
                                 <?php the_excerpt()?>
                             </div>
@@ -181,18 +184,12 @@ $tem_has_info = $template_functions->getInfo() == true ;
                         <div id="webmapp-layer-3" class="row">
                             <?php if ( $tem_has_gallery ) : ?>
                                 <div class="col-md-6">
-                                    <h2>
-                                        GALLERY
-                                    </h2>
                                     <?php
-                                    echo do_shortcode("[et_pb_gallery _builder_version='3.9' gallery_ids='1452,1450,1448,1444,1440,1432,1428,1422,1413,1410,1385' show_pagination='off' zoom_icon_color='#466434' hover_overlay_color='rgba(255,255,255,0.9)' posts_number='1' fullwidth='on' /]");
+                                    echo do_shortcode("[et_pb_gallery _builder_version='3.9' gallery_ids='" . implode( ',' , $gallery ) . "' show_pagination='off' zoom_icon_color='#466434' hover_overlay_color='rgba(255,255,255,0.9)' posts_number='1' fullwidth='on' /]");
                                     ?>
                                 </div>
                             <?php endif;//if ( $tem_has_gallery ) ?>
                             <div class="col-md-<?php echo $tem_map_grid?>">
-                                <h2>
-                                    MAP
-                                </h2>
                                 <?php
                                 echo do_shortcode("[webmapp_geojson_map post_id='$post_id' ]");
                                 ?>
@@ -203,9 +200,6 @@ $tem_has_info = $template_functions->getInfo() == true ;
                         <!-- LAYER 4 -->
                         <div id="webmapp-layer-4" class="row">
                             <div class="col-md-6">
-                                <h2>
-                                    CONTENT
-                                </h2>
                                 <?php the_content(); ?>
                             </div>
                             <div class="col-md-6">
@@ -215,9 +209,6 @@ $tem_has_info = $template_functions->getInfo() == true ;
                                         if ( $getInfo ) :
                                             ?>
                                             <div class="col-md-12">
-                                                <h2>
-                                                    GET INFO
-                                                </h2>
                                                 <?php my_print_r( $getInfo ) ?>
                                             </div>
                                         <?php
@@ -225,10 +216,6 @@ $tem_has_info = $template_functions->getInfo() == true ;
                                     endif;//if ( $tem_has_info )
                                     ?>
                                     <div class="col-md-12">
-                                        <h2>
-                                            GET RELATED OBJECTS
-                                        </h2>
-
                                         <?php
 
                                         $related_objects = $template_functions->getRelatedObjects();
@@ -270,7 +257,6 @@ $tem_has_info = $template_functions->getInfo() == true ;
                             <div class="col-md-12">
                                 <h2>
                                     SIMILAR OBJECTS
-                                    (POTREBBE INTERESSARTI)
                                 </h2>
                                 <?php echo $template_functions->getSimilarObjects() ?>
                             </div>
