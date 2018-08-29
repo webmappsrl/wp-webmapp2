@@ -41,11 +41,11 @@ function WebMapp_AnyTermShortcode($atts ) {
 
     if ( ! empty($title) )
     {
-        $output .= '<h2 class="webmapp-any-terms-title webmapp_shortcodes_color2-color webmapp_shortcodes_font1-font-damily webmapp_shortcodes_size1-font-size">' . $title . '</h2>';
+        $output .= '<h2 class="webmapp-any-terms-title webmapp_customizer_general_color2-color webmapp_customizer_general_font1-font-damily webmapp_customizer_general_size1-font-size">' . $title . '</h2>';
     }
     if ( ! empty( $subtitle ) )
     {
-        $output .= '<p class="webmapp-any-terms-subtitle webmapp_shortcodes_color3-color webmapp_shortcodes_font3-font-family webmapp_shortcodes_size3-font-size">' . $subtitle . '</p>';
+        $output .= '<p class="webmapp-any-terms-subtitle webmapp_customizer_general_color3-color webmapp_customizer_general_font3-font-family webmapp_customizer_general_size3-font-size">' . $subtitle . '</p>';
     }
 
 
@@ -73,7 +73,7 @@ function WebMapp_AnyTermShortcode($atts ) {
                 $icon = get_field('icon',$my_term );
                 $icon_html = $icon ? "<i class='webmapp-term-icon $icon'></i> " : '';
                 $output .= '<li>';
-                $output .= '<a href="' . $url . '" class="webmapp_shortcodes_color1-color webmapp_shortcodes_font2-font-family webmapp_shortcodes_size5-font-size">' . $icon_html . $my_term->name;
+                $output .= '<a href="' . $url . '" class="webmapp_customizer_general_color1-color webmapp_customizer_general_font2-font-family webmapp_customizer_general_size5-font-size">' . $icon_html . $my_term->name;
                 $output .= '<i class="fa fa-arrow-right" aria-hidden="true"></i></a>';
                 $output .= '</li>';
             }

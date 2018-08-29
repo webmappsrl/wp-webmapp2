@@ -143,7 +143,7 @@ $tem_has_info = $template_functions->getInfo() == true ;
                         <!-- LAYER 2 -->
                         <div id="webmapp-layer-2" class="row">
                             <div class="col-md-<?php echo $tem_l2_main_grid?>">
-                                <h3><?php the_title()?></h3>
+                                <h3 class="webmapp_customizer_general_color1-color webmapp_customizer_general_font1-font-family webmapp_customizer_general_size7-font-size"><?php the_title()?></h3>
                                 <?php
                                 foreach ( $taxonomies as $taxonomy )
                                 {
@@ -168,7 +168,7 @@ $tem_has_info = $template_functions->getInfo() == true ;
 
                                 <?php endif; ?>
 
-                                <?php the_excerpt()?>
+                                <?php echo "<p class='webmapp_customizer_general_color3-color webmapp_customizer_general_font3-font-family webmapp_customizer_general_size8-font-size'>" . get_the_excerpt() . "</p>"?>
                             </div>
                             <?php if( $tem_has_buy ) : ?>
                                 <div class="col-md-3">
@@ -199,7 +199,7 @@ $tem_has_info = $template_functions->getInfo() == true ;
 
                         <!-- LAYER 4 -->
                         <div id="webmapp-layer-4" class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 webmapp_customizer_general_color3-color webmapp_customizer_general_font3-font-family webmapp_customizer_singlepost_size10-font-size">
                                 <?php the_content(); ?>
                             </div>
                             <div class="col-md-6">

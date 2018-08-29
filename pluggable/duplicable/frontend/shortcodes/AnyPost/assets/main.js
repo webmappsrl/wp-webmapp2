@@ -144,14 +144,14 @@ var webmapp_posts_ajax_call =
 
 
                         //pagination
-                        if ( n_page !== 1 && $pagination_links.length === 0 )
+                        if ( n_page > 1 )
                         {
 
                                 let new_link;
                                 $pagination_wrap.empty();
                                 for ( let i = 1; i < n_page + 1 ; i ++ )
                                 {
-                                    new_link = $('<li class="pagination_link_wrapper"><a class="pagination_link" data-paged="' + i + '">' + i + '</a></li>');
+                                    new_link = $('<li class="pagination_link_wrapper"><a class="pagination_link webmapp_customizer_general_color1-background-color" data-paged="' + i + '">' + i + '</a></li>');
 
                                     $pagination_wrap.append( new_link );
                                     new_link.on('click', function(e)
@@ -169,11 +169,10 @@ var webmapp_posts_ajax_call =
                         }
                         else
                         {
-                            if ( !total_posts )
+                            if ( ! total_posts )
                             {
                                 $current_section.fadeOut().prev('h3').fadeOut();
                             }
-
                             else
                                 $pagination_wrap.remove();
                         }
@@ -204,6 +203,9 @@ var webmapp_posts_ajax_call =
                     }
 
                 )//end fail
+                .always( function( response ){
+                    console.log( response );
+                } )
 
         })( jQuery );
 

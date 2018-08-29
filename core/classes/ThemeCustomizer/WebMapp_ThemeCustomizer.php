@@ -17,7 +17,7 @@ class WebMapp_ThemeCustomizer
 
     private $sections;
 
-    private $wm_sections = array();
+    public $wm_sections = array();
 
     private $css_properties;
 
@@ -29,9 +29,8 @@ class WebMapp_ThemeCustomizer
 
         $this->sections = $sections;
 
-        add_action( 'init' , array( $this , 'init') );
-
-
+        //add_action( 'init' , array( $this , 'init') );
+        $this->init();
 
     }
 
@@ -39,17 +38,12 @@ class WebMapp_ThemeCustomizer
     function init()
     {
 
-
-
         $this->register_sections();
 
         $this->prepare_css_properties();
 
         // Enqueue live preview javascript in Theme Customizer admin screen
         add_action( 'customize_preview_init' , array( $this , 'localize' ) );
-
-
-
 
     }
 
@@ -61,14 +55,13 @@ class WebMapp_ThemeCustomizer
             $s_id = isset( $section['id'] ) ? $section['id'] : false;
             $s_title = isset( $section['title'] ) ? $section['title'] : false;
             $s_settings = isset( $section['settings'] ) ? $section['settings'] : false;
-            $s_js_url = isset( $section['js_url'] ) ? $section['js_url'] : false;
-
-            $s_description = isset( $section['description'] ) ? $section['description'] : '';
-
-            $check = $s_id && $s_title && $s_settings && $s_js_url;
+            $check = $s_id && $s_title && $s_settings;
 
             if( $check )
             {
+                $s_js_url = isset( $section['js_url'] ) ? $section['js_url'] : false;
+                $s_description = isset( $section['description'] ) ? $section['description'] : '';
+
                 $this->wm_sections[ $key ] = new WebMapp_ThemeCustomizerSection(
                     $s_id ,
                     $s_title,

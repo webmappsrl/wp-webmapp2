@@ -63,13 +63,15 @@ class WebMapp_AssetEnqueuer
 
         $this->init_properties();
 
+        $priority = 9999999999;
+
 
         foreach ( $this->sides as $side )
         {
             if ( $side == 'admin')
-                add_action( 'admin_enqueue_scripts' , array( $this , 'admin_enqueue_scripts' ) );
+                add_action( 'admin_enqueue_scripts' , array( $this , 'admin_enqueue_scripts' ) , $priority );
             else
-                add_action( $side . '_enqueue_scripts' , array( $this , 'enqueue_scripts' ) );
+                add_action( $side . '_enqueue_scripts' , array( $this , 'enqueue_scripts' ) , $priority );
         }
 
 

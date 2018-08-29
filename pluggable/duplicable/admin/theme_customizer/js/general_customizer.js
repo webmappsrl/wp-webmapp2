@@ -10,48 +10,14 @@
      * COLOR 1
      */
     //Update site title color in real time...
-    wp.customize( 'webmapp_shortcodes_color1', function( value ) {
+    wp.customize( 'webmapp_customizer_general_color1', function( value ) {
         value.bind( function( newval ) {
 
 
-            $('.pagination_link_wrapper a.pagination_link').css('background-color', newval + '7F' );//main tax icon background color
-            $('.webmapp_main_tax').css('background-color', newval + '7F' );//7F = 127 ≈ 255 / 2
+
+            //todo $('.pagination_link_wrapper a.pagination_link').css('background-color', newval + '7F' );//main tax icon background color
+            $('.webmapp_customizer_general_color1-background-color-brightness').css('background-color', newval + '7F' );//7F = 127 ≈ 255 / 2
             //$('div.webmapp_post_terms .webmapp_single_term a i').css( 'filter' , 'brightness(140%)');
-
-
-        } );
-    } );
-
-
-    /**
-     * COLOR 3
-     */
-
-    wp.customize( 'webmapp_shortcodes_color3', function( value ) {
-        value.bind( function( newval )
-        {
-
-        } );
-    } );
-
-    /**
-     * FONT 1
-     */
-
-    wp.customize( 'webmapp_shortcodes_font1', function( value ) {
-        value.bind( function( newval )
-        {
-
-
-        } );
-    } );
-
-
-    /**
-     * FONT 2
-     */
-    wp.customize( 'webmapp_shortcodes_font2', function( value ) {
-        value.bind( function( newval ) {
 
 
         } );

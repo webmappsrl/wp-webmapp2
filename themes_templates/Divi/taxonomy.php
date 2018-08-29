@@ -44,9 +44,9 @@ $term = get_queried_object();
 
                     <?php if ( $featured_title ) { ?>
                         <div class="webmapp-term-wrapper">
-                            <h3 class="webmapp-term-featured-title"><?php echo $featured_title ?></h3>
+                            <h3 class="webmapp-term-featured-title webmapp_customizer_general_color1-color webmapp_customizer_general_font1-font-family webmapp_customizer_general_size7-font-size"><?php echo $featured_title ?></h3>
                             <?php if ( $term_description ) { ?>
-                                <p class="webmapp-term-featured-description"><?php echo $term_description ?></p>
+                                <p class="webmapp-term-featured-description webmapp_customizer_general_color3-color webmapp_customizer_general_font3-font-family webmapp_customizer_general_size8-font-size"><?php echo $term_description ?></p>
                             <?php } ?>
                         </div>
                     <?php } ?>

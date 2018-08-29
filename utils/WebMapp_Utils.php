@@ -19,16 +19,53 @@ class WebMapp_Utils
     static function load_dir( $rel_dir )
     {
 
-            $files = glob( WebMapp_DIR . "/$rel_dir/*.php" );
+        $files = glob( WebMapp_DIR . "/$rel_dir/*.php" );
 
-            // Load WebMapp php files
-            foreach ( (array) $files as $file )
+        // Load WebMapp php files
+        foreach ( (array) $files as $file )
+        {
+            if ( $file && strpos( $file , 'WebMapp_' ) !== false )
             {
-                if ( $file && strpos( $file , 'WebMapp_' ) !== false )
-                {
-                    require_once $file;
-                }
+                require_once $file;
             }
+        }
+    }
+
+    static function load_theme()
+    {
+
+        $theme = wp_get_theme();
+        $theme_exists = $theme->exists();
+
+        if ( ! $theme_exists )
+            return;
+
+       $theme_template = isset( $theme->template ) ? $theme->template : '';
+
+       if ( ! $theme_template )
+           return;
+
+        $functions_path = WebMapp_DIR . "/themes_templates/$theme_template/functions.php";
+        $functions = file_exists( $functions_path );
+
+        // Load WebMapp theme functions files
+        if ( $functions )
+        {
+            require_once $functions_path;
+        }
+
+        $style_partial ="themes_templates/$theme_template/style.css";
+        $style = file_exists(  WebMapp_DIR . '/' . $style_partial );
+        // Load WebMapp theme functions files
+        if ( $style )
+        {
+            $args = array(
+                'webmapp_plugin_theme' => array(
+                    'src' => WebMapp_URL . $style_partial
+                )
+            );
+            new WebMapp_AssetEnqueuer( $args , 'wp','style' );
+        }
     }
 
     /**
@@ -172,6 +209,7 @@ class WebMapp_Utils
     }
 
     /**
+     * Alias function
      * Get multilanguage option with WPML ( "_{ lang_code }" postfix in option name )
      * @param $option_name
      * @return mixed
@@ -210,6 +248,11 @@ class WebMapp_Utils
         $template_functions->theShortInfo();
     }
 
+    /**
+     * Recursive function that convert object and his properties in array format
+     * @param $object
+     * @return array
+     */
     public static function object_to_array( $object )
     {
         if ( ! is_object( $object) )
@@ -227,6 +270,7 @@ class WebMapp_Utils
             return $array;
         }
     }
+
 
 
     

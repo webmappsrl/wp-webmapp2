@@ -202,9 +202,9 @@ function get_anypost_shortcode_page() {
                                     if ( $term_icon )
                                     {
                                         $i_class = $multiple ? 'webmapp_icon_multiple' : 'webmapp_icon_single';
-                                        $taxs_htmls[$tax_name] .= "<span class='webmapp_single_$tax_name webmapp_single_{$tax_name}_{$activity_level} webmapp_single_term webmapp_shortcodes_color1-background-color'><a class='webmapp_single_{$tax_name}_link' href='$term_link' title='$term->name'><i class='$term_icon $i_class'></i>";
+                                        $taxs_htmls[$tax_name] .= "<span class='webmapp_single_$tax_name webmapp_single_{$tax_name}_{$activity_level} webmapp_single_term'><a class='webmapp_single_{$tax_name}_link' href='$term_link' title='$term->name'><i class='$term_icon $i_class webmapp_customizer_general_color1-background-color'></i>";
                                         if ( ! $multiple )
-                                            $taxs_htmls[$tax_name] .= "<span class='webmapp_single_{$tax_name}_name webmapp_shortcodes_font2-font-family webmapp_shortcodes_size2-font-size'>$term->name</span>";
+                                            $taxs_htmls[$tax_name] .= "<span class='webmapp_single_{$tax_name}_name webmapp_customizer_general_font2-font-family webmapp_customizer_general_size2-font-size webmapp_customizer_general_color1-background-color-brightness'>$term->name</span>";
 
                                         $taxs_htmls[$tax_name] .= "</a></span>";
                                         $activity_level++;
@@ -215,7 +215,7 @@ function get_anypost_shortcode_page() {
                                 {
                                     $term_icon = get_field( 'wm_taxonomy_icon',$term );
                                     if ( $term_icon )
-                                        $taxs_htmls[$tax_name] .= "<span class='webmapp_single_$tax_name webmapp_single_term'><a class='webmapp_single_{$tax_name}_link webmapp_shortcodes_color3-color webmapp_shortcodes_font2-font-family webmapp_shortcodes_size5-font-size' href='$term_link' title='$term->name'><span>$term->name</span><i class='$term_icon webmapp_shortcodes_color1-color'></i></a></span>";
+                                        $taxs_htmls[$tax_name] .= "<span class='webmapp_single_$tax_name webmapp_single_term'><a class='webmapp_single_{$tax_name}_link webmapp_customizer_general_color3-color webmapp_customizer_general_font2-font-family webmapp_customizer_general_size5-font-size' href='$term_link' title='$term->name'><span>$term->name</span><i class='$term_icon webmapp_customizer_general_color1-color'></i></a></span>";
                                 }
 
 
@@ -235,7 +235,7 @@ function get_anypost_shortcode_page() {
 
                     <div class="webmapp_post-title">
                         <h2>
-                            <?php echo "<a href='$title_link' title=\"".get_the_title()."\" class='webmapp_shortcodes_color1-color webmapp_shortcodes_font1-font-family webmapp_shortcodes_size2-font-size'>" . get_the_title() . "</a>"; ?>
+                            <?php echo "<a href='$title_link' title=\"".get_the_title()."\" class='webmapp_customizer_general_color1-color webmapp_customizer_general_font1-font-family webmapp_customizer_general_size2-font-size'>" . get_the_title() . "</a>"; ?>
                         </h2>
                     </div>
 
