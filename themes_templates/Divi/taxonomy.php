@@ -10,31 +10,10 @@ $term = get_queried_object();
         {
             $featured_image = get_field( 'wm_taxonomy_featured_image' , $term );
             $featured_title = get_field( 'wm_taxonomy_title' , $term );
-            $term_icon = get_field( 'wm_taxonomy_icon',$term );
             $term_description = term_description( $term );
 
-            if ( isset( $featured_image['url'] ) )
-            {
-                /**
-                 *
-                 * style="background-image: url('<?php echo $featured_image['url']; ?>')"
-                 */
-
-                ?>
-                <div class="webmapp-featured-image">
-                    <div class="webmapp-featured-image-img">
-                        <img src="<?php echo $featured_image['url']; ?>">
-                        <div class="container">
-                            <h2 class='webmapp-main-tax-name'>
-                                <i class='<?php echo $term_icon?>'></i>
-                                <span><?php echo $term->name ?></span>
-                            </h2>
-                        </div>
-                    </div>
-
-                </div>
-                <?php
-            }
+            if ( $featured_image['url'] )
+                WebMapp_Utils::get_featured_image_header( $featured_image['url'], $term->taxonomy, $term->term_id );
 
         }
         ?>

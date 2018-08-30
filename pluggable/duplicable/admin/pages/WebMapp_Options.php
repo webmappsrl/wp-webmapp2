@@ -80,7 +80,7 @@ $generalOptionsPage = array(
         'tab' => 'main'
     ),
     'webmapp_map_appUrl' => array(
-        'label' => _x( "Map TilesUrl", "Option label in webmapp settings page" , WebMapp_TEXTDOMAIN ),
+        'label' => _x( "Map AppUrl", "Option label in webmapp settings page" , WebMapp_TEXTDOMAIN ),
         'info' => "short description",
         'attrs' => array( 'size' => 50 ),
         'tab' => 'main'

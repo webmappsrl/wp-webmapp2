@@ -22,7 +22,7 @@ $settings_general = array(
 
     'webmapp_customizer_general_font1' => array(
         'label' => 'Font 1',
-        'default' => 'Merriweather Bold',
+        'default' => 'Merriweather',
         'css_properties' => array(
             'font-family'
         )
@@ -30,14 +30,14 @@ $settings_general = array(
     ),
     'webmapp_customizer_general_font2' => array(
         'label' => 'Font 2',
-        'default' => 'Montserrat Medium',
+        'default' => 'Montserrat',
         'css_properties' => array(
             'font-family'
         )
     ),
     'webmapp_customizer_general_font3' => array(
         'label' => 'Font 3',
-        'default' => 'Montserrat Medium',
+        'default' => 'Montserrat',
         'css_properties' => array(
             'font-family'
         )

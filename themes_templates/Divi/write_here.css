@@ -1,0 +1,55 @@
+
+
+
+/**
+ SINGLE TEMPLATE HEADER
+ */
+
+
+.webmapp-featured-image-img {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.webmapp-featured-image, .webmapp-featured-image .container {
+    position: relative;
+}
+
+.webmapp-featured-image .container, .webmapp-featured-image-img {
+    height: 400px;
+}
+
+.webmapp-featured-image .container h2 
+{
+    position: absolute;
+    bottom: 0;
+    line-height: 0;
+    padding: 0;
+} 
+
+.container:before {
+    display: none;
+}
+
+.webmapp-main-tax-span-wrapper
+ {
+     display:  block;
+ }
+
+.webmapp-main-tax-span-wrapper i, .webmapp-main-tax-span-wrapper span 
+{
+     display: table-cell;
+     padding: 10px 10px;
+     color: white;
+}
+
+.webmapp-main-tax-name.multiple .webmapp-main-tax-span-wrapper > span
+{
+    display: none;  
+}
+
+.webmapp-main-tax-name.multiple .webmapp-main-tax-span-wrapper 
+{
+    display: contents;
+}

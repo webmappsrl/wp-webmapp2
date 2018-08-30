@@ -1,6 +1,6 @@
 
 
-
+@import 'write_here_anypost.css';
 
 .webmapp_main_tax i.webmapp_icon_single,
 .webmapp_main_tax i.webmapp_icon_multiple,
@@ -66,6 +66,11 @@ PAGINATION
     margin:  0 auto;
     font-size: 0;
     /* color:  transparent; */
+}
+
+.pagination_link_wrapper:not(.active) a
+{
+    opacity: 0.5;
 }
 
 .pagination_link {

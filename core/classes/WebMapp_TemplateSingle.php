@@ -116,6 +116,8 @@ class WebMapp_TemplateSingle
             if( $temp->poi || $temp->track || $temp->route )
             {
                 $r = WebMapp_Utils::object_to_array( $temp );
+                $r = array_filter( $r );
+
             }
 
         }

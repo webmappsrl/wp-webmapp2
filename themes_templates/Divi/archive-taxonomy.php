@@ -18,21 +18,26 @@ $tax = isset( $wp_query->query['taxonomy'] ) ? $wp_query->query['taxonomy'] : ''
             $featured_image = $option_image ? wp_get_attachment_image_src( $option_image , 'full')[0] : '';
 
 
-            if ( ! empty( $featured_image ) )
-            {
-                ?>
-                <div class="webmapp-featured-image">
-                    <div class="webmapp-featured-image-img">
-                        <img src="<?php echo $featured_image; ?>">
-                        <div class="container">
+           ?>
+
+
+            <!-- LAYER 1 -->
+            <div id='webmapp-layer-1' class="webmapp-featured-image">
+                <div class="webmapp-featured-image-img" style="background-image: url('<?php echo $featured_image; ?>')">
+                    <div class="container">
                             <h2 class='webmapp-main-tax-name'>
-                                <span><?php echo $featured_title ?></span>
+                                    <span class="webmapp-main-tax-span-wrapper webmapp_customizer_general_color1-background-color-brightness webmapp_customizer_general_font2-font-size webmapp_customizer_general_size6-font-size">
+                                    <span><?php echo $featured_title ?></span>
+                                </span>
                             </h2>
-                        </div>
                     </div>
                 </div>
-                <?php
-            }
+            </div>
+            <!-- END LAYER 1 -->
+
+
+
+            <?php
 
         }
 

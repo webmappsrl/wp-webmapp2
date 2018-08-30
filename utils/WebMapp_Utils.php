@@ -251,10 +251,11 @@ class WebMapp_Utils
     /**
      * Recursive function that convert object and his properties in array format
      * @param $object
-     * @return array
+     * @return mixed
      */
     public static function object_to_array( $object )
     {
+
         if ( ! is_object( $object) )
             return $object;
 
@@ -264,13 +265,67 @@ class WebMapp_Utils
             foreach ( $array as $key => $value )
             {
                 if ( is_object( $value ) )
-                    $array[$key] = WebMapp_Utils::object_to_array( $value );
+                    $array[$key] = array_filter(
+                            WebMapp_Utils::object_to_array( $value ) ,
+                            function($data)
+                        {
+                            return $data !== array();
+                        }
+                    );
             }
 
             return $array;
         }
     }
 
+
+    public static function get_featured_image_header( $featured_image, $taxonomy , $term_id = array() , $post_id = 0 )
+    {
+        if ( $featured_image )
+        {
+            if ( ! empty( $term_id ) )
+                $term_id = array( $term_id );
+
+            $terms = array();
+
+            if ( $taxonomy ) :
+                if ( $post_id )
+                    $terms = get_the_terms( $post_id , $taxonomy );
+                elseif ( $term_id )
+                    $terms = get_terms( array( 'taxonomy' => $taxonomy, 'include' => $term_id ) );
+            endif;
+
+            ?>
+            <!-- LAYER 1 -->
+            <div id='webmapp-layer-1' class="webmapp-featured-image">
+                <div class="webmapp-featured-image-img" style="background-image: url('<?php echo $featured_image; ?>')">
+                    <div class="container">
+                        <?php if ( $terms && is_array( $terms ) ) :
+
+                            $class = '';
+                            if ( count($terms) > 1 )
+                                $class= ' multiple';
+                            ?>
+
+                            <h2 class='webmapp-main-tax-name<?php echo $class?>'>
+                                <?php foreach( $terms as $term ) :
+                                    $term_icon = get_field( 'wm_taxonomy_icon',$term );
+                                    ?>
+                                <span class="webmapp-main-tax-span-wrapper webmapp_customizer_general_color1-background-color-brightness webmapp_customizer_general_font2-font-size webmapp_customizer_general_size6-font-size">
+                                    <i class='<?php echo $term_icon?> webmapp_customizer_general_color1-background-color'></i>
+                                    <span><?php echo $term->name ?></span>
+                                </span>
+                                <?php endforeach; ?>
+                            </h2>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+            <!-- END LAYER 1 -->
+<?php
+
+        }
+    }
 
 
     

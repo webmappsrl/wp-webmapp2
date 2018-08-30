@@ -101,35 +101,7 @@ $tem_has_info = $template_functions->getInfo() == true ;
         $terms = get_the_terms( $post_id , $main_tax );
 
 
-        if ( $featured_image )
-        {
-            ?>
-            <!-- LAYER 1 -->
-            <div id='webmapp-layer-1' class="webmapp-featured-image">
-                <div class="webmapp-featured-image-img">
-                    <img src="<?php echo $featured_image; ?>">
-                    <div class="container">
-                        <?php if ( $terms && is_array( $terms ) ) :
-
-                            $multiple = false;
-                            if ( count($terms) > 1 )
-                                $multiple = true;
-                            ?>
-                            <h2 class='webmapp-main-tax-name'>
-                                <?php foreach( $terms as $term ) :
-                                    $term_icon = get_field( 'wm_taxonomy_icon',$term );
-                                    ?>
-                                    <i class='<?php echo $term_icon?>'></i>
-                                    <span><?php echo $term->name ?></span>
-                                <?php endforeach; ?>
-                            </h2>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-            <!-- END LAYER 1 -->
-            <?php
-        }
+        WebMapp_Utils::get_featured_image_header( $featured_image , $main_tax , array() , $post_id );
 
         ?>
 
@@ -223,9 +195,9 @@ $tem_has_info = $template_functions->getInfo() == true ;
                                         {
                                             foreach( $related_objects as $key => $val )
                                             {
-                                                echo "<h4>$key</h4>";
                                                 if ( is_array( $val ) && ! empty( $val ) )
                                                 {
+                                                    echo "<h4>$key</h4>";
                                                     foreach ( $val as $type => $ids )
                                                     {
                                                         if ( is_array( $ids ) && ! empty( $ids ) ) :

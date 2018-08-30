@@ -39,6 +39,8 @@ class WebMapp_AdminOptionsPage
      */
     public $page_title;
 
+    public $icon_url;
+
     /**
      * @var array - settings must be registered in groups, 1 options_group per tab
      */
@@ -67,14 +69,17 @@ class WebMapp_AdminOptionsPage
      * @param string $menu_slug
      * @param array $settings
      * @param array $tabs
+     * @param string $icon_url
      */
-    function __construct( $page_title, $menu_title, $capability = 'manage_options', $menu_slug = 'webmapp', $settings = array(), $tabs = array() )
+
+    function __construct( $page_title, $menu_title, $capability = 'manage_options', $menu_slug = 'webmapp', $settings = array(), $tabs = array() , $icon_url = '' )
     {
         $this->page_title = $page_title;
         $this->menu_title = $menu_title;
         $this->menu_slug = sanitize_title($menu_slug );
         $this->capability = $capability;
         $this->tabs = $tabs;
+        $this->icon_url = $icon_url;
 
         $temp = $settings;
         if ( has_filter('wpml_default_language' ) && has_filter('wpml_current_language' ) )
@@ -152,7 +157,8 @@ class WebMapp_AdminOptionsPage
             $this->menu_title,
             $this->capability,
             $this->menu_slug,
-            array( $this , 'render_menu_page' )
+            array( $this , 'render_menu_page' ),
+            $this->icon_url
         );
     }
 

@@ -1,0 +1,26 @@
+.webmapp_shortcode_any_post .webmapp_single_term:not(.webmapp_single_where) a > span
+{
+    display: none;
+}
+
+.webmapp_shortcode_any_post .webmapp_single_where a > i
+{
+    display: none;
+}
+/**
+Template compact
+**/
+.webmapp-anypost-template-compact .webmapp_post-featured-img, .webmapp-anypost-template-compact .webmapp_post-featured-img ~ p 
+{
+    float : left;
+}
+.webmapp-anypost-template-compact .webmapp_post-featured-img 
+{
+    width: 40%;
+}
+.webmapp-anypost-template-compact .webmapp_post-featured-img ~ p
+{
+    width: 50%;
+    padding-left: 5%;
+   
+}

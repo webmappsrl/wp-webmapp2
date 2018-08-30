@@ -214,8 +214,11 @@ function get_anypost_shortcode_page() {
                                 else
                                 {
                                     $term_icon = get_field( 'wm_taxonomy_icon',$term );
+                                    $icon = '';
                                     if ( $term_icon )
-                                        $taxs_htmls[$tax_name] .= "<span class='webmapp_single_$tax_name webmapp_single_term'><a class='webmapp_single_{$tax_name}_link webmapp_customizer_general_color3-color webmapp_customizer_general_font2-font-family webmapp_customizer_general_size5-font-size' href='$term_link' title='$term->name'><span>$term->name</span><i class='$term_icon webmapp_customizer_general_color1-color'></i></a></span>";
+                                        $icon = "<i class='$term_icon webmapp_customizer_general_color1-color'></i>";
+
+                                    $taxs_htmls[$tax_name] .= "<span class='webmapp_single_$tax_name webmapp_single_term'><a class='webmapp_single_{$tax_name}_link webmapp_customizer_general_color3-color webmapp_customizer_general_font2-font-family webmapp_customizer_general_size5-font-size' href='$term_link' title='$term->name'><span>$term->name</span>$icon</a></span>";
                                 }
 
 
@@ -237,6 +240,11 @@ function get_anypost_shortcode_page() {
                         <h2>
                             <?php echo "<a href='$title_link' title=\"".get_the_title()."\" class='webmapp_customizer_general_color1-color webmapp_customizer_general_font1-font-family webmapp_customizer_general_size2-font-size'>" . get_the_title() . "</a>"; ?>
                         </h2>
+                        <?php
+                        if ( $template == 'compact' )
+                            WebMapp_Utils::theShortInfo();
+
+                        ?>
                     </div>
 
                     <?php
@@ -260,7 +268,6 @@ function get_anypost_shortcode_page() {
                 {
                     //echo $post_taxonomies;
                     echo $post_title;
-                    WebMapp_Utils::theShortInfo();
                 }
                 ?>
 

@@ -204,7 +204,7 @@ var webmapp_posts_ajax_call =
 
                 )//end fail
                 .always( function( response ){
-                    console.log( response );
+                    //console.log( response );
                 } )
 
         })( jQuery );
