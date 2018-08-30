@@ -141,9 +141,10 @@ else ://load in frontend side ( login too )
     WebMapp_Utils::load_dir('pluggable/duplicable/frontend/shortcodes/AnyPost');
     WebMapp_Utils::load_dir('pluggable/duplicable/frontend/shortcodes/AnyTerm');
 
-    WebMapp_Utils::load_theme();
 
 endif;
+
+WebMapp_Utils::load_theme();
 
 
 /**
