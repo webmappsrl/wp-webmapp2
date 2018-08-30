@@ -17,12 +17,10 @@ class WebMapp_TemplateSingle
 
     function getShortInfo()
     {
-
-
         $r = false;
 
         $fields_key = array(
-            'difficulty' => 'difficulty',//capacity
+            'difficulty' => 'cai_scale',//CAI SCALE
             'rating' => 'wm_poi_stars',//rating
             'ascent' => 'ascent',//ascent
             'descent' => 'descent',//discent
@@ -38,15 +36,66 @@ class WebMapp_TemplateSingle
 
     function theShortInfo()
     {
+
+        global $WebMapp_IconsConf;
         $shortInfo = $this->getShortInfo();
 
+        $html = '<p class="webmapp-theshortinfo">';
         if ( $shortInfo )
         {
+
             foreach ( $shortInfo as $key => $info )
             {
-                echo "<span>$key: $info</span>";
+
+                $html .= "<span class='webmapp-theshortinfo-detail webmapp-theshortinfo-detail-$key'>";
+                if ( $key == 'difficulty'
+                    && isset( $WebMapp_IconsConf[ 'difficulty' ] )
+                    && isset( $WebMapp_IconsConf[ 'difficulty' ]['full'] )
+                    && isset( $WebMapp_IconsConf[ 'difficulty' ]['empty'] )
+                )
+                {
+
+                    $info_numeric = ! is_numeric( $info ) || $info > 5 ? 5 : ( int ) $info ;
+                    $html .= __( 'Difficulty' , WebMapp_TEXTDOMAIN );
+
+                    for ( $i = 0 ; $i < 5 ; $i++ )
+                    {
+                        if ( $i < $info_numeric )
+                            $html .= "<i class='" . $WebMapp_IconsConf[ 'difficulty' ]['full'] . "'></i>";
+                        else
+                            $html .= "<i class='" . $WebMapp_IconsConf[ 'difficulty' ]['empty'] . "'></i>";
+
+                    }
+
+
+
+
+                }
+                elseif ( $key == 'rating'
+                    && isset( $WebMapp_IconsConf[ 'rating' ] )
+                )
+                {
+                    $info_numeric = ! is_numeric( $info ) || $info > 5 ? 5 : ( int ) $info ;
+                    $html .= __( 'Rating' , WebMapp_TEXTDOMAIN );
+
+                    for ( $i = 0 ; $i < $info_numeric ; $i++ )
+                    {
+                        $html .= "<i class='" . $WebMapp_IconsConf[ 'rating' ] . "'></i>";
+                    }
+
+
+                }
+                else
+                {
+                    $icon = isset( $WebMapp_IconsConf[$key] ) ? "<i class='$WebMapp_IconsConf[$key]'></i>" : '';
+                    $html .= "$icon $info";
+                }
+
+                $html .= "</span>";
+
             }
         }
+        echo $html . '</p>';
     }
 
     function getInfo()
@@ -55,7 +104,7 @@ class WebMapp_TemplateSingle
         $fields_key = array(
             'phone' => 'contact:phone',//phone
             'email' => 'contact:email',//email
-            'links' => 'net7webmap_related_url'//links
+            'links' => 'n7webmap_rpt_related_url'//links
         );
 
         $t = $this->getFields( $fields_key );
@@ -86,6 +135,59 @@ class WebMapp_TemplateSingle
         return $t;
     }
 
+    function theInfo()
+    {
+        global $WebMapp_IconsConf;
+        $t = $this->getInfo();
+        //rendering
+
+        if ( is_array( $t ) && ! empty( $t ) )
+        {
+
+            $html = '<div class="webmapp-theInfo-template-single"><table>';
+            foreach ( $t as $key => $data )
+            {
+                if ( ! empty( $data ) ) :
+                ob_start();
+                ?>
+                <tr>
+                   <?php
+                   if ( isset( $WebMapp_IconsConf[$key] ) )
+                       echo "<th><i class='$WebMapp_IconsConf[$key]'></i></th>";
+                   ?>
+                    <td>
+                        <?php
+                        if ( is_array($data ) )
+                        {
+                            echo "<ul>";
+                            foreach ( $data as $d )
+                            {
+                                echo "<li>$d</li>";
+                            }
+                            echo "</ul>";
+
+                        }
+                        else
+                            echo $data;
+                        ?>
+                    </td>
+                </tr>
+
+
+
+                <?php
+                $html .= ob_get_clean();
+                endif;//if ( ! empty( $data ) ) :
+            }
+
+            $html .= '</table></div>';
+
+            echo $html;
+
+        }//if ( is_array( $t ) && ! empty( $t ) )
+
+    }
+
 
     function getAddress()
     {
@@ -100,8 +202,10 @@ class WebMapp_TemplateSingle
 
         $address_fields = $this->getFields( $fields_key );
 
-        if ( $address_fields && ! empty( $fields_key ) )
+        if ( $address_fields && is_array($address_fields ) && ! empty( $address_fields ) )
             $r = implode(', ' ,  $address_fields );
+        elseif ( ! empty( $address_fields ) )
+            $r = $address_fields;
 
         return $r;
     }

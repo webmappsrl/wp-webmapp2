@@ -25,6 +25,12 @@
 require_once('utils/WebMapp_Utils.php');
 //require_once('third-part/gisconverter/gisconverter.php');
 
+/**
+ * ICONS CONF
+ */
+
+require_once('icons_conf.php');
+
 
 /**
  *

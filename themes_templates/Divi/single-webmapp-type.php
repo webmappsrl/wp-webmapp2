@@ -133,6 +133,7 @@ $tem_has_info = $template_functions->getInfo() == true ;
 
 
                                 $getShortInfo = $template_functions->getShortInfo();
+
                                 if ( $getShortInfo ) : ?>
                                     <?php
                                     $template_functions->theShortInfo();
@@ -178,10 +179,11 @@ $tem_has_info = $template_functions->getInfo() == true ;
                                 <div class="row">
                                     <?php if ( $tem_has_info ) :
                                         $getInfo = $template_functions->getInfo();
+
                                         if ( $getInfo ) :
                                             ?>
                                             <div class="col-md-12">
-                                                <?php my_print_r( $getInfo ) ?>
+                                                <?php $template_functions->theInfo() ?>
                                             </div>
                                         <?php
                                         endif;//if ( $getInfo ) :
