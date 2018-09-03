@@ -74,6 +74,7 @@ function get_anypost_shortcode_page() {
     //Query
     $custom_posts = new WP_Query( $query_args );
 
+
     /**
      * Bootstrap grid
      */
@@ -93,6 +94,7 @@ function get_anypost_shortcode_page() {
 
 
     ob_start();//start register html
+
 
 
     //var_dump( $query_args );
