@@ -16,3 +16,12 @@ $args = array(
 
 );
 new WebMapp_AssetEnqueuer( $args,'wp','script' );
+
+
+
+$args = array(
+    'webmapp_leaflet_map' => array(
+        'src' => WebMapp_URL . 'assets/css/style_leaflet_map.css'
+    )
+);
+new WebMapp_AssetEnqueuer( $args,'wp','style' );

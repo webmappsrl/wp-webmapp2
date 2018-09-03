@@ -8,7 +8,7 @@ $tax = isset( $wp_query->query['taxonomy'] ) ? $wp_query->query['taxonomy'] : ''
 ?>
 
 <div id="main-content">
-	<div class="container">
+
 
         <?php
         if ( $tax )
@@ -37,14 +37,18 @@ $tax = isset( $wp_query->query['taxonomy'] ) ? $wp_query->query['taxonomy'] : ''
 
 
 
+
+
+
             <?php
 
         }
 
         ?>
 
+    <div class="container">
 		<div id="content-area" class="clearfix">
-			<div id="left-area">
+
 		<?php
 
 
@@ -86,7 +90,7 @@ $tax = isset( $wp_query->query['taxonomy'] ) ? $wp_query->query['taxonomy'] : ''
                 get_template_part( 'includes/navigation', 'index' );
 
 			?>
-			</div> <!-- #left-area -->
+
 
 			<?php //get_sidebar(); ?>
 		</div> <!-- #content-area -->

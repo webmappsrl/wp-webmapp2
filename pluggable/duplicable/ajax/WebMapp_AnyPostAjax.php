@@ -149,7 +149,7 @@ function get_anypost_shortcode_page() {
 
             ?>
 
-            <div class="col-xs-12 col-sm-6 col-md-<?php echo $bootstrap_col_type?> webmapp_shortcode_any_post post_type_<?php echo $post_type?>">
+            <div class="col-sm-12 col-md-<?php echo $bootstrap_col_type?> webmapp_shortcode_any_post post_type_<?php echo $post_type?>">
 
                     <?php
 

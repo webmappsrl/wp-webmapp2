@@ -179,17 +179,16 @@ $tem_has_info = $template_functions->getInfo() == true ;
                                 <div class="row">
                                     <?php if ( $tem_has_info ) :
                                         $getInfo = $template_functions->getInfo();
-
                                         if ( $getInfo ) :
                                             ?>
-                                            <div class="col-md-12">
+                                            <div class="col-md-12 webmapp-get-info">
                                                 <?php $template_functions->theInfo() ?>
                                             </div>
                                         <?php
                                         endif;//if ( $getInfo ) :
                                     endif;//if ( $tem_has_info )
                                     ?>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 webmapp-get-related-objects">
                                         <?php
 
                                         $related_objects = $template_functions->getRelatedObjects();
@@ -199,11 +198,11 @@ $tem_has_info = $template_functions->getInfo() == true ;
                                             {
                                                 if ( is_array( $val ) && ! empty( $val ) )
                                                 {
-                                                    echo "<h4>$key</h4>";
+                                                    echo "<h4 class='webmapp-related-objects-title'>$key</h4>";
                                                     foreach ( $val as $type => $ids )
                                                     {
                                                         if ( is_array( $ids ) && ! empty( $ids ) ) :
-                                                            echo "<h5>$type</h5>";
+                                                            echo "<h5 class='webmapp-related-objects-subtitle'>$type</h5>";
                                                             foreach( $ids as $id => $details )
                                                             {
                                                                 //echo "<div class='row'>";
@@ -218,7 +217,7 @@ $tem_has_info = $template_functions->getInfo() == true ;
 
                                         ?>
 
-                                    </>
+                                    </div>
 
                                 </div>
 
@@ -230,7 +229,7 @@ $tem_has_info = $template_functions->getInfo() == true ;
                         <div id="webmapp-layer-5" class="row">
                             <div class="col-md-12">
                                 <h2>
-                                    SIMILAR OBJECTS
+                                    <?php echo _x( 'Related posts' , 'singular template' , WebMapp_TEXTDOMAIN ) ?>
                                 </h2>
                                 <?php echo $template_functions->getSimilarObjects() ?>
                             </div>

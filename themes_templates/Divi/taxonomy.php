@@ -19,7 +19,6 @@ $term = get_queried_object();
         ?>
         <div class="container">
             <div id="content-area" class="clearfix">
-                <div id="left-area">
 
                     <?php if ( $featured_title ) { ?>
                         <div class="webmapp-term-wrapper">
@@ -47,7 +46,6 @@ $term = get_queried_object();
                     }
 
                     ?>
-                </div>
                 <?php //get_sidebar(); ?>
 
             </div> <!-- #content-area -->

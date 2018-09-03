@@ -1,0 +1,80 @@
+/**
+LEAFLET MAP STYLE
+ */
+
+
+.webmapp_leaflet_popup .leaflet-popup-content-wrapper, .webmapp_leaflet_popup .leaflet-popup-tip {
+    background: rgba(96,88,70,.8);
+    color: #fff;
+    -webkit-box-shadow: 0 0 3px rgba(18,16,11,.75);
+    -moz-box-shadow: 0 0 3px rgba(18,16,11,.75);
+    box-shadow: 0 0 3px rgba(18,16,11,.75);
+}
+
+.webmapp_leaflet_popup .leaflet-popup-content-wrapper
+{
+    border-radius: 4px;
+    margin: 0;
+    padding: 0 13px 0 0;
+    width: 310px;
+}
+
+.webmapp_leaflet_popup .leaflet-popup-content
+{
+    font-weight: 700;
+    margin: 0;
+    padding: 0 20px 0 0;
+    height: 104px;
+}
+
+.webmapp_leaflet_popup div.popup-img {
+    width: 103px;
+    height: 103px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+
+.webmapp_leaflet_popup div.popup-content-img
+{
+    float: right;
+    width: 174px;
+    padding: 0 0 0 10px;
+}
+
+.webmapp_leaflet_popup .popup-category {
+    height: 14px;
+    line-height: 14px;
+    width: 164px;
+    font-size: 14px;
+    margin: 3px 0;
+    color: #E2E2E2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.webmapp_leaflet_popup .popup-content-title {
+    height: 84px;
+}
+
+.webmapp_leaflet_popup .popup-title
+{
+    font-size: 23px;
+    line-height: 27px;
+    max-height: 81px;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    max-width: 164px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+
+.webmapp_leaflet_popup div.popup-img img {
+    object-fit: cover;
+    width: 103px;
+    height: 103px;
+    border-radius: 4px 0 0 4px;
+}

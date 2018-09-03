@@ -43,14 +43,17 @@
 
 
 
-            let html = "<div class='webmapp-geoJsonmap-popup'><img src='" +
-                imageurl + "'/>" +
-                "<h5>" + taxonomy_string + "</h5>" +
-                "<h6>" + name + "</h6>" +
-                "</div>";
+            let html = "<div class='webmapp-geoJsonmap-popup'><div class='popup-img'><img src='" +
+                imageurl + "'/></div>" +
+                "<div class='popup-content-img'><div class='popup-category'><span>" + taxonomy_string + "</span></div>" +
+                "<div class='popup-content-title'><div class='popup-title'><span>" + name + "</span></div></div>" +
+                "</div></div>";
 
 
-            layer.bindPopup( html );
+            layer.bindPopup( html , {
+                minWidth : 310,
+                className : 'webmapp_leaflet_popup'
+            });
 
 
 

@@ -36,6 +36,8 @@ define ( 'WebMapp_DIR' , __DIR__ );
 //global const to get assets url
 define ( 'WebMapp_ASSETS' , WebMapp_URL . 'assets/' );
 
+define( 'WebMapp_PLUGIN_MAIN_FILE' , 'wp-webmapp2/webmapp2.php' );
+
 
 
 

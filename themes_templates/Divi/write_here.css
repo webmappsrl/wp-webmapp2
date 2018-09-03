@@ -1,5 +1,37 @@
 
 
+/**
+THEME CUSTOMIZER
+ */
+
+
+.webmapp_customizer_general_font1-font-family
+{
+    font-weight: 700;
+}
+
+.webmapp_customizer_general_font3-font-family
+{
+    font-weight: 400;
+}
+
+/**
+Single template layout
+ */
+
+#leftarea.webmapp-fullwidth
+{
+    float: none;
+    width: 100%;
+}
+/**
+SINGLE LAYERS of single template
+ */
+
+#webmapp-layer-4, #webmapp-layer-3, #webmapp-layer-2
+{
+    padding: 10px 0;
+}
 
 /**
  SINGLE TEMPLATE HEADER
@@ -61,4 +93,49 @@ p.webmapp-theshortinfo span i:first-child {
 p.webmapp-theshortinfo span:not(:last-child):after {
     content: '|';
     padding-left: 5px;
+}
+
+/**
+SINGLE TEMPLATE RELATED OBJECTS ( on right side )
+ */
+
+.webmapp-related-objects-title
+{
+    text-transform: capitalize;
+}
+
+.webmapp-related-objects-subtitle
+{
+    text-align: center;
+    text-decoration: underline;
+    text-transform: capitalize;
+}
+
+/**
+SINGLE THEINFO
+ */
+
+.webmapp-theInfo-template-single table
+{
+    width: 100%;
+}
+
+.webmapp-theInfo-template-single tr:not( :last-child )
+{
+    border-bottom: 1px solid #96969b;
+}
+
+.webmapp-theInfo-template-single th
+{
+    vertical-align: top;
+}
+
+#left-area .webmapp-theInfo-template-single ul
+{
+    padding-left: 0;
+}
+.webmapp-theInfo-template-single ul li
+{
+    list-style-type: none;
+    /* margin-left: -14px; */
 }
