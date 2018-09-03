@@ -40,6 +40,8 @@ LEAFLET MAP STYLE
     float: right;
     width: 174px;
     padding: 0 0 0 10px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 100;
 }
 
 .webmapp_leaflet_popup .popup-category {
@@ -78,3 +80,16 @@ LEAFLET MAP STYLE
     height: 103px;
     border-radius: 4px 0 0 4px;
 }
+
+
+.webmapp_leaflet_popup .webmapp-icon-container
+{
+    margin: 5px;
+    padding: 20px;
+}
+
+.webmapp_leaflet_popup .popup-img i
+{
+    font-size: 53px;
+}
+

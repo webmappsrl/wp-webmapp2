@@ -141,6 +141,8 @@ class WebMapp_TemplateSingle
         $t = $this->getInfo();
         //rendering
 
+        $post_title = get_the_title();
+
         if ( is_array( $t ) && ! empty( $t ) )
         {
 
@@ -162,7 +164,18 @@ class WebMapp_TemplateSingle
                             echo "<ul>";
                             foreach ( $data as $d )
                             {
-                                echo "<li>$d</li>";
+                                echo "<li>";
+
+                                if ( $key == 'links' )
+                                {
+                                    $link_title = $post_title . ' Link';
+                                    echo "<a href='$d' target='_blank' title='$link_title'>$d</a>";
+                                }
+                                else
+                                    echo $d;
+
+                                echo "</li>";
+
                             }
                             echo "</ul>";
 

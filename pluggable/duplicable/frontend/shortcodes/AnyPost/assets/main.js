@@ -190,6 +190,21 @@ var webmapp_posts_ajax_call =
 
 
 
+                        //compact mode text width fix
+                        var $compact_theme_elements = $( '.webmapp-anypost-template-compact' );
+                        if ( $compact_theme_elements.length > 0 )
+                        {
+                            $compact_theme_elements.each( function( i, e )
+                                {
+                                    let img_exists = $(e).find('.webmapp_post-featured-img img').length;
+                                    if ( ! img_exists )
+                                        $(e).find('.webmapp_post-featured-img ~ p').css( 'width' , '100%' );
+                                }
+                            );
+                        }
+
+
+
 
                     }//end done
                 )
@@ -231,7 +246,11 @@ jQuery( document ).ready( function($){
         $( '.webmapp_post_image img' ).each( function( i , e ){
             force_aspect_ratio($(e));
         } );
+
+
     } );
+
+
 
 
 } );

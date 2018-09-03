@@ -43,8 +43,13 @@
 
 
 
-            let html = "<div class='webmapp-geoJsonmap-popup'><div class='popup-img'><img src='" +
-                imageurl + "'/></div>" +
+            let marker_img = "";
+            if ( imageurl )
+                marker_img = "<img src='" + imageurl + "'/>";
+            else
+                marker_img = "<div class='webmapp-icon-container'><i class='icon wm-icon-star2'></i></div>";
+
+            let html = "<div class='webmapp-geoJsonmap-popup'><div class='popup-img'>" + marker_img + "</div>" +
                 "<div class='popup-content-img'><div class='popup-category'><span>" + taxonomy_string + "</span></div>" +
                 "<div class='popup-content-title'><div class='popup-title'><span>" + name + "</span></div></div>" +
                 "</div></div>";

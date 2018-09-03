@@ -50,4 +50,17 @@ TAXONOMY TEMPLATE
 }
 
 .webmapp-term-name span
-{padding: 10px 25px;display: table-cell;height: 27px;background-color: #0300db7a;color: #fff;/* padding-right: 10px; */}
+{
+    padding: 10px 25px;
+    display: table-cell;
+    height: 27px;
+    background-color: #0300db7a;
+    color: #fff;
+    /* padding-right: 10px; */
+}
+
+
+#webmapp-layer-4 .webmapp-template-sigle-content
+{
+    text-align: justify;
+}

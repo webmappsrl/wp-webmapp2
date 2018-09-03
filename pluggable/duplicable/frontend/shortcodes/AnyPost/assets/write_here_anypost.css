@@ -18,8 +18,10 @@ Template compact
 {
     width: 40%;
 }
+
 .webmapp-anypost-template-compact .webmapp_post-featured-img ~ p
 {
-    width: 50%;
-    padding-left: 5%;
+    width: 55%;
+    text-align: justify;
+    float: right;
 }

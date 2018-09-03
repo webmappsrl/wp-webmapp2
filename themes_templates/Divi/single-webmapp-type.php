@@ -173,7 +173,9 @@ $tem_has_info = $template_functions->getInfo() == true ;
                         <!-- LAYER 4 -->
                         <div id="webmapp-layer-4" class="row">
                             <div class="col-md-6 webmapp_customizer_general_color3-color webmapp_customizer_general_font3-font-family webmapp_customizer_singlepost_size10-font-size">
-                                <?php the_content(); ?>
+                                <p class="webmapp-template-sigle-content">
+                                    <?php echo get_the_content(); ?>
+                                </p>
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
