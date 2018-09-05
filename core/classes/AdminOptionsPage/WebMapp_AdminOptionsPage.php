@@ -113,9 +113,30 @@ class WebMapp_AdminOptionsPage
      * Hooks to register options and add elements in admin menu
      *
      */
-    public function start(){
+    public function start()
+    {
         add_action( 'admin_init', array( $this , 'register_page_settings' ) );
         add_action( 'admin_menu', array( $this , 'add_menu_page' ) );
+        register_activation_hook( WebMapp_FILE , array( $this , 'set_default_values' ) );
+    }
+
+    public function set_default_values()
+    {
+        $temp = $this->settings;
+        foreach ( $temp as $setting_key => $setting )
+        {
+            if ( isset( $setting['default'] ) && ! empty( $setting['default'] ) )
+            {
+                $get_option = get_option( $setting_key );
+
+                if ( $get_option === false )
+                {
+                    add_option( $setting_key , $setting['default'] );
+                }
+            }
+
+
+        }
     }
 
     /**

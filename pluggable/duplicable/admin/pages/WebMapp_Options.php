@@ -71,7 +71,8 @@ $generalOptionsPage = array(
         'label' => _x( "Map Zoom", "Option label in webmapp settings page" , WebMapp_TEXTDOMAIN ),
         'info' => "short description",
         'attrs' => array( 'size' => 50 ),
-        'tab' => 'main'
+        'tab' => 'main',
+        'default' => 16
     ),
     'webmapp_map_tilesUrl' => array(
         'label' => _x( "TilesUrl mappa", "Option label in webmapp settings page" , WebMapp_TEXTDOMAIN ),
