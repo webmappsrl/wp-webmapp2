@@ -286,6 +286,18 @@ div#left-area {
     box-shadow: 0 0;
 }
 
-.et-fixed-header {
-    top: 0 !important;
+/**
+ FIXED HEADER
+ */
+.et-fixed-header
+{
+    -ms-transform: translate(0, -32px); /* IE 9 */
+    -webkit-transform: translate(0, -32px); /* Safari */
+    transform: translate(0, -32px);
 }
+
+.et-fixed-header #top-menu-nav
+{
+    height: 18px;
+}
+
