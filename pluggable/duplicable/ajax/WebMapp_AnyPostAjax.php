@@ -47,7 +47,8 @@ function get_anypost_shortcode_page() {
         && $taxonomy == 'activity'
         && WebMapp_Utils::project_has_route()
     ) {
-        $query_args['post__in'] = WebMapp_ActivityRoute::get_routes_by_activity( $term_id );
+        $routes_by_activity = WebMapp_ActivityRoute::get_routes_by_activity( $term_id );
+        $query_args['post__in'] = empty( $routes_by_activity ) ? array( 0 ) : $routes_by_activity;
         $query_args[ 'posts_per_page' ] = $posts_per_page;
 
     }//end elseif

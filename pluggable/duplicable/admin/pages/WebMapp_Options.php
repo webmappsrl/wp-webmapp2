@@ -3,7 +3,7 @@
 $tabs = array(
     'main' => _x( "Main", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
     'custom_types' =>  _x( "Custom Types", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
-    'taxonomies' =>  _x( "Taxonomies Details", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
+    'taxonomies' =>  _x( "Taxonomies Details", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN )
 );
 
 
