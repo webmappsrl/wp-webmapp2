@@ -30,7 +30,6 @@ class WebMapp_ActivityRoute
             )
         );
 
-
         $routes = array();
         if ( $tracks )
         {

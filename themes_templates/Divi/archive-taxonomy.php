@@ -71,9 +71,9 @@ $tax = isset( $wp_query->query['taxonomy'] ) ? $wp_query->query['taxonomy'] : ''
                     $icon = get_field('wm_taxonomy_icon' , $term);
                     echo "<h3><i class='$icon'></i>$term->name</h3>";
                     $attr_post_type = 'any';
-                    
+
                     $project_has_route = WebMapp_Utils::project_has_route();
-                    if ( $project_has_route )
+                    if ( $project_has_route && $tax == 'activity' )
                         $attr_post_type = 'route';
 
 
