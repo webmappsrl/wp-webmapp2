@@ -1,3 +1,9 @@
+
+#main-header.et-fixed-header
+{
+    box-shadow: none !important;
+}
+
 .logo_container.col-md-3 {
     /* width: inherit; */
 }
@@ -21,8 +27,8 @@ div#et_top_search {
     position: initial;
     border-style: solid;
     border-color:  #fff;
-    border-width: 0 1px;
-    width: 22%;
+    /* border-width: 0 1px; */
+    width: 32%;
     /* height: 100%; */
 }
 
@@ -40,6 +46,7 @@ div#et-top-navigation {
 img#logo {
     /* height: 100%; */
     width: 100%;
+    /* height: 300px; */
 }
 
 .container div#et-top-navigation {
@@ -277,4 +284,8 @@ div#left-area {
 #main-header
 {
     box-shadow: 0 0;
+}
+
+.et-fixed-header {
+    top: 0 !important;
 }
