@@ -23,7 +23,7 @@
  * Load generic utilities class ( has loader method )
  */
 require_once('utils/WebMapp_Utils.php');
-//require_once('third-part/gisconverter/gisconverter.php');
+require_once('third-part/gisconverter/gisconverter.php');
 
 /**
  * ICONS CONF
