@@ -173,6 +173,7 @@ function webmapp_create_track() {
         }
     }
 
+
     update_field('n7webmap_related_poi', $poi_ids, $post_id);
 
     $response = array();

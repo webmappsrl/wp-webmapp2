@@ -230,7 +230,7 @@ class WebMapp_TemplateSingle
         {
             $temp = $this->geoJson_php->properties->related;
 
-            if( $temp->poi || $temp->track || $temp->route )
+            if( isset($temp->poi) || isset($temp->track) || isset($temp->route) )
             {
                 $r = WebMapp_Utils::object_to_array( $temp );
                 $r = array_filter( $r );

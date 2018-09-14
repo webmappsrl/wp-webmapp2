@@ -177,10 +177,10 @@
           }
 
         }
-      })
+      });
 
       if( data.filter === 'true' ) {
-        map.doubleClickZoom.disable();
+        //map.doubleClickZoom.disable();
         var btFilter = '<a target="_blank" class="wm_map_filter" href="" title="attiva poi vicini" data-toggle="true" ><span class="wm-icon-marker-15"></span> <span class="wm_filter_text">' + data.labelActive +'</span> ' + data.labelFilters + '</a>';
         $custom_track_map.prepend(btFilter);
 

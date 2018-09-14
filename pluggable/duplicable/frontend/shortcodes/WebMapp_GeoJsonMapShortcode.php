@@ -23,11 +23,11 @@ function WebMapp_GeoJsonMapShortcode( $atts ) {
         jQuery(document).ready( function($){
             $('#<?php echo $id ?>').WebMapp_LeafletMap(
                 {
-                    id : <?php echo $id ?>,
-                    container : "",
-                    pois: "#556b2f",
-                    tracks: "white",
-                    routes: '',
+                    id : "<?php echo $id ?>",
+                    //container : "",
+                    //pois: "#556b2f",
+                    //tracks: "white",
+                    //routes: '',
                     map_center : '',
                     post_id : '<?php echo $post_id ?>'
                 }

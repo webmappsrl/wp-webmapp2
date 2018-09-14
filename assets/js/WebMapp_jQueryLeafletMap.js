@@ -10,25 +10,19 @@
             var S4 = function() {
                 return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
             };
-            return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+            return ( S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4() );
         },
 
-        disableZoomAndDraggable : (map) => {
-            map.touchZoom.disable();
-            map.dragging.disable();
-            map.touchZoom.disable();
-            map.doubleClickZoom.disable();
-            map.scrollWheelZoom.disable();
-            map.boxZoom.disable();
-            map.keyboard.disable();
-            $('.leaflet-control-zoom').css('visibility', 'hidden');
-        },
 
         onEachFeature : ( settings, e, layer ) => {
 
             let imageurl = e.properties.image;
             let name = e.properties.name;
             let taxonomies = e.properties.taxonomy;
+            let color = e.properties.color;
+            let link = e.properties.web;
+            let icon = e.properties.icon;
+            let layer_id = e.properties.id;
 
             let taxonomy_string = '';
 
@@ -42,6 +36,16 @@
             } );
 
 
+            let link_before = "";
+            let link_after = "";
+
+
+            if ( link && layer_id.toString() !== data.current_post_id )
+            {
+                link_before = "<a href='" + link + "'>";
+                link_after = "</a>";
+            }
+
 
             let marker_img = "";
             if ( imageurl )
@@ -49,10 +53,11 @@
             else
                 marker_img = "<div class='webmapp-icon-container'><i class='icon wm-icon-star2'></i></div>";
 
-            let html = "<div class='webmapp-geoJsonmap-popup'><div class='popup-img'>" + marker_img + "</div>" +
-                "<div class='popup-content-img'><div class='popup-category'><span>" + taxonomy_string + "</span></div>" +
+
+            let html = "<div class='webmapp-geoJsonmap-popup'>" + link_before + "<div class='popup-img'>" + marker_img + "</div>" +
+                "<div class='popup-content-img'><div class='popup-category'></div>" +
                 "<div class='popup-content-title'><div class='popup-title'><span>" + name + "</span></div></div>" +
-                "</div></div>";
+                "</div>" + link_after + "</div>";
 
 
             layer.bindPopup( html , {
@@ -60,69 +65,51 @@
                 className : 'webmapp_leaflet_popup'
             });
 
+            let style_o = {};
 
 
-            if ( settings.post_id !== data.current_post_id )
+            if ( layer instanceof L.Marker )//pois
             {
+                style_o['icon'] = 'webmapp';
+                if ( color )
+                    style_o['markerColor'] = color;
+                if ( icon )
+                    style_o['extraClasses'] = icon;
 
+                let iconMarker = L.VectorMarkers.icon( style_o );
+                layer.setIcon( iconMarker );
             }
-
-            /**
-             * immagine
-             * Nome categoria
-             * Nome
-             * ( inserire link all'oggetto, tranne per quello corrente )
-             * todo
-             *
-             * Caricare elemento del template +
-             * https://api.webmapp.it/a/sgt.be.webmapp.it/geojson/345_poi_related.geojson (type: FeatureCollection, geometry types: Point).
-             * se esiste ( sono eventuali related ) non neighbors
-             */
-
-            /**
-
-            if ( false && settings.no_app )
+            else if ( layer instanceof L.Path )//tracks and routes
             {
-                let string;
+                if ( color )
+                    style_o['color'] = color;
+                if ( icon )
+                    style_o['icon'] = icon;
 
-                if ( e.properties["addr:street"] !== undefined && e.properties["addr:housenumber"] !== undefined )
-                {
-                    string = '<strong>' + e.properties.name + '</strong><br />' + e.properties["addr:street"] + ' ' + e.properties["addr:housenumber"] ;
-                }
-                else if ( e.properties["address"] !== undefined )
-                {
-                    string = '<strong>' + e.properties.name + '</strong><br />' + e.properties["address"];
-                }
-                else
-                {
-                    string = '<strong>' + e.properties.name + '</strong>';
-                }
-
-                string = '<a href="'+ e.properties.web +'" title="'+ e.properties.name  +'"><strong>' + e.properties.name + '</strong></a>';
-
-
+                layer.setStyle( style_o );
             }
-            else {
 
-                marker.on('click', function () {
-                    $('body').prepend(modal)
-                    $('#modal-map iframe').height($(window).height() * 80 / 100)
 
-                })
 
-            }
-            **/
         },
 
         loadGeojson : ( settings , geoJson , map ) => {
+
+            let current_poi_neighbors = [];
 
             let geojsonLayer = L.geoJSON( geoJson ,
                 {
                     onEachFeature : function (feature, layer)
                     {
+
                         WebMapp_LeafletMapMethods.onEachFeature( settings , feature , layer );
+                        //todo add neigbors to map
+
                     }
-                } ).addTo( map );
+                } )
+                .addTo( map );
+
+
 
 
             map.fitBounds(
@@ -131,6 +118,54 @@
                     maxZoom : parseInt( settings.zoom )
                 }
             );
+
+
+            //show add neighbors
+            if( data.filter === 'true' && current_poi_neighbors.length > 0 )
+            {
+                //map.doubleClickZoom.disable();
+                let $btFilter = $('<a id="' + settings.id + '-map-neighbors" class="wm_map_filter" title="neighbors"><span class="wm-icon-marker-15"></span> <span class="wm_filter_text">' + data.labelActive +'</span> ' + data.labelFilters + '</a>');
+
+                $('#' + settings.id).prepend( $btFilter );
+
+                let neighbors_active = false;
+
+                $btFilter.on( 'click' , function( click_e )
+                {
+                    map.doubleClickZoom.disable();
+                    click_e.preventDefault();
+
+                    if( neighbors_active )
+                    {
+                        $(this).find('.wm_filter_text').text( data.labelDeactive );
+                        $(this).find('.wm-icon-marker-15').addClass( 'wm-icon-marker-stroked-15' );
+
+                        current_poi_neighbors.forEach(
+                            function( marker )
+                            {
+                                L.geoJSON( marker ).addTo( map );
+                            }
+                            );
+                        neighbors_active = false;
+
+                    }
+                    else
+                    {
+                        current_poi_neighbors.forEach(
+                            function( marker )
+                            {
+                                map.removeLayer( marker );
+                            }
+                        );
+                        $(this).find('.wm_filter_text').text(data.labelActive);
+                        $(this).find('.wm-icon-marker-15').removeClass('wm-icon-marker-stroked-15');
+                        neighbors_active = true;
+                    }
+
+
+                });
+
+            }
 
 
         },
@@ -144,15 +179,12 @@
     $.fn.WebMapp_LeafletMap = function( options )
     {
 
+
         // This is the easiest way to have default options.
         var settings = $.extend(
             {
                 // These are the defaults.
-                id : WebMapp_LeafletMapMethods.uniqueidGenerator.apply( this ),
-                container : "",
-                pois: "#556b2f",
-                tracks: "white",
-                routes: '',
+                //id : WebMapp_LeafletMapMethods.uniqueidGenerator(),
                 map_center : '',
                 post_id : '',
                 initialLat: 43.689740,//pisa
@@ -171,19 +203,16 @@
 
 
 
-        var mapId = settings.id,
-            postId = settings.post_id,
-            modalMapId = WebMapp_LeafletMapMethods.uniqueidGenerator.apply( this ),
-            modal = '<div id="' + modalMapId + '"><div class="modal-content"><i class="fa fa-times close-modal" aria-hidden="true"></i></div></div>',
-            icon_class = '',//todo
-            color = '',//todo
-            mapContainer = $("<div id='" + mapId + "'></div>"),
-            geoJson = window['geoJson_' + postId] ? window['geoJson_' + postId] : false ;
 
 
-        this.append(mapContainer);
 
-        var map = L.map( mapId , {
+
+        let geoJson = window['geoJson_' + settings.post_id] ? window['geoJson_' + settings.post_id] : false ;
+
+
+        //this.append( mapContainer );
+
+        var map = L.map( settings.id , {
             center: [settings.initialLat, settings.initialLng],
             zoom: settings.zoom,
             scrollWheelZoom: false
@@ -204,37 +233,25 @@
         //show expand
         if ( data.show_expand === 'true' )
         {
-            let link_url = settings.appUrl + '/#/poi/' + postId + '/' + settings.zoom;
+            let link_url = settings.appUrl + '/#/poi/' + settings.post_id + '/' + settings.zoom;
                 let html =
                 '<a target="_blank" class="open-modal-map" href="' + link_url + '" title="apri tutta la mappa"><span class="wm-icon-arrow-expand"></span></a>';
-            mapContainer.prepend( html );
+            this.prepend( html );
         }
 
-
-
-
-        var marker_settings = {
-            color : color,
-            icon_class : icon_class,
-            modal : modal,
-            modalMapId : modalMapId,
-            map : map,
-            mapContainer : mapContainer,
-            lng: settings.initialLng,
-            lat: settings.initialLat
-        };
 
 
         //isset geojson in settings
         if ( geoJson )
         {
+            console.log( 'geojson:' , geoJson );
             WebMapp_LeafletMapMethods.loadGeojson( settings , geoJson , map );
         }
         //necessary ajax call
         else
         {
             var ajax_call = $.ajax({
-                url: settings.appUrl + '/geojson/' + postId + '.geojson',
+                url: settings.appUrl + '/geojson/' + settings.post_id + '.geojson',
                 dataType: 'json',
                 success: function (geoJson, text, xhr) {
                     console.log(text)
@@ -244,7 +261,7 @@
                 }
             });
 
-            $.when(ajax_call).done(function ( geoJson ) {
+            $.when( ajax_call ).done(function ( geoJson ) {
 
                 WebMapp_LeafletMapMethods.loadGeojson( settings , geoJson , map );
 

@@ -33,7 +33,10 @@ add_action( 'wp' , function() {
         'show_pin' => $pin,
         'show_expand' => $expand,
         'click_iframe' => $click,
-        'current_post_id' => get_the_ID()
+        'current_post_id' => get_the_ID(),
+        'labelFilters' => __('punti d\'interesse vicini', WebMapp_TEXTDOMAIN ),
+		'labelDeactive' => __('Disattiva', WebMapp_TEXTDOMAIN ),
+		'labelActive' => __('Attiva', WebMapp_TEXTDOMAIN ),
     );
 
     if (!empty($no_app)){

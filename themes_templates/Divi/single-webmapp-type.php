@@ -194,8 +194,10 @@ $tem_has_info = $template_functions->getInfo() == true ;
                                         <?php
 
                                         $related_objects = $template_functions->getRelatedObjects();
+
                                         if ( $related_objects )
                                         {
+
                                             foreach( $related_objects as $key => $val )
                                             {
                                                 if ( is_array( $val ) && ! empty( $val ) )
@@ -203,10 +205,16 @@ $tem_has_info = $template_functions->getInfo() == true ;
                                                     echo "<h4 class='webmapp-related-objects-title'>$key</h4>";
                                                     foreach ( $val as $type => $ids )
                                                     {
+
                                                         if ( is_array( $ids ) && ! empty( $ids ) ) :
                                                             echo "<h5 class='webmapp-related-objects-subtitle'>$type</h5>";
                                                             foreach( $ids as $id => $details )
                                                             {
+
+                                                                //patch for geojson related route format
+                                                                if ( get_post_type() === 'route' )
+                                                                    $id = $details;
+
                                                                 //echo "<div class='row'>";
                                                                 echo do_shortcode("[webmapp_anypost post_id='$id' template='compact']");
                                                                 //echo "</div>";

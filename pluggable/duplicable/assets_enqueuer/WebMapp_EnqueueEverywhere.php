@@ -54,7 +54,7 @@ function WebMapp_webmapp_import_gpx_localize_data()
             'in_footer' => false
         ),
         'webmapp-leaflet-vector-markers' => array(
-            'src' => WebMapp_ASSETS . 'js/leaflet-vector-markers.min.js',
+            'src' => WebMapp_URL . 'third-part/leaflet/leaflet-vector-markers.min.js',
             'deps' => array('webmapp-leaflet-map')
         ),
         'jquery-ui-dialog' => array(),//format to enqueue already registered handles

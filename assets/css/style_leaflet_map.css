@@ -11,6 +11,16 @@ LEAFLET MAP STYLE
     box-shadow: 0 0 3px rgba(18,16,11,.75);
 }
 
+.webmapp_leaflet_popup a span
+{
+    color: #fff;
+}
+
+.webmapp_leaflet_popup a:hover span
+{
+    text-decoration: underline;
+}
+
 .webmapp_leaflet_popup .leaflet-popup-content-wrapper
 {
     border-radius: 4px;
