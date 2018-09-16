@@ -13,17 +13,7 @@ add_action( 'wp' , function() {
     $filter = get_option( 'webmapp_map_filter' );
     $activateZoom = get_option( 'webmapp_map_activate_zoom' );
 
-    if ( empty($tiles_url ) ){
-        $tiles_url = 'https://api.webmapp.it/trentino/tiles/map/{z}/{x}/{y}.png';
-    }
 
-    if (empty($zoom)){
-        $zoom = '14';
-    }
-
-    if (empty($app_url)){
-        $app_url = 'http://pnab.j.webmapp.it';
-    }
 
     $data = array(
         'label' => 'Mappa',

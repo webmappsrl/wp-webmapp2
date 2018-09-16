@@ -7,8 +7,8 @@ $post_id = get_the_ID();
 $post_type = get_post_type( $post_id );
 
 $geoJson = new WebMapp_GeoJson( $post_id );//get geoJson
-$geoJson_php = $geoJson->get_php();//json_decode
-$geoJson_json = $geoJson->get_json();//json_decode
+$geoJson_php = $geoJson->get_php( "{$post_id}");//json_decode
+$geoJson_json = $geoJson->get_json( "{$post_id}" );//json
 
 $taxonomies = get_post_taxonomies();
 
@@ -20,9 +20,6 @@ $template_functions = new WebMapp_TemplateSingle( $geoJson_php );//template supp
 
 
 
-//var_dump($template_functions->getShortInfo() );
-//var_dump($template_functions->getInfo() );
-//var_dump($template_functions->getRelatedObjects() );
 
 
 
@@ -195,6 +192,7 @@ $tem_has_info = $template_functions->getInfo() == true ;
 
                                         $related_objects = $template_functions->getRelatedObjects();
 
+
                                         if ( $related_objects )
                                         {
 
@@ -205,18 +203,20 @@ $tem_has_info = $template_functions->getInfo() == true ;
                                                     echo "<h4 class='webmapp-related-objects-title'>$key</h4>";
                                                     foreach ( $val as $type => $ids )
                                                     {
+                                                        //var_dump( $ids );
 
                                                         if ( is_array( $ids ) && ! empty( $ids ) ) :
                                                             echo "<h5 class='webmapp-related-objects-subtitle'>$type</h5>";
-                                                            foreach( $ids as $id => $details )
+
+                                                            foreach( $ids as $key2 => $val2  )
                                                             {
 
-                                                                //patch for geojson related route format
-                                                                if ( get_post_type() === 'route' )
-                                                                    $id = $details;
+                                                                $t = $val2;
+                                                                if ( $type === 'related' )
+                                                                    $t = $key2;
 
                                                                 //echo "<div class='row'>";
-                                                                echo do_shortcode("[webmapp_anypost post_id='$id' template='compact']");
+                                                                echo do_shortcode("[webmapp_anypost post_id='$t' template='compact']");
                                                                 //echo "</div>";
                                                             }
                                                         endif;//if ( ! is_array( $ids ) && ! empty( $ids ) ) :

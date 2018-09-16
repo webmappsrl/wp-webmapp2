@@ -1,20 +1,12 @@
-/**
- * Not loaded
- */
 
 (function ( $ ) {
 
-    var WebMapp_LeafletMapMethods = {
+    function WebMapp_LeafletMapMethods ( settings , map ) {
 
-        uniqueidGenerator : () => {
-            var S4 = function() {
-                return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
-            };
-            return ( S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4() );
-        },
+        this.settings  = settings ;
+        this.map  = map ;
 
-
-        onEachFeature : ( settings, e, layer ) => {
+        this.onEachFeature = ( e, layer ) => {
 
             let imageurl = e.properties.image;
             let name = e.properties.name;
@@ -91,87 +83,68 @@
 
 
 
-        },
+        };//end this.eachFeature
 
-        loadGeojson : ( settings , geoJson , map ) => {
+        this.loadGeojson = ( geoJson ) => {
 
-            let current_poi_neighbors = [];
+            let wthis = this;
+            let this_settings = wthis.settings;
+            let map = wthis.map;
+            let added_layers = [];
+
 
             let geojsonLayer = L.geoJSON( geoJson ,
                 {
-                    onEachFeature : function (feature, layer)
+
+                    onEachFeature : function ( feature, layer)
                     {
 
-                        WebMapp_LeafletMapMethods.onEachFeature( settings , feature , layer );
+                        added_layers.push(layer);
+                        wthis.onEachFeature( feature , layer );
                         //todo add neigbors to map
 
                     }
+
                 } )
                 .addTo( map );
-
 
 
 
             map.fitBounds(
                 geojsonLayer.getBounds(),
                 {
-                    maxZoom : parseInt( settings.zoom )
+                    maxZoom : parseInt( this_settings.zoom )
                 }
             );
 
+            return added_layers;
 
-            //show add neighbors
-            if( data.filter === 'true' && current_poi_neighbors.length > 0 )
-            {
-                //map.doubleClickZoom.disable();
-                let $btFilter = $('<a id="' + settings.id + '-map-neighbors" class="wm_map_filter" title="neighbors"><span class="wm-icon-marker-15"></span> <span class="wm_filter_text">' + data.labelActive +'</span> ' + data.labelFilters + '</a>');
 
-                $('#' + settings.id).prepend( $btFilter );
+        };
 
-                let neighbors_active = false;
+        this.removeLayers = ( main_geojson , added_layers ) =>
+        {
 
-                $btFilter.on( 'click' , function( click_e )
+            added_layers.forEach(
+                function(e)
+                    {
+                        e.remove();
+                    }
+            );
+
+
+            let this_settings = this.settings;
+
+            this.map.fitBounds(
+                L.geoJSON( main_geojson ).getBounds(),
                 {
-                    map.doubleClickZoom.disable();
-                    click_e.preventDefault();
-
-                    if( neighbors_active )
-                    {
-                        $(this).find('.wm_filter_text').text( data.labelDeactive );
-                        $(this).find('.wm-icon-marker-15').addClass( 'wm-icon-marker-stroked-15' );
-
-                        current_poi_neighbors.forEach(
-                            function( marker )
-                            {
-                                L.geoJSON( marker ).addTo( map );
-                            }
-                            );
-                        neighbors_active = false;
-
-                    }
-                    else
-                    {
-                        current_poi_neighbors.forEach(
-                            function( marker )
-                            {
-                                map.removeLayer( marker );
-                            }
-                        );
-                        $(this).find('.wm_filter_text').text(data.labelActive);
-                        $(this).find('.wm-icon-marker-15').removeClass('wm-icon-marker-stroked-15');
-                        neighbors_active = true;
-                    }
+                    maxZoom : parseInt( this_settings.zoom )
+                }
+            );
+        }
 
 
-                });
-
-            }
-
-
-        },
-
-
-    };// end var WebMapp_LeafletMapMethods
+    }// end var WebMapp_LeafletMapMethods
 
 
 
@@ -181,14 +154,14 @@
 
 
         // This is the easiest way to have default options.
-        var settings = $.extend(
+        let settings = $.extend(
             {
                 // These are the defaults.
                 //id : WebMapp_LeafletMapMethods.uniqueidGenerator(),
                 map_center : '',
                 post_id : '',
-                initialLat: 43.689740,//pisa
-                initialLng: 10.392279,//pisa
+                initialLat: 43.689740,//pisa lat
+                initialLng: 10.392279,//pisa lng
                 appUrl: data.appUrl,
                 label: data.label,
                 zoom: data.zoom,
@@ -203,19 +176,16 @@
 
 
 
-
-
-
-
-        let geoJson = window['geoJson_' + settings.post_id] ? window['geoJson_' + settings.post_id] : false ;
-
+        let geoJson = window['geojson_' + settings.post_id] ? window['geojson_' + settings.post_id] : false ;
+        let geoJson_neighbors = window[ 'geojson_' + settings.post_id + '_' + settings.post_type + '_neighbors' ] ? window[ 'geojson_' + settings.post_id + '_' + settings.post_type + '_neighbors' ] : false ;
 
         //this.append( mapContainer );
 
-        var map = L.map( settings.id , {
+        let map = L.map( settings.id , {
             center: [settings.initialLat, settings.initialLng],
             zoom: settings.zoom,
-            scrollWheelZoom: false
+            scrollWheelZoom: false,
+            maxZoom: 16
         } );//parseInt( settings.zoom )
 
         L.tileLayer( settings.tilesUrl, {
@@ -240,17 +210,24 @@
         }
 
 
+        let methods = new WebMapp_LeafletMapMethods( settings , map );
 
+
+        console.log( geoJson );
+
+        //$('#' + settings.id ).click( function(){ console.log( 'zoom: ' , map.getZoom() ); });
         //isset geojson in settings
         if ( geoJson )
         {
-            console.log( 'geojson:' , geoJson );
-            WebMapp_LeafletMapMethods.loadGeojson( settings , geoJson , map );
+            methods.loadGeojson( geoJson , map );
         }
         //necessary ajax call
         else
         {
-            var ajax_call = $.ajax({
+            //todo ajax call to this server!
+            //todo add neighbors compatibility
+            //todo $.getJSON
+            let ajax_call = $.ajax({
                 url: settings.appUrl + '/geojson/' + settings.post_id + '.geojson',
                 dataType: 'json',
                 success: function (geoJson, text, xhr) {
@@ -263,10 +240,58 @@
 
             $.when( ajax_call ).done(function ( geoJson ) {
 
-                WebMapp_LeafletMapMethods.loadGeojson( settings , geoJson , map );
+                methods.loadGeojson( geoJson , map );
 
             });
         }
+
+
+
+
+
+        //show add neighbors
+        if( data.filter === 'true' && geoJson_neighbors )
+        {
+            //map.doubleClickZoom.disable();
+            let $btFilter = $('<a id="' + settings.id + '-map-neighbors" class="wm_map_filter" title="neighbors"><span class="wm-icon-marker-15"></span> <span class="wm_filter_text">' + data.labelActive +'</span> ' + data.labelFilters + '</a>');
+
+            $('#' + settings.id).prepend( $btFilter );
+
+            let neighbors_active = false;
+            let first_time = true;
+            let added_layers = [];
+
+            $btFilter.on( 'click' , function( click_e )
+            {
+                if ( first_time )
+                {
+                    map.doubleClickZoom.disable();
+                    first_time = false;
+                }
+
+                click_e.preventDefault();
+
+                neighbors_active = ! neighbors_active ;
+
+                if( neighbors_active )
+                {
+                    $(this).find('.wm_filter_text').text( data.labelDeactive );
+                    $(this).find('.wm-icon-marker-15').addClass( 'wm-icon-marker-stroked-15' );
+                    added_layers = methods.loadGeojson( geoJson_neighbors );
+                }
+                else
+                {
+                    $(this).find('.wm_filter_text').text(data.labelActive);
+                    $(this).find('.wm-icon-marker-15').removeClass('wm-icon-marker-stroked-15');
+                    methods.removeLayers( geoJson , added_layers );
+                    added_layers = [];
+                }
+
+
+            });
+
+        }
+
 
         return this;
 

@@ -78,13 +78,15 @@ $generalOptionsPage = array(
         'label' => _x( "TilesUrl mappa", "Option label in webmapp settings page" , WebMapp_TEXTDOMAIN ),
         'info' => "short description",
         'attrs' => array( 'size' => 50 ),
-        'tab' => 'main'
+        'tab' => 'main',
+        'default' => 'https://api.webmapp.it/trentino/tiles/map/{z}/{x}/{y}.png'
     ),
     'webmapp_map_appUrl' => array(
         'label' => _x( "Map AppUrl", "Option label in webmapp settings page" , WebMapp_TEXTDOMAIN ),
         'info' => "short description",
         'attrs' => array( 'size' => 50 ),
-        'tab' => 'main'
+        'tab' => 'main',
+        'default' => str_replace('be' , 'j' ,$_SERVER['SERVER_NAME'] )
     ),
     'webmapp_map_show-pin' => array(
         'label' => _x( "Show Pins", "Option label in webmapp settings page" , WebMapp_TEXTDOMAIN ),

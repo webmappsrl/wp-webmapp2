@@ -28,7 +28,9 @@ class WebMapp_PluginHandler
         add_filter('upload_mimes', array( $this , 'my_mime_types') );
         add_action( 'admin_init' , array( $this , 'check_plugin_existence' ) );//notices in admin header
 
+
     }
+
 
 
     function check_plugin_existence()
