@@ -203,7 +203,7 @@ $tem_has_info = $template_functions->getInfo() == true ;
                                                     echo "<h4 class='webmapp-related-objects-title'>$key</h4>";
                                                     foreach ( $val as $type => $ids )
                                                     {
-                                                        //var_dump( $ids );
+
 
                                                         if ( is_array( $ids ) && ! empty( $ids ) ) :
                                                             echo "<h5 class='webmapp-related-objects-subtitle'>$type</h5>";
@@ -212,10 +212,6 @@ $tem_has_info = $template_functions->getInfo() == true ;
                                                             {
 
                                                                 $t = $val2;
-                                                                if ( $type === 'related' )
-                                                                    $t = $key2;
-
-                                                                //var_dump( $t );
 
                                                                 //echo "<div class='row'>";
                                                                 if ( $t != 0 && is_numeric( $t ) )
