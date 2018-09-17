@@ -215,8 +215,11 @@ $tem_has_info = $template_functions->getInfo() == true ;
                                                                 if ( $type === 'related' )
                                                                     $t = $key2;
 
+                                                                var_dump( $t );
+
                                                                 //echo "<div class='row'>";
-                                                                echo do_shortcode("[webmapp_anypost post_id='$t' template='compact']");
+                                                                if ( $t != 0 && is_numeric( $t ) )
+                                                                    echo do_shortcode("[webmapp_anypost post_id='$t' template='compact']");
                                                                 //echo "</div>";
                                                             }
                                                         endif;//if ( ! is_array( $ids ) && ! empty( $ids ) ) :
