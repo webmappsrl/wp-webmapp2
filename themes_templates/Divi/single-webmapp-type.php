@@ -215,7 +215,7 @@ $tem_has_info = $template_functions->getInfo() == true ;
                                                                 if ( $type === 'related' )
                                                                     $t = $key2;
 
-                                                                var_dump( $t );
+                                                                //var_dump( $t );
 
                                                                 //echo "<div class='row'>";
                                                                 if ( $t != 0 && is_numeric( $t ) )
