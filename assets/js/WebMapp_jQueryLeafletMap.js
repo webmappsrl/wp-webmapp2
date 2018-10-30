@@ -171,9 +171,12 @@
                 show_expand : data.show_expand,
                 click_iframe : data.click_iframe,
                 activate_zoom : data.activate_zoom,
-                gejson_url : ''
+                geojson_url : ''
             }
             , options );
+
+
+        console.log( 'GEOJSONURL' , settings.geojson_url );
 
 
 
@@ -230,7 +233,10 @@
 
             if ( settings.geojson_url )
                 geojsonurlforajax = settings.geojson_url;
-            
+
+
+
+
             //todo ajax call to this server!
             //todo add neighbors compatibility
             //todo $.getJSON
