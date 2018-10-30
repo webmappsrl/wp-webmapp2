@@ -170,9 +170,11 @@
                 no_app : data.no_app,
                 show_expand : data.show_expand,
                 click_iframe : data.click_iframe,
-                activate_zoom : data.activate_zoom
+                activate_zoom : data.activate_zoom,
+                gejson_url : ''
             }
             , options );
+
 
 
 
@@ -224,11 +226,16 @@
         //necessary ajax call
         else
         {
+            let geojsonurlforajax = settings.appUrl + '/geojson/' + settings.post_id + '.geojson';
+
+            if ( settings.geojson_url )
+                geojsonurlforajax = settings.geojson_url;
+            
             //todo ajax call to this server!
             //todo add neighbors compatibility
             //todo $.getJSON
             let ajax_call = $.ajax({
-                url: settings.appUrl + '/geojson/' + settings.post_id + '.geojson',
+                url: geojsonurlforajax,
                 dataType: 'json',
                 success: function (geoJson, text, xhr) {
                     console.log(text)

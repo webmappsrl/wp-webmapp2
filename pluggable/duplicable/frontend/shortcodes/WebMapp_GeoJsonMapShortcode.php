@@ -8,12 +8,14 @@ function WebMapp_GeoJsonMapShortcode( $atts ) {
         array(
             'post_id' => '',
             'zoom' => '16',
-            'height' => '500'
+            'height' => '500',
+            'gejson_url' => ''
         ),
         $atts
     );
 
     extract( $atts );
+
 
     $id = WebMapp_Utils::get_unique_id();
 
@@ -31,6 +33,7 @@ function WebMapp_GeoJsonMapShortcode( $atts ) {
                     map_center : '',
                     post_id : '<?php echo $post_id ?>',
                     post_type: '<?php echo get_post_type( $post_id ) ?>'
+                    geojson_url: '<?php echo $gejson_url ?>'
                 }
             );
         });

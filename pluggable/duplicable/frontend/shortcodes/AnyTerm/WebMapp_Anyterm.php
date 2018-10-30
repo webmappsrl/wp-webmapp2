@@ -19,13 +19,18 @@ function WebMapp_AnyTermShortcode($atts ) {
 
     $args = array();
 
-    if( !empty($taxonomy) ){
-        $args['taxonomy'] = $taxonomy;
+
+    if( empty($taxonomy) || ! taxonomy_exists( $taxonomy ) ) {
+        $output = "<h2 class=\"webmapp-any-terms-title error\">" . __('Invalid taxonomy') . ": $taxonomy</h2>";
+        return $output;//EXIT
     }
-    if( !empty($orderby) ){
+
+    $args['taxonomy'] = $taxonomy;
+
+    if( !empty($orderby) ) {
         $args['orderby'] = $orderby;
     }
-    if( !empty($order) ){
+    if( !empty($order) ) {
         $args['orderby'] = $order;
     }
 
@@ -66,6 +71,8 @@ function WebMapp_AnyTermShortcode($atts ) {
                     $i++;
             }
 
+            ob_start();
+            $output .= ob_get_clean();
 
             $url = get_term_link( $my_term->term_id, $my_term->taxonomy );
             if ( !is_wp_error( $url ) )
