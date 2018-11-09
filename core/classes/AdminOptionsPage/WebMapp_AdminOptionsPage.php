@@ -133,6 +133,8 @@ class WebMapp_AdminOptionsPage
                 {
                     add_option( $setting_key , $setting['default'] );
                 }
+                elseif( $get_option === '' )
+                    update_option( $setting_key , $setting['default'] );
             }
 
 

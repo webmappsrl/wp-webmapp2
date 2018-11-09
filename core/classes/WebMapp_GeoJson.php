@@ -29,7 +29,6 @@ class WebMapp_GeoJson
     {
         $t = [];
         $t["geojson_{$this->id}"] = "https://api.webmapp.it/a/$this->current_domain/geojson/$this->id.geojson";
-        $t["geojson_{$this->id}_{$this->post_type}_neighbors"] = "https://api.webmapp.it/a/$this->current_domain/geojson/{$this->id}_{$this->post_type}_neighbors.geojson";
 
         //todo add filter here
         return $t;

@@ -14,7 +14,22 @@ function WebMapp_GeoJsonMapShortcode( $atts ) {
         $atts
     );
 
-    extract( $atts );
+    extract($atts );
+
+    //search for multiple geojson urls
+    $geojson_url_json = '';
+    if ( strpos( $geojson_url , ',' ) )
+    {
+        $geojson_url_php_array = explode( ',' , $geojson_url );
+        $geojson_url_php_array = array_map( function( $e ){ return esc_url( $e ); }, $geojson_url_php_array );
+        $geojson_url_json = json_encode( $geojson_url_php_array );
+    }
+    else
+        $geojson_url_json = json_encode( array( esc_url($geojson_url) ) );
+
+
+    if ( json_last_error() != JSON_ERROR_NONE )
+        trigger_error('Impossible convert geojson url/s in json on webmapp map shortcode.');
 
 
     $id = WebMapp_Utils::get_unique_id();
@@ -33,7 +48,7 @@ function WebMapp_GeoJsonMapShortcode( $atts ) {
                     map_center : '',
                     post_id : '<?php echo $post_id ?>',
                     post_type: '<?php echo get_post_type( $post_id ) ?>',
-                    geojson_url: '<?php echo esc_url($geojson_url) ?>'
+                    url_geojson_filters: '<?php echo $geojson_url_json ?>'//json string
                 }
             );
         });

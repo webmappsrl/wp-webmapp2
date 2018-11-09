@@ -161,7 +161,9 @@ $tem_has_info = $template_functions->getInfo() == true ;
                             <?php endif;//if ( $tem_has_gallery ) ?>
                             <div class="col-md-<?php echo $tem_map_grid?>">
                                 <?php
-                                echo do_shortcode("[webmapp_geojson_map post_id='$post_id' ]");
+                                $api_url = get_option('webmapp_map_apiUrl');
+                                $neighbors_url = esc_url("{$api_url}{$post_id}_{$post_type}_neighbors.geojson");
+                                echo do_shortcode("[webmapp_geojson_map post_id='$post_id' geojson_url='$neighbors_url']");
                                 ?>
                             </div>
                         </div>

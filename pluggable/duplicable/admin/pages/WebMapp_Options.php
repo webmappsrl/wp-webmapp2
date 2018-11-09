@@ -70,19 +70,44 @@ $generalOptionsPage = array(
     'webmapp_map_zoom' => array(
         'label' => _x( "Map Zoom", "Option label in webmapp settings page" , WebMapp_TEXTDOMAIN ),
         'info' => "short description",
-        'attrs' => array( 'size' => 50 ),
         'tab' => 'main',
+        'type' => 'number',
+        'default' => 16
+    ),
+    'webmapp_map_min_zoom' => array(
+        'label' => _x( "Map Min Zoom", "Option label in webmapp settings page" , WebMapp_TEXTDOMAIN ),
+        'info' => "short description",
+        'tab' => 'main',
+        'type' => 'number',
+        'default' => 10
+    ),
+    'webmapp_map_max_zoom' => array(
+        'label' => _x( "Map Max Zoom", "Option label in webmapp settings page" , WebMapp_TEXTDOMAIN ),
+        'info' => "short description",
+        'tab' => 'main',
+        'type' => 'number',
         'default' => 16
     ),
     'webmapp_map_tilesUrl' => array(
         'label' => _x( "TilesUrl mappa", "Option label in webmapp settings page" , WebMapp_TEXTDOMAIN ),
         'info' => "short description",
-        'attrs' => array( 'size' => 50 ),
         'tab' => 'main',
-        'default' => 'https://api.webmapp.it/trentino/tiles/map/{z}/{x}/{y}.png'
+        'type' => 'select',
+        'options' => array(
+            'http://api.webmapp.it/tiles/{z}/{x}/{y}.png' => 'Webmapp' ,
+            'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png' => 'OSM'
+        ),
+        'default' => 'http://api.webmapp.it/tiles/{z}/{x}/{y}.png'
     ),
     'webmapp_map_appUrl' => array(
         'label' => _x( "Map AppUrl", "Option label in webmapp settings page" , WebMapp_TEXTDOMAIN ),
+        'info' => "short description",
+        'attrs' => array( 'size' => 50 ),
+        'tab' => 'main',
+        'default' => str_replace('be' , 'j' ,$_SERVER['SERVER_NAME'] )
+    ),
+    'webmapp_map_apiUrl' => array(
+        'label' => _x( "API url", "Option label in webmapp settings page" , WebMapp_TEXTDOMAIN ),
         'info' => "short description",
         'attrs' => array( 'size' => 50 ),
         'tab' => 'main',

@@ -85,6 +85,23 @@
 
         };//end this.eachFeature
 
+        this.geoJsonToLayer = ( geoJson ) => {
+            let wthis = this;
+            return L.geoJSON( geoJson ,
+                {
+
+                    onEachFeature : function ( feature, layer)
+                    {
+
+                        //added_layers.push(layer);
+                        wthis.onEachFeature( feature , layer );
+                        //todo add neigbors to map
+
+                    }
+
+                } );
+        };
+
         this.loadGeojson = ( geoJson ) => {
 
             let wthis = this;
@@ -92,23 +109,7 @@
             let map = wthis.map;
             let added_layers = [];
 
-
-            let geojsonLayer = L.geoJSON( geoJson ,
-                {
-
-                    onEachFeature : function ( feature, layer)
-                    {
-
-                        added_layers.push(layer);
-                        wthis.onEachFeature( feature , layer );
-                        //todo add neigbors to map
-
-                    }
-
-                } )
-                .addTo( map );
-
-
+            let geojsonLayer = this.geoJsonToLayer( geoJson ).addTo( map );
 
             map.fitBounds(
                 geojsonLayer.getBounds(),
@@ -118,8 +119,6 @@
             );
 
             return added_layers;
-
-
         };
 
         this.removeLayers = ( main_geojson , added_layers ) =>
@@ -141,7 +140,27 @@
                     maxZoom : parseInt( this_settings.zoom )
                 }
             );
-        }
+        };
+
+
+        this.ajaxGeoJson = ( url ) =>
+        {
+            return $.ajax({
+                url: url,
+                dataType: 'json',
+                success: function (geoJson, text, xhr)
+                {
+                    console.log(geoJson);
+                },
+                error: function (xhr)
+                {
+                    console.log('Impossible load geojson for map here: ' + url) ;
+                }
+            });
+
+
+
+        };//end ahaxGeoJson method
 
 
     }// end var WebMapp_LeafletMapMethods
@@ -165,34 +184,47 @@
                 appUrl: data.appUrl,
                 label: data.label,
                 zoom: data.zoom,
-                tilesUrl : data.tilesUrl,
-                show_pin : data.show_pin,
-                no_app : data.no_app,
-                show_expand : data.show_expand,
-                click_iframe : data.click_iframe,
-                activate_zoom : data.activate_zoom,
-                geojson_url : ''
+                zoom_min: data.zoom_min,
+                zoom_max: data.zoom_max,
+                tilesUrl: data.tilesUrl,
+                show_expand: data.show_expand,
+                url_geojson_filters: {},
+                filter: 'true'//todo
             }
             , options );
 
 
-        console.log( 'GEOJSONURL' , settings.geojson_url );
+        //convert json string to object
+        try
+        {
+            settings.url_geojson_filters = JSON.parse( settings.url_geojson_filters );
+        }
+        catch(e)
+        {
+            console.log('invalid json in jquery plugin settings:' + url_geojson_filters);
+        }
 
 
 
 
-        let geoJson = window['geojson_' + settings.post_id] ? window['geojson_' + settings.post_id] : false ;
-        let geoJson_neighbors = window[ 'geojson_' + settings.post_id + '_' + settings.post_type + '_neighbors' ] ? window[ 'geojson_' + settings.post_id + '_' + settings.post_type + '_neighbors' ] : false ;
 
         //this.append( mapContainer );
 
+        /**
+         * Load map
+         */
         let map = L.map( settings.id , {
             center: [settings.initialLat, settings.initialLng],
             zoom: settings.zoom,
             scrollWheelZoom: false,
-            maxZoom: 16
+            maxZoom: settings.zoom_max,
+            minZoom: settings.zoom_min,
+
         } );//parseInt( settings.zoom )
 
+        /**
+         * Set map tiles
+         */
         L.tileLayer( settings.tilesUrl, {
             layers: [
                 {
@@ -205,7 +237,9 @@
         }).addTo(map);
 
 
-        //show expand
+        /**
+         * Expand map implementation
+         */
         if ( data.show_expand === 'true' )
         {
             let link_url = settings.appUrl + '/#/poi/' + settings.post_id + '/' + settings.zoom;
@@ -215,10 +249,82 @@
         }
 
 
+        /**
+         * Load support methods
+         * @type {WebMapp_LeafletMapMethods}
+         */
         let methods = new WebMapp_LeafletMapMethods( settings , map );
 
 
-        console.log( geoJson );
+        /**
+         * Implementation for single post type template
+         * when post_id attribute is set on shortcode
+         */
+        if ( settings.post_id )
+        {
+
+            //search geoJson in footer ( window var )
+            let geoJson = window['geojson_' + settings.post_id] ? window['geojson_' + settings.post_id] : false ;
+
+
+
+            //todo
+            geoJson = geoJson ? geoJson : methods.ajaxGeoJson( settings.apiUrl + '/geojson/' + settings.post_id + '.geojson' );
+
+
+
+
+
+            methods.loadGeojson( geoJson , map );
+
+        }
+
+
+        /**
+         * Works on filters
+         */
+        if ( settings.filter === 'true' && settings.url_geojson_filters )
+        {
+            let overlayMaps = {}, filterGeoJsonAjax;
+            $.each( settings.url_geojson_filters , function( i , url )
+            {
+
+                filterGeoJsonAjax = methods.ajaxGeoJson( url );
+                $.when( filterGeoJsonAjax ).done(
+                    function ( geoJson )
+                    {
+                        let layer = methods.geoJsonToLayer( geoJson );
+                        overlayMaps["Filter Name " + i] = layer;
+                        map.addLayer( layer );
+
+                });
+
+            });
+
+
+            if ( filterGeoJsonAjax )
+            {
+                $.when( filterGeoJsonAjax ).always(
+                    function () {
+                        if ( overlayMaps )
+                        {
+                            L.control.layers( {} , overlayMaps , {
+                                position: 'bottomleft'
+                            } ).addTo(map);
+                            map.fitBounds( L.featureGroup( Object.values( overlayMaps ) ).getBounds() );
+                        }
+                    });
+            }
+
+
+
+        }//end if ( settings.filter === 'true' )
+
+
+        /**
+         * OLD
+
+
 
         //$('#' + settings.id ).click( function(){ console.log( 'zoom: ' , map.getZoom() ); });
         //isset geojson in settings
@@ -229,17 +335,12 @@
         //necessary ajax call
         else
         {
-            let geojsonurlforajax = settings.appUrl + '/geojson/' + settings.post_id + '.geojson';
+
 
             if ( settings.geojson_url )
-                geojsonurlforajax = settings.geojson_url;
+                geojsonurlforajax = settings.geojson_json;
 
 
-
-
-            //todo ajax call to this server!
-            //todo add neighbors compatibility
-            //todo $.getJSON
             let ajax_call = $.ajax({
                 url: geojsonurlforajax,
                 dataType: 'json',
@@ -258,12 +359,13 @@
             });
         }
 
+         */
 
 
+        /**
+         * NEIGHBORS
 
-
-        //show add neighbors
-        if( data.filter === 'true' && geoJson_neighbors )
+        if( settings.filter === 'true' )
         {
             //map.doubleClickZoom.disable();
             let $btFilter = $('<a id="' + settings.id + '-map-neighbors" class="wm_map_filter" title="neighbors"><span class="wm-icon-marker-15"></span> <span class="wm_filter_text">' + data.labelActive +'</span> ' + data.labelFilters + '</a>');
@@ -304,6 +406,8 @@
             });
 
         }
+
+         */
 
 
         return this;

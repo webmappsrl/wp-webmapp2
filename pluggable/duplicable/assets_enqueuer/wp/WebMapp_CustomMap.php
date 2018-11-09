@@ -14,6 +14,12 @@ add_action( 'wp' , function() {
     $activateZoom = get_option( 'webmapp_map_activate_zoom' );
 
 
+    //new options 9/11/2018
+    $api_url = get_option( 'webmapp_map_apiUrl' );
+    $min_zoom = get_option( 'webmapp_map_min_zoom' );
+    $max_zoom = get_option( 'webmapp_map_max_zoom' );
+
+
 
     $data = array(
         'label' => 'Mappa',
@@ -27,6 +33,10 @@ add_action( 'wp' , function() {
         'labelFilters' => __('punti d\'interesse vicini', WebMapp_TEXTDOMAIN ),
 		'labelDeactive' => __('Disattiva', WebMapp_TEXTDOMAIN ),
 		'labelActive' => __('Attiva', WebMapp_TEXTDOMAIN ),
+        //new options 9/11/2018
+        'apiUrl' => $api_url,
+        'zoom_max' => $max_zoom,
+        'zoom_min' => $min_zoom
     );
 
     if (!empty($no_app)){
