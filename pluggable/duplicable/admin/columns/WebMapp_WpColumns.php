@@ -14,7 +14,7 @@ function wm_wp_col_test( $post_id )
     $option = get_option('webmapp_map_apiUrl');
 
     if ( $option )
-        echo "<a href=\"{$option}{$post_id}.geojson\" target=\"_blank\">geoJson</a>";
+        echo "<a href=\"{$option}/geojson/{$post_id}.geojson\" target=\"_blank\">geoJson</a>";
     else
         echo '-';
 
