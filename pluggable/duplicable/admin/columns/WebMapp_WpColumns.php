@@ -10,7 +10,14 @@
 
 function wm_wp_col_test( $post_id )
 {
-    echo $post_id;
+    //webmapp api url
+    $option = get_option('webmapp_map_apiUrl');
+
+    if ( $option )
+        echo "<a href=\"{$option}{$post_id}.geojson\" target=\"_blank\">geoJson</a>";
+    else
+        echo '-';
+
 }
 
 /**
