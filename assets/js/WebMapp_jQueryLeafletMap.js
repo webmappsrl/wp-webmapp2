@@ -205,11 +205,6 @@
         }
 
 
-
-
-
-        //this.append( mapContainer );
-
         /**
          * Load map
          */
@@ -262,21 +257,12 @@
          */
         if ( settings.post_id )
         {
-
             //search geoJson in footer ( window var )
             let geoJson = window['geojson_' + settings.post_id] ? window['geojson_' + settings.post_id] : false ;
-
-
-
             //todo
             geoJson = geoJson ? geoJson : methods.ajaxGeoJson( settings.apiUrl + '/geojson/' + settings.post_id + '.geojson' );
 
-
-
-
-
             methods.loadGeojson( geoJson , map );
-
         }
 
 
