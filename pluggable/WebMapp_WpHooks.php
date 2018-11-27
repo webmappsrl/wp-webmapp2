@@ -10,8 +10,8 @@
 
 
 // Replaces the excerpt "Read More" text by a link
-add_filter('excerpt_more', 'new_excerpt_more');
-function new_excerpt_more($more) {
+add_filter('excerpt_more', 'webmapp_new_excerpt_more');
+function webmapp_new_excerpt_more($more) {
     global $post;
     return '...';
 }

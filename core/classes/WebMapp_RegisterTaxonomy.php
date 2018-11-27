@@ -72,10 +72,21 @@ class WebMapp_RegisterTaxonomy
         if ( in_array('route' ,$this->object_types ) != false )
         {
             $project_has_route = WebMapp_Utils::project_has_route();
+
             if ( ! $project_has_route )
                 $this->object_types = array( 'track' );
-            else
+
+            elseif ( $this->tax_name != 'activity' )//$project_has_route
                 $this->object_types = array( 'route' );
+
+            elseif ( $this->tax_name == 'activity' )//$project_has_route
+            {
+                add_action( 'admin_menu', function(){
+                    remove_submenu_page( 'edit.php?post_type=route','edit-tags.php?taxonomy=activity&amp;post_type=route' );
+                } );
+            }
+
+
         }
 
 

@@ -66,7 +66,7 @@ endforeach;
 
 $current_args = isset( $taxonomies_to_register['activity'] ) ? $taxonomies_to_register['activity'] : array();
 if ( ! empty( $current_args ) )
-    new WebMapp_RegisterTaxonomy( 'activity' ,'track', $current_args );
+    new WebMapp_RegisterTaxonomy( 'activity' ,array('route','track'), $current_args );
 
 
 

@@ -37,6 +37,17 @@ apply_filters( 'WebMapp_taxonomy_object_types' , $object_types , $this->tax_name
  */
 apply_filters( 'WebMapp_pre_register_post_type', $this->args, $this->post_type, $this->project_has_route );
 
+/**
+ *
+ *
+ * POST TYPE CUSTOM ACF FIELDS FILTERS
+ *
+ */
+
+apply_filters( 'WebMapp_pre_register_acf_fields' , $fields );
+
+
+
 
 /**
  *
