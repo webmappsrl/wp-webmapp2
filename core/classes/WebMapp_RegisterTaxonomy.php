@@ -81,19 +81,24 @@ class WebMapp_RegisterTaxonomy
 
             elseif ( $this->tax_name == 'activity' )//$project_has_route
             {
+                //remove activity subpage and metabox
                 add_action( 'admin_menu', function(){
                     remove_submenu_page( 'edit.php?post_type=route','edit-tags.php?taxonomy=activity&amp;post_type=route' );
+                    remove_meta_box( 'activitydiv', 'route', 'side' );
+                } );
+
+                //remove taxonomy activity column from route posts table
+                add_filter( 'manage_posts_columns' , function ( $columns ) {
+                    unset($columns['taxonomy-activity']);
+                    return $columns;
                 } );
             }
 
 
         }
 
-
-
-
         /**
-         * Filter taxonomyes
+         * Filter taxonomies
          */
         $tracks_has_webmapp_category = WebMapp_Utils::tracks_has_webmapp_category();
         if ( $this->tax_name == 'webmapp_category'
@@ -106,6 +111,9 @@ class WebMapp_RegisterTaxonomy
 
         add_action( 'init', array( $this , 'register_taxonomy' ) );
     }
+
+
+
 
 
 
