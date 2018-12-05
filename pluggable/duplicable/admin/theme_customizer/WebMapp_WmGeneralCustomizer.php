@@ -12,6 +12,16 @@ $settings_general = array(
         )
     ),
 
+    'webmapp_customizer_general_color2' => array(
+        'label' => 'Color 2',
+        'default' => '#466434',
+        'description' => "",
+        'css_properties' => array(
+            'color',
+            'background-color'
+        )
+    ),
+
     'webmapp_customizer_general_color3' => array(
         'label' => 'Color 3',
         'default' => '#96969B',

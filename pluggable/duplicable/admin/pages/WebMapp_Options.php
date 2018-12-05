@@ -1,7 +1,7 @@
 <?php
 
 $tabs = array(
-    'main' => _x( "Main", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
+    'main' => _x( "Maps", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
     'custom_types' =>  _x( "Custom Types", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
     'taxonomies' =>  _x( "Taxonomies Details", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN )
 );
@@ -52,6 +52,7 @@ endforeach;
 $generalOptionsPage = array(
     /**
      * MAIN TAB
+     * MAPS
      */
     'google_api_key' => array(
         'label' => _x( "Google Maps API Key", "Option label in webmapp settings page" , WebMapp_TEXTDOMAIN ),
@@ -154,6 +155,13 @@ $generalOptionsPage = array(
         'type' => 'select',
         'tab' => 'main',
         'options' => array( 'true' => 'Sì' , 'false' => 'No' )
+    ),
+    //clustering
+    'webmapp_maps_have_clustering' => array(
+        'label' => _x( "Activate clustering on maps" , WebMapp_TEXTDOMAIN ),
+        'info' => _x( 'Attiva la funzionalità di clustering nella mappe Webmapp' , WebMapp_TEXTDOMAIN),
+        'type' => 'checkbox',
+        'tab' => 'main'
     ),
     /**
      * CUSTOM TYPES TAB

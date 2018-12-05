@@ -16,3 +16,14 @@ $args = array(
 );
 
 new WebMapp_AssetEnqueuer( $args , 'wp', 'style' );
+
+
+
+$args = array(
+    'webmapp_anyterm_js' => array(
+        'src' => WebMapp_URL . 'pluggable/duplicable/frontend/shortcodes/AnyTerm/assets/anyterm.js'
+    )
+
+);
+
+new WebMapp_AssetEnqueuer( $args , 'wp', 'script' );

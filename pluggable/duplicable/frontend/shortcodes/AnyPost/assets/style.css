@@ -9,10 +9,12 @@
     color: #fff;
 }
 
+/*
 div.webmapp_post_terms .webmapp_single_term a i
 {
     filter: brightness(140%);
 }
+*/
 
 
 
@@ -189,4 +191,24 @@ SHOW ALL LINKS
 .webmapp_anypost_show_all
 {
     text-align: right;
+}
+
+/**
+    FIX ELEMENTS ALIGN
+ */
+
+.col-md-4.webmapp_shortcode_any_post:first-child
+{
+    padding-left: 0;
+}
+
+.col-md-4.webmapp_shortcode_any_post:first-child
+{
+    padding-right: 0;
+}
+
+.webmapp_posts_controller.webmapp-grid-system .webmapp-container-fluid
+{
+    padding-left: 0;
+    padding-right: 0;
 }

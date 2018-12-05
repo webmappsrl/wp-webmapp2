@@ -19,6 +19,9 @@ add_action( 'wp' , function() {
     $min_zoom = get_option( 'webmapp_map_min_zoom' );
     $max_zoom = get_option( 'webmapp_map_max_zoom' );
 
+    //new options clustering 5/12/2018
+    $maps_have_clustering = get_option('webmapp_maps_have_clustering');
+
 
 
     $data = array(
@@ -36,7 +39,9 @@ add_action( 'wp' , function() {
         //new options 9/11/2018
         'apiUrl' => $api_url,
         'zoom_max' => $max_zoom,
-        'zoom_min' => $min_zoom
+        'zoom_min' => $min_zoom,
+        //new options clustering 5/12/2018
+        'maps_have_clustering' => $maps_have_clustering
     );
 
     if (!empty($no_app)){

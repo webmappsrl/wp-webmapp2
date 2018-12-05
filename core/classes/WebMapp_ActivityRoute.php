@@ -59,7 +59,7 @@ class WebMapp_ActivityRoute
 
     }
 
-    public static function get_route_activities( $post_id , $field = 'object' )
+    public static function get_route_activities( $post_id , $field = 'all' )
     {
         $post = get_post( $post_id );
 
@@ -77,7 +77,8 @@ class WebMapp_ActivityRoute
             trigger_error('Impossible to get related tracks');
         elseif ( is_array( $related_tracks ) )
         {
-            $terms = $this_::get_the_super_terms($related_tracks , 'activity');
+            $tracks_terms = $this_::get_the_super_terms($related_tracks , 'activity');
+
             if ( $field == 'ids' )
                 $terms = array_values( array_map( function( $e )
                 {
@@ -85,6 +86,14 @@ class WebMapp_ActivityRoute
                 },
                 $terms
                 ));
+
+
+            $route_terms = wp_get_object_terms($post_id , 'activity', array( 'fields' => $field ) );
+
+            foreach ( $tracks_terms as $tracks_term )
+                array_push( $route_terms,$tracks_term);
+
+            $terms = WebMapp_Utils::array_unique_terms( $route_terms );
         }
 
         return $terms;
@@ -113,6 +122,12 @@ class WebMapp_ActivityRoute
     //retrieve acf field
     //get activities by track_ids
 
+    /**
+     * Get all taxonomies of provided posts ids
+     * @param $post_ids
+     * @param $taxonomy
+     * @return array|bool
+     */
     public static function get_the_super_terms( $post_ids , $taxonomy )
     {
         if ( ! is_array( $post_ids ) )

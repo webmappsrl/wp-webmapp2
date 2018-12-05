@@ -189,7 +189,9 @@
                 tilesUrl: data.tilesUrl,
                 show_expand: data.show_expand,
                 url_geojson_filters: {},
-                filter: 'true'//todo
+                filter: 'true',//todo
+                //clustering 5/12/2018
+                have_clustering: data.maps_have_clustering
             }
             , options );
 
@@ -280,8 +282,32 @@
                     function ( geoJson )
                     {
                         let layer = methods.geoJsonToLayer( geoJson );
-                        overlayMaps["Filter Name " + i] = layer;
-                        map.addLayer( layer );
+
+                        console.log(geoJson);
+
+                        //clustering
+                        var leaflet_cluster;
+                        if ( settings.have_clustering )
+                        {
+                            leaflet_cluster = L.markerClusterGroup({
+                                showCoverageOnHover: false,
+                                maxClusterRadius: 60
+                            });
+                            leaflet_cluster.addLayer(layer);
+                        }
+                        //no clustering
+                        else
+                        {
+                            leaflet_cluster = layer;
+                        }
+
+
+
+
+
+                        overlayMaps["Filter Name " + i] = leaflet_cluster;
+
+                        map.addLayer(leaflet_cluster);
 
                 });
 

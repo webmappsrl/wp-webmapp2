@@ -251,12 +251,13 @@ Media Queries
 
 @media screen and (min-width: 981px)
 {
-    .et_fullwidth_nav #main-header .container
+    body .container, .et_fullwidth_nav #main-header .container
     {
-        max-width: 1080px;
-        width: 80%;
+        max-width: 1200px;
+        width: 87%;
         padding: 0;
     }
+
 }
 
 @media screen and (max-width: 980px)
@@ -301,3 +302,48 @@ div#left-area {
     height: 18px;
 }
 
+
+/**
+    FIX ALIGN of ELEMENTS
+    GRID SYSTEM
+ */
+
+#left-area.webmapp-grid-system .webmapp-container-fluid
+{
+    padding: 0;
+}
+
+#webmapp-layer-4 .et_pb_row, #webmapp-layer-4 .et_pb_row .et_pb_column
+{
+    margin: 0;
+    width: 100%;
+}
+
+.webmapp-grid-system .webmapp-container-fluid .col-md-12
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.webmapp-container-fluid .col-md-6:first-child
+{
+    padding-left: 0;
+}
+.webmapp-container-fluid .col-md-6:last-child
+{
+    padding-right: 0;
+}
+
+.webmapp-grid-system .webmapp-container-fluid .row
+{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/**
+    FIX PAGE ALIGN ITEMS
+ */
+.page .et_pb_row
+{
+    width: 100%;
+}

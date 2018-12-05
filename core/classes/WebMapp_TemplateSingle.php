@@ -19,8 +19,12 @@ class WebMapp_TemplateSingle
     {
         $r = false;
 
+
+        $difficulty_key = get_post_type() == 'route' ? 'n7webmapp_route_difficulty' : 'cai_scale';
+
+
         $fields_key = array(
-            'difficulty' => 'cai_scale',//CAI SCALE
+            'difficulty' => $difficulty_key,//CAI SCALE or n7webmapp_route_difficulty
             'rating' => 'wm_poi_stars',//rating
             'ascent' => 'ascent',//ascent
             'descent' => 'descent',//discent
@@ -44,11 +48,15 @@ class WebMapp_TemplateSingle
         if ( $shortInfo )
         {
 
+
             foreach ( $shortInfo as $key => $info )
             {
 
                 $html .= "<span class='webmapp-theshortinfo-detail webmapp-theshortinfo-detail-$key'>";
+
+
                 if ( $key == 'difficulty'
+                    && get_post_type() == 'route'
                     && isset( $WebMapp_IconsConf[ 'difficulty' ] )
                     && isset( $WebMapp_IconsConf[ 'difficulty' ]['full'] )
                     && isset( $WebMapp_IconsConf[ 'difficulty' ]['empty'] )

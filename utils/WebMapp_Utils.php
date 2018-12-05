@@ -290,7 +290,17 @@ class WebMapp_Utils
 
             if ( $taxonomy ) :
                 if ( $post_id )
-                    $terms = get_the_terms( $post_id , $taxonomy );
+                {
+
+                    $this_post_type = get_post_type( $post_id );
+
+
+                    if ( $taxonomy == 'activity' && $this_post_type == 'route' )
+                        $terms = WebMapp_ActivityRoute::get_route_activities( $post_id );
+                    else
+                        $terms = get_the_terms( $post_id , $taxonomy );
+
+                }
                 elseif ( $term_id )
                     $terms = get_terms( array( 'taxonomy' => $taxonomy, 'include' => $term_id ) );
             endif;
@@ -312,7 +322,7 @@ class WebMapp_Utils
                                     $term_icon = get_field( 'wm_taxonomy_icon',$term );
                                     $term_link = get_term_link( $term->term_id );
                                     ?>
-                                <span class="webmapp-main-tax-span-wrapper webmapp_customizer_general_color1-background-color-brightness webmapp_customizer_general_font2-font-size webmapp_customizer_general_size6-font-size">
+                                <span class="webmapp-main-tax-span-wrapper webmapp_customizer_general_color1-background-color-brightness webmapp_customizer_general_font2-font-size webmapp_customizer_general_size6-font-size webmapp_customizer_general_font2-font-family">
                                     <a href="<?php echo $term_link?>" title="<?php echo $term->name ?>">
                                         <i class='<?php echo $term_icon?> webmapp_customizer_general_color1-background-color'></i>
                                         <span><?php echo $term->name ?></span>

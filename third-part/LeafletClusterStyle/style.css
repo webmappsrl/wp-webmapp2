@@ -1,0 +1,66 @@
+/* MarkersCluster style */
+.marker-cluster {
+  border: 3px solid rgba(18, 16, 11, 0.6);
+  border-radius: 50%;
+  background: transparent;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.marker-cluster div {
+  margin-left: 0;
+  margin-top: 0;
+  border-radius: 50%;
+  font-size: 20px;
+  color: #ffffff !important;
+}
+
+.marker-cluster-small div,
+.marker-cluster-medium div,
+.marker-cluster-large div {
+  background-color: rgba(96, 88, 70, 0.8) !important;
+}
+
+.marker-cluster-small {
+  width: 40px !important;
+  height: 40px !important;
+}
+.marker-cluster-small div {
+  width: 34px !important;
+  height: 34px !important;
+  line-height: 32px !important;
+}
+
+.marker-cluster-medium {
+  width: 55px !important;
+  height: 55px !important;
+}
+.marker-cluster-medium div {
+  width: 49px !important;
+  height: 49px !important;
+  line-height: 47px !important;
+}
+
+.marker-cluster-large {
+  width: 65px !important;
+  height: 65px !important;
+}
+.marker-cluster-large div {
+  width: 59px !important;
+  height: 59px !important;
+  line-height: 57px !important;
+}
+
+.leaflet-clickable {
+  cursor: pointer;
+}
+
+.force-hide {
+  display: none !important;
+}
+
+.advanced-layout a.leaflet-control-layers-toggle {
+  display: none;
+}
+
+/*# sourceMappingURL=style.css.map */
