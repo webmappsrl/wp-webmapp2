@@ -36,7 +36,14 @@ $args = array(
     'webmapp-leaflet-map' => array(
         'src' => WebMapp_ASSETS . 'js/leaflet-map.js',
         'deps' => array('jquery','webmap_leaflet_js'),
-        'in_footer' => false
+        'in_footer' => false,
+        'localize' => array(
+            'object_name' => 'WebmappLangDetails',
+            'data' => array(
+                'locale' => apply_filters( 'wpml_current_language', NULL ),
+                'default' => apply_filters( 'wpml_default_language', NULL )
+            )
+        )
     ),
     'webmapp-leaflet-vector-markers' => array(
         'src' => WebMapp_URL . 'third-part/leaflet/leaflet-vector-markers.min.js',

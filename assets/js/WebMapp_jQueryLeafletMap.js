@@ -8,13 +8,15 @@
 
         this.onEachFeature = ( e, layer ) => {
 
-            let imageurl = e.properties.image;
-            let name = e.properties.name;
-            let taxonomies = e.properties.taxonomy;
-            let color = e.properties.color;
-            let link = e.properties.web;
-            let icon = e.properties.icon;
-            let layer_id = e.properties.id;
+            //todo optimize here
+            let imageurl = this.getContent( e.properties , 'image');
+            let name = this.getContent( e.properties , 'name');
+            let taxonomies = this.getContent( e.properties , 'taxonomy');
+            let color = this.getContent( e.properties , 'color');
+            let link = this.getContent( e.properties , 'web');
+            let icon = this.getContent( e.properties , 'icon');
+            let layer_id = this.getContent( e.properties , 'id');
+
 
             let taxonomy_string = '';
 
@@ -142,7 +144,6 @@
             );
         };
 
-
         this.ajaxGeoJson = ( url ) =>
         {
             return $.ajax({
@@ -161,6 +162,38 @@
 
 
         };//end ahaxGeoJson method
+
+        this.getContent = ( layer_properties , property_name ) =>
+        {
+            let value;
+
+            let lang_details = WebmappLangDetails;
+            let properties_language = layer_properties.locale;
+
+            //english or other language case ( no main language )
+            if ( lang_details && properties_language !== lang_details.locale )
+            {
+                let properties_translations = layer_properties.translations;
+
+                try
+                {
+                    value = properties_translations[ lang_details.locale ][ property_name ];
+                }
+                catch( undefined_error )
+                {
+                    //Ignored null value
+                }
+            }
+
+            if( ! value && layer_properties.hasOwnProperty( property_name ) )
+            {
+                value = layer_properties[ property_name ];
+            }
+
+
+            return value ? value : '';
+
+        };
 
 
     }// end var WebMapp_LeafletMapMethods
