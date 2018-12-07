@@ -205,6 +205,13 @@ $fields3 = array(
         'type' => 'text',
         'instructions' => 'Insert the path difficulty classification according to the Club Alpino Italiano scale (T,E,EE,EEA). Please refer to the following address for more information: http://wiki.openstreetmap.org/wiki/Proposed_features/cai_scale'
     ),
+    array(
+        'key' => 'wm_track_osmid',
+        'label' => 'Osmid',
+        'name' => 'osmid',
+        'type' => 'text',
+        'instructions' => 'Insert the corresponding relation (or way) OSMID.'
+    ),
 
 );
 $args = array(
