@@ -213,7 +213,7 @@ function webmapp_kml_upload() {
     if ( ! file_exists($filepath ) )
     {
         // create directory/folder uploads.
-        mkdir($filepath, 0755 , true );
+        mkdir($filepath, 0777 , true );
     }
 
     $file = $filepath . "/" . $fileNameChanged;

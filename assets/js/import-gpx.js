@@ -342,16 +342,23 @@ jQuery(document).ready(function() {
         console.log(event);
         event.stopPropagation(); // Stop stuff happening
         event.preventDefault(); // Totally stop stuff happening
-        var data = event.data;
+        var ajax_data = event.data;
         var type  = jQuery("#kml-upload-file").data("type");
-        data["action"] = "webmapp_import_create_"+type;
+        console.log( 'EVENT DATA' , ajax_data );
 
-        var objects = data["poi"];
+        ajax_data = {
+            action: "webmapp_import_create_"+type,
+            objects: objects,
+            gpx_file: event.data.gpx_file,
+            poi: event.data.poi
+        };
+
+        var objects = ajax_data["poi"];
         var unselected_poi = jQuery("input[name='poi_to_import']:not(:checked)");
 
         unselected_poi.each(function(){
             objects[jQuery(this).val()] = "";
-        })
+        });
 
         for (var i = 0; i < objects.length; i++)
         {
@@ -367,16 +374,20 @@ jQuery(document).ready(function() {
             objects[i] = p;
         }
 
-        data["objects"] = objects;
+        ajax_data.objects = objects;
 
-        console.log(ajaxurl);
-        console.log(data);
+
+
+
+
+        console.log("AJAX DATA BEFORE call" , ajax_data);
+
 
         jQuery("#create_obj_from_kml #preview-import").empty();
-        jQuery('#create_obj_from_kml #preview-import').append("<span class='loader'><img src='"+webmapp_config.loading_gif_path+"'>"+webmapp_config.loading_text+"</span>")
+        jQuery('#create_obj_from_kml #preview-import').append("<span class='loader'><img src='"+webmapp_config.loading_gif_path+"'>"+webmapp_config.loading_text+"</span>");
         jQuery.post(
             ajaxurl,
-            data,
+            ajax_data,
             function(response) {
                 jQuery("#create_obj_from_kml #preview-import").empty();
                 jQuery('#create_obj_from_kml #preview-import').append("<h3>"+webmapp_config.import_completed+"</h3><br>");
@@ -384,7 +395,14 @@ jQuery(document).ready(function() {
                     jQuery('#create_obj_from_kml #preview-import').append("<a target='_blank' href='"+response[i]+"'>"+i+"</a><br>")
                 }
 
-            }, 'json')
+            },
+            'json'
+        );
+
+
+
+
+
     } // end handleImportKlm
 
     jQuery( "#webmap_category_dialog" ).dialog({maxHeight: 300, autoOpen: false});

@@ -19,7 +19,6 @@ function webmapp_admin_import_assets()
     $args = array(
         'webmapp-import-gpx' => array(
             'src' => WebMapp_ASSETS . 'js/import-gpx.js',
-            'deps' => array('jquery'),
             'localize' => array(
                 'object_name' => 'webmapp_config',
                 'data' => $data
