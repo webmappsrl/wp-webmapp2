@@ -5,7 +5,6 @@
  * PRIVATE AJAX
  */
 
-
 function webmapp_manage_bulk_quick_save_bulk_edit() {
     // we need the post IDs
     $post_ids = (isset($_POST['post_ids']) && !empty($_POST['post_ids'])) ? $_POST['post_ids'] : NULL;
@@ -67,7 +66,7 @@ function webmapp_import_create_poi() {
     echo json_encode($response);
     die;
 }
-new WebMapp_AjaxHandler( false ,'webmapp_import_create_poi' );
+new WebMapp_AjaxHandler( true ,'webmapp_import_create_poi' );
 
 
 function webmapp_create_track() {
@@ -210,6 +209,13 @@ function webmapp_kml_upload() {
     $fileNameChanged = str_replace(" ", "_", $fileName);
 
     $filepath = WebMapp_DIR . "/uploads";
+
+    if ( ! file_exists($filepath ) )
+    {
+        // create directory/folder uploads.
+        mkdir($filepath, 0755 , true );
+    }
+
     $file = $filepath . "/" . $fileNameChanged;
 
     $response = array();

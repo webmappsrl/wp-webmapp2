@@ -46,7 +46,7 @@ jQuery(document).ready(function() {
             success: function(data) {
                 jQuery(".upload-kml .loader").addClass("hidden-loader");
                 jQuery('#create_obj_from_kml #preview-import').append("<h3>Preview of import</h3>");
-                if(data["poi"].length > 0){
+                if( data["poi"] && data["poi"].length > 0){
                     jQuery('#create_obj_from_kml #preview-import').append("<table class='acf-table'></table>");
                     jQuery('#create_obj_from_kml #preview-import table').append("<thead><tr><th>OSM</th><th>Name</th><th>Desc</th><th>Categories <a href='#' title='add POI categories' class='dashicons dashicons-plus-alt add-poi-cat'><input type='hidden' id='massive_selected_cat'></th><th>Import POI <input type='checkbox' name='check_all_rows' checked value=''></th></tr></thead>");
 
@@ -368,6 +368,9 @@ jQuery(document).ready(function() {
         }
 
         data["objects"] = objects;
+
+        console.log(ajaxurl);
+        console.log(data);
 
         jQuery("#create_obj_from_kml #preview-import").empty();
         jQuery('#create_obj_from_kml #preview-import').append("<span class='loader'><img src='"+webmapp_config.loading_gif_path+"'>"+webmapp_config.loading_text+"</span>")
