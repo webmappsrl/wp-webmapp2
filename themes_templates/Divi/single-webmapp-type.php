@@ -12,18 +12,7 @@ $geoJson_json = $geoJson->get_json( "{$post_id}" );//json
 
 $taxonomies = get_post_taxonomies();
 
-
-
-
-
 $template_functions = new WebMapp_TemplateSingle( $geoJson_php );//template support class
-
-
-
-
-
-
-
 
 
 function my_print_r( $arr )
@@ -106,6 +95,8 @@ $tem_has_info = $template_functions->getInfo() == true ;
 
             <div id="content-area" class="clearfix">
                 <div id="left-area" class="webmapp-grid-system" style="width: 100%;padding: 23px 0px 0px !important;float: none !important;">
+
+<?php while ( have_posts() ) : the_post(); ?>
                     <!-- START GRID -->
                     <div class="webmapp-container-fluid">
 
@@ -249,11 +240,11 @@ $tem_has_info = $template_functions->getInfo() == true ;
 
                     </div>
 
+
+
                     <!-- END GRID -->
 
                     <?php
-
-
 
                     if ( function_exists( 'wp_pagenavi' ) )
                         wp_pagenavi();
@@ -261,12 +252,11 @@ $tem_has_info = $template_functions->getInfo() == true ;
                         get_template_part( 'includes/navigation', 'index' );
 
                     ?>
+
+<?php endwhile; ?>
                 </div> <!-- #left-area -->
 
                 <?php //get_sidebar(); ?>
             </div> <!-- #content-area -->
         </div> <!-- .container -->
     </div> <!-- #main-content -->
-
-<?php
-
