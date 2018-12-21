@@ -37,7 +37,8 @@ $args = array(
         'author',
         'thumbnail',
         'excerpt',
-        'revisions'
+        'revisions',
+        'comments'
     )
 );
 
