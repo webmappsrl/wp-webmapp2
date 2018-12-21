@@ -72,6 +72,30 @@ $fields = array (
         'max_size' => '',
         'mime_types' => 'png, jpg, jpeg',
     ),
+    array(
+        'key' => 'wm_taxonomy_featured_icon',
+        'label' => 'Featured icon',
+        'name' => 'featured_icon',
+        'type' => 'image',
+        'instructions' => 'Insert a featured Icon ( visible in vn menu )',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'wrapper' => array(
+            'width' => '',
+            'class' => '',
+            'id' => '',
+        ),
+        'return_format' => 'array',
+        'preview_size' => 'thumbnail',
+        'library' => 'all',
+        'min_width' => '',
+        'min_height' => '',
+        'min_size' => '',
+        'max_width' => '',
+        'max_height' => '',
+        'max_size' => '',
+        'mime_types' => 'png, jpg, jpeg',
+    ),
 );
 
 $taxonomies_with_this_fields = array(
