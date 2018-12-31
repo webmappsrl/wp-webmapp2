@@ -33,34 +33,6 @@
                 'mime_types' => '',
             ),
             array(
-                'key' => 'wm_comment_routes',
-                'label' => 'route',
-                'name' => 'wm_comment_routes',
-                'type' => 'relationship',
-                'instructions' => '',
-                'required' => 0,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'post_type' => array(
-                    0 => 'route',
-                ),
-                'taxonomy' => array(
-                ),
-                'filters' => array(
-                    0 => 'search',
-                    1 => 'post_type',
-                    2 => 'taxonomy',
-                ),
-                'elements' => '',
-                'min' => '',
-                'max' => '',
-                'return_format' => 'object',
-            ),
-            array(
                 'key' => 'wm_comment_journey_date',
                 'label' => 'data viaggio',
                 'name' => 'wm_comment_journey_date',
