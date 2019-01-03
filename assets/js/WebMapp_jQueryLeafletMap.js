@@ -335,10 +335,7 @@
                         }
 
 
-
-
-
-                        overlayMaps["Filter Name " + i] = leaflet_cluster;
+                        overlayMaps[ "Filter Name " + i ] = leaflet_cluster;
 
                         map.addLayer(leaflet_cluster);
 
@@ -351,7 +348,7 @@
             {
                 $.when( filterGeoJsonAjax ).always(
                     function () {
-                        if ( overlayMaps )
+                        if ( ! $.isEmptyObject( overlayMaps ) )
                         {
                             L.control.layers( {} , overlayMaps , {
                                 position: 'bottomleft'

@@ -1,4 +1,4 @@
-
+/**
 var force_aspect_ratio = ( $e ) =>
 {
     let $figure = $e.parent();
@@ -57,7 +57,15 @@ var force_aspect_ratio = ( $e ) =>
 
     $e.css( img_css_resize );
 };
+**/
 
+
+var force_aspect_ratio = ( $e ) =>
+{
+    let get_e_width = $e.parents('.webmapp_post-featured-img').width();
+    let set_e_height = get_e_width / 16 * 9;
+    $e.css( 'height' , set_e_height );
+};
 
 //args to object todo
 var webmapp_posts_ajax_call =
@@ -121,13 +129,26 @@ var webmapp_posts_ajax_call =
 
                         let $new_html = $(json.html);
                         $posts_wrapper.empty().append( $new_html );
+
+
+
+
                         $loader_img.fadeOut();
                         $posts_wrapper.fadeIn();
 
+                        //set imgs height
+                        $posts_wrapper.find('figure').each(
+                            function ( i , e )
+                            {
+                                force_aspect_ratio( $(e) );
+                            }
+                        );
 
-                        let $post_image = $posts_wrapper.find('.webmapp_post_image');
+
 
                         //resizing
+                        /**
+                         let $post_image = $posts_wrapper.find('.webmapp_post_image');
                         let $images = $post_image.find('img');
                         $images.one("load", function() {
                             let $e = $(this);
@@ -135,12 +156,15 @@ var webmapp_posts_ajax_call =
                         }).each(function() {
                             if(this.complete) $(this).load();
                         });
+                         **/
 
                         //pagination
                         let n_page = json.n_page;
                         let total_posts = json.total;
                         let $pagination_wrap = $current_section.find( '.webmapp-pagination-numbers' );
-                        let $pagination_links = $pagination_wrap.find( '.pagination_link' );
+                        //let $pagination_links = $pagination_wrap.find( '.pagination_link' );
+
+
 
 
                         //pagination
@@ -177,16 +201,17 @@ var webmapp_posts_ajax_call =
                                 $pagination_wrap.remove();
                         }
 
-
+/**
                         setTimeout( function(){
                             //fix posts height
                             let posts_controller_height = $posts_controller.outerHeight();
 
-                            /**
+
                             if ( posts_controller_height > up_pagination_height )
                                 $up_pagination.css( 'height' , posts_controller_height );
-                             **/
+
                         }, 300 );
+            **/
 
 
 
@@ -243,9 +268,11 @@ jQuery( document ).ready( function($){
         }
 
         //force aspect ratio of images
-        $( '.webmapp_post_image img' ).each( function( i , e ){
-            force_aspect_ratio($(e));
+
+        $( 'figure.webmapp_post_image' ).each( function( i , e ){
+            force_aspect_ratio( $(e) );
         } );
+
 
 
     } );

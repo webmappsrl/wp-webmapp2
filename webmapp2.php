@@ -36,7 +36,12 @@ define ( 'WebMapp_DIR' , __DIR__ );
 //global const to get assets url
 define ( 'WebMapp_ASSETS' , WebMapp_URL . 'assets/' );
 
-define( 'WebMapp_PLUGIN_MAIN_FILE' , 'wp-webmapp2/webmapp2.php' );
+define ( 'WebMapp_PLUGIN_MAIN_FILE' , 'wp-webmapp2/webmapp2.php' );
+
+
+//shortcodes constants
+
+define ( 'WebMapp_ShortcodeTemplates_AnyPost_DIR' , WebMapp_DIR . '/pluggable/duplicable/frontend/shortcodes/AnyPost/templates/' );
 
 
 

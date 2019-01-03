@@ -341,4 +341,25 @@ class WebMapp_Utils
     }
 
 
+    /**
+     * Load Any Post shortcode template
+     * @param $template_name
+     */
+    public static function get_anypost_shortcode_template( $template_name )
+    {
+        $template_actual_name = "webmapp_anypost-$template_name.php";
+
+        $located = locate_template( $template_actual_name );
+
+        if ( $located == '' && file_exists( WebMapp_ShortcodeTemplates_AnyPost_DIR . $template_actual_name ) )
+            $located = WebMapp_ShortcodeTemplates_AnyPost_DIR . $template_actual_name;
+
+        if ( $located )
+            load_template( $located , false );
+        else
+            echo "Template $template_name, provided to any post shortcode, is wrong.";
+
+    }
+
+
 }

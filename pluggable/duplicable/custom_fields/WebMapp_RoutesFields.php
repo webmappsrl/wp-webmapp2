@@ -189,6 +189,35 @@ $fields = array(
         'multiple' => 0,
     ),
     /**
+     * FORMULA
+     */
+    array(
+        'key' => 'wm_route_formula',
+        'label' => 'Formula',
+        'type' => 'tab',
+        'required' => 0,
+        'placement' => 'top',
+        'endpoint' => 0,
+    ),
+    array(
+        'key' => "wm_fdn" ,
+        'name' => "wm_fdn" ,
+        'type' => "true_false" ,
+        'label' => "Fatto da noi"
+    ),//fatto da noi
+    array(
+        'key' => "wm_self_guided" ,
+        'name' => "wm_self_guided" ,
+        'type' => "true_false" ,
+        'label' => "Viaggio individuale"
+    ),//viaggio individuale
+    array(
+        'key' => "wm_guided" ,
+        'name' => "wm_guided" ,
+        'type' => "true_false" ,
+        'label' => "Viaggio con guida"
+    ),//viaggio con guida
+    /**
     array(
         'key' => 'field_parse_gpx',
         'label' => 'Import track from GPX/KML file',

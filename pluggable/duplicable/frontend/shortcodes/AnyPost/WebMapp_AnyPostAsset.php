@@ -11,7 +11,7 @@ $args = array(
     'webmapp_anypost_js' => array(
         'src' => WebMapp_URL . 'pluggable/duplicable/frontend/shortcodes/AnyPost/assets/main.js',
         'deps' => array('jquery'),
-        'in_footer' => 'false',
+        'in_footer' => false,
         'localize' => array(
             'object_name' => 'shortcode_conf',
             'data' => array(
@@ -26,8 +26,11 @@ $args = array(
 new WebMapp_AssetEnqueuer( $args , 'wp', 'script' );
 
 $args = array(
-    'webmapp_anypost_css' => array(
-        'src' => WebMapp_URL . 'pluggable/duplicable/frontend/shortcodes/AnyPost/assets/style.css'
+    'webmapp_anypost_all_templates' => array(
+        'src' => WebMapp_URL . 'pluggable/duplicable/frontend/shortcodes/AnyPost/assets/all_templates.css'
+    ),
+    'webmapp_anypost_template_compact_css' => array(
+        'src' => WebMapp_URL . 'pluggable/duplicable/frontend/shortcodes/AnyPost/assets/template_compact.css'
     )
 
 );
