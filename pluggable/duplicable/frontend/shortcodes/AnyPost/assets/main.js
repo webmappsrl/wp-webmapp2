@@ -78,15 +78,13 @@ var webmapp_posts_ajax_call =
             let $posts_wrapper = $current_section.find('.posts');
             let $loader_img = $current_section.find('.webmapp_loader_img');
             let $up_pagination = $current_section.find('.webmapp-on-pagination');
-            let $posts_controller = $current_section.find('.webmapp_posts_controller');
+            //let $posts_controller = $current_section.find('.webmapp_posts_controller');
 
 
             let up_pagination_height = $up_pagination.outerHeight();
-            /**
-
             if ( up_pagination_height > 0 )
                 $up_pagination.outerHeight( up_pagination_height );
-             **/
+
 
             //center loader img
             let loader_img_height = $loader_img.outerHeight();

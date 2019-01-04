@@ -15,7 +15,7 @@ function get_anypost_shortcode_page() {
             'posts_count' => '',
             'main_tax' => '',
             'post_ids' => '',
-            'template' => ''
+            'template' => 'default'
         ),
         $atts
     ));
