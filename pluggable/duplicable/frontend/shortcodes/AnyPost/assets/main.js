@@ -179,7 +179,7 @@ var webmapp_posts_ajax_call =
                                     new_link.on('click', function(e)
                                         {
                                             e.preventDefault();
-                                            webmapp_posts_ajax_call( id , i , term_id, post_id, posts_per_page, rows, post_type, posts_count, main_tax );
+                                            webmapp_posts_ajax_call( id , i , term_id, post_id, posts_per_page, rows, post_type, posts_count, main_tax , post_ids, template);
                                             $current_section.find('.pagination_link_wrapper.active').removeClass('active');
                                             $(this).addClass('active');
                                         }
