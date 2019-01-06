@@ -14,6 +14,24 @@ class WebMapp_ActivityRoute
     {
 
         global $wpdb;
+        //get routes by term id
+        $routes = get_posts(
+            array(
+                'post_type' => 'route',
+                'nopaging' => 'true',
+                'fields' => 'ids',
+                'post_status' => 'publish',
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'activity',
+                        'field' => 'term_id',
+                        'terms' => array( $term_id )
+                    )
+                )
+            )
+        );
+
+        //get tracks by term id to calculate related routes
         $tracks = get_posts(
             array(
                 'post_type' => 'track',
@@ -30,7 +48,6 @@ class WebMapp_ActivityRoute
             )
         );
 
-        $routes = array();
         if ( $tracks )
         {
             $related_track_query = '';
@@ -47,15 +64,13 @@ class WebMapp_ActivityRoute
                 . "AND PM.meta_key = 'n7webmap_route_related_track' "
                 . "AND ( $related_track_query );";
 
-
-
             $routes = $wpdb->get_results( $sql , ARRAY_A );
             $routes = array_map( function( $e ){
                 return isset( $e['ID'] ) ? $e['ID'] : false;
             },$routes );
         }
 
-        return $routes;
+        return array_unique( $routes );
 
     }
 
