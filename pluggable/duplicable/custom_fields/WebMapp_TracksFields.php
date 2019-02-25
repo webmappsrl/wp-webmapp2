@@ -223,3 +223,24 @@ $args = array(
 
 $WebMapp_RegisterRouteFields = new WebMapp_RegisterFieldsGroup('track' ,$args );
 
+
+$fields4 = array(
+    array(
+        'key' => 'wm_track_rb_track_section',
+        'label' => 'ROADBOOK section',
+        'name' => 'rb_track_section',
+        'type' => 'wysiwyg'
+    ),
+);
+
+$args = array(
+    'key' => 'group_wm_track_rb',
+    'title' => 'ROADBOOK',
+    'fields' => $fields4,
+    'location' => $location,
+    'menu_order' => 3,
+);
+
+$WebMapp_RegisterTrackFields1 = new WebMapp_RegisterFieldsGroup('track' ,$args );
+
+
