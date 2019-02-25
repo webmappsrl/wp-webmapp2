@@ -223,7 +223,9 @@ $fields = array(
         'label' => 'Import track from GPX/KML file',
         'name' => 'n7webmap_import_gpx',
         'type' => 'message'
-    ),**/
+    ),
+    **/
+
 
 );
 
