@@ -32,3 +32,10 @@ function wm_wp_col_test( $post_id )
 new WebMapp_WpBackendColumns('poi' , "Intestazione POI test" ,'wm_wp_col_test');
 new WebMapp_WpBackendColumns('route' , "Intestazione ROUTE test" ,'wm_wp_col_test');
 new WebMapp_WpBackendColumns('track' , "Intestazione TRACK test" ,'wm_wp_col_test');
+
+
+function wm_wp_col_roadbook( $post_id )
+{
+    echo "<a href=\"http://a.webmapp.it/route/{$post_id}_rb.html\" target=\"_blank\">RoadBook</a>";
+}
+new WebMapp_WpBackendColumns('route' , "ROADBOOK" ,'wm_wp_col_roadbook');
