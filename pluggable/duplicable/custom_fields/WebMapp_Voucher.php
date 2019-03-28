@@ -75,7 +75,7 @@ $fields = array(
     );
 
     $args = array (
-        'key' => 'group_wm_user',
+        'key' => 'group_wm_voucher',
         'title' => 'User WEBMAPP Voucher',
         'fields' => $fields,
         'location' => $location,
