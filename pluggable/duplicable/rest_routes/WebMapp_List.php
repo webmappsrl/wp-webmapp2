@@ -8,7 +8,9 @@
  * wm_api_voucher()
  */
 function WebMapp_V1List( WP_REST_Request $request ) {
-  $resp = array('123' => '2019-03-29T14:32:35','456'=>'2019-03-29T14:32:35');
+  $type = $request->get_param("type");
+
+  $resp = array('123' => '2019-03-29T14:32:35','456'=>'2019-03-29T14:32:35','type'=>$type);
   return new WP_REST_Response($resp,200);
 
 }
