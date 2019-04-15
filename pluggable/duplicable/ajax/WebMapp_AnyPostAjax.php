@@ -15,7 +15,8 @@ function get_anypost_shortcode_page() {
             'posts_count' => '',
             'main_tax' => '',
             'post_ids' => '',
-            'template' => 'default'
+            'template' => 'default',
+            'orderby' => ''
         ),
         $atts
     ));
@@ -71,6 +72,28 @@ function get_anypost_shortcode_page() {
     $query_args[ 'paged' ] = $paged;
     $query_args[ 'post_status' ] = 'publish';
     $query_args['post_type'] = $post_type;
+
+
+    //orderby
+    if ( ! empty( $orderby ) )
+    {
+        switch ( $orderby )
+        {
+            case "sticky":
+                $sticky_posts = get_option( 'sticky_posts' );
+                if ( ! empty( $sticky_posts ) )
+                {
+                    $query_args['post__in'] = $sticky_posts;
+                    $query_args['ignore_sticky_posts'] = 1;
+                }
+
+                break;
+            default:
+                break;
+        }
+    }
+
+
 
     //Query
     $custom_posts = new WP_Query( $query_args );

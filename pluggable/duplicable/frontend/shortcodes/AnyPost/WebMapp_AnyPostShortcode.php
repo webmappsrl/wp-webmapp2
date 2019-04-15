@@ -14,7 +14,8 @@ function WebMapp_AnyPostShortcode( $atts ) {
             'posts_count' => '',
             'main_tax' => '',
             'post_ids' => '',
-            'template' => 'default'// available templates: 'default', 'compact'
+            'template' => 'default',// available templates: 'default', 'compact',
+            'orderby' => ''
         ),
         $atts
     ));
@@ -56,7 +57,8 @@ function WebMapp_AnyPostShortcode( $atts ) {
             '<?php echo $posts_count ?>',//number of posts to display
             '<?php echo $main_tax ?>',//main taxonomy
             '<?php echo $post_ids ?>',//post ids separate by commas
-            '<?php echo $template ?>'//shortcode template
+            '<?php echo $template ?>',//shortcode template
+            '<?php echo $orderby ?>',//orderby wp query
         );
     </script>
 <?php
