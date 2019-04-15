@@ -83,8 +83,22 @@ function get_anypost_shortcode_page() {
                 $sticky_posts = get_option( 'sticky_posts' );
                 if ( ! empty( $sticky_posts ) )
                 {
-                    $query_args['post__in'] = $sticky_posts;
+                    $default_posts_args = $query_args;
+                    $default_posts_args['fields'] = 'ids';
+                    $default_posts_args['ignore_sticky_posts'] = 1;
+
+                    $default_posts = get_posts( $default_posts_args );
+
+                    $post__in = array_merge($sticky_posts, $default_posts);
+
+                    if ( ! isset($query_args['post__in']) )
+                        $query_args['post__in'] = $post__in;
+                    else
+                        $query_args['post__in'] = array_merge( $post__in , $query_args['post__in'] );
+                    
                     $query_args['ignore_sticky_posts'] = 1;
+
+
                 }
 
                 break;
