@@ -85,31 +85,32 @@ class WebMapp_ActivityRoute
             return;
 
         $this_ = new WebMapp_ActivityRoute();
-        $terms = array();
+
+        //get route direct activity terms
+        $terms = wp_get_object_terms($post_id , 'activity', array( 'fields' => $field ) );
 
         $related_tracks = $this_->get_route_related_tracks( $post_id );
-        if ( ! $related_tracks )
-            trigger_error('Impossible to get related tracks');
-        elseif ( is_array( $related_tracks ) )
+
+        if ( $related_tracks !== false && is_array( $related_tracks ) )
         {
             $tracks_terms = $this_::get_the_super_terms($related_tracks , 'activity');
 
             if ( $field == 'ids' )
-                $terms = array_values( array_map( function( $e )
+                $tracks_terms = array_unique( array_values( array_map( function( $e )
                 {
                     return isset( $e->term_id ) ? $e->term_id : false;
                 },
-                $terms
-                ));
-
-
-            $route_terms = wp_get_object_terms($post_id , 'activity', array( 'fields' => $field ) );
+                    $tracks_terms
+                )));
 
             foreach ( $tracks_terms as $tracks_term )
-                array_push( $route_terms,$tracks_term);
+                array_push( $terms,$tracks_term);
 
-            $terms = WebMapp_Utils::array_unique_terms( $route_terms );
+
         }
+
+        else
+            $terms = WebMapp_Utils::array_unique_terms( $terms );
 
         return $terms;
     }
@@ -130,9 +131,16 @@ class WebMapp_ActivityRoute
         $related_tracks = get_field( 'n7webmap_route_related_track' , $post_id );
         //$related_tracks
 
-        return array_map( function( $e ){
-            return isset( $e->ID ) ? $e->ID : false;
-        } , $related_tracks );
+        $test = false;
+        if ( ! empty( $related_tracks ) && is_array( $related_tracks ) )
+        {
+            $test = array_map( function( $e ){
+                return isset( $e->ID ) ? $e->ID : false;
+            } , $related_tracks );
+        }
+
+
+        return $test;
     }
     //retrieve acf field
     //get activities by track_ids
