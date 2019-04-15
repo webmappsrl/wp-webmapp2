@@ -95,8 +95,9 @@ function get_anypost_shortcode_page() {
                         $query_args['post__in'] = $post__in;
                     else
                         $query_args['post__in'] = array_merge( $post__in , $query_args['post__in'] );
-                    
+
                     $query_args['ignore_sticky_posts'] = 1;
+                    $query_args['orderby'] = 'post__in';
 
 
                 }
@@ -135,7 +136,8 @@ function get_anypost_shortcode_page() {
 
 
 
-    //var_dump( $query_args );
+    var_dump( $orderby );
+    var_dump( $query_args );
 
     //Start Loop
     if ( $custom_posts->have_posts() ) :
