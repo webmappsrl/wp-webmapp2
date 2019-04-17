@@ -220,6 +220,7 @@
                 zoom_min: data.zoom_min,
                 zoom_max: data.zoom_max,
                 tilesUrl: data.tilesUrl,
+                apiUrl: data.apiUrl,
                 show_expand: data.show_expand,
                 url_geojson_filters: {},
                 filter: 'true',//todo
