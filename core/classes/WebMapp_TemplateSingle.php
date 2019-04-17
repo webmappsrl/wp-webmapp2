@@ -60,31 +60,32 @@ class WebMapp_TemplateSingle
 
                 $html_s = "<span class='webmapp-theshortinfo-detail webmapp-theshortinfo-detail-$key'>";
 
-
-                if ( $key == 'difficulty'
-                    && get_post_type() == 'route'
-                    && isset( $WebMapp_IconsConf[ 'difficulty' ] )
-                    && isset( $WebMapp_IconsConf[ 'difficulty' ]['full'] )
-                    && isset( $WebMapp_IconsConf[ 'difficulty' ]['empty'] )
-                )
+                if ( $key == 'difficulty' )
                 {
-
-                    $info_numeric = ! is_numeric( $info ) || $info > 5 ? 5 : ( int ) $info ;
                     $html_s .= __( 'Difficulty' , WebMapp_TEXTDOMAIN );
-
-                    for ( $i = 0 ; $i < 5 ; $i++ )
+                    if ( get_post_type() == 'route'
+                        && isset( $WebMapp_IconsConf[ 'difficulty' ] )
+                        && isset( $WebMapp_IconsConf[ 'difficulty' ]['full'] )
+                        && isset( $WebMapp_IconsConf[ 'difficulty' ]['empty'] )
+                    )
                     {
-                        if ( $i < $info_numeric )
-                            $html_s .= "<i class='" . $WebMapp_IconsConf[ 'difficulty' ]['full'] . "'></i>";
-                        else
-                            $html_s .= "<i class='" . $WebMapp_IconsConf[ 'difficulty' ]['empty'] . "'></i>";
+
+                        $info_numeric = ! is_numeric( $info ) || $info > 5 ? 5 : ( int ) $info ;
+                        for ( $i = 0 ; $i < 5 ; $i++ )
+                        {
+                            if ( $i < $info_numeric )
+                                $html_s .= "<i class='" . $WebMapp_IconsConf[ 'difficulty' ]['full'] . "'></i>";
+                            else
+                                $html_s .= "<i class='" . $WebMapp_IconsConf[ 'difficulty' ]['empty'] . "'></i>";
+
+                        }
+
+
+
 
                     }
-
-
-
-
                 }
+                
                 elseif ( $key == 'rating'
                     && isset( $WebMapp_IconsConf[ 'rating' ] )
                 )
@@ -108,7 +109,7 @@ class WebMapp_TemplateSingle
 
 
                 $html_s = apply_filters('WebMapp_TemplateSingle_theShortInfo', $html_s, $key , $info );
-                
+
                 $html_s .= "</span>";
 
 
