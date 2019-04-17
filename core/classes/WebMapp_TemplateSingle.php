@@ -62,7 +62,7 @@ class WebMapp_TemplateSingle
 
                 if ( $key == 'difficulty' )
                 {
-                    $html_s .= __( 'Difficulty' , WebMapp_TEXTDOMAIN );
+                    $html_s .= __( 'Difficulty' , WebMapp_TEXTDOMAIN ) . ': ';
                     if ( get_post_type() == 'route'
                         && isset( $WebMapp_IconsConf[ 'difficulty' ] )
                         && isset( $WebMapp_IconsConf[ 'difficulty' ]['full'] )
@@ -84,8 +84,12 @@ class WebMapp_TemplateSingle
 
 
                     }
+                    else
+                    {
+                        $html_s .= $info;
+                    }
                 }
-                
+
                 elseif ( $key == 'rating'
                     && isset( $WebMapp_IconsConf[ 'rating' ] )
                 )
