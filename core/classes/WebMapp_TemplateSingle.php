@@ -107,9 +107,11 @@ class WebMapp_TemplateSingle
 
 
 
+                $html_s = apply_filters('WebMapp_TemplateSingle_theShortInfo', $html_s, $key , $info );
+                
                 $html_s .= "</span>";
 
-                $html_s = apply_filters('WebMapp_TemplateSingle_theShortInfo', $html_s, $key , $info );
+
 
                 $html .= $html_s;
 
