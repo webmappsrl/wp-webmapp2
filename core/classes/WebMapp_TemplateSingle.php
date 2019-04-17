@@ -80,9 +80,6 @@ class WebMapp_TemplateSingle
 
                         }
 
-
-
-
                     }
                     else
                     {
@@ -131,7 +128,8 @@ class WebMapp_TemplateSingle
         $fields_key = array(
             'phone' => 'contact:phone',//phone
             'email' => 'contact:email',//email
-            'links' => 'n7webmap_rpt_related_url'//links
+            'links' => 'n7webmap_rpt_related_url',//links
+            'opening_hours' => 'opening_hours'
         );
 
         $t = $this->getFields( $fields_key );
