@@ -12,5 +12,6 @@ $WebMapp_IconsConf = apply_filters( 'webmapp_icons_conf_array' , array(
         'empty' => 'wm-icon-circle-stroked-15'
     ),
     'duration' => 'wm-icon-android-clock',
-    'rating' => 'wm-icon-android-star'
+    'rating' => 'wm-icon-android-star',
+    'opening_hours' => 'wm-icon-android-data'
  ));
