@@ -324,7 +324,9 @@ class WebMapp_Utils
                                     ?>
                                 <span class="webmapp-main-tax-span-wrapper webmapp_customizer_general_color1-background-color-brightness webmapp_customizer_general_font2-font-size webmapp_customizer_general_size6-font-size webmapp_customizer_general_font2-font-family">
                                     <a href="<?php echo $term_link?>" title="<?php echo $term->name ?>">
+                                        <?php if ( isset($term_icon) ) { ?>
                                         <i class='<?php echo $term_icon?> webmapp_customizer_general_color1-background-color'></i>
+                                        <?php } ?>
                                         <span><?php echo $term->name ?></span>
                                     </a>
                                 </span>

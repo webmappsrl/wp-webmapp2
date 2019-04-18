@@ -95,7 +95,7 @@ $generalOptionsPage = array(
         'tab' => 'main',
         'type' => 'select',
         'options' => array(
-            'http://api.webmapp.it/tiles/{z}/{x}/{y}.png' => 'Webmapp' ,
+            'https://api.webmapp.it/tiles/{z}/{x}/{y}.png' => 'Webmapp' ,
             'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png' => 'OSM'
         ),
         'default' => 'http://api.webmapp.it/tiles/{z}/{x}/{y}.png'

@@ -5,6 +5,7 @@ class WebMapp_TemplateSingle
 {
     public $geoJson_php;
     public $geoJson_properties = array();
+    public $post_type;
 
     function __construct( $geoJson_php = '' )
     {
@@ -20,7 +21,9 @@ class WebMapp_TemplateSingle
         $r = false;
 
 
-        $difficulty_key = get_post_type() == 'route' ? 'n7webmapp_route_difficulty' : 'cai_scale';
+        $this->post_type = get_post_type();
+
+        $difficulty_key = $this->post_type == 'route' ? 'n7webmapp_route_difficulty' : 'cai_scale';
 
 
         $fields_key = array(
@@ -45,6 +48,8 @@ class WebMapp_TemplateSingle
         $shortInfo = $this->getShortInfo();
 
         $html = '<p class="webmapp-theshortinfo">';
+
+
         if ( $shortInfo )
         {
 
@@ -52,43 +57,46 @@ class WebMapp_TemplateSingle
             foreach ( $shortInfo as $key => $info )
             {
 
-                $html .= "<span class='webmapp-theshortinfo-detail webmapp-theshortinfo-detail-$key'>";
 
+                $html_s = "<span class='webmapp-theshortinfo-detail webmapp-theshortinfo-detail-$key'>";
 
-                if ( $key == 'difficulty'
-                    && get_post_type() == 'route'
-                    && isset( $WebMapp_IconsConf[ 'difficulty' ] )
-                    && isset( $WebMapp_IconsConf[ 'difficulty' ]['full'] )
-                    && isset( $WebMapp_IconsConf[ 'difficulty' ]['empty'] )
-                )
+                if ( $key == 'difficulty' )
                 {
-
-                    $info_numeric = ! is_numeric( $info ) || $info > 5 ? 5 : ( int ) $info ;
-                    $html .= __( 'Difficulty' , WebMapp_TEXTDOMAIN );
-
-                    for ( $i = 0 ; $i < 5 ; $i++ )
+                    $html_s .= __( 'Difficulty' , WebMapp_TEXTDOMAIN ) . ': ';
+                    if ( get_post_type() == 'route'
+                        && isset( $WebMapp_IconsConf[ 'difficulty' ] )
+                        && isset( $WebMapp_IconsConf[ 'difficulty' ]['full'] )
+                        && isset( $WebMapp_IconsConf[ 'difficulty' ]['empty'] )
+                    )
                     {
-                        if ( $i < $info_numeric )
-                            $html .= "<i class='" . $WebMapp_IconsConf[ 'difficulty' ]['full'] . "'></i>";
-                        else
-                            $html .= "<i class='" . $WebMapp_IconsConf[ 'difficulty' ]['empty'] . "'></i>";
+
+                        $info_numeric = ! is_numeric( $info ) || $info > 5 ? 5 : ( int ) $info ;
+                        for ( $i = 0 ; $i < 5 ; $i++ )
+                        {
+                            if ( $i < $info_numeric )
+                                $html_s .= "<i class='" . $WebMapp_IconsConf[ 'difficulty' ]['full'] . "'></i>";
+                            else
+                                $html_s .= "<i class='" . $WebMapp_IconsConf[ 'difficulty' ]['empty'] . "'></i>";
+
+                        }
 
                     }
-
-
-
-
+                    else
+                    {
+                        $html_s .= $info;
+                    }
                 }
+
                 elseif ( $key == 'rating'
                     && isset( $WebMapp_IconsConf[ 'rating' ] )
                 )
                 {
                     $info_numeric = ! is_numeric( $info ) || $info > 5 ? 5 : ( int ) $info ;
-                    $html .= __( 'Rating' , WebMapp_TEXTDOMAIN );
+                    $html_s .= __( 'Rating' , WebMapp_TEXTDOMAIN );
 
                     for ( $i = 0 ; $i < $info_numeric ; $i++ )
                     {
-                        $html .= "<i class='" . $WebMapp_IconsConf[ 'rating' ] . "'></i>";
+                        $html_s .= "<i class='" . $WebMapp_IconsConf[ 'rating' ] . "'></i>";
                     }
 
 
@@ -96,10 +104,18 @@ class WebMapp_TemplateSingle
                 else
                 {
                     $icon = isset( $WebMapp_IconsConf[$key] ) ? "<i class='$WebMapp_IconsConf[$key]'></i>" : '';
-                    $html .= "$icon $info";
+                    $html_s .= "$icon $info";
                 }
 
-                $html .= "</span>";
+
+
+                $html_s = apply_filters('WebMapp_TemplateSingle_theShortInfo', $html_s, $key , $info );
+
+                $html_s .= "</span>";
+
+
+
+                $html .= $html_s;
 
             }
         }
@@ -112,7 +128,8 @@ class WebMapp_TemplateSingle
         $fields_key = array(
             'phone' => 'contact:phone',//phone
             'email' => 'contact:email',//email
-            'links' => 'n7webmap_rpt_related_url'//links
+            'links' => 'n7webmap_rpt_related_url',//links
+            'opening_hours' => 'opening_hours'
         );
 
         $t = $this->getFields( $fields_key );

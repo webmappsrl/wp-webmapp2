@@ -69,7 +69,7 @@ var force_aspect_ratio = ( $e ) =>
 
 //args to object todo
 var webmapp_posts_ajax_call =
-    ( id , paged = 1 , term_id, post_id, posts_per_page, rows, post_type, posts_count, main_tax, post_ids, template ) =>
+    ( id , paged = 1 , term_id, post_id, posts_per_page, rows, post_type, posts_count, main_tax, post_ids, template, orderby ) =>
     {
 
         (function($){
@@ -117,6 +117,7 @@ var webmapp_posts_ajax_call =
                     main_tax : main_tax,
                     post_ids : post_ids,
                     template : template,
+                    orderby : orderby
                 }
             )
                 .done( function( response )

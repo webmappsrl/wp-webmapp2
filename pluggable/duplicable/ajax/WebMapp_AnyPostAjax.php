@@ -15,7 +15,8 @@ function get_anypost_shortcode_page() {
             'posts_count' => '',
             'main_tax' => '',
             'post_ids' => '',
-            'template' => 'default'
+            'template' => 'default',
+            'orderby' => ''
         ),
         $atts
     ));
@@ -72,6 +73,43 @@ function get_anypost_shortcode_page() {
     $query_args[ 'post_status' ] = 'publish';
     $query_args['post_type'] = $post_type;
 
+
+    //orderby
+    if ( ! empty( $orderby ) )
+    {
+        switch ( $orderby )
+        {
+            case "sticky":
+                $sticky_posts = get_option( 'sticky_posts' );
+                if ( ! empty( $sticky_posts ) )
+                {
+                    $default_posts_args = $query_args;
+                    $default_posts_args['fields'] = 'ids';
+                    $default_posts_args['ignore_sticky_posts'] = 1;
+
+                    $default_posts = get_posts( $default_posts_args );
+
+                    $post__in = array_merge($sticky_posts, $default_posts);
+
+                    if ( ! isset($query_args['post__in']) )
+                        $query_args['post__in'] = $post__in;
+                    else
+                        $query_args['post__in'] = array_merge( $post__in , $query_args['post__in'] );
+
+                    $query_args['ignore_sticky_posts'] = 1;
+                    $query_args['orderby'] = 'post__in';
+
+
+                }
+
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
     //Query
     $custom_posts = new WP_Query( $query_args );
 
@@ -98,7 +136,8 @@ function get_anypost_shortcode_page() {
 
 
 
-    //var_dump( $query_args );
+    var_dump( $orderby );
+    var_dump( $query_args );
 
     //Start Loop
     if ( $custom_posts->have_posts() ) :
