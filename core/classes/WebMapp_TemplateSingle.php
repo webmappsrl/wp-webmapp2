@@ -288,8 +288,6 @@ class WebMapp_TemplateSingle
                     $t[$key] = $temp;
             }
 
-
-
         }
 
 
