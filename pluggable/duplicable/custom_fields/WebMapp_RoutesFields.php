@@ -56,7 +56,7 @@ $fields = array(
      * GALLERY
      */
     array(
-        'key' => 'wm_route_gallery',
+        'key' => 'wm_route_tab_gallery',
         'label' => 'Gallery',
         'type' => 'tab',
         'required' => 0,
@@ -66,7 +66,7 @@ $fields = array(
     array(
         'library' => 'all',
         'insert' => 'append',
-        'key' => 'field_5853f586c83cd',
+        'key' => 'wm_route_gallery',
         'label' => 'Media Gallery',
         'name' => 'n7webmap_route_media_gallery',
         'type' => 'gallery'

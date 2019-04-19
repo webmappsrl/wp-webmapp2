@@ -50,7 +50,7 @@ $fields2 = array(
     array(
         'library' => 'all',
         'insert' => 'append',
-        'key' => 'wm-track-gallery',
+        'key' => 'wm_track_gallery',
         'label' => 'Media Gallery',
         'name' => 'n7webmap_track_media_gallery',
         'type' => 'gallery'

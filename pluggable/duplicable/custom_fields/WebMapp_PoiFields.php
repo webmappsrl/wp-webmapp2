@@ -37,7 +37,7 @@
         array(
             'library' => 'all',
             'insert' => 'append',
-            'key' => 'field_5853f586c83cd',
+            'key' => 'wm_poi_gallery',
             'label' => 'Media Gallery',
             'name' => 'n7webmap_media_gallery',
             'type' => 'gallery'
