@@ -39,7 +39,7 @@ function render_map_leaflet($post) {
 
     <script>
 
-            //setLeafletMap('track-leaflet-map', <?php echo json_encode(geojson_track($post->ID)) ?>);
+            setLeafletMap('track-leaflet-map', <?php echo json_encode(geojson_track($post->ID)) ?>);
 
     </script>
   <?php
