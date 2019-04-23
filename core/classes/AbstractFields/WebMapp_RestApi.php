@@ -109,10 +109,10 @@ class WebMapp_RestApi extends WebMapp_AbstractFields
             $poi_obj = get_post($poi_array['id']);
 
             if ( $field_name == "n7webmap_route_media_gallery" ) {
-                $field_name = "field_5853f586c83cd"; //TODO: rendere questa cosa più intelligente! la galleria ha dei problemi ad essere recuperata con il name
+                $field_name = "wm_route_gallery"; //TODO: rendere questa cosa più intelligente! la galleria ha dei problemi ad essere recuperata con il name
             }
             elseif ( $field_name == "n7webmap_media_gallery" ) {
-                $field_name = "field_5853f586c83cd"; //TODO: rendere questa cosa più intelligente! la galleria ha dei problemi ad essere recuperata con il name
+                $field_name = "wm_poi_gallery"; //TODO: rendere questa cosa più intelligente! la galleria ha dei problemi ad essere recuperata con il name
             }
             elseif ( $field_name == "n7webmap_track_media_gallery" ) {
                 $field_name = "wm_track_gallery"; //TODO: rendere questa cosa più intelligente! la galleria ha dei problemi ad essere recuperata con il name
