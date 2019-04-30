@@ -27,9 +27,22 @@ function addingtrack_meta_boxes($post_type, $post) {
       'default'
     );
   }
+
+    add_meta_box(
+        'webmapp-test',
+        __('TEST', "webmap_net7"),
+        'render_my_test',
+        'poi',
+        'normal',
+        'default'
+    );
+
 }
 
-
+function render_my_test( $post )
+{
+    var_dump( get_post_meta( $post->ID ) );
+}
 
 function render_map_leaflet($post) {
     
