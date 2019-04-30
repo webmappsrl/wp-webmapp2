@@ -32,6 +32,7 @@ require_once('third-part/gisconverter/gisconverter.php');
 require_once('icons_conf.php');
 
 
+
 /**
  *
  * Core
@@ -161,6 +162,20 @@ WebMapp_Utils::load_theme();
  * pluggable functions?
  */
 WebMapp_Utils::load_dir('pluggable');
+
+
+
+
+
+
+/**
+ * Load WP CLI commands and utils
+ */
+
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+    require_once('utils/WebMapp_WpCli_Utils.php');
+    WebMapp_Utils::load_dir('pluggable/duplicable/wp-cli');
+}
 
 
 
