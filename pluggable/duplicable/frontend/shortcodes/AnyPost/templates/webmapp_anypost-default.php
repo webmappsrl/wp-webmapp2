@@ -7,7 +7,7 @@ global $wm_anypost_bootstrap_col_type,
        $wm_anypost_post_type;
 
 $title_link = get_the_permalink();
-$get_the_post_thumbanil = get_the_post_thumbnail_url( get_the_ID() ,'full');
+$get_the_post_thumbanil = get_the_post_thumbnail_url( get_the_ID() ,'large');
 $current_post_type = get_post_type();
 
 $main_tax_c = WebMapp_Utils::get_main_tax(get_the_ID() );
