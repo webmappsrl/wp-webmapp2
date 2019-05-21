@@ -104,6 +104,7 @@ function get_anypost_shortcode_page() {
 
                 break;
             default:
+                    $query_args['orderby'] = $orderby;
                 break;
         }
     }
