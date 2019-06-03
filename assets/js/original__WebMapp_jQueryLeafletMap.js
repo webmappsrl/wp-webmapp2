@@ -273,16 +273,10 @@
          */
         if ( data.show_expand === 'true' )
         {
-            if ( settings.appUrl == '#!'){
-                let html =
-                '<div class="open-modal-map" href="#" title="apri tutta la mappa"><span class="wm-icon-arrow-expand"></span></div>';
-            this.prepend( html );
-            } else {
             let link_url = settings.appUrl + '/#/poi/' + settings.post_id + '/' + settings.zoom;
                 let html =
                 '<a target="_blank" class="open-modal-map" href="' + link_url + '" title="apri tutta la mappa"><span class="wm-icon-arrow-expand"></span></a>';
             this.prepend( html );
-            }
         }
 
 
