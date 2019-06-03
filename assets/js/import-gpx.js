@@ -1,6 +1,8 @@
 /* FIX FOR A BUG OF WPML FLUGIN */
 jQuery( document ).ajaxComplete(function( event, xhr, settings ) {
-    if (typeof(settings.data.get) != 'undefined'
+
+    if (typeof(settings.data) != 'undefined'
+        && settings.hasOwnProperty('get')
         && (settings.data.get('action') === 'webmapp_file_upload'
             || settings.data.get('action') === 'webmapp_kml_upload'
             || settings.data.get('action') === 'add_user_to_route' )
