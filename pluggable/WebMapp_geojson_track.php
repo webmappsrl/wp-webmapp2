@@ -21,7 +21,11 @@ function geojson_track($obj_id) {
   if($gallery)
     $feature['properties']['picture_url'] = $gallery[0]['url'];
   
-  $feature["geometry"]=get_field('n7webmap_geojson',$obj->ID);
+  $geometry=get_field('n7webmap_geojson',$obj->ID);
+  if ( is_serialized( $geometry ) )
+      $geometry = unserialize( $geometry );
+
+  $feature["geometry"] = $geometry;
   
   $features[]=$feature;
   $result["features"] = $features;
