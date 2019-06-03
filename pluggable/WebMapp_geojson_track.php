@@ -15,7 +15,7 @@ function geojson_track($obj_id) {
   
   $feature["type"] = 'Feature';
   $feature["properties"]["name"] = $obj->post_title;
-  //$feature["properties"]["description"] = $obj->post_content;
+  $feature["properties"]["description"] = $obj->post_content;
   $feature['properties']['color']=  get_field('n7webmapp_track_color', $obj->ID);
   $gallery = get_field("field_5853f586c83cd", $obj->ID);
   if($gallery)
