@@ -273,10 +273,8 @@
          */
         if ( data.show_expand === 'true' )
         {
-            if ( settings.appUrl == '#!'){
-                let html =
-                '<div class="open-modal-map" href="#" title="apri tutta la mappa"><span class="wm-icon-arrow-expand"></span></div>';
-            this.prepend( html );
+            if (  settings.appUrl === '#!' || ! settings.appUrl ){
+                map.addControl(new L.Control.Fullscreen());
             } else {
             let link_url = settings.appUrl + '/#/poi/' + settings.post_id + '/' + settings.zoom;
                 let html =
