@@ -301,16 +301,64 @@ class WebMapp_TemplateSingle
         $r = '';
         $post_type = get_post_type();
         $post_id = get_the_ID();
-
-        $posts = get_posts(
-            array(
-                'post_type' => $post_type,
-                'post_status' => 'publish',
-                'fields' => 'ids',
-                'post__not_in' => array( $post_id ),
-                'posts_per_page' => 3
-            )
-        );
+        
+        // $posts = get_posts(
+        //     array(
+        //         'post_type' => $post_type,
+        //         'post_status' => 'publish',
+        //         'fields' => 'ids',
+        //         'post__not_in' => array( $post_id ),
+        //         'posts_per_page' => 3
+        //     )
+        // );
+        $args = array(
+            'post_type' => '',
+            'post_status' => '',
+            'fields' => 'ids',
+            'post__not_in' => array( $post_id ),
+            'posts_per_page' => 3
+       );
+       
+       switch ($post_type)
+       {
+            case 'poi':
+                $query_tax = 'webmapp_category';
+                break;
+            case 'track':
+                $query_tax = 'theme';
+                break;
+            case 'route':
+                $query_tax = 'theme';
+                break;
+            default:
+                $query_tax = FALSE;
+                break;
+       }
+       
+       if ( $query_tax )
+       {
+            $current_themes = get_the_terms( $post_id ,$query_tax);
+            if ( $current_themes )
+            {
+                $args['tax_query'] = array( 'relation' => 'AND' );
+       
+                $terms_ids = array_map($current_themes, function($e){ return 
+                    $e->term_id;
+                });
+                $args['tax_query'][] = array(
+       
+                    'taxonomy' => $query_tax, // (string) - Taxonomy.
+                    'field' => 'id', // (string) - Select taxonomy term by Possible values are 'term_id', 'name', 'slug' or 'term_taxonomy_id'. Default value is 'term_id'.
+                    'terms' => $terms_ids, // (int/string/array) - Taxonomy term(s).
+                    'include_children' => true, // (bool) - Whether or not to include children for hierarchical taxonomies. Defaults to true.
+                    'operator' => 'IN' // (string) - Operator to test. Possible values are 'IN', 'NOT IN', 'AND', 'EXISTS' and 'NOT EXISTS'. Default value is 'IN'.
+       
+                );
+       
+            }
+       }
+       
+       $posts = get_posts( $args );
 
         if ( $posts && is_array( $posts ) && ! empty( $posts ) )
         {
