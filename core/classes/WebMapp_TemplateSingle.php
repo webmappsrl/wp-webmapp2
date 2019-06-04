@@ -325,7 +325,7 @@ class WebMapp_TemplateSingle
                 $query_tax = 'webmapp_category';
                 break;
             case 'track':
-                $query_tax = 'theme';
+                $query_tax = 'webmapp_category';
                 break;
             case 'route':
                 $query_tax = 'theme';
@@ -342,9 +342,7 @@ class WebMapp_TemplateSingle
             {
                 $args['tax_query'] = array( 'relation' => 'AND' );
        
-                $terms_ids = array_map($current_themes, function($e){ return 
-                    $e->term_id;
-                });
+                $terms_ids = array_map(function($e){ return $e->term_id;}, $current_themes);
                 $args['tax_query'][] = array(
        
                     'taxonomy' => $query_tax, // (string) - Taxonomy.
