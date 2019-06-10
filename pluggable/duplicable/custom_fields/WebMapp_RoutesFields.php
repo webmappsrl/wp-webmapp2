@@ -61,7 +61,7 @@ $fields = array(
         'return_format' => 'array',
         'library' => 'all',
         'mime_types' => 'mp3'
-    )
+    ),
     /**
      * GALLERY
      */
