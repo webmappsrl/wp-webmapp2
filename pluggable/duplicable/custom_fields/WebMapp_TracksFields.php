@@ -139,6 +139,16 @@ $fields2 = array(
         'label' => 'related url',
         'name' => 'n7webmap_rpt_related_url',
         'type' => 'repeater'
+    ),
+    array(
+        'key' => 'wm_track_audio',
+        'label' => 'Audio',
+        'name' => 'audio',
+        'type' => 'file',
+        'instructions' => 'Upload audio file',
+        'return_format' => 'array',
+        'library' => 'all',
+        'mime_types' => 'mp3'
     )
 );
 $args = array(

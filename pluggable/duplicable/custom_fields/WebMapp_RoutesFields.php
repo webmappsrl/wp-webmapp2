@@ -52,6 +52,16 @@ $fields = array(
         'name' => 'n7webmap_rpt_related_url',
         'type' => 'repeater'
     ),
+    array(
+        'key' => 'wm_route_audio',
+        'label' => 'Audio',
+        'name' => 'audio',
+        'type' => 'file',
+        'instructions' => 'Upload audio file',
+        'return_format' => 'array',
+        'library' => 'all',
+        'mime_types' => 'mp3'
+    ),
     /**
      * GALLERY
      */

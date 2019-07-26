@@ -5,39 +5,23 @@
 
         this.settings  = settings ;
         this.map  = map ;
-        console.log(webmapp_cat);
+
         this.onEachFeature = ( e, layer ) => {
 
             //todo optimize here
             let imageurl = this.getContent( e.properties , 'image');
             let name = this.getContent( e.properties , 'name');
             let taxonomies = this.getContent( e.properties , 'taxonomy');
-            let color = '#2a82cb';
-            let icon = '';
-            if ( taxonomies.webmapp_category ) {
-              let id_tax = taxonomies.webmapp_category[0] ? taxonomies.webmapp_category[0] : false;
-
-              if ( id_tax && webmapp_cat[id_tax]){
-                color = this.getContent( e.properties , 'color') ? this.getContent( e.properties , 'color') : webmapp_cat[id_tax].color;
-                icon = this.getContent( e.properties , 'icon') ? this.getContent( e.properties , 'icon') : webmapp_cat[id_tax].icon;
-              } else {
-                color = this.getContent( e.properties , 'color');
-                icon = this.getContent( e.properties , 'icon');
-              }
-            } else {
-              color = this.getContent( e.properties , 'color');
-              icon = this.getContent( e.properties , 'icon');
-            }
-
+            let color = this.getContent( e.properties , 'color');
             let link = this.getContent( e.properties , 'web');
-
+            let icon = this.getContent( e.properties , 'icon');
             let layer_id = this.getContent( e.properties , 'id');
+
 
             let taxonomy_string = '';
 
             $.each( taxonomies ,  function( i , e )
             {
-
                 $.each( e , function( i2 , e2 )
                 {
                     taxonomy_string += e2;
@@ -289,14 +273,10 @@
          */
         if ( data.show_expand === 'true' )
         {
-            if (  settings.appUrl === '#!' || ! settings.appUrl ){
-                map.addControl(new L.Control.Fullscreen());
-            } else {
             let link_url = settings.appUrl + '/#/poi/' + settings.post_id + '/' + settings.zoom;
                 let html =
                 '<a target="_blank" class="open-modal-map" href="' + link_url + '" title="apri tutta la mappa"><span class="wm-icon-arrow-expand"></span></a>';
             this.prepend( html );
-            }
         }
 
 
@@ -337,7 +317,7 @@
                     {
                         let layer = methods.geoJsonToLayer( geoJson );
 
-                        //console.log(geoJson);
+                        console.log(geoJson);
 
                         //clustering
                         var leaflet_cluster;

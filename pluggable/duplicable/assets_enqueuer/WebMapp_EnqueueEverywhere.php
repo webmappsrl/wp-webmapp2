@@ -22,6 +22,9 @@ $args = array(
     ),
     'webmap_leaflet_cluster_style' => array(
         'src' => WebMapp_URL . 'third-part/LeafletClusterStyle/style.css'
+    ),
+    'webmap_leaflet_fullscreen_style' => array(
+        'src' => WebMapp_URL . 'third-part/Leaflet.fullscreen/dist/leaflet.fullscreen.css'
     )
 );
 
@@ -57,6 +60,9 @@ $args = array(
     'webmap_leaflet_cluster' => array(
         'src' => WebMapp_URL . 'third-part/Leaflet.markercluster-1.4.1/dist/leaflet.markercluster.js',
         'in_footer' => false
+    ),
+    'webmap_leaflet_fullscreen' => array(
+        'src' => WebMapp_URL . 'third-part/Leaflet.fullscreen/dist/Leaflet.fullscreen.min.js'
     )
 );
 //use all sides

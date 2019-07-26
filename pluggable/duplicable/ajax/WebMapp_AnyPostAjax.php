@@ -104,6 +104,7 @@ function get_anypost_shortcode_page() {
 
                 break;
             default:
+                    $query_args['orderby'] = $orderby;
                 break;
         }
     }
@@ -133,11 +134,6 @@ function get_anypost_shortcode_page() {
 
 
     ob_start();//start register html
-
-
-
-    var_dump( $orderby );
-    var_dump( $query_args );
 
     //Start Loop
     if ( $custom_posts->have_posts() ) :
