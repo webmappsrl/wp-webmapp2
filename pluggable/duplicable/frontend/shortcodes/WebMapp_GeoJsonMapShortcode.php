@@ -9,13 +9,13 @@ function WebMapp_GeoJsonMapShortcode( $atts ) {
             'post_id' => '',
             'zoom' => '16',
             'height' => '500',
-            'geojson_url' => ''
+            'geojson_url' => '',
+            'marker' => ''
         ),
         $atts
     );
 
     extract($atts );
-
     //search for multiple geojson urls
     $geojson_url_json = '';
     if ( strpos( $geojson_url , ',' ) )
@@ -34,6 +34,11 @@ function WebMapp_GeoJsonMapShortcode( $atts ) {
 
     $id = WebMapp_Utils::get_unique_id();
 
+    if ($atts['marker'] == 'custom'){
+
+	    wp_deregister_script( 'webmapp-leaflet-vector-markers' );
+	    wp_enqueue_script('custom-vector-markers');
+    }
     ob_start(); ?>
     <div id="<?php echo $id?>" class="webmapp-geojson-map" style="height:<?php echo $height ;?>px"></div>
     <script type="text/javascript">
@@ -60,3 +65,10 @@ function WebMapp_GeoJsonMapShortcode( $atts ) {
 }
 
 $WebMapp_GeoJsonMapShortcode = new WebMapp_RegisterShortcode( 'webmapp_geojson_map', 'WebMapp_GeoJsonMapShortcode' );
+
+// Register the Stylesheet so it's ready to go.
+function shortcode_enqueue_scripts() {
+	wp_register_script( 'custom-vector-markers', WebMapp_URL . 'third-part/leaflet/custom_leaflet-vector-markers.js', array('webmapp-leaflet-map') );
+}
+// Enqueue Stylesheet Action
+add_action( 'wp_enqueue_scripts', 'shortcode_enqueue_scripts' );
