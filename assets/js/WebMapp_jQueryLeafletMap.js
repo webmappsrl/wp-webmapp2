@@ -375,6 +375,7 @@
                                 position: 'bottomleft'
                             } ).addTo(map);
                             map.fitBounds( L.featureGroup( Object.values( overlayMaps ) ).getBounds() );
+                            if (settings.force_zoom == '1' ) map.setZoom( settings.zoom );
                         }
                     });
             }
