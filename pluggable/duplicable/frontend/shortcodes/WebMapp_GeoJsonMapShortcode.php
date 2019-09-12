@@ -55,7 +55,7 @@ function WebMapp_GeoJsonMapShortcode( $atts ) {
                     post_id : '<?php echo $post_id ?>',
                     post_type: '<?php echo get_post_type( $post_id ) ?>',
                     url_geojson_filters: '<?php echo $geojson_url_json ?>',//json string
-                    force_zoom: '<?php echo $force_url ?>'
+                    force_zoom: '<?php echo $force_zoom ?>'
                 }
             );
         });
