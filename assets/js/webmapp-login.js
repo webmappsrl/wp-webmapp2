@@ -5,7 +5,7 @@ jQuery(document).ready(function( $ ) {
 
     if(close == 'true'){
       $('#lostpasswordform').hide();
-      $('p.message').html('Controlla l\'email, ti abbiamo inviato il link da usare per resettare la password');
+      $('p.message').html(webmapp_login_text.check_email);
     }
   }
 
