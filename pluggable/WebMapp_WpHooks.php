@@ -22,7 +22,7 @@ add_filter( 'login_message', 'webmapp_login_message' );
 function webmapp_login_message( $message ) {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
     if( $action == 'lostpassword' ) {
-        $message = sprintf('<p class="message">%s</p>', __('Inserisci il tuo indirizzo email, poi controlla nella tua casella postale per il link che ti permette di resettare la password','webmapp'));
+        $message = sprintf('<p class="message">%s</p>', __('Enter your email address, then check in your mailbox for the link that allows you to reset the password','webmapp'));
         return $message;
     }
     return;
