@@ -11,7 +11,12 @@ function WebMapp_GeoJsonMapShortcode( $atts ) {
             'height' => '500',
             'geojson_url' => '',
             'marker' => '',
-            'force_zoom' => '0'
+            'force_zoom' => '0',
+            // map.setView(new L.LatLng(40.737, -73.923), 8);
+            // set std parameter zoom/lng/lat
+            // 14/45.8327/6.8651
+            // Example (Monte Bianco) force_view="14/6.8651/45.8327"
+            'force_view' => '0'
         ),
         $atts
     );
@@ -40,6 +45,18 @@ function WebMapp_GeoJsonMapShortcode( $atts ) {
 	    wp_deregister_script( 'webmapp-leaflet-vector-markers' );
 	    wp_enqueue_script('custom-vector-markers');
     }
+    if ($force_view==0) {
+        $force_view="force_view: '0'";
+    }
+    else {
+        $vals = explode('/',$force_view);
+        $zoom = $vals[0]; $lon = $vals[1]; $lat = $vals [2];
+        $force_view = "force_view: '1',
+                       force_view_zoom: '$zoom',
+                       force_view_lng: '$lon',
+                       force_view_lat: '$lat'"
+    }
+
     ob_start(); ?>
     <div id="<?php echo $id?>" class="webmapp-geojson-map" style="height:<?php echo $height ;?>px"></div>
     <script type="text/javascript">
@@ -55,7 +72,8 @@ function WebMapp_GeoJsonMapShortcode( $atts ) {
                     post_id : '<?php echo $post_id ?>',
                     post_type: '<?php echo get_post_type( $post_id ) ?>',
                     url_geojson_filters: '<?php echo $geojson_url_json ?>',//json string
-                    force_zoom: '<?php echo $force_zoom ?>'
+                    force_zoom: '<?php echo $force_zoom ?>',
+                    <?php echo $force_view ?>
                 }
             );
         });

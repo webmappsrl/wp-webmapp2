@@ -376,6 +376,9 @@
                             } ).addTo(map);
                             map.fitBounds( L.featureGroup( Object.values( overlayMaps ) ).getBounds() );
                             if (settings.force_zoom == '1' ) map.setZoom( settings.zoom );
+                            if (settings.force_view == '1' ) {
+                                map.setView(new L.LatLng(settings.force_view_lat, settings.force_view_lng), settings.force_view_zoom);
+                            }
                         }
                     });
             }
