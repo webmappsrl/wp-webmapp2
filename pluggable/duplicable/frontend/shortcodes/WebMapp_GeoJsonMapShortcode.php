@@ -54,7 +54,7 @@ function WebMapp_GeoJsonMapShortcode( $atts ) {
         $force_view = "force_view: '1',
                        force_view_zoom: '$zoom',
                        force_view_lng: '$lon',
-                       force_view_lat: '$lat'"
+                       force_view_lat: '$lat'";
     }
 
     ob_start(); ?>
