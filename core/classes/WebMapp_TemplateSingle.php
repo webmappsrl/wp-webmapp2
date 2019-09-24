@@ -316,7 +316,8 @@ class WebMapp_TemplateSingle
             'post_status' => '',
             'fields' => 'ids',
             'post__not_in' => array( $post_id ),
-            'posts_per_page' => 3
+            'posts_per_page' => 3,
+            'orderby' => 'rand'
        );
        
        switch ($post_type)
@@ -325,8 +326,14 @@ class WebMapp_TemplateSingle
                 $query_tax = 'webmapp_category';
                 break;
             case 'track':
-                $query_tax = 'webmapp_category';
-                break;
+                $tax_has_child = get_terms ('theme');
+                if (!empty($tax_has_child)){
+                    $query_tax = 'theme';
+                    break;
+                } else {
+                    $query_tax = 'activity';
+                    break;
+                }
             case 'route':
                 $query_tax = 'theme';
                 break;
