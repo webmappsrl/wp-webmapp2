@@ -19,6 +19,44 @@ $fields = array(
         'type' => 'text'
     ),
     array(
+        'key' => 'wm_route_is_group',
+        'label' => 'Group trip?',
+        'name' => 'is_group',
+        'type' => 'true_false',
+        'message' => 'Set this field to true if the trip is for groups.',
+        'default_value' => 0,
+    ),
+    array(
+        'key' => 'wm_route_only_double',
+        'label' => 'Only single and double room',
+        'name' => 'only_double',
+        'type' => 'true_false',
+        'message' => 'Set this field to true if rooms are single or double. No triple or quadruple room available.',
+        'default_value' => 0,
+    ),
+    array(
+        'key' => 'wm_route_boat_trip',
+        'label' => 'Boat trip',
+        'name' => 'boat_trip',
+        'type' => 'true_false',
+        'message' => 'Set this field to true if the trip is By Bike and Boat',
+        'default_value' => 0,
+    ),
+    array(
+        'key' => 'wm_route_from',
+        'label' => 'Departure from',
+        'name' => 'from',
+        'type' => 'text',
+        'placeholder' => 'Name of the city of departure'
+    ),
+    array(
+        'key' => 'wm_route_to',
+        'label' => 'Arrive to',
+        'name' => 'to',
+        'type' => 'text',
+        'placeholder' => 'Name of the city of arrival'
+    ),
+    array(
         'font_size' => 14,
         'slider_type' => 'number',
         'min' => 0,
@@ -201,32 +239,32 @@ $fields = array(
     /**
      * FORMULA
      */
-    array(
-        'key' => 'wm_route_formula',
-        'label' => 'Formula',
-        'type' => 'tab',
-        'required' => 0,
-        'placement' => 'top',
-        'endpoint' => 0,
-    ),
-    array(
-        'key' => "wm_fdn" ,
-        'name' => "wm_fdn" ,
-        'type' => "true_false" ,
-        'label' => "Fatto da noi"
-    ),//fatto da noi
-    array(
-        'key' => "wm_self_guided" ,
-        'name' => "wm_self_guided" ,
-        'type' => "true_false" ,
-        'label' => "Viaggio individuale"
-    ),//viaggio individuale
-    array(
-        'key' => "wm_guided" ,
-        'name' => "wm_guided" ,
-        'type' => "true_false" ,
-        'label' => "Viaggio con guida"
-    ),//viaggio con guida
+    // array(
+    //     'key' => 'wm_route_formula',
+    //     'label' => 'Formula',
+    //     'type' => 'tab',
+    //     'required' => 0,
+    //     'placement' => 'top',
+    //     'endpoint' => 0,
+    // ),
+    // array(
+    //     'key' => "wm_fdn" ,
+    //     'name' => "wm_fdn" ,
+    //     'type' => "true_false" ,
+    //     'label' => "Fatto da noi"
+    // ),//fatto da noi
+    // array(
+    //     'key' => "wm_self_guided" ,
+    //     'name' => "wm_self_guided" ,
+    //     'type' => "true_false" ,
+    //     'label' => "Viaggio individuale"
+    // ),//viaggio individuale
+    // array(
+    //     'key' => "wm_guided" ,
+    //     'name' => "wm_guided" ,
+    //     'type' => "true_false" ,
+    //     'label' => "Viaggio con guida"
+    // ),//viaggio con guida
     /**
     array(
         'key' => 'field_parse_gpx',
