@@ -1,9 +1,17 @@
 <?php
 
-$fields = array(
+$fields_all = array(
     /**
      * MAIN INFO
      */
+    array(
+        'key' => 'wm_route_is_group',
+        'label' => 'Group trip?',
+        'name' => 'is_group',
+        'type' => 'true_false',
+        'message' => 'Set this field to true if the trip is for groups.',
+        'default_value' => 0,
+    ),
     array(
         'key' => 'wm_route_main_info',
         'label' => 'Main Info',
@@ -236,6 +244,8 @@ $fields = array(
         'return_format' => 'object',
         'multiple' => 0,
     ),
+
+
     /**
      * FORMULA
      */
@@ -274,10 +284,45 @@ $fields = array(
     ),
     **/
 
+);
 
+$fields_promotion = array(
+    /**
+     * PROMOTION (only with e-commerce features)
+     */
+    array(
+        'key' => 'wm_route_promotion',
+        'label' => 'Promotion',
+    'message' => 'The promotion_ * fields contained in this TAB cannot be modified from this interface: they are managed automatically by the promotions interface',
+        'type' => 'tab',
+        'required' => 0,
+        'placement' => 'top',
+        'endpoint' => 0,
+    ),
+    array(
+        'key' => 'wm_route_promotion_name',
+        'label' => __("Name"),
+    'message' => 'Name of the activated promotion',
+        'name' => 'promotion_name',
+        'type' => 'text',
+    'readonly' => 1
+    ),
+    array(
+        'key' => 'wm_route_promotion_value',
+        'label' => __("Value"),
+    'message' => 'Discount value',
+        'name' => 'promotion_value',
+        'type' => 'text',
+    'readonly' => 1
+    ),
 );
 
 
+if(get_option('webmapp_has_ecommerce')) {
+    $fields = array_merge($fields_all,$fields_promotion);
+} else {
+    $fields = $fields_all;
+}
 
 $args = array(
     'key' => 'group_58528c8aa5b2ff',
