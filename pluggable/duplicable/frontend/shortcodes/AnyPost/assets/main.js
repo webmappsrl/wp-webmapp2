@@ -69,7 +69,7 @@ var force_aspect_ratio = ( $e ) =>
 
 //args to object todo
 var webmapp_posts_ajax_call =
-    ( id , paged = 1 , term_id, post_id, posts_per_page, rows, post_type, posts_count, main_tax, post_ids, template, orderby ) =>
+    ( id , paged = 1 , term_id, post_id, posts_per_page, rows, post_type, posts_count, main_tax, post_ids, template, orderby, activity_color ) =>
     {
 
         (function($){
@@ -117,7 +117,8 @@ var webmapp_posts_ajax_call =
                     main_tax : main_tax,
                     post_ids : post_ids,
                     template : template,
-                    orderby : orderby
+                    orderby : orderby,
+                    activity_color : activity_color
                 }
             )
                 .done( function( response )
@@ -180,7 +181,7 @@ var webmapp_posts_ajax_call =
                                     new_link.on('click', function(e)
                                         {
                                             e.preventDefault();
-                                            webmapp_posts_ajax_call( id , i , term_id, post_id, posts_per_page, rows, post_type, posts_count, main_tax , post_ids, template);
+                                            webmapp_posts_ajax_call( id , i , term_id, post_id, posts_per_page, rows, post_type, posts_count, main_tax , post_ids, template, orderby, activity_color);
                                             $current_section.find('.pagination_link_wrapper.active').removeClass('active');
                                             $(this).addClass('active');
                                         }

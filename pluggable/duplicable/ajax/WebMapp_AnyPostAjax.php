@@ -16,7 +16,9 @@ function get_anypost_shortcode_page() {
             'main_tax' => '',
             'post_ids' => '',
             'template' => 'default',
-            'orderby' => ''
+            'orderby' => '',
+            'activity_color' => ''
+
         ),
         $atts
     ));
@@ -160,12 +162,13 @@ function get_anypost_shortcode_page() {
                $wm_anypost_global_taxonomies,
                $wm_anypost_template,
                $wm_anypost_post_type;
+               $wm_anypost_activity_color;
 
         $wm_anypost_bootstrap_col_type = $bootstrap_col_type;
         $wm_anypost_global_taxonomies = $global_taxonomies;
         $wm_anypost_template = $template;
         $wm_anypost_post_type = $post_type;
-
+        $wm_anypost_activity_color = $activity_color;
 
 
         /**
