@@ -6,8 +6,6 @@
  */
 
 
-if(get_option('webmapp_has_ecommerce')):
-
 class WebMapp_UpdatePromotion
 {
 
@@ -104,5 +102,3 @@ function WebMappPromotionHook($post_id , $post , $update) {
     WebMapp_UpdatePromotion::run();
 }
 add_action('save_post_promotion','WebMappPromotionHook',999,3);
-
-endif;
