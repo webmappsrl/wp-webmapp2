@@ -89,8 +89,10 @@ class WebMapp_UpdatePromotion
                         $name=$specific[$route->ID]['name'];
                     }
                 }
-                update_post_meta($route->ID,'promotion_value',$val);
-                update_post_meta($route->ID,'promotion_name',$name);
+                // update_post_meta($route->ID,'promotion_value',$val);
+                // update_post_meta($route->ID,'promotion_name',$name);
+                update_field('promotion_value',$val,$route->ID);
+                update_field('promotion_name',$name,$route->ID);
                 if ($wm_cli) {WP_CLI::line("Route: $route->post_title (ID:$route->ID) - Val: $val Name:$name");}
             }
         }
