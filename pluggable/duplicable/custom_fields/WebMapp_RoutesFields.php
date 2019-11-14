@@ -5,14 +5,6 @@ $fields_all = array(
      * MAIN INFO
      */
     array(
-        'key' => 'wm_route_is_group',
-        'label' => 'Group trip?',
-        'name' => 'is_group',
-        'type' => 'true_false',
-        'message' => 'Set this field to true if the trip is for groups.',
-        'default_value' => 0,
-    ),
-    array(
         'key' => 'wm_route_main_info',
         'label' => 'Main Info',
         'type' => 'tab',
@@ -207,6 +199,13 @@ $fields_all = array(
         'required' => 0,
         'placement' => 'top',
         'endpoint' => 0,
+    ),
+    array(
+       'key' => 'wm_route_distance',
+        'label' => 'Distance',
+        'name' => 'distance',
+        'type' => 'number',
+        'placeholder' => 'Total distance of the route in km'
     ),
     array(
         'post_type' => array(
