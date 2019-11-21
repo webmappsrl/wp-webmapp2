@@ -125,6 +125,40 @@ $fields2 = array(
         ),
     ),
     array(
+        'post_type' => array(
+            0 => 'track',
+        ),
+        'taxonomy' => array(
+        ),
+        'filters' => array(
+            0 => 'search',
+            1 => 'taxonomy',
+        ),
+        'max' => '1',
+        'return_format' => 'id',
+        'key' => 'wm_track_prev_track',
+        'label' => 'Previous Track',
+        'name' => 'prev_track',
+        'type' => 'relationship'
+    ),    
+    array(
+        'post_type' => array(
+            0 => 'track',
+        ),
+        'taxonomy' => array(
+        ),
+        'filters' => array(
+            0 => 'search',
+            1 => 'taxonomy',
+        ),
+        'max' => '1',
+        'return_format' => 'id',
+        'key' => 'wm_track_next_track',
+        'label' => 'Next Track',
+        'name' => 'next_track',
+        'type' => 'relationship'
+    ),    
+    array(
         'sub_fields' => array(
             array(
                 'key' => 'field_585cdd464c509',

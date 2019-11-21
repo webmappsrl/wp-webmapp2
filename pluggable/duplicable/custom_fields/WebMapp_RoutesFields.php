@@ -1,6 +1,6 @@
 <?php
 
-$fields = array(
+$fields_all = array(
     /**
      * MAIN INFO
      */
@@ -17,6 +17,44 @@ $fields = array(
         'label' => __("Route code"),
         'name' => 'n7webmapp_route_cod',
         'type' => 'text'
+    ),
+    array(
+        'key' => 'wm_route_is_group',
+        'label' => 'Group trip?',
+        'name' => 'is_group',
+        'type' => 'true_false',
+        'message' => 'Set this field to true if the trip is for groups.',
+        'default_value' => 0,
+    ),
+    array(
+        'key' => 'wm_route_only_double',
+        'label' => 'Only single and double room',
+        'name' => 'only_double',
+        'type' => 'true_false',
+        'message' => 'Set this field to true if rooms are single or double. No triple or quadruple room available.',
+        'default_value' => 0,
+    ),
+    array(
+        'key' => 'wm_route_boat_trip',
+        'label' => 'Boat trip',
+        'name' => 'boat_trip',
+        'type' => 'true_false',
+        'message' => 'Set this field to true if the trip is By Bike and Boat',
+        'default_value' => 0,
+    ),
+    array(
+        'key' => 'wm_route_from',
+        'label' => 'Departure from',
+        'name' => 'from',
+        'type' => 'text',
+        'placeholder' => 'Name of the city of departure'
+    ),
+    array(
+        'key' => 'wm_route_to',
+        'label' => 'Arrive to',
+        'name' => 'to',
+        'type' => 'text',
+        'placeholder' => 'Name of the city of arrival'
     ),
     array(
         'font_size' => 14,
@@ -163,6 +201,13 @@ $fields = array(
         'endpoint' => 0,
     ),
     array(
+       'key' => 'wm_route_distance',
+        'label' => 'Distance',
+        'name' => 'distance',
+        'type' => 'number',
+        'placeholder' => 'Total distance of the route in km'
+    ),
+    array(
         'post_type' => array(
             0 => 'track'
         ),
@@ -198,35 +243,37 @@ $fields = array(
         'return_format' => 'object',
         'multiple' => 0,
     ),
+
+
     /**
      * FORMULA
      */
-    array(
-        'key' => 'wm_route_formula',
-        'label' => 'Formula',
-        'type' => 'tab',
-        'required' => 0,
-        'placement' => 'top',
-        'endpoint' => 0,
-    ),
-    array(
-        'key' => "wm_fdn" ,
-        'name' => "wm_fdn" ,
-        'type' => "true_false" ,
-        'label' => "Fatto da noi"
-    ),//fatto da noi
-    array(
-        'key' => "wm_self_guided" ,
-        'name' => "wm_self_guided" ,
-        'type' => "true_false" ,
-        'label' => "Viaggio individuale"
-    ),//viaggio individuale
-    array(
-        'key' => "wm_guided" ,
-        'name' => "wm_guided" ,
-        'type' => "true_false" ,
-        'label' => "Viaggio con guida"
-    ),//viaggio con guida
+    // array(
+    //     'key' => 'wm_route_formula',
+    //     'label' => 'Formula',
+    //     'type' => 'tab',
+    //     'required' => 0,
+    //     'placement' => 'top',
+    //     'endpoint' => 0,
+    // ),
+    // array(
+    //     'key' => "wm_fdn" ,
+    //     'name' => "wm_fdn" ,
+    //     'type' => "true_false" ,
+    //     'label' => "Fatto da noi"
+    // ),//fatto da noi
+    // array(
+    //     'key' => "wm_self_guided" ,
+    //     'name' => "wm_self_guided" ,
+    //     'type' => "true_false" ,
+    //     'label' => "Viaggio individuale"
+    // ),//viaggio individuale
+    // array(
+    //     'key' => "wm_guided" ,
+    //     'name' => "wm_guided" ,
+    //     'type' => "true_false" ,
+    //     'label' => "Viaggio con guida"
+    // ),//viaggio con guida
     /**
     array(
         'key' => 'field_parse_gpx',
@@ -236,10 +283,45 @@ $fields = array(
     ),
     **/
 
+);
 
+$fields_promotion = array(
+    /**
+     * PROMOTION (only with e-commerce features)
+     */
+    array(
+        'key' => 'wm_route_promotion',
+        'label' => 'Promotion',
+    'message' => 'The promotion_ * fields contained in this TAB cannot be modified from this interface: they are managed automatically by the promotions interface',
+        'type' => 'tab',
+        'required' => 0,
+        'placement' => 'top',
+        'endpoint' => 0,
+    ),
+    array(
+        'key' => 'wm_route_promotion_name',
+        'label' => __("Name"),
+    'message' => 'Name of the activated promotion',
+        'name' => 'promotion_name',
+        'type' => 'text',
+    'readonly' => 1
+    ),
+    array(
+        'key' => 'wm_route_promotion_value',
+        'label' => __("Value"),
+    'message' => 'Discount value',
+        'name' => 'promotion_value',
+        'type' => 'text',
+    'readonly' => 1
+    ),
 );
 
 
+if(get_option('webmapp_has_ecommerce')) {
+    $fields = array_merge($fields_all,$fields_promotion);
+} else {
+    $fields = $fields_all;
+}
 
 $args = array(
     'key' => 'group_58528c8aa5b2ff',

@@ -178,6 +178,12 @@ $generalOptionsPage = array(
         'type' => 'checkbox',
         'tab' => 'custom_types'
     ),
+    'webmapp_has_ecommerce' => array(
+        'label' => _x( "Activate E-commerce Features" , WebMapp_TEXTDOMAIN ),
+        'info' => _x( 'Webmapp Editorial Platform uses E-commerce features (woo-commerce needed)' , WebMapp_TEXTDOMAIN),
+        'type' => 'checkbox',
+        'tab' => 'custom_types'
+    ),
 
 
 );

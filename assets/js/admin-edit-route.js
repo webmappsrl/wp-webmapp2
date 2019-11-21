@@ -1,5 +1,6 @@
 (function($)
 {
+    /**
     var $tracks = $('div[data-name="n7webmap_route_related_track"]');
     var $activity_wrapper = $('.acf-field-wm-route-tax-activity');
     var $activity = $('#acf-wm_route_tax_activity');
@@ -25,6 +26,7 @@
     $tracks.change(function(){
         wm_get_values( $(this) );
     });
+     **/
 
 
 })(jQuery);
