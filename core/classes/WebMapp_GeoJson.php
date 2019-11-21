@@ -28,8 +28,8 @@ class WebMapp_GeoJson
     public function build_geoJson_server_url()
     {
         $t = [];
-        $t["geojson_{$this->id}"] = "https://api.webmapp.it/a/$this->current_domain/geojson/$this->id.geojson";
-
+        $url =  get_option('webmapp_map_apiUrl')."/geojson/$this->id.geojson";
+        $t["geojson_{$this->id}"] = $url;
         //todo add filter here
         return $t;
     }

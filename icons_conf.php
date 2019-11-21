@@ -13,5 +13,7 @@ $WebMapp_IconsConf = apply_filters( 'webmapp_icons_conf_array' , array(
     ),
     'duration' => 'wm-icon-android-clock',
     'rating' => 'wm-icon-android-star',
-    'opening_hours' => 'wm-icon-android-data'
+    'opening_hours' => 'wm-icon-android-data',
+    'ele:max' => 'wm-icon-ios7-cloud-upload',
+    'ele:min' => 'wm-icon-ios7-cloud-download'
  ));

@@ -29,10 +29,16 @@ class WebMapp_TemplateSingle
         $fields_key = array(
             'difficulty' => $difficulty_key,//CAI SCALE or n7webmapp_route_difficulty
             'rating' => 'wm_poi_stars',//rating
+            'distance' => 'distance',//distance
             'ascent' => 'ascent',//ascent
             'descent' => 'descent',//discent
-            'distance' => 'distance',//distance
-            'duration' => 'duration:forward'//duration:forward
+            'ele:max' => 'ele:max',
+            'ele:min' => 'ele:min',
+            'duration' => 'duration:forward',//duration:forward
+            'from' => 'from',
+            'ele:from' => 'ele:from',
+            'to' => 'to',
+            'ele:to' => 'ele:to',
         );
         $fields = $this->getFields( $fields_key );
         if ( $fields )
@@ -47,22 +53,26 @@ class WebMapp_TemplateSingle
         global $WebMapp_IconsConf;
         $shortInfo = $this->getShortInfo();
 
-        $html = '<p class="webmapp-theshortinfo">';
+        $shortinfo_allowed = array('difficulty','rating','distance','ascent','descent','ele:max','ele:min');
+        $places_allowed = array('from','to');
+        $short_info_array = array_intersect_key($shortInfo, array_flip($shortinfo_allowed));
+        $places_array = array_intersect_key($shortInfo, array_flip($places_allowed));
 
-
-        if ( $shortInfo )
+        
+        if ( $short_info_array )
         {
+            $html = '<p class="webmapp-theshortinfo">';
 
 
-            foreach ( $shortInfo as $key => $info )
+            foreach ( $short_info_array as $key => $info )
             {
 
 
-                $html_s = "<span class='webmapp-theshortinfo-detail webmapp-theshortinfo-detail-$key'>";
+                $html_s = '<span class="webmapp-theshortinfo-detail webmapp-theshortinfo-detail-'.str_replace(":","",$key).'">';
 
                 if ( $key == 'difficulty' )
                 {
-                    $html_s .= __( 'Difficulty' , WebMapp_TEXTDOMAIN ) . ': ';
+                    $html_s .= '<tag class="theshortinfo-label">'.__( 'Difficulty' , WebMapp_TEXTDOMAIN ) . ': </tag>';
                     if ( get_post_type() == 'route'
                         && isset( $WebMapp_IconsConf[ 'difficulty' ] )
                         && isset( $WebMapp_IconsConf[ 'difficulty' ]['full'] )
@@ -118,8 +128,45 @@ class WebMapp_TemplateSingle
                 $html .= $html_s;
 
             }
+            echo $html . '</p>';
         }
-        echo $html . '</p>';
+
+        if ( $places_array )
+        {
+            $html = '<p class="webmapp-theshortinfo-places">';
+
+
+            foreach ( $places_array as $key => $info )
+            {
+
+
+                $html_s = "<span class='webmapp-theshortinfo-detail webmapp-theshortinfo-detail-$key'>";
+
+            
+
+                if ( $key == 'from' )
+                {
+                    $html_s .= '<span class="shortinfo-placelabel">'.__( 'Departure' , WebMapp_TEXTDOMAIN ).': </span><span class="shortinfo-placeinfo">'.$info.' ('.$shortInfo['ele:from'].' m)</span>';
+
+                }
+                elseif ($key == 'to')
+                {
+                    $html_s .= '<span class="shortinfo-placelabel">'.__( 'Arrival' , WebMapp_TEXTDOMAIN ).': </span><span class="shortinfo-placeinfo">'.$info.' ('.$shortInfo['ele:to'].' m)</span>';
+                }
+
+
+
+                $html_s = apply_filters('WebMapp_TemplateSingle_theShortInfo', $html_s, $key , $info );
+
+                $html_s .= "</span>";
+
+
+
+                $html .= $html_s;
+
+            }
+            echo $html . '</p>';
+        }
     }
 
     function getInfo()
@@ -280,7 +327,16 @@ class WebMapp_TemplateSingle
                 && isset( $this->geoJson_properties[$field] )
                 && ! empty( $this->geoJson_properties[$field] )
             )
-                $t[$key] = $this->geoJson_properties[$field];//get field from geoJson
+            {
+                $t[$key] = $this->geoJson_properties[$field];//get field from geoJson                
+            }
+            else if ( ! empty( $this->geoJson_properties )
+                && isset( $this->geoJson_properties['computed'][$field] )
+                && ! empty( $this->geoJson_properties['computed'][$field] )
+            )
+            {
+                $t[$key] = $this->geoJson_properties['computed'][$field];//get field from geoJson                
+            }
             else
             {
                 $temp = get_field($field ,$post_id);//get field from wp database
