@@ -243,6 +243,60 @@ $fields_all = array(
         'return_format' => 'object',
         'multiple' => 0,
     ),
+    array(
+        'key' => 'wm_route_from_poi',
+        'label' => 'Start POI',
+        'name' => 'from_poi',
+        'type' => 'relationship',
+        'instructions' => '',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'wrapper' => array(
+            'width' => '',
+            'class' => '',
+            'id' => '',
+        ),
+        'post_type' => array(
+            0 => 'poi',
+        ),
+        'taxonomy' => '',
+        'filters' => array(
+            0 => 'search',
+            1 => 'post_type',
+            2 => 'taxonomy',
+        ),
+        'elements' => '',
+        'min' => '',
+        'max' => '',
+        'return_format' => 'id',
+    ),
+    array(
+        'key' => 'wm_route_to_poi',
+        'label' => 'End POI',
+        'name' => 'to_poi',
+        'type' => 'relationship',
+        'instructions' => '',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'wrapper' => array(
+            'width' => '',
+            'class' => '',
+            'id' => '',
+        ),
+        'post_type' => array(
+            0 => 'poi',
+        ),
+        'taxonomy' => '',
+        'filters' => array(
+            0 => 'search',
+            1 => 'post_type',
+            2 => 'taxonomy',
+        ),
+        'elements' => '',
+        'min' => '',
+        'max' => '',
+        'return_format' => 'id',
+    ),
 
 
     /**
