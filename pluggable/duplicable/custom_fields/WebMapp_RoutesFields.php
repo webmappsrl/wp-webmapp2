@@ -266,8 +266,8 @@ $fields_all = array(
             2 => 'taxonomy',
         ),
         'elements' => '',
-        'min' => '',
-        'max' => '',
+        'min' => 0,
+        'max' => 1,
         'return_format' => 'id',
     ),
     array(
@@ -293,8 +293,8 @@ $fields_all = array(
             2 => 'taxonomy',
         ),
         'elements' => '',
-        'min' => '',
-        'max' => '',
+        'min' => 0,
+        'max' => 1,
         'return_format' => 'id',
     ),
 
