@@ -189,6 +189,42 @@ $fields_all = array(
             ),
         ),
     ),
+    // PASSWORD PROTECTED
+    array(
+        'key' => 'wm_route_use_password',
+        'label' => 'Password protected route',
+        'name' => 'use_password',
+        'type' => 'true_false',
+        'message' => 'Set this field to true if you want to protect the route with a password.',
+        'default_value' => 0,
+        'conditional_logic' => array (
+            array (
+                array (
+                    'field' => 'wm_route_public',
+                    'operator' => '!=',
+                    'value' => '1',
+                ),
+            )
+        )
+    ),
+    array(
+        'key' => 'wm_route_route_password',
+        'label' => __("Password"),
+        'name' => 'route_password',
+        'type' => 'text',
+        'message' => 'Route Password.',
+        'default_value' => 0,
+        'conditional_logic' => array (
+            array (
+                array (
+                    'field' => 'wm_route_use_password',
+                    'operator' => '==',
+                    'value' => '1',
+                ),
+            )
+        )
+    ),
+
     /**
      * TRACKS & ACTIVITIES
      */
