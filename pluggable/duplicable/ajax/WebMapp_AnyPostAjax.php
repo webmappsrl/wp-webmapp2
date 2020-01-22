@@ -18,8 +18,8 @@ function get_anypost_shortcode_page() {
             'post_ids' => '',
             'template' => 'default',
             'orderby' => '',
-            'activity_color' => ''
-
+            'activity_color' => '',
+            'custom' => ''//use this for custom filter actions
         ),
         $atts
     ));
@@ -152,7 +152,7 @@ function get_anypost_shortcode_page() {
 
 
 
-    $query_args = apply_filters('WebMapp_ajax_anypost_query_arg',$query_args);
+    $query_args = apply_filters('WebMapp_ajax_anypost_query_arg',$query_args,$atts);
     //Query
     $custom_posts = new WP_Query( $query_args );
 

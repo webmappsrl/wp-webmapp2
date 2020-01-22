@@ -17,7 +17,8 @@ function WebMapp_AnyPostShortcode( $atts ) {
             'post_ids' => '',
             'template' => 'default',// available templates: 'default', 'compact',
             'orderby' => '',
-            'activity_color' => ''
+            'activity_color' => '',
+            'custom' => ''
         ),
         $atts
     ));
@@ -64,6 +65,7 @@ function WebMapp_AnyPostShortcode( $atts ) {
                 template: '<?php echo $template ?>',//shortcode template
                 orderby: '<?php echo $orderby ?>',//orderby wp query
                 activity_color: '<?php echo $activity_color ?>',//theme color of activity
+                custom: '<?php echo $custom ?>',//custom attribute
             }   
         );
     </script>
