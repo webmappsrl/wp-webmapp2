@@ -8,6 +8,7 @@ function WebMapp_AnyPostShortcode( $atts ) {
         array(
             'post_type' => 'any',
             'term_id' => '',
+            'term_ids' => '',
             'rows' => '2',
             'posts_per_page' => get_option( 'posts_per_page' ),
             'post_id' => '',
@@ -48,19 +49,22 @@ function WebMapp_AnyPostShortcode( $atts ) {
     </section>
     <script>
         webmapp_posts_ajax_call(
-            '<?php echo $id?>',//unique id for section
-            '1',//paged
-            '<?php echo $term_id ?>',//posts term id
-            '<?php echo $post_id ?>',//post id, to display an unique post
-            '<?php echo $posts_per_page ?>',//posts per page, please set it
-            '<?php echo $rows ?>',//rows per page, please set it
-            '<?php echo $post_type ?>',//posts post_type
-            '<?php echo $posts_count ?>',//number of posts to display
-            '<?php echo $main_tax ?>',//main taxonomy
-            '<?php echo $post_ids ?>',//post ids separate by commas
-            '<?php echo $template ?>',//shortcode template
-            '<?php echo $orderby ?>',//orderby wp query
-            '<?php echo $activity_color ?>',//theme color of activity
+            {
+                id: '<?php echo $id?>',//unique id for section
+                paged: '1',//paged
+                term_id: '<?php echo $term_id ?>',//posts term id
+                term_ids: '<?php echo $term_ids ?>',//posts term ids
+                post_id: '<?php echo $post_id ?>',//post id, to display an unique post
+                posts_per_page: '<?php echo $posts_per_page ?>',//posts per page, please set it
+                rows: '<?php echo $rows ?>',//rows per page, please set it
+                post_type: '<?php echo $post_type ?>',//posts post_type
+                posts_count:'<?php echo $posts_count ?>',//number of posts to display
+                main_tax: '<?php echo $main_tax ?>',//main taxonomy
+                post_ids: '<?php echo $post_ids ?>',//post ids separate by commas
+                template: '<?php echo $template ?>',//shortcode template
+                orderby: '<?php echo $orderby ?>',//orderby wp query
+                activity_color: '<?php echo $activity_color ?>',//theme color of activity
+            }   
         );
     </script>
 <?php

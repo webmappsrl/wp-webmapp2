@@ -68,10 +68,12 @@ var force_aspect_ratio = ( $e ) =>
 };
 
 //args to object todo
-var webmapp_posts_ajax_call =
-    ( id , paged = 1 , term_id, post_id, posts_per_page, rows, post_type, posts_count, main_tax, post_ids, template, orderby, activity_color ) =>
+var webmapp_posts_ajax_call = ( obj ) =>
     {
-
+        for (var key in obj) {
+            this[key] = obj[key];
+        }
+        
         (function($){
 
             let $current_section = $('#' + id );
@@ -107,18 +109,7 @@ var webmapp_posts_ajax_call =
                 {
                     action : 'get_anypost_shortcode_page',
                     //nonce : shortcode_conf.nonce,
-                    term_id : term_id,
-                    post_id : post_id,
-                    posts_per_page : posts_per_page,
-                    rows : rows,
-                    paged : paged,
-                    post_type : post_type,
-                    posts_count : posts_count,
-                    main_tax : main_tax,
-                    post_ids : post_ids,
-                    template : template,
-                    orderby : orderby,
-                    activity_color : activity_color
+                    ...obj
                 }
             )
                 .done( function( response )

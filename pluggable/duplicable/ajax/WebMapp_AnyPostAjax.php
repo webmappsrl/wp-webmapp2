@@ -177,6 +177,7 @@ function get_anypost_shortcode_page() {
 
     ob_start();//start register html
 
+
     //Start Loop
     if ( $custom_posts->have_posts() ) :
 
