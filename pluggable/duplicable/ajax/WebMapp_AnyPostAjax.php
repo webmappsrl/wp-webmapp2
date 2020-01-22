@@ -7,7 +7,8 @@ function get_anypost_shortcode_page() {
     extract( shortcode_atts(
         array(
             'post_type' => 'any',
-            'term_id' => '',
+            'term_ids' => '',//a string with a list of term id separated by comma
+            'term_id' => '',//backward compatibility, if set term_ids, this parameter will ignored
             'rows' => '2',
             'posts_per_page' => get_option( 'posts_per_page' ),
             'post_id' => '',
@@ -25,7 +26,39 @@ function get_anypost_shortcode_page() {
 
     $query_args = array();
 
-    $term = isset( $term_id ) && is_numeric($term_id ) ? get_term( $term_id ) : '';
+    
+    
+    $term = '';
+    $taxQuery = array();
+    if ( isset( $term_ids ) ){
+        $term_ids_arr = isset( $term_ids ) ? ( array ) explode(',',$term_ids) : array();
+        $termsCount = count($term_ids_arr);
+        if ( $termsCount == 1 )
+            $term_id = $term_ids_arr[0];
+        elseif( $termsCount > 0 )
+        {
+            foreach( $term_ids_arr as $tempId )
+            {
+                $tempTerm = get_term( $tempId );
+                $tempTax = isset( $tempTerm->taxonomy ) && taxonomy_exists( $tempTerm->taxonomy ) ? $tempTerm->taxonomy : false;
+                if ( $tempTax )
+                {
+                    $taxQuery[] = array(
+                        'taxonomy' => $tempTax,
+                        'terms' => array($tempId),
+                        'field' => 'term_id'
+                    );
+                }
+            }
+        }
+
+    }
+
+    if ( isset( $term_id ) && is_numeric( $term_id ) )
+    {
+        $term = get_term( $term_id );
+    }
+
     $taxonomy = isset( $term->taxonomy ) && taxonomy_exists( $term->taxonomy ) ? $term->taxonomy : '';
 
 
@@ -58,13 +91,11 @@ function get_anypost_shortcode_page() {
     elseif ( $post_type && ( post_type_exists( $post_type ) || $post_type = 'any' ) )
     {
         if ( $term_id && $taxonomy )//set tax query
-            $query_args ['tax_query'] = array(
-                array(
+            $taxQuery[] = array(
                     'taxonomy' => $taxonomy,
                     'terms' => array($term_id),
                     'field' => 'term_id'
-                )
-            );
+                );
         $query_args[ 'posts_per_page' ] = $posts_per_page;
 
     }//end elseif //endif
@@ -74,6 +105,14 @@ function get_anypost_shortcode_page() {
     $query_args[ 'paged' ] = $paged;
     $query_args[ 'post_status' ] = 'publish';
     $query_args['post_type'] = $post_type;
+
+    $taxQueryCount = count( $taxQuery );
+    if ( $taxQueryCount > 0 )
+    {
+        $taxQueryCount['relation'] = 'AND';
+        $query_args ['tax_query'] = $taxQuery;
+    }
+        
 
 
     //orderby
@@ -113,6 +152,7 @@ function get_anypost_shortcode_page() {
 
 
 
+    $query_args = apply_filters('WebMapp_ajax_anypost_query_arg',$query_args);
     //Query
     $custom_posts = new WP_Query( $query_args );
 
