@@ -171,8 +171,10 @@ var webmapp_posts_ajax_call = ( obj ) =>
                                     $pagination_wrap.append( new_link );
                                     new_link.on('click', function(e)
                                         {
+                                            let temp = obj;
+                                            temp.paged = i;
                                             e.preventDefault();
-                                            webmapp_posts_ajax_call( id , i , term_id, post_id, posts_per_page, rows, post_type, posts_count, main_tax , post_ids, template, orderby, activity_color);
+                                            webmapp_posts_ajax_call( temp );
                                             $current_section.find('.pagination_link_wrapper.active').removeClass('active');
                                             $(this).addClass('active');
                                         }
