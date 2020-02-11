@@ -79,7 +79,7 @@ function WebMapp_V3FirstWizardCallback(WP_REST_Request $request)
                 'id' => $check,
                 'author' => get_current_user_id(),
                 'postArr' => $handler->get_postArr(),
-                'mapping' => $handler->get_fieldsMapping()
+                'mapping' => $handler->get_dataModelMapping()
                 ]
             ]
         , 200);
