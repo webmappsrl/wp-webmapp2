@@ -16,6 +16,8 @@ class WebMapp_FeaturePropertiesHandler {
 
     protected $alreadyProcessedFields = [];
 
+    protected $datamodelMapping;
+
     //mapping: geojson field => wp field
     protected $wpFieldsMapping = array(
         // 'post_content'
@@ -98,10 +100,16 @@ class WebMapp_FeaturePropertiesHandler {
         return $t;
     }
 
+    public function get_fieldsMapping(){
+        return $this->dataModelMapping;
+    }
+
     protected function set_acfMeta() {
 
         //correct data model key => current data model key
         $dataModelMapping = $this->getFieldsMapping();
+
+        $this->datamodelMapping = $dataModelMapping;
 
         foreach ( $this->body as $prop_name => $value )
         {
