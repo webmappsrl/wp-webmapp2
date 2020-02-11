@@ -1,0 +1,518 @@
+[
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_poi_ele"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "ele"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_poi_geom"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "geom"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_poi_is_area"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "is_area"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_poi_geom_area"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "geom_area"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "field_58db8898b885d",
+            "3": "wm_poi_addr:street"
+        },
+        "name": {
+            "1": "",
+            "2": "addr:street",
+            "3": "addr:street"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "field_58db8898b885e",
+            "3": "wm_poi_addr:housenumber"
+        },
+        "name": {
+            "1": "",
+            "2": "addr:housenumber",
+            "3": "addr:housenumber"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "field_58db8898b885g",
+            "3": "wm_poi_addr:city"
+        },
+        "name": {
+            "1": "",
+            "2": "addr:city",
+            "3": "addr:city"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "field_58db8898b885f",
+            "3": "wm_poi_addr:postcode"
+        },
+        "name": {
+            "1": "",
+            "2": "addr:postcode",
+            "3": "addr:postcode"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_poi_addr:province"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "addr:province"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_poi_addr:locality"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "addr:locality"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "field_58db8898b886g",
+            "3": "wm_poi_capacity"
+        },
+        "name": {
+            "1": "",
+            "2": "capacity",
+            "3": "capacity"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "field_58db8898b886f",
+            "3": "wm_poi_opening_hours"
+        },
+        "name": {
+            "1": "",
+            "2": "opening_hours",
+            "3": "opening_hours"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_poi_star"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "star"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "field_58db8898b886d",
+            "3": "wm_poi_contact:phone"
+        },
+        "name": {
+            "1": "",
+            "2": "contact:phone",
+            "3": "contact:phone"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_poi_contact:other_phones"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "contact:other_phones"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "field_58db8898b886e",
+            "3": "wm_poi_contact:email"
+        },
+        "name": {
+            "1": "",
+            "2": "contact:email",
+            "3": "contact:email"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_poi_contact:other_emails"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "contact:other_emails"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_poi_website"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "website"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_poi_computed"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "computed"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_poi_color",
+            "3": "wm_poi_color"
+        },
+        "name": {
+            "1": "",
+            "2": "color",
+            "3": "color"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_poi_icon",
+            "3": "wm_poi_icon"
+        },
+        "name": {
+            "1": "",
+            "2": "icon",
+            "3": "icon"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_poi_noInteraction"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "noInteraction"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_poi_noDetails",
+            "3": "wm_poi_noDetails"
+        },
+        "name": {
+            "1": "",
+            "2": "noDetails",
+            "3": "noDetails"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_poi_lineDash"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "lineDash"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_html_description"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "html_description"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_poi_gallery",
+            "3": "wm_poi_gallery"
+        },
+        "name": {
+            "1": "",
+            "2": "n7webmap_media_gallery",
+            "3": "gallery"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_poi_audio",
+            "3": "wm_poi_audio"
+        },
+        "name": {
+            "1": "",
+            "2": "audio",
+            "3": "audio"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "field_585cdc9229191",
+            "3": "wm_poi_related_url"
+        },
+        "name": {
+            "1": "",
+            "2": "n7webmap_rpt_related_url",
+            "3": "related_url"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_poi_rb_description"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "rb_description"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_poi_rb_useonly"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "rb_useonly"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_access_mobility_check",
+            "3": "wm_poi_check_mobility"
+        },
+        "name": {
+            "1": "",
+            "2": "access_mobility_check",
+            "3": "check_mobility"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_access_mobility_description",
+            "3": "wm_poi_description_mobility"
+        },
+        "name": {
+            "1": "",
+            "2": "access_mobility_description",
+            "3": "description_mobility"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_access_hearing_check",
+            "3": "wm_poi_check_hearing"
+        },
+        "name": {
+            "1": "",
+            "2": "access_hearing_check",
+            "3": "check_hearing"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_access_hearing_description",
+            "3": "wm_poi_description_hearing"
+        },
+        "name": {
+            "1": "",
+            "2": "access_hearing_description",
+            "3": "description_hearing"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_access_vision_check",
+            "3": "wm_poi_check_vision"
+        },
+        "name": {
+            "1": "",
+            "2": "access_vision_check",
+            "3": "check_vision"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_access_vision_description",
+            "3": "wm_poi_description_vision"
+        },
+        "name": {
+            "1": "",
+            "2": "access_vision_description",
+            "3": "description_vision"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_access_cognitive_check",
+            "3": "wm_poi_check_cognitive"
+        },
+        "name": {
+            "1": "",
+            "2": "access_cognitive_check",
+            "3": "check_cognitive"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_access_cognitive_description",
+            "3": "wm_poi_description_cognitive"
+        },
+        "name": {
+            "1": "",
+            "2": "access_cognitive_description",
+            "3": "description_cognitive"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_access_food_check",
+            "3": "wm_poi_check_food"
+        },
+        "name": {
+            "1": "",
+            "2": "access_food_check",
+            "3": "check_food"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_access_food_description",
+            "3": "wm_poi_description_food"
+        },
+        "name": {
+            "1": "",
+            "2": "access_food_description",
+            "3": "description_food"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_poi_content_from",
+            "3": "wm_poi_content_from"
+        },
+        "name": {
+            "1": "",
+            "2": "content_from",
+            "3": "content_from"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_poi_osmid"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "osmid"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_poi_operator"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "operator"
+        }
+    }
+]

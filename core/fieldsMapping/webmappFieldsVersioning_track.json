@@ -1,0 +1,614 @@
+[
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_geom"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "geom"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_related_poi"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "related_poi"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_from"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "from"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_to"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "to"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_from_poi"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "from_poi"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_to_poi"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "to_poi"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_next_track"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "next_track"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_prev_track"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "prev_track"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_cai_scale"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "cai_scale"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_mtb_scale"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "mtb_scale"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_scale"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "scale"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_ref"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "ref"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_distance"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "distance"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_duration:forward"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "duration:forward"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_duration:backward"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "duration:backward"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_ascent"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "ascent"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_descent"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "descent"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_ele:from"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "ele:from"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_ele:to"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "ele:to"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_ele:max"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "ele:max"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_ele:min"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "ele:min"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_rb_type"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "rb_type"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_computed"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "computed"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_bbox"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "bbox"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_bbox_metric"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "bbox_metric"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_gpx"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "gpx"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_kml"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "kml"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_color"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "color"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_icon"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "icon"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_noInteraction"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "noInteraction"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_noDetails"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "noDetails"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_lineDash"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "lineDash"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_html_description"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "html_description"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_gallery"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "gallery"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_audio"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "audio"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_related_url"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "related_url"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_rb_description"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "rb_description"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_rb_useonly"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "rb_useonly"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_check_mobility"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "check_mobility"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_description_mobility"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "description_mobility"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_check_hearing"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "check_hearing"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_description_hearing"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "description_hearing"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_check_vision"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "check_vision"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_description_vision"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "description_vision"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_check_cognitive"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "check_cognitive"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_description_cognitive"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "description_cognitive"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_check_food"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "check_food"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_description_food"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "description_food"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_content_from"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "content_from"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_osmid"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "osmid"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_track_operator"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "operator"
+        }
+    }
+]

@@ -44,6 +44,8 @@ define ( 'WebMapp_PLUGIN_MAIN_FILE' , 'wp-webmapp2/webmapp2.php' );
 define ( 'WebMapp_ShortcodeTemplates_AnyPost_DIR' , WebMapp_DIR . '/pluggable/duplicable/frontend/shortcodes/AnyPost/templates/' );
 
 
+//save version of datamodel
+define ( 'WM_DATAMODEL_VERSION' , '2' );
 
 
 /**

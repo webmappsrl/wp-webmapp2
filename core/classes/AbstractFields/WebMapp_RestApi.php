@@ -106,6 +106,11 @@ class WebMapp_RestApi extends WebMapp_AbstractFields
                 $taxonomy = $poi_array['taxonomy'];
             }
 
+            if ( ! isset($poi_array['id']) )
+            {
+                return '';
+            }
+            
             $poi_obj = get_post($poi_array['id']);
 
             if ( $field_name == "n7webmap_route_media_gallery" ) {

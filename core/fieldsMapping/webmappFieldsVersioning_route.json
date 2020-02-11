@@ -1,0 +1,291 @@
+[
+    {
+        "key": {
+            "1": "",
+            "2": "field_5859342579a1ee",
+            "3": "wm_route_related_track"
+        },
+        "name": {
+            "1": "",
+            "2": "n7webmap_route_related_track",
+            "3": "related_track"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_route_from_to_inherited"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "from_to_inherited"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_route_from",
+            "3": "wm_route_from"
+        },
+        "name": {
+            "1": "",
+            "2": "from",
+            "3": "from"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_route_from_poi",
+            "3": "wm_route_from_poi"
+        },
+        "name": {
+            "1": "",
+            "2": "from_poi",
+            "3": "from_poi"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_route_to",
+            "3": "wm_route_to"
+        },
+        "name": {
+            "1": "",
+            "2": "to",
+            "3": "to"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_route_to_poi",
+            "3": "wm_route_to_poi"
+        },
+        "name": {
+            "1": "",
+            "2": "to_poi",
+            "3": "to_poi"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_route_distance",
+            "3": "wm_route_distance"
+        },
+        "name": {
+            "1": "",
+            "2": "distance",
+            "3": "distance"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "vn_durata",
+            "3": "wm_route_stages"
+        },
+        "name": {
+            "1": "",
+            "2": "vn_durata",
+            "3": "stages"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "field_58c0211c3afdd",
+            "3": "wm_route_difficulty"
+        },
+        "name": {
+            "1": "",
+            "2": "n7webmapp_route_difficulty",
+            "3": "difficulty"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "field_route_cod",
+            "3": "wm_route_code"
+        },
+        "name": {
+            "1": "",
+            "2": "n7webmapp_route_cod",
+            "3": "code"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_route_public",
+            "3": "wm_route_isPublic"
+        },
+        "name": {
+            "1": "",
+            "2": "wm_route_public",
+            "3": "isPublic"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "n7webmap_route_users",
+            "3": "wm_route_users"
+        },
+        "name": {
+            "1": "",
+            "2": "n7webmap_route_users",
+            "3": "users"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_route_use_password",
+            "3": "wm_route_use_password"
+        },
+        "name": {
+            "1": "",
+            "2": "use_password",
+            "3": "use_password"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_route_route_password",
+            "3": "wm_route_route_password"
+        },
+        "name": {
+            "1": "",
+            "2": "route_password",
+            "3": "route_password"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_route_bbox"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "bbox"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_route_bbox_metric"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "bbox_metric"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_route_computed"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "computed"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_route_color"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "color"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_route_icon"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "icon"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_route_noInteraction"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "noInteraction"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_route_noDetails"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "noDetails"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "",
+            "3": "wm_route_lineDash"
+        },
+        "name": {
+            "1": "",
+            "2": "",
+            "3": "lineDash"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_html_description",
+            "3": "wm_html_description"
+        },
+        "name": {
+            "1": "",
+            "2": "html_description",
+            "3": "html_description"
+        }
+    },
+     //CYCLANDO FIELDS
+    {
+        "key": {
+            "1": "",
+            "2": "field_5d9c6c2d62c0c",
+            "3": "wm_route_tour_operator"
+        },
+        "name": {
+            "1": "",
+            "2": "tour_operator",
+            "3": "tour_operator"
+        }
+    }
+]

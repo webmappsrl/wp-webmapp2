@@ -49,6 +49,7 @@ WebMapp_Utils::load_dir('core/classes/AbstractFields');
 WebMapp_Utils::load_dir('core/classes/AdminColumns');
 WebMapp_Utils::load_dir('core/classes/AdminOptionsPage');
 WebMapp_Utils::load_dir('core/classes/ThemeCustomizer');
+WebMapp_Utils::load_dir('core/classes/Wizards');
 
 
 /**
@@ -100,6 +101,7 @@ WebMapp_Utils::load_dir('pluggable/duplicable/custom_fields');
  * init hooks
  */
 WebMapp_Utils::load_dir('pluggable/duplicable/rest_routes');
+WebMapp_Utils::load_dir('pluggable/duplicable/rest_routes/wizards');
 
 /**
  * Register css/js resources
@@ -115,6 +117,7 @@ WebMapp_Utils::load_dir('pluggable/duplicable/assets_enqueuer/wp');
  * ac/ready hooks -> admin-columns-pro plugin hook
  */
 WebMapp_Utils::load_dir('pluggable/duplicable/admin/columns');
+
 
 
 

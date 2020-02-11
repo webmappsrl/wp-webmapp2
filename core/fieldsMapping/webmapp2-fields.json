@@ -1,0 +1,130 @@
+{
+    "wm_comment_gallery": "wm_comment_gallery",//custom field of comments
+    "wm_comment_journey_date": "wm_comment_journey_date",//custom field of comments
+    "field_58b43d34d1201": "n7webmap_map_users",//custom field of map post type
+    "field_map_bbox": "n7webmap_map_bbox",//custom field of map post type
+    "wm_map_config_url": "config_url",//custom field of map post type
+    "field_map_type": "n7webmap_type",//custom field of map post type
+    "field_single_map_route": "net7webmap_map_route",//custom field of map post type
+    "wm_map_layer_poi": "layer_poi",//custom field of map post type
+    "wm_map_tiles": "tiles",//custom field of map post type
+    "wm_map_style": "style",//custom field of map post type
+    "wm_map_pages_title": "pages_title",//custom field of map post type
+    "wm_map_pages": "pages",//custom field of map post type
+    "wp_map_pages_no_first_level": "pages_no_first_level",//custom field of map post type
+    "wp_map_has_offline": "has_offline",//custom field of map post type
+    "wp_map_offline_label": "offline_menu_label",//custom field of map post type
+    "wp_map_app_id": "app_id",//custom field of map post type
+    "wp_map_app_description": "app_description",//custom field of map post type
+    "wp_map_app_icon": "app_icon",//custom field of map post type
+    "wp_map_app_splash": "app_splash",//custom field of map post type
+    "wp_map_default_language": "default_language",//custom field of map post type
+    "wp_map_has_languages": "has_languages",//custom field of map post type
+    "wp_map_languages_label": "languages_menu_label",//custom field of map post type
+    "wp_map_languages_list": "languages_list",//custom field of map post type
+    "wp_map_report_email": "report_email",//custom field of map post type
+    "wp_map_report_sms": "report_sms",//custom field of map post type
+    "wp_map_activate_zoom_control": "activate_zoom_control",//custom field of map post type
+    "wp_map_hide_webmapp_page": "hide_webmapp_page",//custom field of map post type
+    "wp_map_hide_attribution_page": "hide_attribution_page",//custom field of map post type
+    "wp_map_show_accessibility_buttons": "show_accessibility_buttons",//custom field of map post type
+    "wm_map_additional_overlay_layers": "additional_overlay_layers",//custom field of map post type
+    "wm_page_menu_color": "menu_color",//custom field of page post type
+    "wm_page_menu_icon": "menu_icon",//custom field of page post type
+    "wm_poi_tab_coordinate": "",//wm3 TAB
+    "field_58528c8fff96b": "n7webmap_coord",//wm3 missing fields
+    "wm_poi_tab_gallery": "",//wm3 TAB
+    "wm_poi_gallery": "n7webmap_media_gallery",
+    "wm_poi_tab_address": "",//wm3 TAB
+    "field_58db8898b885d": "addr:street",
+    "field_58db8898b885e": "addr:housenumber",
+    "field_58db8898b885f": "addr:postcode",
+    "field_58db8898b885g": "addr:city",
+    "wm_poi_tab_contact": "",//wm3 TAB
+    "field_58db8898b886d": "contact:phone",
+    "field_58db8898b886e": "contact:email",
+    "field_58db8898b886f": "opening_hours",
+    "field_58db8898b886g": "capacity",
+    "wm_poi_stars": "stars",//wm3 missing fields
+    "wm_poi_tab_link": "",//wm3 TAB
+    "field_585cdc9229191": "n7webmap_rpt_related_url",
+    "wm_poi_audio": "audio",
+    "wm_poi_tab_info": "",//wm3 TAB
+    "wm_poi_color": "color",
+    "wm_poi_icon": "icon",
+    "wm_poi_code": "code",//wm3 missing fields
+    "wm_poi_noDetails": "noDetails",
+    "wm_poi_noInteractions": "noInteraction",//wm3 missing fields
+    "wm_poi_tab_accessibility": "",//wm3 TAB
+    "wm_access_mobility_check": "access_mobility_check",
+    "wm_access_mobility_description": "access_mobility_description",
+    "wm_access_hearing_check": "access_hearing_check",
+    "wm_access_hearing_description": "access_hearing_description",
+    "wm_access_vision_check": "access_vision_check",
+    "wm_access_vision_description": "access_vision_description",
+    "wm_access_cognitive_check": "access_cognitive_check",
+    "wm_access_cognitive_description": "access_cognitive_description",
+    "wm_access_food_check": "access_food_check",
+    "wm_access_food_description": "access_food_description",
+    "wm_poi_tab_advanced": "",//wm3 TAB
+    "wm_poi_content_from": "content_from",
+    "wm_route_main_info": "",//wm3 missing fields
+    "field_route_cod": "n7webmapp_route_cod",
+    "wm_route_is_group": "is_group",//wm3 missing fields
+    "wm_route_only_double": "only_double",//wm3 missing fields
+    "wm_route_boat_trip": "boat_trip",//wm3 missing fields
+    "wm_route_from": "from",
+    "wm_route_to": "to",
+    "field_58c0211c3afdd": "n7webmapp_route_difficulty",
+    "wm_route_audio": "audio",//wm3 doesnt have audio for routes (only for tracks and pois)
+    "wm_route_tab_gallery": "",//wm3 TAB
+    "wm_route_gallery": "n7webmap_route_media_gallery",//wm3 doesnt have gallery for routes (only for tracks and pois)
+    "wm_route_access": "",//wm3 missing fields
+    "wm_route_public": "wm_route_public",
+    "n7webmap_route_users": "n7webmap_route_users",
+    "wm_route_payment": "wm_route_payment",//wm3 missing fields
+    "wm_route_price": "wm_route_price",//wm3 missing fields
+    "wm_route_use_password": "use_password",
+    "wm_route_route_password": "route_password",
+    "wm_route_tracks_and_activities": "",//wm3 missing fields
+    "wm_route_distance": "distance",
+    "field_5859342579a1ee": "n7webmap_route_related_track",
+    "wm_route_tax_activity": "wm_route_tax_activity",//wm3 missing fields, OK IT IS RIGHT
+    "wm_route_from_poi": "from_poi",
+    "wm_route_to_poi": "to_poi",
+    "wm_html_description": "html_description",
+    "wm_taxonomy_color": "color",
+    "wm_taxonomy_icon": "icon",
+    "wp_taxonomy_show_by_default": "show_by_default",
+    "wp_taxonomy_alert": "alert",
+    "wp_taxonomy_exclude": "exclude",
+    "wm_taxonomy_title": "title",
+    "wm_taxonomy_featured_image": "featured_image",
+    "wm_taxonomy_featured_icon": "featured_icon",
+    "field_parse_gpx": "n7webmap_import_gpx",
+    "field_58c7ef836e6e2": "n7webmapp_track_color",
+    "wm_track_code": "code",
+    "wm_track_gallery": "n7webmap_track_media_gallery",
+    "field_585933bd79a1a": "n7webmap_start",
+    "field_585933d079a1b": "n7webmap_start_poi",
+    "field_585933f779a1c": "n7webmap_end",
+    "field_5859340879a1d": "n7webmap_end_poi",
+    "field_5859342579a1e": "n7webmap_related_poi",
+    "wm_track_prev_track": "prev_track",
+    "wm_track_next_track": "next_track",
+    "wm_track_audio": "audio",
+    "wm_track_ref": "ref",
+    "wm_track_ascent": "ascent",
+    "wm_track_descent": "descent",
+    "wm_track_distance": "distance",
+    "wm_track_duration:forward": "duration:forward",
+    "wm_track_duration_backword": "duration:backward",
+    "wm_track_cai_scale": "cai_scale",
+    "wm_track_osmid": "osmid",
+    "wm_track_rb_track_section": "rb_track_section",
+    "wm_user_newsletter": "newsletter",
+    "wm_user_country": "country",
+    "wm_voucher_route": "route",
+    "wm_voucher_total_number": "total_number",
+    "wm_voucher_expire_date": "expire_date"
+}
