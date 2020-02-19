@@ -59,7 +59,7 @@ function WebMapp_V3FirstWizardCallback(WP_REST_Request $request)
     if ( $update_id )
         $handler->set_postId( $update_id );
 
-    $check = wp_insert_post( $handler->get_postArr() );
+    $check = $handler->createPost();
 
 
     if ( $check instanceof WP_Error )

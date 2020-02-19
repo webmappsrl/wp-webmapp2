@@ -6,7 +6,7 @@ class WebMapp_FeaturePropertiesHandler {
     
     public $post_type;
     protected $postArr = [
-        'tax_input' => [],
+        //'tax_input' => [],
         'meta_input' => []
     ];
     protected $translations = [];
@@ -17,6 +17,8 @@ class WebMapp_FeaturePropertiesHandler {
     protected $alreadyProcessedFields = [];
 
     protected $dataModelMapping;
+
+    protected $post_id;
 
 
     //mapping: geojson field => wp field
@@ -47,6 +49,7 @@ class WebMapp_FeaturePropertiesHandler {
         // (int) The post ID. If equal to something other than 0, the post with that ID will be updated. Default 0.
         if ( $id )
         {
+            $this->post_id = $id;
             $this->set_postArrData('ID', $id );
         }   
     }
@@ -68,7 +71,7 @@ class WebMapp_FeaturePropertiesHandler {
 
         // 'tax_input'
         // (array) Array of taxonomy terms keyed by their taxonomy name. Default empty.
-        $this->set_wpTaxs();
+        //$this->set_wpTaxs();
 
     }
 
@@ -129,15 +132,29 @@ class WebMapp_FeaturePropertiesHandler {
         
     }
 
-    protected function set_wpTaxs() {
+    protected function set_wpTaxs( $append = false ) {
 
         if ( ! isset( $this->body[ 'taxonomy' ] ) )
             return;
         
         foreach ( $this->body[ 'taxonomy' ] as $taxonomy_name => $ids )
         {
+            wp_set_object_terms( $this->post_id , $ids, $taxonomy_name , $append );
             //todo check if taxonomy exists for this content type
-            $this->postArr['tax_input'][$taxonomy_name] = $ids;
+            //$this->postArr['tax_input'][$taxonomy_name] = $ids;
+        }
+    }
+
+
+    public function createPost() {
+        $post_id = wp_insert_post( $this->get_postArr() );
+        if ( is_numeric( $post_id ) )
+        {
+            $this->post_id = $post_id;
+            $this->set_wpTaxs();
+        }  
+        else {
+            //handle error
         }
     }
 
