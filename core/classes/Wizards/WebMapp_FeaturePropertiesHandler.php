@@ -154,8 +154,11 @@ class WebMapp_FeaturePropertiesHandler {
             $this->set_wpTaxs();
         }  
         else {
-            //handle error
+            return $post_id;
         }
+
+        return true;
+
     }
 
 
