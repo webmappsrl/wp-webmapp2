@@ -152,6 +152,10 @@ class WebMapp_FeaturePropertiesHandler {
         {
             $this->post_id = $post_id;
             $this->set_wpTaxs();
+            if ( isset( $this->body['image'] ) && is_int( $this->body['image'] ) )
+            {
+                set_post_thumbnail( $post_id, $this->body['image'] );
+            }    
         }  
         else {
             return $post_id;
