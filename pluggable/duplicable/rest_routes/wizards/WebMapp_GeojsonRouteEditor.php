@@ -3,7 +3,7 @@
 function WebMapp_V3FirstWizardCallback(WP_REST_Request $request)
 {
 
-    $noauth = true;//set to true to disable user check
+    $noauth = false;//set to true to disable user check
 
     $param = $request->get_params();
 
