@@ -1,0 +1,16 @@
+{
+    "wm_route_quote_tab_model": "wm_route_quote_tab_model",
+    "wm_route_not_salable": "not_salable",
+    "wm_route_in_promotion": "promotion",
+    "wm_route_quote_product": "product",
+    "wm_route_quote_tab_model_season": "wm_route_quote_tab_model_season",
+    "wm_route_quote_season_repeater": "model_season",
+    "wm_route_quote_tab_model_promotion": "wm_route_quote_tab_model_promotion",
+    "wm_route_quote_promotion_repeater": "model_promotion",
+    "wm_route_quote_dates": "",
+    "wm_route_quote_dates_periods_repeater": "departures_periods",
+    "wm_route_quote_dates_specific_tab": "",
+    "wm_route_quote_dates_specific_repeater": "departure_dates",
+    "wm_barche_riassunto": "riassunto",
+    "wm_barche_gallery": "gallery"
+}
