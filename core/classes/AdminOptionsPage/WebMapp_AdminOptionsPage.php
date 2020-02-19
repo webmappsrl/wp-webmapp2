@@ -78,7 +78,7 @@ class WebMapp_AdminOptionsPage
         $this->menu_title = $menu_title;
         $this->menu_slug = sanitize_title($menu_slug );
         $this->capability = $capability;
-        $this->tabs = $tabs;
+        $this->tabs = apply_filters('WebMapp_AdminOptionsPage_tabs',$tabs,$page_title,$menu_title);
         $this->icon_url = $icon_url;
 
         $temp = $settings;
@@ -99,7 +99,7 @@ class WebMapp_AdminOptionsPage
             }
 
         }
-        $this->settings = $temp;
+        $this->settings = apply_filters('WebMapp_AdminOptionsPage_settings',$temp,$page_title,$menu_title);
 
         
 
