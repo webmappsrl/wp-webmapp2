@@ -161,7 +161,7 @@ class WebMapp_FeaturePropertiesHandler {
             return $post_id;
         }
 
-        return true;
+        return $post_id;
 
     }
 
