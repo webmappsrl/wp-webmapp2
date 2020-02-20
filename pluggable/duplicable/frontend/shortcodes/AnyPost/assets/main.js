@@ -136,6 +136,9 @@ var webmapp_posts_ajax_call = (obj) => {
 
                     $loader_img.fadeOut();
                     $posts_wrapper.fadeIn();
+                    $('html, body').animate({
+                        scrollTop: $posts_wrapper.offset().top
+                      }, 1000)
                     
                 }//end done
                 )
