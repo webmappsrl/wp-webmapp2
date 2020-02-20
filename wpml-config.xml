@@ -16,6 +16,9 @@
       <custom-field action="copy">n7webmap_type</custom-field>
       <custom-field action="copy">net7webmap_map_route</custom-field>
       <custom-field action="copy">n7webmap_map_bbox</custom-field>
+      <custom-field action="copy">tour_operator</custom-field>
+      
+
        <!--   <custom-field action="copy">weight</custom-field>
         <custom-field action="translate">custom-description</custom-field>
         <custom-field action="ignore">date-added</custom-field>-->
