@@ -73,6 +73,7 @@ function WebMapp_AnyPostShortcode( $atts ) {
         </div>
 
     </section>
+    <?php $ajaxCallback['html'] = ''; ?> 
     <script>
         
         webmapp_posts_ajax_call(
