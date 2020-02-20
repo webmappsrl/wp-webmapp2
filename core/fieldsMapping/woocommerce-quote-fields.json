@@ -14,3 +14,18 @@
     "wm_barche_riassunto": "riassunto",
     "wm_barche_gallery": "gallery"
 }
+//sub fields
+{
+    "wm_route_quote_model_season_name": "season_name",
+    "wm_route_quote_model_season_dates_periods_repeater": "periods",
+    "wm_route_quote_model_season_product": "product",
+    "wm_route_quote_model_promotion_name": "promotion_name",
+    "wm_route_quote_model_promotion_discount": "promotion_value",
+    "wm_route_quote_model_promotion_dates_periods_repeater": "periods",
+    "wm_route_quote_model_promotion_dates_specific_repeater": "departure_dates",
+    "wm_route_quote_dates_period_name": "period_name",
+    "wm_route_quote_dates_period_start": "start",
+    "wm_route_quote_dates_period_stop": "stop",
+    "wm_route_quote_dates_period_week_days": "week_days",
+    "wm_route_quote_dates_specific": "date"
+}

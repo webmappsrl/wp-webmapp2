@@ -15,7 +15,14 @@ function WebMapp_getWizardConfiguration( $name = '' )
         'token' => WebMapp_getToken(),
         'user' => $userlogin,
         'api' => [
-            'save' => home_url('/wp-json/webmapp/v3/wizard/routeWizard/route')
+            'save' => rest_url('webmapp/v3/wizard/routeWizard/route'),
+            'activity' => rest_url('wp/v2/activity'),
+            'where' => rest_url('wp/v2/where'),
+            'who' => rest_url('wp/v2/who'),
+            'when' => rest_url('wp/v2/when'),
+            'theme' => rest_url('wp/v2/theme'),
+            'webmapp_category' => rest_url('wp/v2/webmapp_category'),
+            'tour_operator' => rest_url('wp/v2/tour_operator')
         ],
         'options' => [
             'tour_operator' => TRUE
@@ -65,6 +72,8 @@ function WebMapp_getToken() {
             ),
         );
         /** Let the user modify the token data before the sign. */
-        $token = \Firebase\JWT\JWT::encode(apply_filters('jwt_auth_token_before_sign', $token, $user), $secret_key);
-        return $token;
+        $token_r = false;
+        if ( class_exists('\Firebase\JWT\JWT') )
+            $token_r = \Firebase\JWT\JWT::encode(apply_filters('jwt_auth_token_before_sign', $token, $user), $secret_key);
+        return $token_r;
 }
