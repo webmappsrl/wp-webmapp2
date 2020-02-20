@@ -1,8 +1,8 @@
 <?php
-function get_anypost_shortcode_page() {
+function get_anypost_shortcode_page( $options = false ) {
 
     //todo check nonce!!!
-    $atts = $_POST;
+    $atts = $options === '' ? $_POST : $options;
     // Attributes
     extract( shortcode_atts(
         array(
@@ -153,6 +153,7 @@ function get_anypost_shortcode_page() {
 
 
     $query_args = apply_filters('WebMapp_ajax_anypost_query_arg',$query_args,$atts);
+    
     //Query
     $custom_posts = new WP_Query( $query_args );
 
@@ -176,7 +177,6 @@ function get_anypost_shortcode_page() {
 
 
     ob_start();//start register html
-
 
     //Start Loop
     if ( $custom_posts->have_posts() ) :
@@ -265,10 +265,15 @@ function get_anypost_shortcode_page() {
     );
 
 
+    if ( isset( $atts['echo'] ) && $atts['echo'] == false )
+        return $return;
+    else
+    {
+        echo json_encode( $return );
+        die();
+    }
 
-    echo json_encode( $return );
-
-    die();
+    
 
 }
 new WebMapp_AjaxHandler( true ,'get_anypost_shortcode_page' );
