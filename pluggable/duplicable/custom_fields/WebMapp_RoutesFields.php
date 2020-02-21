@@ -57,6 +57,31 @@ $fields_all = array(
         'placeholder' => 'Name of the city of arrival'
     ),
     array(
+        'key' => 'wm_route_shape',
+        'label' => 'Shape',
+        'name' => 'shape',
+        'type' => 'radio',
+        'instructions' => '',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'wrapper' => array(
+            'width' => '',
+            'class' => '',
+            'id' => '',
+        ),
+        'choices' => array(
+            'linear' => 'Percorso lineare',
+            'roundtrip' => 'Percorso ad anello',
+            'daisy' => 'Percorso a margherita',
+        ),
+        'allow_null' => 1,
+        'other_choice' => 0,
+        'default_value' => '',
+        'layout' => 'horizontal',
+        'return_format' => 'value',
+        'save_other_choice' => 0,
+    ),
+    array(
         'font_size' => 14,
         'slider_type' => 'number',
         'min' => 0,
