@@ -286,5 +286,41 @@
             "2": "tour_operator",
             "3": "tour_operator"
         }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "wm_route_shape",
+            "3": "wm_route_map_shape"
+        },
+        "name": {
+            "1": "",
+            "2": "shape",
+            "3": "shape"
+        }
+    },
+    {
+        "key": {
+            "1": "",
+            "2": "field_5d9c6fb1815bf",
+            "3": "wm_route_tbd_description_pdf"
+        },
+        "name": {
+            "1": "",
+            "2": "description_pdf",
+            "3": "description_pdf"
+        }
+    },
+    {
+        "key": {
+            "1": "field_5853f586c83cd",
+            "2": "wm_route_gallery",
+            "3": "wm_route_media_gallery"
+        },
+        "name": {
+            "1": "n7webmap_route_media_gallery",
+            "2": "n7webmap_route_media_gallery",
+            "3": "gallery"
+        }
     }
 ]
