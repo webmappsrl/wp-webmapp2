@@ -42,6 +42,24 @@ function login_function() {
     }
 }
 
+// Gets the custom logo for wp-login page from webmapp options
+function custom_login_logo() {
+    $custom_logo_id = get_option('webmapp_wp_login_logo');
+    $custom_logo = wp_get_attachment_image_src($custom_logo_id);
+    if ($custom_logo){
+        $css_style = '<style type="text/css">
+                    h1 a { background-image: url('.$custom_logo[0].') !important;}
+                </style>';
+    } else {
+        $css_style = '<style type="text/css">
+                    h1 a { background-image: url(/wp-content/plugins/wp-webmapp2/assets/images/logowebmapp.png) !important;}
+                </style>';
+    }
+    echo $css_style;
+}
+add_action('login_head', 'custom_login_logo');
+
+
 add_filter( 'login_headerurl', 'custom_loginlogo_url' );
 function custom_loginlogo_url($url) {
     return '#';

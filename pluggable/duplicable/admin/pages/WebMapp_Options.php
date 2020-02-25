@@ -184,6 +184,12 @@ $generalOptionsPage = array(
         'type' => 'checkbox',
         'tab' => 'custom_types'
     ),
+    'webmapp_wp_login_logo' => array(
+        'label' => _x( "Featured logo for wp-login page" , WebMapp_TEXTDOMAIN ),
+        'info' => _x( 'Logo should be 284x284px in PNG format' , WebMapp_TEXTDOMAIN),
+        'type' => 'media',
+        'tab' => 'custom_types'
+    ),
 
 
 );
