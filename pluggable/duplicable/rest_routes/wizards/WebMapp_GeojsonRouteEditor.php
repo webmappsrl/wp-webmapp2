@@ -16,8 +16,9 @@ function WebMapp_V3FirstWizardCallback(WP_REST_Request $request)
     $delete_id = isset($param["delete_id"]) ? $param["delete_id"] : false;
     $post_type = isset($param["post_type"]) ? $param["post_type"] : false;
 
-    if ( ! $post_type ) 
-        return new WP_REST_Response(['message' => 'You must specify a post type in the url.'], 401);
+
+    if ( ! $post_type || ! post_type_exists( $post_type ) ) 
+        return new WP_REST_Response(['message' => 'You must specify a valid post type in the url.'], 401);
 
 
     if (!$noauth) :
