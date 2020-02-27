@@ -13,21 +13,11 @@ function WebMapp_getWizardConfiguration( $name = '' )
     
     $arr = [
         'token' => WebMapp_getToken(),
-        'user' => $userlogin,
-        'api' => [
-            'save' => rest_url('webmapp/v3/wizard/routeWizard/route'),
-            'activity' => rest_url('wp/v2/activity'),
-            'where' => rest_url('wp/v2/where'),
-            'who' => rest_url('wp/v2/who'),
-            'when' => rest_url('wp/v2/when'),
-            'theme' => rest_url('wp/v2/theme'),
-            'webmapp_category' => rest_url('wp/v2/webmapp_category'),
-            'tour_operator' => rest_url('wp/v2/tour_operator')
-        ],
+        'base_url' => home_url(),
         'options' => [
             'tour_operator' => TRUE
         ],
-        'wizard' => 'routeWizard',
+        'wizard' => 'saveWizard',
         'lang' => $current_lang
     ];
 
