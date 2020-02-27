@@ -14,21 +14,25 @@ function WebMapp_V3FirstWizardCallback(WP_REST_Request $request)
 
     $update_id = isset($param["update_id"]) ? $param["update_id"] : false;
     $delete_id = isset($param["delete_id"]) ? $param["delete_id"] : false;
+    $post_type = isset($param["post_type"]) ? $param["post_type"] : false;
+
+    if ( ! $post_type ) 
+        return new WP_REST_Response(['message' => 'You must specify a post type in the url.'], 401);
 
 
     if (!$noauth) :
         if ($update_id !== FALSE) {//edit
             if (!current_user_can('edit_others_posts'))
-                return new WP_REST_Response(['message' => 'You cant edit routes.'], 401);
+                return new WP_REST_Response(['message' => 'You cant edit post type provided.'], 401);
         } elseif ($delete_id !== FALSE) {//delete
             if (!current_user_can('delete_others_posts'))
-                return new WP_REST_Response(['message' => 'You cant delete routes.'], 401);
+                return new WP_REST_Response(['message' => 'You cant delete post type provided.'], 401);
         }
         else {//create
             if (!current_user_can('edit_others_posts'))
                 return new WP_REST_Response(
                     [
-                        'message' => 'You cant create routes.'
+                        'message' => 'You cant create post type provided.'
                     ]
                     , 401);
         }
@@ -40,7 +44,7 @@ function WebMapp_V3FirstWizardCallback(WP_REST_Request $request)
     if ($delete_id) {
         $check = wp_delete_post($delete_id);
         if ($check instanceof WP_Post) {
-            return new WP_REST_Response(['message' => 'Success, route moved to the trash.'], 200);
+            return new WP_REST_Response(['message' => 'Success, post moved to the trash.'], 200);
         } else {
             return new WP_REST_Response(['message' => 'Ops, something goes wrong.'], 500);
         }
@@ -55,7 +59,7 @@ function WebMapp_V3FirstWizardCallback(WP_REST_Request $request)
 
     $featureCollectionProperties = $bodyPhp['properties'];
 
-    $handler = new WebMapp_FeaturePropertiesHandler( $featureCollectionProperties );
+    $handler = new WebMapp_FeaturePropertiesHandler( $featureCollectionProperties , $post_type );
     if ( $update_id )
         $handler->set_postId( $update_id );
 
@@ -68,13 +72,13 @@ function WebMapp_V3FirstWizardCallback(WP_REST_Request $request)
     }
     else if ( $check == 0 )
     {
-        return new WP_REST_Response(['message' => "Impossible create routes." ], 500);
+        return new WP_REST_Response(['message' => "Impossible create post type provided." ], 500);
     }
 
     
     return new WP_REST_Response(
         [
-            'message' => "Route created", 
+            'message' => "$post_type created", 
             'data' => [ 
                 'id' => $check,
                 'author' => get_current_user_id(),
@@ -87,14 +91,14 @@ function WebMapp_V3FirstWizardCallback(WP_REST_Request $request)
 $namespace = 'webmapp/v3';
 
 
-$createRoute = '/wizard/(?P<wizard_id>.+)/route';
+$createRoute = '/wizard/(?P<wizard_id>.+)/(?P<post_type>.+)';
 $args = array(
     'methods' => 'POST',
     'callback' => 'WebMapp_V3FirstWizardCallback'
 );
 new WebMapp_RegisterRestRoute($namespace, $createRoute, $args);
 
-$editRoute = '/wizard/(?P<wizard_id>.+)/route/(?P<update_id>\d+)';
+$editRoute = '/wizard/(?P<wizard_id>.+)/(?P<post_type>.+)/(?P<update_id>\d+)';
 $args = array(
     'methods' => 'PATCH',
     'callback' => 'WebMapp_V3FirstWizardCallback'
@@ -102,7 +106,7 @@ $args = array(
 new WebMapp_RegisterRestRoute($namespace, $editRoute, $args);
 
 
-$editRoute = '/wizard/(?P<wizard_id>.+)/route/(?P<delete_id>\d+)';
+$editRoute = '/wizard/(?P<wizard_id>.+)/(?P<post_type>.+)/(?P<delete_id>\d+)';
 $args = array(
     'methods' => 'DELETE',
     'callback' => 'WebMapp_V3FirstWizardCallback'
