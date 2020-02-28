@@ -1,6 +1,6 @@
 <?php
 
-function WebMapp_getWizardConfiguration( $name = '' )
+function WebMapp_getWizardConfiguration( $name = 'routeWizard' )
 {
     $current_lang = substr( get_locale() , 0 , 2 );
     if( has_filter('wpml_current_language') ) 
@@ -17,7 +17,7 @@ function WebMapp_getWizardConfiguration( $name = '' )
         'options' => [
             'tour_operator' => TRUE
         ],
-        'wizard' => 'saveWizard',
+        'wizard' => $name,
         'lang' => $current_lang
     ];
 
