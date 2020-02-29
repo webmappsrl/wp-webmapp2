@@ -21,7 +21,7 @@ function WebMapp_getWizardConfiguration( $name = 'routeWizard' )
         'lang' => $current_lang
     ];
 
-    return json_encode( $arr );
+    return $arr;
 }
 
 
