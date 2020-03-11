@@ -117,8 +117,6 @@ class WebMapp_FeaturePropertiesHandler {
 
         foreach ( $this->body as $prop_name => $value )
         {
-            if ( $prop_name == 'stages' )
-                $stop = 'here';
             if ( in_array( $prop_name , $this->alreadyProcessedFields ) )
                 continue;
 

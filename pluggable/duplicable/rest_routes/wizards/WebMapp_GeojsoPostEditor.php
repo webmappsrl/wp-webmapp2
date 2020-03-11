@@ -14,8 +14,17 @@ function WebMapp_V3FirstWizardCallback(WP_REST_Request $request)
 
     $update_id = isset($param["update_id"]) ? $param["update_id"] : false;
     $delete_id = isset($param["delete_id"]) ? $param["delete_id"] : false;
-    $post_type = isset($param["post_type"]) ? $param["post_type"] : false;
+    
 
+    if ( $update_id && $request->get_method() == 'GET' )
+    {
+        $geoJson = new WebMapp_PostToFeature( $update_id );
+        return new WP_REST_Response(
+            $geoJson->get_body()
+            , 200);
+    }
+
+    $post_type = isset($param["post_type"]) ? $param["post_type"] : false;
 
     if ( ! $post_type || ! post_type_exists( $post_type ) ) 
         return new WP_REST_Response(['message' => 'You must specify a valid post type in the url.'], 401);
@@ -92,6 +101,9 @@ function WebMapp_V3FirstWizardCallback(WP_REST_Request $request)
 $namespace = 'webmapp/v3';
 
 
+
+
+
 $createRoute = '/wizard/(?P<wizard_id>.+)/(?P<post_type>.+)';
 $args = array(
     'methods' => 'POST',
@@ -99,15 +111,21 @@ $args = array(
 );
 new WebMapp_RegisterRestRoute($namespace, $createRoute, $args);
 
-$editRoute = '/wizard/(?P<wizard_id>.+)/(?P<post_type>.+)/(?P<update_id>\d+)';
+$editRoute = '/wizard/(?P<wizard_id>.+)/(?P<update_id>\d+)';
 $args = array(
     'methods' => 'PATCH',
     'callback' => 'WebMapp_V3FirstWizardCallback'
 );
 new WebMapp_RegisterRestRoute($namespace, $editRoute, $args);
 
+$createRoute = '/wizard/(?P<wizard_id>.+)/(?P<update_id>\d+)';
+$args = array(
+    'methods' => 'GET',
+    'callback' => 'WebMapp_V3FirstWizardCallback'
+);
+new WebMapp_RegisterRestRoute($namespace, $createRoute, $args);
 
-$editRoute = '/wizard/(?P<wizard_id>.+)/(?P<post_type>.+)/(?P<delete_id>\d+)';
+$editRoute = '/wizard/(?P<wizard_id>.+)/(?P<delete_id>\d+)';
 $args = array(
     'methods' => 'DELETE',
     'callback' => 'WebMapp_V3FirstWizardCallback'
