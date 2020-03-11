@@ -53,7 +53,7 @@ class WebMapp_TemplateSingle
         global $WebMapp_IconsConf;
         $shortInfo = $this->getShortInfo();
 
-        $shortinfo_allowed = array('difficulty','rating','distance','ascent','descent','ele:max','ele:min');
+        $shortinfo_allowed = array('difficulty','rating','distance','ascent','descent','ele:max','ele:min','duration');
         $places_allowed = array('from','to');
         $short_info_array = array_intersect_key($shortInfo, array_flip($shortinfo_allowed));
         $places_array = array_intersect_key($shortInfo, array_flip($places_allowed));
