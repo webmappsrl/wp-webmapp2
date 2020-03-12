@@ -13,7 +13,7 @@ var webmapp_posts_ajax_call = (obj) => {
         this[key] = obj[key];
     }
 
-   
+
     (function ($) {
 
         const processAjaxResponse = (json) => {
@@ -90,7 +90,7 @@ var webmapp_posts_ajax_call = (obj) => {
 
 
         let up_pagination_height = $up_pagination.outerHeight();
-        if ( typeof firstPageAjax !== 'object' && up_pagination_height > 0)
+        if (typeof firstPageAjax !== 'object' && up_pagination_height > 0)
             $up_pagination.outerHeight(up_pagination_height);
 
 
@@ -107,7 +107,7 @@ var webmapp_posts_ajax_call = (obj) => {
         });
 
 
-        console.log('FIRST LOAD', firstPageAjax );
+        console.log('FIRST LOAD', firstPageAjax);
         if (typeof firstPageAjax == 'object' && firstPageAjax.hasOwnProperty('html')) {
             processAjaxResponse(firstPageAjax);
         }
@@ -136,10 +136,14 @@ var webmapp_posts_ajax_call = (obj) => {
 
                     $loader_img.fadeOut();
                     $posts_wrapper.fadeIn();
+                    //force aspect ratio of images
+                    $('figure.webmapp_post_image').each(function (i, e) {
+                        force_aspect_ratio($(e));
+                    });
                     $('html, body').animate({
                         scrollTop: $posts_wrapper.offset().top
-                      }, 1000)
-                    
+                    }, 1000)
+
                 }//end done
                 )
                 .fail(function (response) {
@@ -166,7 +170,6 @@ jQuery(document).ready(function ($) {
 
     var property_added = false;
 
-
     $(window).resize(function () {
         //fix fucking divi grid system conflicts on window resize
         if (!property_added) {
@@ -175,12 +178,9 @@ jQuery(document).ready(function ($) {
         }
 
         //force aspect ratio of images
-
         $('figure.webmapp_post_image').each(function (i, e) {
             force_aspect_ratio($(e));
         });
-
-
 
     });
 
