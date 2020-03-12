@@ -2,7 +2,13 @@
 
 class WebMapp_PostToFeature {
 
-    public $body;
+    public $body = [ 
+        'type' => 'Feature' , 
+        'geometry' => [], 
+        'properties' => [
+            'taxonomy' => []
+        ], 
+    ];
     
     protected $geoJsonDatamodelVersion = 3; 
     protected $fieldsVersioning = [];
@@ -46,14 +52,11 @@ class WebMapp_PostToFeature {
 
     private function set_bodyData( $name , $value )
     {
-        $this->body[$name] = $value;
+        $this->body['properties'][$name] = $value;
     }
     private function set_bodyTaxTerms( $tax , $terms )
     {
-        if ( ! isset( $this->body['taxonomy'] ) )
-            $this->set_bodyData('taxonomy',[]);
-
-        $this->body['taxonomy'][$tax] = $terms;
+        $this->body['properties']['taxonomy'][$tax] = $terms;
     }
 
     public function get_body(){
