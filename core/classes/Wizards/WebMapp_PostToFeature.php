@@ -100,12 +100,22 @@ class WebMapp_PostToFeature {
                 if ( ! ($k = array_search( $prop_name , $dataModelMapping ) ) )
                     continue;
                 
-                $this->set_bodyData( $k , $value);   
+                $this->set_bodyData( $k , $this->postToId($value) );   
             }
         }
 
-        
-        
+    }
+
+    public function postToId( $value )
+    {
+        if ( $value instanceof WP_Post )
+        {
+            return $value->ID;
+        }
+        elseif( is_array( $value ) )
+            return array_map( array( $this , 'postToId' ) , $value );
+
+        return $value;
     }
 
     protected function set_wpTaxs( $append = false ) {
