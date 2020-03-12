@@ -67,7 +67,7 @@ class WebMapp_FeaturePropertiesHandler {
 
         // 'meta_input'
         // (array) Array of post meta values keyed by their post meta key. Default empty.
-        $this->set_acfMeta();
+        //$this->set_acfMeta();
 
         // 'tax_input'
         // (array) Array of taxonomy terms keyed by their taxonomy name. Default empty.
@@ -123,7 +123,7 @@ class WebMapp_FeaturePropertiesHandler {
             if ( ! key_exists( $prop_name , $dataModelMapping ) )
                 continue;
             
-            $this->postArr['meta_input'][ $dataModelMapping[$prop_name] ] = $value;
+            update_field( $dataModelMapping[$prop_name] , $value , $this->post_id ) ;
             $this->alreadyProcessedFields[] = $prop_name;
             
         }
@@ -150,6 +150,7 @@ class WebMapp_FeaturePropertiesHandler {
         {
             $this->post_id = $post_id;
             $this->set_wpTaxs();
+            $this->set_acfMeta();
             if ( isset( $this->body['image'] ) && is_int( $this->body['image'] ) )
             {
                 set_post_thumbnail( $post_id, $this->body['image'] );
