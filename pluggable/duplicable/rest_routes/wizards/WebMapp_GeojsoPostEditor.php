@@ -26,7 +26,7 @@ function WebMapp_V3FirstWizardCallback(WP_REST_Request $request)
 
     if ( $update_id )
     {
-        $post_type = get_post_type($update_id);
+        $param["post_type"] = get_post_type($update_id);
     }
 
     $post_type = isset($param["post_type"]) ? $param["post_type"] : false;
