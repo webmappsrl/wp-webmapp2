@@ -30,7 +30,7 @@ function get_anypost_shortcode_page( $options = false ) {
     
     $term = '';
     $taxQuery = array();
-    if ( isset( $term_ids ) ){
+    if ( isset( $term_ids ) && $term_ids ){
         $term_ids_arr = isset( $term_ids ) ? ( array ) explode(',',$term_ids) : array();
         $termsCount = count($term_ids_arr);
         if ( $termsCount == 1 )
@@ -109,7 +109,7 @@ function get_anypost_shortcode_page( $options = false ) {
     $taxQueryCount = count( $taxQuery );
     if ( $taxQueryCount > 0 )
     {
-        $taxQueryCount['relation'] = 'AND';
+        $taxQuery['relation'] = 'AND';
         $query_args ['tax_query'] = $taxQuery;
     }
         
@@ -177,7 +177,7 @@ function get_anypost_shortcode_page( $options = false ) {
 
 
     ob_start();//start register html
-
+    
     //Start Loop
     if ( $custom_posts->have_posts() ) :
 
