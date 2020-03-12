@@ -36,6 +36,7 @@ class WebMapp_PostToFeature {
         $this->post_type = $this->post->post_type;
         $this->post_id = $this->post->ID;
         $this->set_bodyData('id', $this->post_id );
+        $this->set_bodyData('image', get_post_thumbnail_id($this->post_id) );
         $fieldsVersioning = file_get_contents(WebMapp_DIR . "/core/fieldsMapping/webmappFieldsVersioning_$this->post_type.json");
         $this->fieldsVersioning = json_decode( $fieldsVersioning, true );
         $this->set_wpPostFields();
