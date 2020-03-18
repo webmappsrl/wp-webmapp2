@@ -107,7 +107,7 @@ var webmapp_posts_ajax_call = (obj) => {
         });
 
 
-        console.log('FIRST LOAD', firstPageAjax);
+        //console.log('FIRST LOAD', firstPageAjax);
         if (typeof firstPageAjax == 'object' && firstPageAjax.hasOwnProperty('html')) {
             processAjaxResponse(firstPageAjax);
         }

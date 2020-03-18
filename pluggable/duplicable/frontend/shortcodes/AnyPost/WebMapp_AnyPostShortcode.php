@@ -18,6 +18,7 @@ function WebMapp_AnyPostShortcode( $atts ) {
             'template' => 'default',// available templates: 'default', 'compact',
             'orderby' => '',
             'activity_color' => '',
+            'order' => 'DESC',
             'custom' => ''
         ),
         $atts
@@ -43,6 +44,7 @@ function WebMapp_AnyPostShortcode( $atts ) {
         "post_ids" =>  $post_ids ,//post ids separate by commas
         "template" =>  $template ,//shortcode template
         "orderby" =>  $orderby ,//orderby wp query
+        "order" => $order,//order query
         "activity_color" =>  $activity_color ,//theme color of activity
         "custom" =>  $custom ,//custom attribute,
         "echo" => false
@@ -51,8 +53,6 @@ function WebMapp_AnyPostShortcode( $atts ) {
     $ajaxCallback = get_anypost_shortcode_page( $data );
 
     ob_start();
-
-
 
     ?>
 
@@ -93,7 +93,8 @@ function WebMapp_AnyPostShortcode( $atts ) {
                 orderby: '<?php echo $orderby ?>',//orderby wp query
                 activity_color: '<?php echo $activity_color ?>',//theme color of activity
                 custom: '<?php echo $custom ?>',//custom attribute
-                firstPageAjax: <?= json_encode($ajaxCallback) ?>
+                firstPageAjax: <?= json_encode($ajaxCallback) ?>,
+                order: '<?= $order ?>'
             }   
         ); 
     </script>
