@@ -28,8 +28,10 @@ function get_anypost_shortcode_page( $options = false ) {
 
     $query_args = array();
 
-    
-    
+    if ( empty($posts_count) )
+        $query_args[ 'posts_per_page' ] = $posts_per_page;
+
+
     $term = '';
     $taxQuery = array();
     if ( isset( $term_ids ) && $term_ids ){
