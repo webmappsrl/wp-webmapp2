@@ -5,8 +5,30 @@
  */
 
 
+/** FIX orderby rand pagination */
+session_start();
+add_filter('posts_orderby', 'wm_edit_posts_rand_orderby', 10, 2);
+function wm_edit_posts_rand_orderby($orderby_statement, $wp_query) {
+    if ( $wp_query->get('orderby') == 'rand' )
+    {
+        try
+        {
+            $seed = $_SESSION['seed'];
+            if (empty($seed)) {
+                $seed = rand();
+                $_SESSION['seed'] = $seed;
+            }
 
+            $orderby_statement = 'RAND('.$seed.')';
+        }
+        catch( Exception $e )
+        {
+            trigger_error( $e );
+        }
+    }
 
+    return $orderby_statement;
+}
 
 
 // Replaces the excerpt "Read More" text by a link
