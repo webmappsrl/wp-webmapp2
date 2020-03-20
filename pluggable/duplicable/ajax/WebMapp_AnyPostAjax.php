@@ -18,16 +18,20 @@ function get_anypost_shortcode_page( $options = false ) {
             'post_ids' => '',
             'template' => 'default',
             'orderby' => '',
+            'order' => 'DESC',
             'activity_color' => '',
             'custom' => ''//use this for custom filter actions
         ),
-        $atts
+        $atts,
+        'webmapp_anypost'
     ));
 
     $query_args = array();
 
-    
-    
+    if ( empty($posts_count) )
+        $query_args[ 'posts_per_page' ] = $posts_per_page;
+
+
     $term = '';
     $taxQuery = array();
     if ( isset( $term_ids ) && $term_ids ){
@@ -152,6 +156,7 @@ function get_anypost_shortcode_page( $options = false ) {
 
 
 
+    $query_args['order'] = $order;
     $query_args = apply_filters('WebMapp_ajax_anypost_query_arg',$query_args,$atts);
     
     //Query

@@ -19,11 +19,27 @@ L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         id: 'mapbox.streets'
 }).addTo(mymap);
 
+
  var geojsonLayer  = L.geoJSON(geojsonFeature).addTo(mymap);
+ 
+jQuery(document).ready(function($){
+  const $mapContainer = $('#'+mapid);
+  const myInterval = setInterval( function(){
+    let isVisible = $($mapContainer).is(':visible');
+    console.log(isVisible);
+    if ( isVisible )
+    {
+      mymap.invalidateSize()
+      mymap.fitBounds(geojsonLayer.getBounds());
+      clearInterval(myInterval);
+    }
+     
+  } , 500 );
+  
+});
 
 
 
-mymap.fitBounds(geojsonLayer.getBounds());
 
 jQuery("#set_bbox").on("click", function(e){
   e.stopImmediatePropagation();
