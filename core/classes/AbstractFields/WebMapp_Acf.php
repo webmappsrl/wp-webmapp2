@@ -61,6 +61,7 @@ class WebMapp_Acf extends WebMapp_AbstractFields
                     );
                 }
 
+                $this->args = apply_filters('WebMapp_pre_reg_field_acf', $this->args, $this->object_names );
                 //ACF function
                 acf_add_local_field_group($this->args);
             }
