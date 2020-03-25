@@ -44,7 +44,17 @@ class WebMapp_Acf extends WebMapp_AbstractFields
                     $this->args['fields'] = array_map(
                         function ($e) {
                             if ( ! isset( $e['wpml_cf_preferences'] ) && $e['type'] != 'tab' )
+                            {
                                 $e['wpml_cf_preferences'] = WPML_TRANSLATE_CUSTOM_FIELD;
+                                if ( isset( $e['sub_fields'] ) && is_array( $e['sub_fields'] ) ) 
+                                {
+                                    foreach ( $e['sub_fields'] as $k => $v )
+                                    {
+                                        $e['sub_fields'][$k]['wpml_cf_preferences'] = WPML_TRANSLATE_CUSTOM_FIELD;
+                                    }
+                                }
+                            }
+                                
                                 return $e;
                         },
                         $this->args['fields']
