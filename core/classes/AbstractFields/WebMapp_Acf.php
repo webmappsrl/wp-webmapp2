@@ -19,10 +19,10 @@ class WebMapp_Acf extends WebMapp_AbstractFields
      * @param $object_names
      * @param $args
      */
-    function __construct( $object_names, $args )
+    function __construct($object_names, $args)
     {
-        parent::__construct( $object_names, $args );
-        add_action( 'acf/init' , array( $this , 'add_local_field_group') );
+        parent::__construct($object_names, $args);
+        add_action('acf/init', array($this, 'add_local_field_group'));
     }
 
     /**
@@ -31,14 +31,29 @@ class WebMapp_Acf extends WebMapp_AbstractFields
      */
     public function add_local_field_group()
     {
-        if ( ! empty( $this->args ) && function_exists('acf_add_local_field_group') )
+        if (!empty($this->args) && function_exists('acf_add_local_field_group')) 
         {
-            //ACF function
-            acf_add_local_field_group( $this->args );
+            if (isset($this->args['fields']) && is_array( $this->args['fields']) ) 
+            {
+                if (defined('WPML_TRANSLATE_CUSTOM_FIELD')) {
+                    // WPML_IGNORE_CUSTOM_FIELD // => 0 for Don't translate
+                    // WPML_COPY_CUSTOM_FIELD // => 1 for Copy
+                    // WPML_TRANSLATE_CUSTOM_FIELD // => 2 for Translate
+                    // WPML_COPY_ONCE_CUSTOM_FIELD // => 3 for Copy once
+
+                    $this->args['fields'] = array_map(
+                        function ($e) {
+                            if ( ! isset( $e['wpml_cf_preferences'] ) && $e['type'] != 'tab' )
+                                $e['wpml_cf_preferences'] = WPML_TRANSLATE_CUSTOM_FIELD;
+                                return $e;
+                        },
+                        $this->args['fields']
+                    );
+                }
+
+                //ACF function
+                acf_add_local_field_group($this->args);
+            }
         }
-
     }
-
-
-
 }
