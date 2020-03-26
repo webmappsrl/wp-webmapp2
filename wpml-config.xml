@@ -11,15 +11,19 @@
       <custom-field action="translate">n7webmap_end</custom-field>
       <custom-field action="copy">n7webmap_end</custom-field>
       <custom-field action="copy">n7webmap_related_poi</custom-field>
-      <custom-field action="copy">n7webmap_route_media_gallery</custom-field>
       <custom-field action="translate">n7webmap_route_related_track</custom-field>
       <custom-field action="copy">n7webmap_type</custom-field>
       <custom-field action="copy">net7webmap_map_route</custom-field>
       <custom-field action="copy">n7webmap_map_bbox</custom-field>
-      <custom-field action="copy">tour_operator</custom-field>
       <!-- Custom Fields ROUTE -->
       <custom-field action="translate">to</custom-field>
       <custom-field action="translate">from</custom-field>
+      <custom-field action="copy">n7webmap_route_media_gallery</custom-field>
+      <custom-field action="copy">n7webmapp_route_difficulty</custom-field>
+      <custom-field action="copy">distance</custom-field>
+      <custom-field action="copy">n7webmapp_route_cod</custom-field>
+      <custom-field action="copy">shape</custom-field>
+      <custom-field action="copy">tour_operator</custom-field>
       
 
        <!--   <custom-field action="copy">weight</custom-field>
