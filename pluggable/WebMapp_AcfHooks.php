@@ -1,5 +1,57 @@
 <?php
 
+add_action( 'wpml_loaded', 'webmapp2_wpml_loaded' );
+function webmapp2_wpml_loaded() {
+    add_filter( "acf/pre_format_value",function( $check , $value, $post_id, $field ){
+
+        if ( ! $post_id )
+            return $check;
+
+        if ( is_admin() )
+            return $check;
+
+        if ( ! isset( $field['name'] ) )
+            return $check;
+
+        $allowed_post_types = [
+            'route',
+            'track',
+            'poi'
+        ];
+        $post_type = get_post_type( $post_id );
+    
+        if ( ! in_array( $post_type , $allowed_post_types ) )
+            return $check;
+    
+        //get post language
+        $post_lang = apply_filters( 'wpml_post_language_details', NULL, $post_id );
+        //get wpml default language
+        $default_lang = apply_filters('wpml_default_language', NULL );
+        if ( $post_lang['language_code'] == $default_lang )
+            return $check;
+
+
+        //check if value is empty
+        if ( ! $value ) 
+        {
+            //get the post in default language
+            $post_default_language = apply_filters( 'wpml_object_id', $post_id, $post_type, FALSE, $default_lang );
+            $value = get_field( $field['name'], $post_default_language );
+        } 
+        
+    
+        return $value;
+    } , 10 , 4 );
+}
+   
+  
+
+
+
+
+
+
+
 add_action('acf/init', 'webmap_acf_init');
 function webmap_acf_init() {
     if (get_option('google_api_key') && get_option('google_api_key') != "") {
