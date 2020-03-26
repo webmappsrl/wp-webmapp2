@@ -3,6 +3,13 @@
 add_action( 'wpml_loaded', 'webmapp2_wpml_loaded' );
 function webmapp2_wpml_loaded() {
     add_filter( "acf/pre_format_value",function( $check , $value, $post_id, $field ){
+        //fare questo solo per i campi traducibili
+        if ( isset( $field['wpml_cf_preferences'] ) && $field['wpml_cf_preferences'] != WPML_TRANSLATE_CUSTOM_FIELD )
+            return $check;
+
+        //check if value is empty
+        if ( $value )
+            return;
 
         if ( ! $post_id )
             return $check;
@@ -30,14 +37,10 @@ function webmapp2_wpml_loaded() {
         if ( $post_lang['language_code'] == $default_lang )
             return $check;
 
-
-        //check if value is empty
-        if ( ! $value ) 
-        {
-            //get the post in default language
-            $post_default_language = apply_filters( 'wpml_object_id', $post_id, $post_type, FALSE, $default_lang );
-            $value = get_field( $field['name'], $post_default_language );
-        } 
+        //get the post in default language
+        $post_default_language = apply_filters( 'wpml_object_id', $post_id, $post_type, FALSE, $default_lang );
+        $value = get_field( $field['name'], $post_default_language );
+        
         
     
         return $value;
