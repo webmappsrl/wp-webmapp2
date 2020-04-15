@@ -16,7 +16,8 @@ $fields_all = array(
         'key' => 'field_route_cod',
         'label' => __("Route code"),
         'name' => 'n7webmapp_route_cod',
-        'type' => 'text'
+        'type' => 'text',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD
     ),
     array(
         'key' => 'wm_route_is_group',
@@ -25,6 +26,7 @@ $fields_all = array(
         'type' => 'true_false',
         'message' => 'Set this field to true if the trip is for groups.',
         'default_value' => 0,
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD      
     ),
     array(
         'key' => 'wm_route_only_double',
@@ -97,7 +99,8 @@ $fields_all = array(
         'label' => 'Difficulty level',
         'name' => 'n7webmapp_route_difficulty',
         'type' => 'range',
-        'instructions' => ''
+        'instructions' => '',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD
     ),
     array(
         'sub_fields' => array(
@@ -162,6 +165,7 @@ $fields_all = array(
         'type' => 'true_false',
         'message' => 'Set this field to true if the route is public, no authorization needed by the user.',
         'default_value' => 0,
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD
     ),
     array(
         'role' => array(
@@ -183,6 +187,7 @@ $fields_all = array(
                 ),
             ),
         ),
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD
     ),
     //payment
     array(
@@ -230,7 +235,9 @@ $fields_all = array(
                     'value' => '1',
                 ),
             )
-        )
+        ),
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD
+
     ),
     array(
         'key' => 'wm_route_route_password',
@@ -247,7 +254,9 @@ $fields_all = array(
                     'value' => '1',
                 ),
             )
-        )
+        ),
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD
+
     ),
 
     /**
@@ -266,7 +275,8 @@ $fields_all = array(
         'label' => 'Distance',
         'name' => 'distance',
         'type' => 'number',
-        'placeholder' => 'Total distance of the route in km'
+        'placeholder' => 'Total distance of the route in km',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD
     ),
     array(
         'post_type' => array(
@@ -281,7 +291,8 @@ $fields_all = array(
         'key' => 'field_5859342579a1ee',
         'label' => 'Related Tracks',
         'name' => 'n7webmap_route_related_track',
-        'type' => 'relationship'
+        'type' => 'relationship',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD
     ),
     array(
         'key' => 'wm_route_tax_activity',
@@ -330,6 +341,7 @@ $fields_all = array(
         'min' => 0,
         'max' => 1,
         'return_format' => 'id',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD
     ),
     array(
         'key' => 'wm_route_to_poi',
@@ -357,6 +369,7 @@ $fields_all = array(
         'min' => 0,
         'max' => 1,
         'return_format' => 'id',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD
     ),
 
 
