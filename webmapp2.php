@@ -47,6 +47,15 @@ define ( 'WebMapp_ShortcodeTemplates_AnyPost_DIR' , WebMapp_DIR . '/pluggable/du
 //save version of datamodel
 define ( 'WM_DATAMODEL_VERSION' , '2' );
 
+//wpml_cf_preferences
+
+// WPML_IGNORE_CUSTOM_FIELD // => 0 for Don't translate
+// WPML_COPY_CUSTOM_FIELD // => 1 for Copy
+// WPML_TRANSLATE_CUSTOM_FIELD // => 2 for Translate
+// WPML_COPY_ONCE_CUSTOM_FIELD // => 3 for Copy once
+
+define( 'WEBMAPP_TRANSLATE_CUSTOM_FIELD' , 2 );
+define( 'WEBMAPP_COPY_CUSTOM_FIELD' , 1 );
 
 /**
  * LOAD PHP PARTS

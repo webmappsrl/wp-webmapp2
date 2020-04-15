@@ -4,7 +4,7 @@ add_action( 'wpml_loaded', 'webmapp2_wpml_loaded' );
 function webmapp2_wpml_loaded() {
     add_filter( "acf/pre_format_value",function( $check , $value, $post_id, $field ){
         //fare questo solo per i campi traducibili
-        if ( isset( $field['wpml_cf_preferences'] ) && $field['wpml_cf_preferences'] != WPML_TRANSLATE_CUSTOM_FIELD )
+        if ( isset( $field['wpml_cf_preferences'] ) && $field['wpml_cf_preferences'] != WEBMAPP_TRANSLATE_CUSTOM_FIELD )
             return $check;
 
         //check if value is empty
