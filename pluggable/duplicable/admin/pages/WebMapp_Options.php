@@ -3,7 +3,8 @@
 $tabs = array(
     'main' => _x( "Maps", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
     'custom_types' =>  _x( "Custom Types", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
-    'taxonomies' =>  _x( "Taxonomies Details", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN )
+    'taxonomies' =>  _x( "Taxonomies Details", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
+    'wizards' =>  _x( "Wizards", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
 );
 
 
@@ -190,8 +191,21 @@ $generalOptionsPage = array(
         'type' => 'media',
         'tab' => 'custom_types'
     ),
-
-
+    //new fields from cyclando
+    'webmapp_show_interactive_route_map' => array(
+        'label' => _x( "Show interactive route map" , WebMapp_TEXTDOMAIN ),
+        'info' => _x( 'mostrare mappa interattiva solo se show_interactive_route_map è true' , WebMapp_TEXTDOMAIN),
+        'type' => 'checkbox',
+        'tab' => 'main',
+        'default' => 0
+    ),
+    'webmapp_use_wizards' => array(
+        'label' => _x( "Use wizards" , WebMapp_TEXTDOMAIN ),
+        'info' => _x( 'mostrare bottoni Wizard solo se use_wizards è true' , WebMapp_TEXTDOMAIN),
+        'type' => 'checkbox',
+        'tab' => 'wizards',
+        'default' => 0
+    ),
 );
 /**
  * TAXONOMIES TAB
