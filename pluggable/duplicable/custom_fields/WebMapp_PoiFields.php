@@ -20,7 +20,8 @@
             'center_lat' => '43.6551217',
             'center_lng' => '11.0812834',
             'zoom' => '7',
-            'instructions' => 'Insert point of interests from map to get coordinates'
+            'instructions' => 'Insert point of interests from map to get coordinates',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ));
 
 
@@ -40,7 +41,7 @@
             'key' => 'wm_poi_gallery',
             'label' => 'Media Gallery',
             'name' => 'n7webmap_media_gallery',
-            'type' => 'gallery'
+            'type' => 'gallery',
         ));
 
 
@@ -59,28 +60,32 @@
             'label' => 'Street',
             'name' => 'addr:street',
             'type' => 'text',
-            'instructions' => 'Insert the name of the respective street.'
+            'instructions' => 'Insert the name of the respective street.',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
         array(
             'key' => 'field_58db8898b885e',
             'label' => 'Housenumber',
             'name' => 'addr:housenumber',
             'type' => 'text',
-            'instructions' => 'Insert the name the house number (may contain letters, dashes or other characters).'
+            'instructions' => 'Insert the name the house number (may contain letters, dashes or other characters).',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
         array(
             'key' => 'field_58db8898b885f',
             'label' => 'Postcode',
             'name' => 'addr:postcode',
             'type' => 'text',
-            'instructions' => 'The postal code of the building/area.'
+            'instructions' => 'The postal code of the building/area.',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
         array(
             'key' => 'field_58db8898b885g',
             'label' => 'City',
             'name' => 'addr:city',
             'type' => 'text',
-            'instructions' => 'The name of the city as given in postal addresses of the building/area.'
+            'instructions' => 'The name of the city as given in postal addresses of the building/area.',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         )
 
     );
@@ -102,35 +107,40 @@
             'label' => 'Phone',
             'name' => 'contact:phone',
             'type' => 'text',
-            'instructions' => 'Insert the contact phone number (format: +[country code] [area code] [local number] eg: +39 050 123456).'
+            'instructions' => 'Insert the contact phone number (format: +[country code] [area code] [local number] eg: +39 050 123456).',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
         array(
             'key' => 'field_58db8898b886e',
             'label' => 'Email',
             'name' => 'contact:email',
             'type' => 'email',
-            'instructions' => 'Insert the contact email (must be a valid email address).'
+            'instructions' => 'Insert the contact email (must be a valid email address).',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
         array(
             'key' => 'field_58db8898b886f',
             'label' => 'Opening Hours',
             'name' => 'opening_hours',
             'type' => 'text',
-            'instructions' => 'Insert the opening hours of the POI. Please refer to the OSM Wiki for examples and explenations: http://wiki.openstreetmap.org/wiki/Key:opening_hours#Examples'
+            'instructions' => 'Insert the opening hours of the POI. Please refer to the OSM Wiki for examples and explenations: http://wiki.openstreetmap.org/wiki/Key:opening_hours#Examples',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
         array(
             'key' => 'field_58db8898b886g',
             'label' => 'Capacity',
             'name' => 'capacity',
             'type' => 'text',
-            'instructions' => 'Insert the capacity a facility is suitable for.'
+            'instructions' => 'Insert the capacity a facility is suitable for.',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
         array(
             'key' => 'wm_poi_stars',
             'label' => 'Stars',
             'name' => 'stars',
             'type' => 'text',
-            'instructions' => 'Stars rating for hotels.'
+            'instructions' => 'Stars rating for hotels.',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         )
 
 
@@ -160,7 +170,7 @@
             'key' => 'field_585cdc9229191',
             'label' => 'related url',
             'name' => 'n7webmap_rpt_related_url',
-            'type' => 'repeater'
+            'type' => 'repeater',
         ),
         array(
             'key' => 'wm_poi_audio',
@@ -189,14 +199,16 @@
             'name' => 'color',
             'label' => 'The color of the POI',
             'type' => 'color_picker',
-            'instructions' => 'Use the color picker (click on the "Select Color" button) to select the color of the POI or insert direclty the color RGB code in the followong format: #RRGGBB'
+            'instructions' => 'Use the color picker (click on the "Select Color" button) to select the color of the POI or insert direclty the color RGB code in the followong format: #RRGGBB',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
         array (
             'key' => 'wm_poi_icon',
             'name' => 'icon',
             'label' => 'The WEBMAPP Icon of the POI',
             'type' => 'text',
-            'instructions' => 'Insert the icon associated to the taxonomy term. Use the WEBMAPP icons: https://icon.webmapp.it/'
+            'instructions' => 'Insert the icon associated to the taxonomy term. Use the WEBMAPP icons: https://icon.webmapp.it/',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
         array(
             'key' => 'wm_poi_code',
@@ -213,7 +225,8 @@
             'name' => 'noDetails',
             'type' => 'true_false',
             'instructions' => 'Check this if you want to disable the details of this POI in the APP and webapp',
-            'default_value' => 0
+            'default_value' => 0,
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
         array (
             'key' => 'wm_poi_noInteractions',
@@ -221,7 +234,8 @@
             'name' => 'noInteraction',
             'type' => 'true_false',
             'instructions' => 'Check this if you want to disable any interaction of this POI in the APP and webapp',
-            'default_value' => 0
+            'default_value' => 0,
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         )
     );
 
@@ -244,7 +258,8 @@
             'label' => 'Mobility Impairment',
             'name' => 'access_mobility_check',
             'type' => 'true_false',
-            'instructions' => 'Check this if you believe that the point of interest can be considered accessible with regard to mobility'
+            'instructions' => 'Check this if you believe that the point of interest can be considered accessible with regard to mobility',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
 
         array(
@@ -265,7 +280,8 @@
             'label' => 'hearing Impairment',
             'name' => 'access_hearing_check',
             'type' => 'true_false',
-            'instructions' => 'Check this if you believe that the point of interest can be considered accessible with regard to hearing'
+            'instructions' => 'Check this if you believe that the point of interest can be considered accessible with regard to hearing',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
 
         array(
@@ -286,7 +302,8 @@
             'label' => 'vision Impairment',
             'name' => 'access_vision_check',
             'type' => 'true_false',
-            'instructions' => 'Check this if you believe that the point of interest can be considered accessible with regard to vision'
+            'instructions' => 'Check this if you believe that the point of interest can be considered accessible with regard to vision',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
 
         array(
@@ -307,7 +324,8 @@
             'label' => 'cognitive Impairment',
             'name' => 'access_cognitive_check',
             'type' => 'true_false',
-            'instructions' => 'Check this if you believe that the point of interest can be considered accessible with regard to cognitive'
+            'instructions' => 'Check this if you believe that the point of interest can be considered accessible with regard to cognitive',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
 
         array(
@@ -329,7 +347,8 @@
             'label' => 'food Impairment',
             'name' => 'access_food_check',
             'type' => 'true_false',
-            'instructions' => 'Check this if you believe that the point of interest can be considered accessible with regard to food intolerance'
+            'instructions' => 'Check this if you believe that the point of interest can be considered accessible with regard to food intolerance',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
 
         array(
@@ -372,7 +391,8 @@
             'type' => 'relationship',
             'max' => '1',
             'return_format' => 'object',
-            'instructions' => 'Use this field to set the content of this poi from another POI'
+            'instructions' => 'Use this field to set the content of this poi from another POI',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
 
         ));
 

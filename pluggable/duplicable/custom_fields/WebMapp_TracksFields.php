@@ -19,7 +19,8 @@ $fields1 = array(
         'key' => 'field_parse_gpx',
         'label' => 'Import track from GPX file',
         'name' => 'n7webmap_import_gpx',
-        'type' => 'message'
+        'type' => 'message',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
 );
 $args = array(
@@ -45,7 +46,8 @@ $fields2 = array(
         'key' => 'wm_track_code',
         'label' => __("Route code"),
         'name' => 'code',
-        'type' => 'text'
+        'type' => 'text',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'library' => 'all',
@@ -77,7 +79,8 @@ $fields2 = array(
         'key' => 'field_585933d079a1b',
         'label' => 'start POI',
         'name' => 'n7webmap_start_poi',
-        'type' => 'relationship'
+        'type' => 'relationship',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'key' => 'field_585933f779a1c',
@@ -99,7 +102,8 @@ $fields2 = array(
         'key' => 'field_5859340879a1d',
         'label' => 'end POI',
         'name' => 'n7webmap_end_poi',
-        'type' => 'relationship'
+        'type' => 'relationship',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'post_type' => array(
@@ -123,6 +127,7 @@ $fields2 = array(
             'class' => '',
             'id' => '',
         ),
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'post_type' => array(
@@ -139,7 +144,8 @@ $fields2 = array(
         'key' => 'wm_track_prev_track',
         'label' => 'Previous Track',
         'name' => 'prev_track',
-        'type' => 'relationship'
+        'type' => 'relationship',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),    
     array(
         'post_type' => array(
@@ -156,7 +162,8 @@ $fields2 = array(
         'key' => 'wm_track_next_track',
         'label' => 'Next Track',
         'name' => 'next_track',
-        'type' => 'relationship'
+        'type' => 'relationship',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),    
     array(
         'sub_fields' => array(
@@ -205,56 +212,64 @@ $fields3 = array(
         'label' => 'REF (the track number or code)',
         'name' => 'ref',
         'type' => 'text',
-        'instructions' => 'Insert the track number or code. Format alphanumeric. Example: 135 or E121.'
+        'instructions' => 'Insert the track number or code. Format alphanumeric. Example: 135 or E121.',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'key' => 'wm_track_ascent',
         'label' => 'Ascent (D+)',
         'name' => 'ascent',
         'type' => 'text',
-        'instructions' => 'Insert the total ascent (positive gain) of the track considering the track walked from the start point to the end point. Use meter as unit.'
+        'instructions' => 'Insert the total ascent (positive gain) of the track considering the track walked from the start point to the end point. Use meter as unit.',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'key' => 'wm_track_descent',
         'label' => 'Descent (D-)',
         'name' => 'descent',
         'type' => 'text',
-        'instructions' => 'Insert the the total descent (negative gain) of the track considering the track walked from the start point to the end point. Use meter as unit.'
+        'instructions' => 'Insert the the total descent (negative gain) of the track considering the track walked from the start point to the end point. Use meter as unit.',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'key' => 'wm_track_distance',
         'label' => 'Distance (lenght of the track)',
         'name' => 'distance',
         'type' => 'text',
-        'instructions' => 'Insert the total lenght of the track. Use meter as unit.'
+        'instructions' => 'Insert the total lenght of the track. Use meter as unit.',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'key' => 'wm_track_duration:forward',
         'label' => 'Duration forward',
         'name' => 'duration:forward',
         'type' => 'text',
-        'instructions' => 'Insert the estimated time to walk the track form the start point to the end point. Use the following format: hh:mm'
+        'instructions' => 'Insert the estimated time to walk the track form the start point to the end point. Use the following format: hh:mm',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'key' => 'wm_track_duration_backword',
         'label' => 'Duration backward',
         'name' => 'duration:backward',
         'type' => 'text',
-        'instructions' => 'Insert the estimated time to walk the track form the end point to the start point. Use the following format: hh:mm'
+        'instructions' => 'Insert the estimated time to walk the track form the end point to the start point. Use the following format: hh:mm',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'key' => 'wm_track_cai_scale',
         'label' => 'Difficulty',
         'name' => 'cai_scale',
         'type' => 'text',
-        'instructions' => 'Insert the path difficulty classification according to the Club Alpino Italiano scale (T,E,EE,EEA). Please refer to the following address for more information: http://wiki.openstreetmap.org/wiki/Proposed_features/cai_scale'
+        'instructions' => 'Insert the path difficulty classification according to the Club Alpino Italiano scale (T,E,EE,EEA). Please refer to the following address for more information: http://wiki.openstreetmap.org/wiki/Proposed_features/cai_scale',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'key' => 'wm_track_osmid',
         'label' => 'Osmid',
         'name' => 'osmid',
         'type' => 'text',
-        'instructions' => 'Insert the corresponding relation (or way) OSMID.'
+        'instructions' => 'Insert the corresponding relation (or way) OSMID.',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
 
 );

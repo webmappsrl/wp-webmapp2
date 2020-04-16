@@ -35,6 +35,7 @@ $fields_all = array(
         'type' => 'true_false',
         'message' => 'Set this field to true if rooms are single or double. No triple or quadruple room available.',
         'default_value' => 0,
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'key' => 'wm_route_boat_trip',
@@ -43,6 +44,7 @@ $fields_all = array(
         'type' => 'true_false',
         'message' => 'Set this field to true if the trip is By Bike and Boat',
         'default_value' => 0,
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'key' => 'wm_route_from',
@@ -82,6 +84,7 @@ $fields_all = array(
         'layout' => 'horizontal',
         'return_format' => 'value',
         'save_other_choice' => 0,
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'font_size' => 14,
@@ -116,7 +119,7 @@ $fields_all = array(
         'key' => 'field_585cdc9229191',
         'label' => 'related url',
         'name' => 'n7webmap_rpt_related_url',
-        'type' => 'repeater'
+        'type' => 'repeater',
     ),
     array(
         'key' => 'wm_route_audio',
@@ -145,7 +148,7 @@ $fields_all = array(
         'key' => 'wm_route_gallery',
         'label' => 'Media Gallery',
         'name' => 'n7webmap_route_media_gallery',
-        'type' => 'gallery'
+        'type' => 'gallery',
     ),
     /**
      * ACCESS
@@ -197,6 +200,7 @@ $fields_all = array(
         'type' => 'true_false',
         'message' => 'Set this field to true if the route has a price.',
         'default_value' => 0,
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'role' => array(
@@ -218,6 +222,7 @@ $fields_all = array(
                 ),
             ),
         ),
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     // PASSWORD PROTECTED
     array(
@@ -314,6 +319,7 @@ $fields_all = array(
         'load_terms' => 1,
         'return_format' => 'object',
         'multiple' => 0,
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'key' => 'wm_route_from_poi',
@@ -420,7 +426,7 @@ $fields_promotion = array(
     array(
         'key' => 'wm_route_promotion',
         'label' => 'Promotion',
-    'message' => 'The promotion_ * fields contained in this TAB cannot be modified from this interface: they are managed automatically by the promotions interface',
+        'message' => 'The promotion_ * fields contained in this TAB cannot be modified from this interface: they are managed automatically by the promotions interface',
         'type' => 'tab',
         'required' => 0,
         'placement' => 'top',
@@ -429,18 +435,19 @@ $fields_promotion = array(
     array(
         'key' => 'wm_route_promotion_name',
         'label' => __("Name"),
-    'message' => 'Name of the activated promotion',
+        'message' => 'Name of the activated promotion',
         'name' => 'promotion_name',
         'type' => 'text',
-    'readonly' => 1
+        'readonly' => 1
     ),
     array(
         'key' => 'wm_route_promotion_value',
         'label' => __("Value"),
-    'message' => 'Discount value',
+        'message' => 'Discount value',
         'name' => 'promotion_value',
         'type' => 'text',
-    'readonly' => 1
+        'readonly' => 1,
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
 );
 

@@ -1,6 +1,6 @@
 <wpml-config>
   <custom-fields>
-      <custom-field action="translate">n7webmap_stop</custom-field>
+      <!-- <custom-field action="translate">n7webmap_stop</custom-field>
       <custom-field action="copy">n7webmap_coord</custom-field>
       <custom-field action="copy">n7webmap_media_gallery</custom-field>
       <custom-field action="copy">n7webmap_gpx</custom-field>
@@ -23,7 +23,7 @@
       <custom-field action="copy">distance</custom-field>
       <custom-field action="copy">n7webmapp_route_cod</custom-field>
       <custom-field action="copy">shape</custom-field>
-      <custom-field action="copy">tour_operator</custom-field>
+      <custom-field action="copy">tour_operator</custom-field> -->
       
 
        <!--   <custom-field action="copy">weight</custom-field>
