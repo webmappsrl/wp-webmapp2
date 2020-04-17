@@ -41,7 +41,8 @@ $fields2 = array(
         'key' => 'field_58c7ef836e6e2',
         'label' => 'Track color',
         'name' => 'n7webmapp_track_color',
-        'type' => 'color_picker'
+        'type' => 'color_picker',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ), array(
         'key' => 'wm_track_code',
         'label' => __("Route code"),
@@ -171,7 +172,8 @@ $fields2 = array(
                 'key' => 'field_585cdd464c509',
                 'label' => 'url',
                 'name' => 'net7webmap_related_url',
-                'type' => 'url'
+                'type' => 'url',
+                'wpml_cf_preferences' => WEBMAPP_TRANSLATE_CUSTOM_FIELD,
             ),
         ),
         'layout' => 'table',
@@ -179,7 +181,8 @@ $fields2 = array(
         'key' => 'field_585cdc9229191',
         'label' => 'related url',
         'name' => 'n7webmap_rpt_related_url',
-        'type' => 'repeater'
+        'type' => 'repeater',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'key' => 'wm_track_audio',
