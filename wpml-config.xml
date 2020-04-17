@@ -1,12 +1,5 @@
 <wpml-config>
-    <!-- <custom-term-fields>
-        <custom-term-field action="translate">html_description</custom-term-field>
-        <custom-term-field action="translate">title</custom-term-field>
-    </custom-term-fields> -->
     <custom-fields>
-        <!-- <custom-field action="copy">n7webmap_media_gallery</custom-field>
-        <custom-field action="copy">n7webmap_track_media_gallery</custom-field>
-        <custom-field action="copy">n7webmap_route_media_gallery</custom-field> -->
         <custom-field action="copy">n7webmap_gpx</custom-field>
         
 

@@ -150,7 +150,6 @@ $fields_all = array(
         'label' => 'Media Gallery',
         'name' => 'n7webmap_route_media_gallery',
         'type' => 'gallery',
-        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     /**
      * ACCESS
