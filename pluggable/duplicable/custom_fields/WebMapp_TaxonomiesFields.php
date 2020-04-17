@@ -27,14 +27,16 @@ $fields = array (
         'label' => 'color',
         'name' => 'color',
         'type' => 'color_picker',
-        'instructions' => 'Use the color picker (click on the "Select Color" button) to select the color of the POI or insert direclty the color RGB code in the followong format: #RRGGBB'
+        'instructions' => 'Use the color picker (click on the "Select Color" button) to select the color of the POI or insert direclty the color RGB code in the followong format: #RRGGBB',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array (
         'key' => 'wm_taxonomy_icon',
         'label' => 'Icon',
         'name' => 'icon',
         'type' => 'text',
-        'instructions' => 'Insert the icon associated to the taxonomy term. Use the WEBMAPP icons: https://icon.webmapp.it'
+        'instructions' => 'Insert the icon associated to the taxonomy term. Use the WEBMAPP icons: https://icon.webmapp.it',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array (
         'key' => 'wp_taxonomy_show_by_default',
@@ -42,7 +44,8 @@ $fields = array (
         'name' => 'show_by_default',
         'type' => 'true_false',
         'instructions' => 'Enable this feature to display items (POIs or TRACKS) on the map by default.',
-        'default_value' => 1
+        'default_value' => 1,
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array (
         'key' => 'wp_taxonomy_alert',
@@ -50,7 +53,8 @@ $fields = array (
         'name' => 'alert',
         'type' => 'true_false',
         'instructions' => 'Check this if you want to enable the alert feature on the POI in this term. This feature works only for MyEasyRoute with the navigation option in the single stage of a route.',
-        'default_value' => 0
+        'default_value' => 0,
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array (
         'key' => 'wp_taxonomy_exclude',
@@ -58,7 +62,8 @@ $fields = array (
         'name' => 'exclude',
         'type' => 'true_false',
         'instructions' => 'Check this if you want to exclude the features of this term from the general MAP.',
-        'default_value' => 0
+        'default_value' => 0,
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array (
         'key' => 'wm_taxonomy_title',
@@ -90,6 +95,7 @@ $fields = array (
         'max_height' => '',
         'max_size' => '',
         'mime_types' => 'png, jpg, jpeg',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'key' => 'wm_taxonomy_featured_icon',
@@ -114,6 +120,7 @@ $fields = array (
         'max_height' => '',
         'max_size' => '',
         'mime_types' => 'png, jpg, jpeg',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
 );
 

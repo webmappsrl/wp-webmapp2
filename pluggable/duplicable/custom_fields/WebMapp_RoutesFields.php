@@ -120,6 +120,7 @@ $fields_all = array(
         'label' => 'related url',
         'name' => 'n7webmap_rpt_related_url',
         'type' => 'repeater',
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD
     ),
     array(
         'key' => 'wm_route_audio',

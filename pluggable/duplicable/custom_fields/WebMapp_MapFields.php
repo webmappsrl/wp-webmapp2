@@ -46,7 +46,7 @@ $fields2 = array(
         'name' => 'n7webmap_map_bbox',
         'type' => 'textarea',
         'instructions' => 'Use this field to manually insert overlay layers. To be used carefully.',
-
+        'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
         'key' => 'wm_map_config_url',
@@ -83,7 +83,8 @@ $fields3 = array(
                 'key' => 'field_map_type',
                 'label' => 'type',
                 'name' => 'n7webmap_type',
-                'type' => 'select'
+                'type' => 'select',
+                'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
             ),
             array(
                 'post_type' => array(
@@ -109,7 +110,8 @@ $fields3 = array(
                             'value' => 'single',
                         ),
                     ),
-                )
+                ),
+                'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
             ),
             array (
                 'key' => 'wm_map_layer_poi',

@@ -162,7 +162,8 @@
                     'key' => 'field_585cdd464c509',
                     'label' => 'url',
                     'name' => 'net7webmap_related_url',
-                    'type' => 'url'
+                    'type' => 'url',
+                    'wpml_cf_preferences' => WEBMAPP_TRANSLATE_CUSTOM_FIELD,
                 ),
             ),
             'layout' => 'table',
@@ -171,6 +172,7 @@
             'label' => 'related url',
             'name' => 'n7webmap_rpt_related_url',
             'type' => 'repeater',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
         array(
             'key' => 'wm_poi_audio',
@@ -215,7 +217,8 @@
             'label' => __("Code"),
             'name' => 'code',
             'type' => 'text',
-            'instructions' => 'Use this field to add a code to the POI.'
+            'instructions' => 'Use this field to add a code to the POI.',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
 
         ),
 
