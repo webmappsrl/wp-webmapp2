@@ -121,3 +121,10 @@ function my_acf_admin_head() {
         <?php
     }
 }
+
+
+add_filter( 'wpml_custom_field_original_data', 'disable_original_lang_data' );
+
+function disable_original_lang_data(){
+return;
+}
