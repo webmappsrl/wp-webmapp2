@@ -2,7 +2,6 @@
     <custom-term-fields>
         <custom-term-field action="translate">html_description</custom-term-field>
         <custom-term-field action="translate">title</custom-term-field>
-        <custom-term-field action="copy">featured_image</custom-term-field>
     </custom-term-fields>
     <custom-fields>
         <custom-field action="copy">n7webmap_media_gallery</custom-field>
