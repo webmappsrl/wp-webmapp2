@@ -368,12 +368,13 @@ class WebMapp_TemplateSingle
         //     )
         // );
         $args = array(
-            'post_type' => '',
-            'post_status' => '',
+            'post_type' => $post_type,
+            'post_status' => 'publish',
             'fields' => 'ids',
             'post__not_in' => array( $post_id ),
             'posts_per_page' => 3,
-            'orderby' => 'rand'
+            'orderby' => 'rand',
+            'suppress_filters' => false
        );
        
        switch ($post_type)
@@ -383,8 +384,7 @@ class WebMapp_TemplateSingle
                 break;
             case 'track':
                 $tax_has_child = get_terms ('theme');
-                $webmapp_has_route = get_option('webmapp_has_route');
-                if (!empty($tax_has_child) && $webmapp_has_route !== true ){
+                if (!empty($tax_has_child) ){
                     $query_tax = 'theme';
                     break;
                 } else {
@@ -425,7 +425,7 @@ class WebMapp_TemplateSingle
         if ( $posts && is_array( $posts ) && ! empty( $posts ) )
         {
             $posts_string = implode( ',',$posts);
-            $r = do_shortcode("[webmapp_anypost posts_per_page='3' post_count='3' rows='1' post_ids='" . $posts_string . "' orderby='rand']");
+            $r = do_shortcode("[webmapp_anypost posts_per_page='3' post_count='3' rows='1' post_ids='" . $posts_string . "' ]");
         }
 
 
