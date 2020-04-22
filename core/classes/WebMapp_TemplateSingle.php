@@ -383,7 +383,8 @@ class WebMapp_TemplateSingle
                 break;
             case 'track':
                 $tax_has_child = get_terms ('theme');
-                if (!empty($tax_has_child)){
+                $webmapp_has_route = get_option('webmapp_has_route');
+                if (!empty($tax_has_child) && $webmapp_has_route !== true ){
                     $query_tax = 'theme';
                     break;
                 } else {
