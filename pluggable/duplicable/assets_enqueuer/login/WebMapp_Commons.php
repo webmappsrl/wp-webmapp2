@@ -1,5 +1,6 @@
 <?php
 
+$default_lang = apply_filters('wpml_default_language', NULL );
 $args = array(
     'login_css' => array(
         'src' => WebMapp_ASSETS . 'css/webmapp-login.css',
@@ -8,7 +9,6 @@ $args = array(
 );
 
 $WebMapp_LoginAssets = new WebMapp_AssetEnqueuer( $args,'login','style' );
-
 $args = array(
     'login_js' => array(
         'src' => WebMapp_ASSETS . 'js/webmapp-login.js',
@@ -33,7 +33,8 @@ $args = array(
                         'check_email' => __('Vérifiez l\'email, nous vous avons envoyé le lien à utiliser pour réinitialiser le mot de passe', 'webmapp'),
                         'success_password' => __('Le mot de passe a été réinitialisé.','webmapp'),
                     ),
-                )
+                ),
+                'default' => $default_lang
 	        ),
         )
     ),

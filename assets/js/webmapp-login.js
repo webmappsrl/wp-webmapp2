@@ -9,7 +9,9 @@ jQuery(document).ready(function( $ ) {
     } else {
       oldLink = $('#lostpasswordform').attr('action');
       newLink = oldLink+'&lang='+language.split("-")[0];
-      $('#lostpasswordform').attr('action',newLink);
+      if (language.split("-")[0] !== webmapp_login_text['default']){
+        $('#lostpasswordform').attr('action',newLink);
+      }
     }
   }
 
