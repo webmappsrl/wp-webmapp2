@@ -16,8 +16,24 @@ $args = array(
         'localize' => array(
 	        'object_name' => 'webmapp_login_text',
 	        'data' => array(
-                'check_email' => __('Check the email, we sent you the link to use to reset the password', 'webmapp'),
-                'success_password' => __('The password has been reset.','webmapp'),
+                'it-IT' => array(
+                    'data' => array(
+                        'check_email' => __('Controlla l\'email, ti abbiamo inviato il link da usare per resettare la password', 'webmapp'),
+                        'success_password' => __('La password è stata reimpostata.','webmapp'),
+                    ),
+                ),
+                'en-US' => array(
+                    'data' => array(
+                        'check_email' => __('Check the email, we sent you the link to use to reset the password', 'webmapp'),
+                        'success_password' => __('The password has been reset.','webmapp'),
+                    ),
+                ),
+                'fr-FR' => array(
+                    'data' => array(
+                        'check_email' => __('Vérifiez l\'email, nous vous avons envoyé le lien à utiliser pour réinitialiser le mot de passe', 'webmapp'),
+                        'success_password' => __('Le mot de passe a été réinitialisé.','webmapp'),
+                    ),
+                )
 	        ),
         )
     ),

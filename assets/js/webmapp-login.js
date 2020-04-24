@@ -2,10 +2,10 @@ jQuery(document).ready(function( $ ) {
 
   if($('body').hasClass('login-action-lostpassword')){
     var close = getUrlParameter('webmapp_close');
-
+    language = document.documentElement.lang;
     if(close == 'true'){
       $('#lostpasswordform').hide();
-      $('p.message').html(webmapp_login_text.check_email);
+      $('p.message').html(webmapp_login_text[language].data.check_email);
     }
   }
 
