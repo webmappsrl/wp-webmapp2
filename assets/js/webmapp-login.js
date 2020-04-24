@@ -11,9 +11,9 @@ jQuery(document).ready(function( $ ) {
 
   if($('body').hasClass('login-action-resetpass')){
     var action = getUrlParameter('action');
+    language = document.documentElement.lang;
     if( action == 'resetpass' ) {
-      $('<p class="message">La password è stata reimpostata.</p>').appendTo('div#login')
-
+      $('<p class="message">'+webmapp_login_text[language].data.success_password+'</p>').appendTo('div#login');
     }
   }
 });
