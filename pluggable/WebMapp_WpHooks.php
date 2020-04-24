@@ -89,7 +89,10 @@ function custom_loginlogo_url($url) {
 
 add_filter( 'lostpassword_redirect', 'my_redirect_home' );
 function my_redirect_home( $lostpassword_redirect ) {
-    return wp_login_url().'?action=lostpassword&webmapp_close=true';
+    if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
+        $lang = ICL_LANGUAGE_CODE;
+    }
+    return wp_login_url().'?action=lostpassword&webmapp_close=true&lang='.$lang;
 }
 
 
