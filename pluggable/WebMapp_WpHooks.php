@@ -81,6 +81,11 @@ function custom_login_logo() {
 }
 add_action('login_head', 'custom_login_logo');
 
+add_filter( 'lostpassword_url',  'wm_lostpassword_url', 10, 2 );
+function wm_lostpassword_url($lostpassword_url, $redirect) {
+    $lang = ICL_LANGUAGE_CODE;
+    return $lostpassword_url.'&lang='.$lang;
+}
 
 add_filter( 'login_headerurl', 'custom_loginlogo_url' );
 function custom_loginlogo_url($url) {
