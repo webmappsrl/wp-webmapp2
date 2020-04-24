@@ -6,6 +6,10 @@ jQuery(document).ready(function( $ ) {
     if(close == 'true'){
       $('#lostpasswordform').hide();
       $('p.message').html(webmapp_login_text[language].data.check_email);
+    } else {
+      oldLink = $('#lostpasswordform').attr('action');
+      newLink = oldLink+'&lang='+language.split("-")[0];
+      $('#lostpasswordform').attr('action',newLink);
     }
   }
 
