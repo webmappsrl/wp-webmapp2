@@ -52,6 +52,10 @@ class WebMapp_ActivityRoute
         {
             $related_track_query = '';
             foreach( $tracks as $track_id ) :
+                if (has_filter('wpml_object_id')) {
+                    $default_lang = apply_filters('wpml_default_language', NULL);
+                    $track_id = apply_filters('wpml_object_id', $track_id, 'track', TRUE, $default_lang);
+                }
                 $related_track_query .= "PM.meta_value LIKE '%\"$track_id\"%' OR ";
             endforeach;
             $related_track_query = substr( $related_track_query , 0, -4 );
