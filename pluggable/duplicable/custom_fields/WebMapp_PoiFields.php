@@ -398,7 +398,8 @@
 			'append' => '',
 			'min' => -50,
 			'max' => 50,
-			'step' => '',
+            'step' => '',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
 		),
         array(
             'key' => 'wm_poi_content_from',
