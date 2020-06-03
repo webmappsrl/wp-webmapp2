@@ -161,3 +161,163 @@ $args = array (
 
 
 $WebMapp_RegisterRouteFields = new WebMapp_RegisterFieldsGroup($taxonomies_with_this_fields ,$args );
+
+// Map style for Activity
+$fields2 = array(
+	'key' => 'wm_taxonomy_style_activity',
+	'title' => 'Map style',
+	'fields' => array(
+		array(
+			'key' => 'wm_taxonomy_zindex',
+			'label' => 'Z-index',
+			'name' => 'zindex',
+			'type' => 'number',
+			'instructions' => 'Set the z-index of posts in this taxonomy on the map',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+			'min' => -50,
+			'max' => 50,
+			'step' => '',
+		),
+		array(
+			'key' => 'wm_taxonomy_stroke_with',
+			'label' => 'stroke width',
+			'name' => 'stroke_width',
+			'type' => 'number',
+			'instructions' => 'Set the line stroke of the tracks in this taxonomy on the map',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+			'min' => 1,
+			'max' => 10,
+			'step' => '',
+		),
+		array(
+            'key' => 'wm_taxonomy_line_dash_repeater',
+            'label' => 'line dash repeater',
+            'name' => 'line_dash_repeater',
+            'type' => 'repeater',
+            'instructions' => 'Set the line dash of the tracks in this taxonomy, it should be pairs of numbers.',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'collapsed' => '',
+            'min' => 0,
+            'max' => 0,
+            'layout' => 'table',
+            'button_label' => '',
+            'sub_fields' => array(
+                array(
+                    'key' => 'wm_taxonomy_line_dash',
+                    'label' => 'line dash',
+                    'name' => 'line_dash',
+                    'type' => 'number',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => '',
+                    'placeholder' => '',
+                    'prepend' => '',
+                    'append' => '',
+                    'min' => 1,
+                    'max' => 50,
+                    'step' => '',
+                ),
+            ),
+        ),
+	),
+	'location' => array(
+		array(
+			array(
+				'param' => 'taxonomy',
+				'operator' => '==',
+				'value' => 'activity',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'normal',
+	'style' => 'default',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+	'active' => true,
+	'description' => '',
+);
+
+$WebMapp_RegisterRouteFields = new WebMapp_RegisterFieldsGroup('activity' ,$fields2 );
+
+
+// map style for webmapp_category
+$fields3 = array(
+	'key' => 'wm_taxonomy_style_webmapp_category',
+	'title' => 'Style map',
+	'fields' => array(
+		array(
+			'key' => 'wm_taxonomy_zindex',
+			'label' => 'Z-index',
+			'name' => 'zindex',
+			'type' => 'number',
+			'instructions' => 'Set the z-index of posts in this taxonomy on the map',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+			'min' => -50,
+			'max' => 50,
+			'step' => '',
+		)
+	),
+	'location' => array(
+		array(
+			array(
+				'param' => 'taxonomy',
+				'operator' => '==',
+				'value' => 'webmapp_category',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'normal',
+	'style' => 'default',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+	'active' => true,
+	'description' => '',
+);
+
+$WebMapp_RegisterRouteFields = new WebMapp_RegisterFieldsGroup('webmapp_category' ,$fields3 );
