@@ -297,7 +297,7 @@ function webmapp_manage_bulk_edit_custom_box($column_name, $post_type) {
 // /** WPML CLONE FEATURED IMAGE **/
 add_action( "save_post_route", "wm_copy_featured_image_on_save" , 10 , 3);
 add_action( "save_post_track", "wm_copy_featured_image_on_save" , 10 , 3);
-add_action( "save_post_poi", "wm_copy_featured_image_on_save" , 10 , 3);
+add_action( "save_post_poi", "wm_copy_featured_image_on_save_poi" , 10 , 3);
 
 function wm_copy_featured_image_on_save( $post_id, $post, $update ){
 
@@ -313,6 +313,31 @@ function wm_copy_featured_image_on_save( $post_id, $post, $update ){
         return;
     
     $post_default_language = apply_filters( 'wpml_object_id', $post_id, $post['post_type'], FALSE, $default_lang );
+    if ( ! $post_default_language )
+        return;
+        
+    $post_thumb = get_post_thumbnail_id( $post_default_language );
+    if ( ! $post_thumb )
+        return;
+
+    set_post_thumbnail( $post, $post_thumb );
+        
+}
+
+function wm_copy_featured_image_on_save_poi ( $post_id, $post, $update ){
+
+    //get post language
+    $post_lang = apply_filters( 'wpml_post_language_details', NULL, $post_id );
+    //get wpml default language
+    $default_lang = apply_filters('wpml_default_language', NULL );
+    if ( $post_lang['language_code'] && $post_lang['language_code'] == $default_lang )
+        return;
+
+    $this_post_thumb = get_post_thumbnail_id( $post );
+    if ( $this_post_thumb )
+        return;
+    
+    $post_default_language = apply_filters( 'wpml_object_id', 'poi', FALSE, $default_lang );
     if ( ! $post_default_language )
         return;
         
