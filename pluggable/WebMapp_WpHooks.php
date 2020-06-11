@@ -312,7 +312,7 @@ function wm_copy_featured_image_on_save( $post_id, $post, $update ){
     if ( $this_post_thumb )
         return;
     
-    $post_default_language = apply_filters( 'wpml_object_id', $post_id, 'route', FALSE, $default_lang );
+    $post_default_language = apply_filters( 'wpml_object_id', $post_id, $post['post_type'], FALSE, $default_lang );
     if ( ! $post_default_language )
         return;
         
