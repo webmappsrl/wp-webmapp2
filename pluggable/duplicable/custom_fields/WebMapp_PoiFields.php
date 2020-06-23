@@ -384,7 +384,7 @@
 			'label' => 'Z-index',
 			'name' => 'zindex',
 			'type' => 'number',
-			'instructions' => 'Set the z-index of this poi on the map',
+			'instructions' => 'Insert the visibility order of this POI on the map, the value should be between -50 and 50. Higher value means this POI is positioned above the others on the map.',
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array(
