@@ -425,7 +425,7 @@ class WebMapp_TemplateSingle
         if ( $posts && is_array( $posts ) && ! empty( $posts ) )
         {
             $posts_string = implode( ',',$posts);
-            $r = do_shortcode("[webmapp_anypost posts_per_page='3' post_count='3' rows='1' post_ids='" . $posts_string . "' ]");
+            $r = do_shortcode("[webmapp_anypost posts_per_page='3' post_type='".$post_type."' post_count='3' rows='1' post_ids='" . $posts_string . "' ]");
         }
 
 
