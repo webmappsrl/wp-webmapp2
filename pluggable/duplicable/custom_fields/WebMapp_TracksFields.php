@@ -240,7 +240,7 @@ $fields2 = array(
     ),
     array(
         'key' => 'wm_track_stroke_opacity',
-        'label' => 'Stroke spacity',
+        'label' => 'Stroke opacity',
         'name' => 'stroke_opacity',
         'type' => 'number',
         'instructions' => 'Insert the line opacity of this track on the map, the value should be between 1 and 100. Leave empty for default.',
