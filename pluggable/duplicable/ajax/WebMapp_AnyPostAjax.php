@@ -79,7 +79,7 @@ function get_anypost_shortcode_page( $options = false ) {
         $rows = 1;
         $posts_per_page = 1;
     }
-    elseif ( $post_ids && strpos($post_ids , ',') !== false )
+    elseif ( $post_ids ) // deleted < && strpos($post_ids , ',') !== false > from elsif condition for queries with only one result
     {
         $query_args[ 'post__in' ] = explode(',',$post_ids );
     }

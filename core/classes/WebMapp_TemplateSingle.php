@@ -384,7 +384,7 @@ class WebMapp_TemplateSingle
                 break;
             case 'track':
                 $tax_has_child = get_terms ('theme');
-                if (!empty($tax_has_child) ){
+                if (has_term('','theme')){
                     $query_tax = 'theme';
                     break;
                 } else {
@@ -404,7 +404,7 @@ class WebMapp_TemplateSingle
             $current_themes = get_the_terms( $post_id ,$query_tax);
             if ( $current_themes )
             {
-                $args['tax_query'] = array( 'relation' => 'AND' );
+                $args['tax_query'] = array( 'relation' => 'OR' );
        
                 $terms_ids = array_map(function($e){ return $e->term_id;}, $current_themes);
                 $args['tax_query'][] = array(
@@ -425,7 +425,8 @@ class WebMapp_TemplateSingle
         if ( $posts && is_array( $posts ) && ! empty( $posts ) )
         {
             $posts_string = implode( ',',$posts);
-            $r = do_shortcode("[webmapp_anypost posts_per_page='3' post_type='".$post_type."' post_count='3' rows='1' post_ids='" . $posts_string . "' ]");
+            $terms_ids_string = implode( ',',$terms_ids);
+            $r = do_shortcode("[webmapp_anypost term_ids='".$terms_ids_string."' posts_per_page='3' post_type='".$post_type."' post_count='3' rows='1' post_ids='" . $posts_string . "' ]");
         }
 
 
