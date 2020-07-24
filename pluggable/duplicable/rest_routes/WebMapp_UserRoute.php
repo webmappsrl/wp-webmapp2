@@ -78,7 +78,8 @@ function WebMapp_V1UserRegistrationRoute( WP_REST_Request $request ) {
 
         // Set the role
         $user = new WP_User($user_id);
-        $user->set_role('subscriber');
+        $user_role = get_option('default_role');
+        $user->set_role($user_role);
 
         wp_mail($to, $subject, $message, $headers);
 
