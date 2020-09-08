@@ -56,8 +56,9 @@ function WebMapp_V2SocialLogin(WP_REST_Request $request)
         );
 
         wp_insert_user($newUser);
+        $user = get_user_by_email($user_email);
     }
-    $user = get_user_by_email($user_email);
+
     if (!$user) {
         return new WP_REST_Response(['code' => 'unable_sign_up', 'message' => "The sign up process failed and we could not create the user", 'status' => 500], 500);
     }
