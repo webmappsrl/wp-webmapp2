@@ -32,13 +32,11 @@ require_once('third-part/gisconverter/gisconverter.php');
 require_once('icons_conf.php');
 
 
-
 /**
  *
  * Core
  *
  */
-
 
 
 /**
@@ -102,6 +100,7 @@ WebMapp_Utils::load_dir('pluggable/duplicable/custom_fields');
  */
 WebMapp_Utils::load_dir('pluggable/duplicable/rest_routes');
 WebMapp_Utils::load_dir('pluggable/duplicable/rest_routes/wizards');
+WebMapp_Utils::load_dir('pluggable/duplicable/rest_routes/social_login');
 
 /**
  * Register css/js resources
@@ -119,10 +118,7 @@ WebMapp_Utils::load_dir('pluggable/duplicable/assets_enqueuer/wp');
 WebMapp_Utils::load_dir('pluggable/duplicable/admin/columns');
 
 
-
-
-
-if ( is_admin() ) ://load only in admin side
+if (is_admin()) ://load only in admin side
 
     /**
      * Load admin pages or subpages
@@ -167,15 +163,11 @@ WebMapp_Utils::load_theme();
 WebMapp_Utils::load_dir('pluggable');
 
 
-
-
-
-
 /**
  * Load WP CLI commands and utils
  */
 
-if ( defined( 'WP_CLI' ) && WP_CLI ) {
+if (defined('WP_CLI') && WP_CLI) {
     require_once('utils/WebMapp_WpCli_Utils.php');
     WebMapp_Utils::load_dir('pluggable/duplicable/wp-cli');
 }
