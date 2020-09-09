@@ -2,7 +2,7 @@
 
 use NextendSocialLogin;
 
-const PROVIDERS = array("google", "facebook");
+const WEBMAPP_SOCIAL_PROVIDERS = array("google", "facebook");
 
 function WebMapp_V2SocialLogin(WP_REST_Request $request)
 {
@@ -10,6 +10,10 @@ function WebMapp_V2SocialLogin(WP_REST_Request $request)
 
     if ($request->get_method() != 'POST') {
         return new WP_REST_Response(['message' => "Method {$request->get_method()} not valid. Please use POST"], 405);
+    }
+
+    if (!class_exists("NextendSocialLogin")) {
+        return new WP_REST_Response(['message' => "Missing NextendSocialLogin Wordpress plugin. Unable to execute the operation"], 500);
     }
 
     $provider_param = isset($param["provider"]) ? $param["provider"] : false;
@@ -25,7 +29,7 @@ function WebMapp_V2SocialLogin(WP_REST_Request $request)
         return new WP_REST_Response(['message' => "Missing parameter(s) {$message}"], 400);
     }
 
-    if (!in_array($provider_param, PROVIDERS))
+    if (!in_array($provider_param, WEBMAPP_SOCIAL_PROVIDERS))
         return new WP_REST_Response(['message' => "Provider '{$provider_param}' unknown"], 400);
 
     $provider = NextendSocialLogin::$enabledProviders[$provider_param];
