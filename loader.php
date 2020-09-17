@@ -100,7 +100,6 @@ WebMapp_Utils::load_dir('pluggable/duplicable/custom_fields');
  */
 WebMapp_Utils::load_dir('pluggable/duplicable/rest_routes');
 WebMapp_Utils::load_dir('pluggable/duplicable/rest_routes/wizards');
-WebMapp_Utils::load_dir('pluggable/duplicable/rest_routes/social_login');
 
 /**
  * Register css/js resources
