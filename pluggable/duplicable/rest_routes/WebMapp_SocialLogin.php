@@ -1,7 +1,5 @@
 <?php
 
-use NextendSocialLogin;
-
 const WEBMAPP_SOCIAL_PROVIDERS = array("google", "facebook");
 
 function WebMapp_V2SocialLogin(WP_REST_Request $request)
@@ -12,8 +10,13 @@ function WebMapp_V2SocialLogin(WP_REST_Request $request)
         return new WP_REST_Response(['message' => "Method {$request->get_method()} not valid. Please use POST"], 405);
     }
 
-    if (!class_exists("NextendSocialLogin")) {
-        return new WP_REST_Response(['message' => "Missing NextendSocialLogin Wordpress plugin. Unable to execute the operation"], 500);
+    if (!is_plugin_active("nextend-facebook-connect/nextend-facebook-connect.php")) {
+        return new WP_REST_Response(['message' => "Missing NextendSocialLogin Wordpress plugin. Unable to execute the operation", "err" => "asdasd"], 500);
+    } else {
+        require_once ABSPATH . 'wp-content/plugins/nextend-facebook-connect/nextend-facebook-connect.php';
+        if (!class_exists("NextendSocialLogin")) {
+            return new WP_REST_Response(['message' => "Missing NextendSocialLogin Wordpress plugin. Unable to execute the operation"], 500);
+        }
     }
 
     $provider_param = isset($param["provider"]) ? $param["provider"] : false;
@@ -42,6 +45,7 @@ function WebMapp_V2SocialLogin(WP_REST_Request $request)
 
     $user_email = $provider->getAuthUserData("email");
     $user = get_user_by_email($user_email);
+    $isNewUser = false;
     if (!$user) {
         /**
          * Sign up the user
@@ -61,6 +65,7 @@ function WebMapp_V2SocialLogin(WP_REST_Request $request)
 
         wp_insert_user($newUser);
         $user = get_user_by_email($user_email);
+        $isNewUser = true;
     }
 
     if (!$user) {
@@ -70,7 +75,7 @@ function WebMapp_V2SocialLogin(WP_REST_Request $request)
     wp_set_current_user($user_id);
     $token = WebMapp_getToken();
 
-    return new WP_REST_Response(["message" => "Login successful", "id" => $user_id, "token" => $token], 200);
+    return new WP_REST_Response(["message" => "Login successful", "id" => $user_id, "token" => $token, "created" => $isNewUser], 200);
 }
 
 $namespace = 'webmapp/v2';
