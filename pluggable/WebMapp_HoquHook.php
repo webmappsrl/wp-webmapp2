@@ -19,7 +19,7 @@ function update_poi_job_hoqu( $post_id, $post, $update ){
         );
     
         $response = wp_remote_post(
-            "$hoqu_baseurl",
+            "$hoqu_baseurl/store",
             array(
                 'method'      => 'POST',
                 'timeout'     => 45,
