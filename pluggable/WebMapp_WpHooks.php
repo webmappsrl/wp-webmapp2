@@ -374,3 +374,10 @@ function wm_copy_featured_image_on_save_poi ( $post_id, $post, $update ){
     set_post_thumbnail( $post, $post_thumb );
         
 }
+
+
+add_action( 'after_setup_theme', 'wpdocs_theme_setup' );
+function wpdocs_theme_setup() {
+    add_image_size( 'pdf-large', 1080, 608, array( 'center', 'center' ) ); // Hard crop left top
+
+}
