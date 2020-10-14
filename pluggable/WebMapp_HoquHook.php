@@ -12,7 +12,7 @@ function update_poi_job_hoqu( $post_id, $post, $update ){
 
         $requestJson = array(
             'instance' => $home_url,
-            'job' => 'mptupdate',
+            'job' => 'update_poi',
             'parameters' => array(
                 'id' => $post_id
             )
