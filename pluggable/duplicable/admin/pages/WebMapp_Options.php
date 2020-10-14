@@ -210,8 +210,14 @@ $generalOptionsPage = array(
     // new fields for tab hoqu access token
     'webmapp_hoqu_token' => array(
         'label' => _x( "Access token" , WebMapp_TEXTDOMAIN ),
-        'info' => _x( 'Il token privato di HOQU ' , WebMapp_TEXTDOMAIN),
+        'info' => _x( 'Il token privato di HOQU' , WebMapp_TEXTDOMAIN),
         'attrs' => array( 'size' => 50 ),
+        'tab' => 'hoqu',
+    ),
+    'webmapp_hoqu_baseurl' => array(
+        'label' => _x( "API base url" , WebMapp_TEXTDOMAIN ),
+        'info' => _x( 'Base url for hoqu API' , WebMapp_TEXTDOMAIN),
+        'attrs' => 'text',
         'tab' => 'hoqu',
     ),
 );
