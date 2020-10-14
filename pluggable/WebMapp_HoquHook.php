@@ -35,7 +35,8 @@ function update_poi_job_hoqu( $post_id, $post, $update ){
         
           $response = curl_exec($curl);
           $err = curl_error($curl);
-        
+          
+          print_r($response);
           curl_close($curl);
     }
     
