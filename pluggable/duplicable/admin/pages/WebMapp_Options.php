@@ -5,6 +5,7 @@ $tabs = array(
     'custom_types' =>  _x( "Custom Types", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
     'taxonomies' =>  _x( "Taxonomies Details", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
     'wizards' =>  _x( "Wizards", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
+    'hoqu' =>  _x( "Hoqu", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
 );
 
 
@@ -194,17 +195,30 @@ $generalOptionsPage = array(
     //new fields from cyclando
     'webmapp_show_interactive_route_map' => array(
         'label' => _x( "Show interactive route map" , WebMapp_TEXTDOMAIN ),
-        'info' => _x( 'mostrare mappa interattiva solo se show_interactive_route_map è true' , WebMapp_TEXTDOMAIN),
+        'info' => _x( 'Mostrare mappa interattiva solo se show_interactive_route_map è true' , WebMapp_TEXTDOMAIN),
         'type' => 'checkbox',
         'tab' => 'main',
         'default' => 0
     ),
     'webmapp_use_wizards' => array(
         'label' => _x( "Use wizards" , WebMapp_TEXTDOMAIN ),
-        'info' => _x( 'mostrare bottoni Wizard solo se use_wizards è true' , WebMapp_TEXTDOMAIN),
+        'info' => _x( 'Mostrare bottoni Wizard solo se use_wizards è true' , WebMapp_TEXTDOMAIN),
         'type' => 'checkbox',
         'tab' => 'wizards',
         'default' => 0
+    ),
+    // new fields for tab hoqu access token
+    'webmapp_hoqu_token' => array(
+        'label' => _x( "Access token" , WebMapp_TEXTDOMAIN ),
+        'info' => _x( 'Il token privato di HOQU' , WebMapp_TEXTDOMAIN),
+        'attrs' => array( 'size' => 50 ),
+        'tab' => 'hoqu',
+    ),
+    'webmapp_hoqu_baseurl' => array(
+        'label' => _x( "API base url" , WebMapp_TEXTDOMAIN ),
+        'info' => _x( 'Base url for hoqu API' , WebMapp_TEXTDOMAIN),
+        'attrs' => 'text',
+        'tab' => 'hoqu',
     ),
 );
 /**

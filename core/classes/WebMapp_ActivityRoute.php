@@ -32,49 +32,50 @@ class WebMapp_ActivityRoute
         );
 
         //get tracks by term id to calculate related routes
-        $tracks = get_posts(
-            array(
-                'post_type' => 'track',
-                'nopaging' => 'true',
-                'fields' => 'ids',
-                'post_status' => 'publish',
-                'tax_query' => array(
-                    array(
-                        'taxonomy' => 'activity',
-                        'field' => 'term_id',
-                        'terms' => array( $term_id )
-                    )
-                )
-            )
-        );
+        // $tracks = get_posts(
+        //     array(
+        //         'post_type' => 'track',
+        //         'nopaging' => 'true',
+        //         'fields' => 'ids',
+        //         'post_status' => 'publish',
+        //         'tax_query' => array(
+        //             array(
+        //                 'taxonomy' => 'activity',
+        //                 'field' => 'term_id',
+        //                 'terms' => array( $term_id )
+        //             )
+        //         )
+        //     )
+        // );
 
-        if ( $tracks )
-        {
-            $related_track_query = '';
-            foreach( $tracks as $track_id ) :
-                if (has_filter('wpml_object_id')) {
-                    $default_lang = apply_filters('wpml_default_language', NULL);
-                    $track_id = apply_filters('wpml_object_id', $track_id, 'track', TRUE, $default_lang);
-                }
-                $related_track_query .= "PM.meta_value LIKE '%\"$track_id\"%' OR ";
-            endforeach;
-            $related_track_query = substr( $related_track_query , 0, -4 );
+        // if ( $tracks )
+        // {
+        //     $related_track_query = '';
+        //     foreach( $tracks as $track_id ) :
+        //         if (has_filter('wpml_object_id')) {
+        //             $default_lang = apply_filters('wpml_default_language', NULL);
+        //             $track_id = apply_filters('wpml_object_id', $track_id, 'track', TRUE, $default_lang);
+        //         }
+        //         $related_track_query .= "PM.meta_value LIKE '%\"$track_id\"%' OR ";
+        //     endforeach;
+        //     $related_track_query = substr( $related_track_query , 0, -4 );
 
-            $sql = "SELECT DISTINCT P.ID FROM $wpdb->posts P "
-                . "LEFT JOIN $wpdb->postmeta PM "
-                . "ON P.ID = PM.post_id "
-                . "WHERE P.post_status = 'publish' "
-                . "AND P.post_type = 'route' "
-                . "AND PM.meta_key = 'n7webmap_route_related_track' "
-                . "AND ( $related_track_query );";
+        //     $sql = "SELECT DISTINCT P.ID FROM $wpdb->posts P "
+        //         . "LEFT JOIN $wpdb->postmeta PM "
+        //         . "ON P.ID = PM.post_id "
+        //         . "WHERE P.post_status = 'publish' "
+        //         . "AND P.post_type = 'route' "
+        //         . "AND PM.meta_key = 'n7webmap_route_related_track' "
+        //         . "AND ( $related_track_query );";
 
-            $routes = $wpdb->get_results( $sql , ARRAY_A );
-            $routes = array_map( function( $e ){
-                return isset( $e['ID'] ) ? $e['ID'] : false;
-            },$routes );
-        }
+        //     $routes = $wpdb->get_results( $sql , ARRAY_A );
+        //     $routes = array_map( function( $e ){
+        //         return isset( $e['ID'] ) ? $e['ID'] : false;
+        //     },$routes );
+        // }
 
-        return array_unique( $routes );
+        // return array_unique( $routes );
+        return $routes;
 
     }
 
