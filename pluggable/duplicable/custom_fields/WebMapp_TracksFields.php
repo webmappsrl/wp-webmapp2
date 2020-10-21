@@ -385,6 +385,40 @@ $fields3 = array(
         'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
+        'key' => 'wm_update_track_osmid',
+        'label' => 'Update OSMID',
+        'name' => 'update_track_osmid',
+        'type' => 'acfe_button',
+        'instructions' => 'Hit this button to send an on demand request to update the Track OSMID.',
+        'required' => 0,
+        'conditional_logic' => array(
+            array(
+                array(
+                    'field' => 'wm_track_osmid',
+                    'operator' => '!=empty',
+                ),
+            ),
+        ),
+        'wrapper' => array(
+            'width' => '',
+            'class' => '',
+            'id' => '',
+        ),
+        'wpml_cf_preferences' => 0,
+        'acfe_permissions' => array(
+            0 => 'administrator',
+            1 => 'editor',
+            2 => 'author',
+        ),
+        'button_value' => 'Update',
+        'button_type' => 'button',
+        'button_class' => 'button button-secondary',
+        'button_id' => '',
+        'button_before' => '',
+        'button_after' => '',
+        'button_ajax' => 1,
+    ),
+    array(
         'key' => 'wm_track_surface',
         'label' => 'Surface',
         'name' => 'surface',
