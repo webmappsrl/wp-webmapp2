@@ -105,4 +105,4 @@ function update_track_job_hoqu( $post_id, $post, $update ){
 
     
 }
-add_action( "save_post_track", "update_poi_job_hoqu", 10, 3);
+add_action( "save_post_track", "update_track_job_hoqu", 10, 3);
