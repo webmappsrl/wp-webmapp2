@@ -39,10 +39,23 @@ function update_track_job_hoqu( $post_id){
     if ($hoqu_token && $hoqu_baseurl) {
         if ( $post->post_type == 'track' ) {
             if ($post->post_status == 'publish') {
-                $osmid = get_field('osmid',$post_id);
+
+                $post_type = $post->post_type;
+                //get post language
+                $post_lang = apply_filters( 'wpml_post_language_details', NULL, $post_id );
+                //get wpml default language
+                $default_lang = apply_filters('wpml_default_language', NULL );
+                if ( $post_lang['language_code'] && $post_lang['language_code'] == $default_lang ) {
+                    $wm_post_id = $post_id;
+                } else {
+                    $post_default_language_id = apply_filters( 'wpml_object_id', $post_id, $post_type, FALSE, $default_lang );
+                    $wm_post_id = $post_default_language_id;
+                }
+
+                $osmid = get_field('osmid',$wm_post_id);
                 if ($osmid) {
                     $job = 'update_track_metadata';
-                    wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl);
+                    wm_hoqu_job_api($wm_post_id, $job, $hoqu_token, $hoqu_baseurl);
                 }
             }
         }
@@ -105,5 +118,8 @@ function wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl) {
     if (is_wp_error($response)) {
         $error_message = $response->get_error_message();
         error_log("Something went wrong: $error_message");
-    }
+    } 
+    // elseif ($response['job'] == 'update_track_geometry') {
+        
+    // }
 }
