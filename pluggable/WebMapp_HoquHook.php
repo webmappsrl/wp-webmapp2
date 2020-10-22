@@ -9,24 +9,17 @@ function update_poi_job_hoqu( $post_id, $post, $update ){
     if ($hoqu_token && $hoqu_baseurl) {
         if ($post->post_status == 'publish') {
             
-            $post_type = $post->post_type;
-            //get post language
-            $post_lang = apply_filters( 'wpml_post_language_details', NULL, $post_id );
-            //get wpml default language
-            $default_lang = apply_filters('wpml_default_language', NULL );
-            if ( $post_lang['language_code'] && $post_lang['language_code'] == $default_lang ) {
-                $wm_post_id = $post_id;
-            } else {
-                $post_default_language_id = apply_filters( 'wpml_object_id', $post_id, $post_type, FALSE, $default_lang );
-                $wm_post_id = $post_default_language_id;
-            }
+            $wm_post = wm_get_original_post_it($post_id);
 
             $job = 'update_poi';
-            wm_hoqu_job_api($wm_post_id, $job, $hoqu_token, $hoqu_baseurl);
+            wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
         }
     }
 }
 add_action( "save_post_poi", "update_poi_job_hoqu", 10, 3);
+
+
+
 
 
 // Function that adds hoqu job on track acf update
@@ -40,28 +33,18 @@ function update_track_job_hoqu( $post_id){
         if ( $post->post_type == 'track' ) {
             if ($post->post_status == 'publish') {
 
-                $post_type = $post->post_type;
-                //get post language
-                $post_lang = apply_filters( 'wpml_post_language_details', NULL, $post_id );
-                //get wpml default language
-                $default_lang = apply_filters('wpml_default_language', NULL );
-                if ( $post_lang['language_code'] && $post_lang['language_code'] == $default_lang ) {
-                    $wm_post_id = $post_id;
-                } else {
-                    $post_default_language_id = apply_filters( 'wpml_object_id', $post_id, $post_type, FALSE, $default_lang );
-                    $wm_post_id = $post_default_language_id;
-                }
+                $wm_post = wm_get_original_post_it($post_id);
 
-                // $osmid = get_field('osmid',$wm_post_id);
-                // if ($osmid) {
                 $job = 'update_track_metadata';
-                wm_hoqu_job_api($wm_post_id, $job, $hoqu_token, $hoqu_baseurl);
-                // s}
+                wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
             }
         }
     }    
 }
 add_action( "acf/save_post", "update_track_job_hoqu", 20, 1);
+
+
+
 
 // Function that adds hoqu job to track save and create the translation
 function update_track_translation_job_hoqu( $post_id, $post, $update){
@@ -73,27 +56,25 @@ function update_track_translation_job_hoqu( $post_id, $post, $update){
         if ( $post->post_type == 'track' ) {
             if ($post->post_status == 'publish') {
 
-                $post_type = $post->post_type;
-                //get post language
-                $post_lang = apply_filters( 'wpml_post_language_details', NULL, $post_id );
-                //get wpml default language
-                $default_lang = apply_filters('wpml_default_language', NULL );
-                if ( $post_lang['language_code'] && $post_lang['language_code'] == $default_lang ) {
-                    $wm_post_id = $post_id;
-                } else {
-                    $post_default_language_id = apply_filters( 'wpml_object_id', $post_id, $post_type, FALSE, $default_lang );
-                    $wm_post_id = $post_default_language_id;
-                }
+                $wm_post = wm_get_original_post_it($post_id);
 
-                if ($post_lang['language_code'] !== $default_lang ) {
+                $has_gpx = get_field('n7webmap_import_gpx',$wm_post['id']);
+                if ($has_gpx) {
+                    $job = 'update_track';
+                } else {
                     $job = 'update_track_metadata';
-                    wm_hoqu_job_api($wm_post_id, $job, $hoqu_token, $hoqu_baseurl);
+                }
+                if ($wm_post['is_translation'] == true ) {
+                    wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
                 }
             }
         }
     }    
 }
 add_action( "save_post_track", "update_track_translation_job_hoqu", 10, 3);
+
+
+
 
 // Updates's track osmid on demand
 add_action('acfe/fields/button/name=update_track_osmid', 'update_track_osmid_hoqu', 10, 2);
@@ -106,12 +87,18 @@ function update_track_osmid_hoqu($field, $post_id){
     if ($hoqu_token && $hoqu_baseurl) {
         if ( $post->post_type == 'track' ) {
             if ($post->post_status == 'publish') {
+
+                $wm_post = wm_get_original_post_it($post_id);
+
                 $job = 'update_track_geometry';
-                wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl);
+                wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
             }
         }
     }    
 }
+
+
+
 
 // Function that sends a create API to hoqu
 function wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl) {
@@ -154,4 +141,31 @@ function wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl) {
     // elseif ($response['job'] == 'update_track_geometry') {
         
     // }
+}
+
+
+
+// Uses WPML filters to determine the ID of the post in original language
+function wm_get_original_post_it($post_id) {
+    $post = get_post( $post_id );
+    $post_type = $post->post_type;
+
+    //get post language
+    $post_lang = apply_filters( 'wpml_post_language_details', NULL, $post_id );
+    //get wpml default language
+    $default_lang = apply_filters('wpml_default_language', NULL );
+    if ( $post_lang['language_code'] && $post_lang['language_code'] == $default_lang ) {
+        $wm_post_id['id'] = $post_id;
+    } else {
+        $post_default_language_id = apply_filters( 'wpml_object_id', $post_id, $post_type, FALSE, $default_lang );
+        $wm_post_id['id'] = $post_default_language_id;
+    }
+
+    if ($post_lang['language_code'] !== $default_lang ) {
+        $wm_post_id['is_translation'] = true;
+    } else {
+        $wm_post_id['is_translation'] = false;
+    }
+
+    return $wm_post_id;
 }
