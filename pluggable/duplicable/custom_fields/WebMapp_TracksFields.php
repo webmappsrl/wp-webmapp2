@@ -389,7 +389,7 @@ $fields3 = array(
         'label' => 'Update OSMID',
         'name' => 'update_track_osmid',
         'type' => 'acfe_button',
-        'instructions' => 'Hit this button to send an on demand request to update the Track OSMID.',
+        'instructions' => 'Hit this button to send an on demand request to update the geometry.',
         'required' => 0,
         'conditional_logic' => array(
             array(

@@ -8,8 +8,21 @@ function update_poi_job_hoqu( $post_id, $post, $update ){
 
     if ($hoqu_token && $hoqu_baseurl) {
         if ($post->post_status == 'publish') {
+            
+            $post_type = $post->post_type;
+            //get post language
+            $post_lang = apply_filters( 'wpml_post_language_details', NULL, $post_id );
+            //get wpml default language
+            $default_lang = apply_filters('wpml_default_language', NULL );
+            if ( $post_lang['language_code'] && $post_lang['language_code'] == $default_lang ) {
+                $wm_post_id = $post_id;
+            } else {
+                $post_default_language_id = apply_filters( 'wpml_object_id', $post_id, $post_type, FALSE, $default_lang );
+                $wm_post_id = $post_default_language_id;
+            }
+
             $job = 'update_poi';
-            wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl);
+            wm_hoqu_job_api($wm_post_id, $job, $hoqu_token, $hoqu_baseurl);
         }
     }
 }
