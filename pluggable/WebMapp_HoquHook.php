@@ -99,6 +99,23 @@ function update_track_osmid_hoqu($field, $post_id){
 }
 
 
+// Function that adds hoqu job to route save and create
+function update_route_job_hoqu( $post_id, $post, $update ){
+
+    $hoqu_token = get_option("webmapp_hoqu_token");
+    $hoqu_baseurl = get_option("webmapp_hoqu_baseurl");
+
+    if ($hoqu_token && $hoqu_baseurl) {
+        if ($post->post_status == 'publish') {
+            
+            $wm_post = wm_get_original_post_it($post_id);
+
+            $job = 'update_route';
+            wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
+        }
+    }
+}
+add_action( "save_post_route", "update_route_job_hoqu", 10, 3);
 
 
 // Function that sends a create API to hoqu
