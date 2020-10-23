@@ -35,7 +35,13 @@ function update_track_job_hoqu( $post_id){
 
                 $wm_post = wm_get_original_post_it($post_id);
 
-                $job = 'update_track_metadata';
+                $has_gpx = get_field('n7webmap_geojson',$wm_post['id']);
+                if ($has_gpx) {
+                    $job = 'update_track';
+                } else {
+                    $job = 'update_track_metadata';
+                }
+                
                 wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
             }
         }
@@ -58,13 +64,8 @@ function update_track_translation_job_hoqu( $post_id, $post, $update){
 
                 $wm_post = wm_get_original_post_it($post_id);
 
-                $has_gpx = get_field('n7webmap_import_gpx',$wm_post['id']);
-                if ($has_gpx) {
-                    $job = 'update_track';
-                } else {
-                    $job = 'update_track_metadata';
-                }
                 if ($wm_post['is_translation'] == true ) {
+                    $job = 'update_track';
                     wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
                 }
             }
