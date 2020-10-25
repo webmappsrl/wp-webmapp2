@@ -119,14 +119,12 @@ function wm_acf_input_admin_footer() {
                     data: data,
                     beforeSend: function(){
                         $("#osmid_ajax_spinner").addClass("is-active");
-                    },
-                    success : function( response ) {
-                        $("#update_button_track_osmid_success").css({"display":"inline","color":"green"});
-                    },
-                    complete:function(data){
-                        $("#osmid_ajax_spinner").removeClass("is-active");
                     }
                 });
+            });
+            acf.addAction('acfe/fields/button/complete/name=update_track_osmid', function(response, $el, data){
+                $("#osmid_ajax_spinner").removeClass("is-active");
+                $("#update_button_track_osmid_success").css({"display":"inline","color":"green"});
             });
         });
     })(jQuery);	
