@@ -104,12 +104,10 @@ function wm_acf_input_admin_footer() {
             $( "#acf-wm_track_osmid" ).keyup(function( e ) { 
                   
                 osmid = this.value;
-                console.log(osmid);
                 
             });
             $( "#update_button_track_osmid" ).on( "click", function() {
                 var post_id = jQuery("#post_ID").val();
-                console.log(osmid);
                 var data = {
                     'action': 'acf_osmid_update_hoqu',
                     'osmid': osmid,
