@@ -88,16 +88,78 @@ function update_track_osmid_hoqu($field, $post_id){
     if ($hoqu_token && $hoqu_baseurl) {
         if ( $post->post_type == 'track' ) {
             if ($post->post_status == 'publish') {
-
-                $wm_post = wm_get_original_post_it($post_id);
-
                 $job = 'update_track_geometry';
-                wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
+                wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl);
             }
         }
     }    
 }
 
+
+
+function my_enqueue_ajax_save() {
+    wp_register_script( 'ajax-script', get_template_directory_uri() . '/wp-webmapp2/assets/js/acf-update-hook.js', array('jquery') , false, true );
+     wp_enqueue_script( 'ajax-script' );
+
+    wp_localize_script( 'ajax-script', 'my_ajax_object',
+            array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+
+}
+add_action( 'wp_enqueue_scripts', 'my_enqueue_ajax_save' );
+
+function my_acf_input_admin_footer() {
+	
+    ?>
+    <script type="text/javascript">
+    (function($) {
+    
+    function do_it() {
+            var osmid;
+            $( "#acf-wm_track_osmid" ).keyup(function( e ) { 
+                  
+                osmid = this.value;
+                console.log(osmid);
+                
+            });
+            $( "#update_button_track_osmid" ).on( "click", function() {
+                var post_id = jQuery("#post_ID").val();
+                console.log(osmid);
+                var data = {
+                    'action': 'acf_osmid_update_hoqu',
+                    'osmid': osmid,
+                    'postid':  post_id,
+                };
+                $.ajax({
+                    url: ajaxurl,
+                    type : 'post',
+                    data: data,
+                    success : function( response ) {
+                        console.log(response);
+                    }
+                });
+            });
+    }
+    $(window).load(function() {
+            do_it();
+    });
+
+    })(jQuery);	
+    </script>
+    <?php
+            
+    }
+    
+add_action('acf/input/admin_footer', 'my_acf_input_admin_footer');
+
+add_action( 'wp_ajax_acf_osmid_update_hoqu', 'acf_osmid_update_hoqu' );
+
+function acf_osmid_update_hoqu(){
+    $osmid = $_POST['osmid'];
+    $post_id = $_POST['postid'];          
+    $return = update_field('osmid', $osmid, $post_id);
+    echo $return;
+    wp_die();
+} 
 
 // Function that adds hoqu job to route save and create
 function update_route_job_hoqu( $post_id, $post, $update ){
@@ -156,9 +218,16 @@ function wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl) {
         $error_message = $response->get_error_message();
         error_log("Something went wrong: $error_message");
     } 
-    // elseif ($response['job'] == 'update_track_geometry') {
+    elseif ($response['job'] == 'update_track_geometry') {
+        ?>
+        <script type="text/javascript">
+        (function($) {
+            console.log('update_track_geometry');
         
-    // }
+        })(jQuery);	
+        </script>
+        <?php
+    }
 }
 
 
