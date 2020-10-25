@@ -75,10 +75,8 @@ function update_track_translation_job_hoqu( $post_id, $post, $update){
 add_action( "save_post_track", "update_track_translation_job_hoqu", 10, 3);
 
 
-
-
 // Updates's track osmid on demand
-add_action('acfe/fields/button/name=update_track_osmid', 'update_track_osmid_hoqu', 10, 2);
+add_action('acfe/fields/button/name=update_track_osmid', 'update_track_osmid_hoqu', 20, 2);
 function update_track_osmid_hoqu($field, $post_id){
     
     $post = get_post( $post_id );
@@ -96,24 +94,12 @@ function update_track_osmid_hoqu($field, $post_id){
 }
 
 
-
-function my_enqueue_ajax_save() {
-    wp_register_script( 'ajax-script', get_template_directory_uri() . '/wp-webmapp2/assets/js/acf-update-hook.js', array('jquery') , false, true );
-     wp_enqueue_script( 'ajax-script' );
-
-    wp_localize_script( 'ajax-script', 'my_ajax_object',
-            array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
-
-}
-add_action( 'wp_enqueue_scripts', 'my_enqueue_ajax_save' );
-
-function my_acf_input_admin_footer() {
-	
+// creates ajax function in admin footer that listens to update osmid button
+function wm_acf_input_admin_footer() {
     ?>
     <script type="text/javascript">
     (function($) {
-    
-    function do_it() {
+        $(window).load(function() {
             var osmid;
             $( "#acf-wm_track_osmid" ).keyup(function( e ) { 
                   
@@ -133,26 +119,27 @@ function my_acf_input_admin_footer() {
                     url: ajaxurl,
                     type : 'post',
                     data: data,
+                    beforeSend: function(){
+                        $("#osmid_ajax_spinner").addClass("is-active");
+                    },
                     success : function( response ) {
-                        console.log(response);
+                        $("#update_button_track_osmid_success").css({"display":"inline","color":"green"});
+                    },
+                    complete:function(data){
+                        $("#osmid_ajax_spinner").removeClass("is-active");
                     }
                 });
             });
-    }
-    $(window).load(function() {
-            do_it();
-    });
-
+        });
     })(jQuery);	
     </script>
     <?php
             
     }
-    
-add_action('acf/input/admin_footer', 'my_acf_input_admin_footer');
+add_action('acf/input/admin_footer', 'wm_acf_input_admin_footer');
 
+// action that process ajax call : wm_acf_input_admin_footer() to update osmid ACF
 add_action( 'wp_ajax_acf_osmid_update_hoqu', 'acf_osmid_update_hoqu' );
-
 function acf_osmid_update_hoqu(){
     $osmid = $_POST['osmid'];
     $post_id = $_POST['postid'];          
@@ -218,16 +205,12 @@ function wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl) {
         $error_message = $response->get_error_message();
         error_log("Something went wrong: $error_message");
     } 
-    elseif ($response['job'] == 'update_track_geometry') {
-        ?>
-        <script type="text/javascript">
-        (function($) {
-            console.log('update_track_geometry');
-        
-        })(jQuery);	
-        </script>
-        <?php
-    }
+    // else {
+    //     return $response;
+    // }
+    // $response = array();
+    // $response['job'] = 'update_track_geometry';
+    // return $response;
 }
 
 

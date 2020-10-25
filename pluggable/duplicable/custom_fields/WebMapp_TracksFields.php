@@ -416,7 +416,7 @@ $fields3 = array(
         'button_id' => 'update_button_track_osmid',
         'button_osmid' => '',
         'button_before' => '',
-        'button_after' => '<p id="update_button_track_osmid_success" style="display:inline;"><span class="dashicons dashicons-yes"></span> Geometry updated successfully</p>',
+        'button_after' => '<span id="osmid_ajax_spinner" class="spinner"></span><p id="update_button_track_osmid_success" style="display:inline;display:none;"><span class="dashicons dashicons-yes"></span> Geometry updated successfully</p>',
         'button_ajax' => 1,
     ),
     array(
