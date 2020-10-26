@@ -42,7 +42,9 @@ function update_track_job_hoqu( $post_id){
                     $job = 'update_track_metadata';
                 }
                 
-                wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
+                $risposta = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
+                $ris = $risposta;
+
             }
         }
     }    
@@ -104,11 +106,12 @@ function wm_acf_input_admin_footer() {
             $( "#acf-wm_track_osmid" ).keyup(function( e ) { 
                   
                 osmid = this.value;
-                $("#osmid_ajax_spinner").removeClass("is-active");
+                $("#update_button_track_osmid_success").css({"display":"none"});
                 
             });
             $( "#update_button_track_osmid" ).on( "click", function() {
                 var post_id = jQuery("#post_ID").val();
+                $("#update_button_track_osmid_success").css({"display":"none"});
                 var data = {
                     'action': 'acf_osmid_update_hoqu',
                     'osmid': osmid,
@@ -207,9 +210,9 @@ function wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl) {
     // else {
     //     return $response;
     // }
-    // $response = array();
-    // $response['job'] = 'update_track_geometry';
-    // return $response;
+    $response = array();
+    $response['job'] = 'update_track_geometry';
+    return $response;
 }
 
 
