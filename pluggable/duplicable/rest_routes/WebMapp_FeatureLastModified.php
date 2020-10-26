@@ -25,7 +25,7 @@ function WebMapp_FeatureLastModified( WP_REST_Request $request ) {
 
     if ( !empty( $languages ) ) {
         foreach( $languages as $l ) {
-            if ($l['active'] == 1 && $l['language_code'] !== $default_lang)
+            if ( $l['language_code'] !== $default_lang)
             $enabled_languages[] = $l['language_code'];
         }
     }
