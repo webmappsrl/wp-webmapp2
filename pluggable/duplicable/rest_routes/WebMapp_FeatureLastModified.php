@@ -42,9 +42,9 @@ function WebMapp_FeatureLastModified( WP_REST_Request $request ) {
             }
         }
         $last_modified = $last_modified->format('Y-m-d H:i:s');
-        $resp[$feature_id]=$last_modified;
+        $resp['last_modified']=$last_modified;
     } else {
-        $resp[$feature_id]=$feature->post_modified;
+        $resp['last_modified']=$feature->post_modified;
     }
     
     return new WP_REST_Response($resp,200);
