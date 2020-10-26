@@ -104,6 +104,7 @@ function wm_acf_input_admin_footer() {
             $( "#acf-wm_track_osmid" ).keyup(function( e ) { 
                   
                 osmid = this.value;
+                $("#osmid_ajax_spinner").removeClass("is-active");
                 
             });
             $( "#update_button_track_osmid" ).on( "click", function() {
