@@ -207,12 +207,11 @@ function wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl) {
         $error_message = $response->get_error_message();
         error_log("Something went wrong: $error_message");
     } 
-    // else {
-    //     return $response;
-    // }
-    $response = array();
-    $response['job'] = 'update_track_geometry';
-    return $response;
+    else {
+        $response = json_decode(wp_remote_retrieve_body($response), true);
+        return $response;
+    }
+    
 }
 
 
