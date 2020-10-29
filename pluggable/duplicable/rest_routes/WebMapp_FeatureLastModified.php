@@ -3,7 +3,7 @@
 /**
  * Check the last modification of a feature
  *
- * @return object|null bounding box webmapp setting or null if none.
+ * @return object|null json with last_modified parameter
  *
  * wm_api_voucher()
  */
@@ -52,7 +52,7 @@ function WebMapp_FeatureLastModified( WP_REST_Request $request ) {
 }
 
 $namespace = 'webmapp/v1';
-$route = '/feature/last_modified';
+$route = '/feature/last_modified/(?P<id>\d+)';
 $args = array(
     'methods' => 'GET',
     'callback' => 'WebMapp_FeatureLastModified'
