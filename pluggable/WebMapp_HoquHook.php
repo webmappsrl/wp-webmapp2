@@ -43,7 +43,6 @@ function update_track_job_hoqu( $post_id){
                 }
                 
                 $risposta = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
-                $ris = $risposta;
 
             }
         }
@@ -77,26 +76,8 @@ function update_track_translation_job_hoqu( $post_id, $post, $update){
 add_action( "save_post_track", "update_track_translation_job_hoqu", 10, 3);
 
 
-// Updates's track osmid on demand
-add_action('acfe/fields/button/name=update_track_osmid', 'update_track_osmid_hoqu', 20, 2);
-function update_track_osmid_hoqu($field, $post_id){
-    
-    $post = get_post( $post_id );
-    $hoqu_token = get_option("webmapp_hoqu_token");
-    $hoqu_baseurl = get_option("webmapp_hoqu_baseurl");
-
-    if ($hoqu_token && $hoqu_baseurl) {
-        if ( $post->post_type == 'track' ) {
-            if ($post->post_status == 'publish') {
-                $job = 'update_track_geometry';
-                wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl);
-            }
-        }
-    }    
-}
-
-
 // creates ajax function in admin footer that listens to update osmid button
+// Updates's track osmid on demand request
 function wm_acf_input_admin_footer() {
     ?>
     <script type="text/javascript">
@@ -141,14 +122,28 @@ function wm_acf_input_admin_footer() {
 add_action('acf/input/admin_footer', 'wm_acf_input_admin_footer');
 
 // action that process ajax call : wm_acf_input_admin_footer() to update osmid ACF
+// Updates's track osmid on demand function
 add_action( 'wp_ajax_acf_osmid_update_hoqu', 'acf_osmid_update_hoqu' );
 function acf_osmid_update_hoqu(){
     $osmid = $_POST['osmid'];
     $post_id = $_POST['postid'];          
-    $return = update_field('osmid', $osmid, $post_id);
-    echo $return;
+    update_field('osmid', $osmid, $post_id);
+    $post = get_post( $post_id );
+    $hoqu_token = get_option("webmapp_hoqu_token");
+    $hoqu_baseurl = get_option("webmapp_hoqu_baseurl");
+
+    if ($hoqu_token && $hoqu_baseurl) {
+        if ( $post->post_type == 'track' ) {
+            if ($post->post_status == 'publish') {
+                $job = 'update_track_geometry';
+                $risposta = wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl);
+            }
+        }
+    }
+    return $risposta;
     wp_die();
-} 
+}
+
 
 // Function that adds hoqu job to route save and create
 function update_route_job_hoqu( $post_id, $post, $update ){
