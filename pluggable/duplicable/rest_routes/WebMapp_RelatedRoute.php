@@ -37,12 +37,12 @@ function WebMapp_Relatedroute( WP_REST_Request $request ) {
             foreach ($rrt as $r){
                 if ($r->ID) {
                     $qry_id = $r->ID;
-                    if ($qry_id == $track_id) {
+                    if ($qry_id == $feature_id) {
                         $features[] = $route->ID;
                     }
                 } else {
                     $qry_id = intval($r);
-                    if ($qry_id == $track_id) {
+                    if ($qry_id == $feature_id) {
                         $features[] = $route->ID;
                     }
                 }
