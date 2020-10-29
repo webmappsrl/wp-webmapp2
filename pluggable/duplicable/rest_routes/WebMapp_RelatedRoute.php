@@ -15,19 +15,6 @@ function WebMapp_Relatedroute( WP_REST_Request $request ) {
 
     if ($feature_type !== 'track')
         return new WP_REST_Response(array('error' => 'The feature should be a track'), 400);
-    //n7webmap_route_related_track
-
-    // //Get the default language 
-    // $default_lang = apply_filters('wpml_default_language', NULL );
-
-    // //get post language
-    // $post_lang = apply_filters( 'wpml_post_language_details', NULL, $feature_id );
-
-    // if ( $post_lang['language_code'] && $post_lang['language_code'] == $default_lang ) {
-    //     $track_id = $feature_id;
-    // } else {
-    //     $track_id = apply_filters( 'wpml_object_id', $feature_id, 'track', FALSE, $default_lang );
-    // }
 
     $routes = get_posts(array('post_type'=>'route','posts_per_page'=>-1, 'post_status' => 'publish'));
     $features=array();
@@ -56,7 +43,7 @@ function WebMapp_Relatedroute( WP_REST_Request $request ) {
 }
 
 $namespace = 'webmapp/v1';
-$route = '/track/related_route/(?P<id>\d+)';
+$route = '/track/related_routes/(?P<id>\d+)';
 $args = array(
     'methods' => 'GET',
     'callback' => 'WebMapp_Relatedroute'
