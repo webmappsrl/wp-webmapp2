@@ -25,12 +25,12 @@ function WebMapp_Relatedroute( WP_REST_Request $request ) {
                 if ($r->ID) {
                     $qry_id = $r->ID;
                     if ($qry_id == $feature_id) {
-                        $features[] = $route->ID;
+                        $features['related_routes'][] = $route->ID;
                     }
                 } else {
                     $qry_id = intval($r);
                     if ($qry_id == $feature_id) {
-                        $features[] = $route->ID;
+                        $features['related_routes'][] = $route->ID;
                     }
                 }
             }
