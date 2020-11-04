@@ -205,6 +205,16 @@
             'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
         array (
+            'key' => 'wm_poi_ele',
+            'name' => 'ele',
+            'label' => 'Altitude of the POI (in meters)',
+            'type' => 'number',
+            'instructions' => 'Insert the altitude of the poi in meters from min of 0 and max of 8848',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
+            'min' => 0,
+            'max' => 8848,
+        ),
+        array (
             'key' => 'wm_poi_icon',
             'name' => 'icon',
             'label' => 'The WEBMAPP Icon of the POI',
