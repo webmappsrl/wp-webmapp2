@@ -3,7 +3,7 @@
   Plugin Name: Webmapp 2
   Plugin URI: http://download.be.webmapp.it
   Description: Worpdress WebMapp core plugin.
-  Version: 2.1.4
+  Version: 2.1.5
   Author URI: http://www.netseven.it
  */
 
