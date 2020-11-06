@@ -368,7 +368,7 @@ $fields3 = array(
 			'append' => '',
 			'min' => 0,
 			'max' => 17,
-            'step' => '',
+            'step' => '0.1',
             'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
 		),
         array(
@@ -390,7 +390,7 @@ $fields3 = array(
 			'append' => '',
 			'min' => 0,
 			'max' => '',
-            'step' => '',
+            'step' => '0.1',
             'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
 		),
         array(
@@ -412,7 +412,7 @@ $fields3 = array(
 			'append' => '',
 			'min' => 0,
 			'max' => '',
-            'step' => '',
+            'step' => '0.1',
             'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
 		),
         array(
@@ -456,7 +456,7 @@ $fields3 = array(
 			'append' => '',
 			'min' => 0,
 			'max' => '',
-            'step' => '',
+            'step' => '0.1',
             'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
 		)
 	),
