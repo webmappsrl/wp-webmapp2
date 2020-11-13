@@ -16,7 +16,7 @@ function update_poi_job_hoqu( $post_id, $post, $update ){
         }
     }
 }
-add_action( "save_post_poi", "update_poi_job_hoqu", 10, 3);
+add_action( "save_post_poi", "update_poi_job_hoqu", 99, 3);
 
 
 
@@ -48,7 +48,7 @@ function update_track_job_hoqu( $post_id){
         }
     }    
 }
-add_action( "acf/save_post", "update_track_job_hoqu", 20, 1);
+add_action( "acf/save_post", "update_track_job_hoqu", 99, 1);
 
 
 
@@ -73,7 +73,7 @@ function update_track_translation_job_hoqu( $post_id, $post, $update){
         }
     }    
 }
-add_action( "save_post_track", "update_track_translation_job_hoqu", 10, 3);
+add_action( "save_post_track", "update_track_translation_job_hoqu", 99, 3);
 
 
 // creates ajax function in admin footer that listens to update osmid button
@@ -161,7 +161,7 @@ function update_route_job_hoqu( $post_id, $post, $update ){
         }
     }
 }
-add_action( "save_post_route", "update_route_job_hoqu", 10, 3);
+add_action( "save_post_route", "update_route_job_hoqu", 99, 3);
 
 
 // Function that sends a create API to hoqu
