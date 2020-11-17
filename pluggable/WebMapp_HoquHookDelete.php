@@ -9,7 +9,17 @@ function delete_track_job_hoqu( $post_id ){
             
         $wm_post = wm_get_original_post_it($post_id);
 
-        $job = 'delete_track';
+        $post = get_post( $post_id );
+        $post_type = $post->post_type;
+        if ($post_type == 'track') 
+            $job = 'delete_track';
+
+        if ($post_type == 'route') 
+            $job = 'delete_route';
+
+        if ($post_type == 'poi') 
+            $job = 'delete_poi';
+            
         $response = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
         
         if ($response['id']) {

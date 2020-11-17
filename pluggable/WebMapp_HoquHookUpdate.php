@@ -7,12 +7,21 @@ function update_poi_job_hoqu( $post_id, $post, $update ){
     $hoqu_baseurl = get_option("webmapp_hoqu_baseurl");
 
     if ($hoqu_token && $hoqu_baseurl) {
-        if ($post->post_status == 'publish') {
-            
-            $wm_post = wm_get_original_post_it($post_id);
+        $wm_post = wm_get_original_post_it($post_id);
 
+        if ($post->post_status == 'publish') {
             $job = 'update_poi';
-            wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
+        }
+        if ($post->post_status == 'draft') {
+            $job = 'delete_poi';
+        }
+        $response = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
+        if ($response['id']) {
+            //set key montepisanotree_order_json in user session with json order
+            if( ! session_id() ) {
+                session_start();
+            }
+            $_SESSION['hoquids'][] = $response['id'];
         }
     }
 }
@@ -61,14 +70,22 @@ function update_track_translation_job_hoqu( $post_id, $post, $update){
 
     if ($hoqu_token && $hoqu_baseurl) {
         if ( $post->post_type == 'track' ) {
+            $wm_post = wm_get_original_post_it($post_id);
             if ($post->post_status == 'publish') {
-
-                $wm_post = wm_get_original_post_it($post_id);
-
                 if ($wm_post['is_translation'] == true ) {
                     $job = 'update_track';
-                    wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
                 }
+            }
+            if ($post->post_status == 'draft') {
+                $job = 'delete_track';
+            }
+            $response = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
+            if ($response['id']) {
+                //set key montepisanotree_order_json in user session with json order
+                if( ! session_id() ) {
+                    session_start();
+                }
+                $_SESSION['hoquids'][] = $response['id'];
             }
         }
     }    
@@ -83,7 +100,20 @@ function wm_acf_input_admin_footer() {
     <script type="text/javascript">
     (function($) {
         $(window).load(function() {
+            // $("button.editor-post-save-draft").click(function() { 
+            //     jQuery.ajax({
+            //         url: ajaxurl,
+            //         type: 'post',
+            //         data: {
+            //             "action": "my_axction"
+            //         },
+            //         success: function(response){
+            //                 $('div#wpbody-content').prepend('<div class="error"><p>'+response+'</p></div>');
+            //         }
+            //     });
+            // });
             var osmid;
+            osmid = $( "#acf-wm_track_osmid" ).val();
             $( "#acf-wm_track_osmid" ).keyup(function( e ) { 
                   
                 osmid = this.value;
@@ -144,6 +174,15 @@ function acf_osmid_update_hoqu(){
     wp_die();
 }
 
+// Same handler function...
+// add_action( 'wp_ajax_my_axction', 'my_axction' );
+// function my_axction() {
+// 	global $wpdb;
+// 	$whatever = $_SESSION['hoquids'];
+// 	$whatever = 'pedramhoqu';
+//     return $whatever;
+// 	wp_die();
+// }
 
 // Function that adds hoqu job to route save and create
 function update_route_job_hoqu( $post_id, $post, $update ){
@@ -152,12 +191,20 @@ function update_route_job_hoqu( $post_id, $post, $update ){
     $hoqu_baseurl = get_option("webmapp_hoqu_baseurl");
 
     if ($hoqu_token && $hoqu_baseurl) {
+        $wm_post = wm_get_original_post_it($post_id);
         if ($post->post_status == 'publish') {
-            
-            $wm_post = wm_get_original_post_it($post_id);
-
             $job = 'update_route';
-            wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
+        }
+        if ($post->post_status == 'draft') {
+            $job = 'delete_route';
+        }
+        $response = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
+        if ($response['id']) {
+            //set key montepisanotree_order_json in user session with json order
+            if( ! session_id() ) {
+                session_start();
+            }
+            $_SESSION['hoquids'][] = $response['id'];
         }
     }
 }
