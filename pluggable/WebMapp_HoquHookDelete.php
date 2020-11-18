@@ -33,6 +33,27 @@ function delete_track_job_hoqu( $post_id ){
 }
 add_action( "wp_trash_post", "delete_track_job_hoqu", 999, 1);
 
+// Function that adds hoqu job to taxonomy on delete
+function delete_taxonomy_job_hoqu( $term_id, $tt_id, $taxonomy ){
+
+    $hoqu_token = get_option("webmapp_hoqu_token");
+    $hoqu_baseurl = get_option("webmapp_hoqu_baseurl");
+
+    if ($hoqu_token && $hoqu_baseurl) {
+        $term = get_term_by('id', $term_id, $taxonomy);
+
+        $job = 'delete_taxonomy';
+        $response = wm_hoqu_job_api($term_id, $job, $hoqu_token, $hoqu_baseurl);
+        if ($response['id']) {
+            //set key montepisanotree_order_json in user session with json order
+            if( ! session_id() ) {
+                session_start();
+            }
+            $_SESSION['hoquids'][] = $response['id'];
+        }
+    }
+}
+add_action( "delete_term", "delete_taxonomy_job_hoqu", 99, 3);
 
 function sample_admin_notice__success() {
     $hoquids = $_SESSION['hoquids'];

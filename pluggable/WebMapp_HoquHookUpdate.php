@@ -210,6 +210,28 @@ function update_route_job_hoqu( $post_id, $post, $update ){
 }
 add_action( "save_post_route", "update_route_job_hoqu", 99, 3);
 
+// Function that adds hoqu job to taxonomy save and create
+function update_taxonomy_job_hoqu( $term_id, $tt_id, $taxonomy ){
+
+    $hoqu_token = get_option("webmapp_hoqu_token");
+    $hoqu_baseurl = get_option("webmapp_hoqu_baseurl");
+
+    if ($hoqu_token && $hoqu_baseurl) {
+        $term = get_term_by('id', $term_id, $taxonomy);
+
+        $job = 'update_taxonomy';
+        $response = wm_hoqu_job_api($term_id, $job, $hoqu_token, $hoqu_baseurl);
+        if ($response['id']) {
+            //set key montepisanotree_order_json in user session with json order
+            if( ! session_id() ) {
+                session_start();
+            }
+            $_SESSION['hoquids'][] = $response['id'];
+        }
+    }
+}
+add_action( "edit_term", "update_taxonomy_job_hoqu", 99, 3);
+
 
 // Function that sends a create API to hoqu
 function wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl) {
