@@ -11,7 +11,7 @@
  *
  * @when after_wp_load
  */
-$wm_save_poi = function( $args, $assoc_args )
+$wm_save_pois = function( $args, $assoc_args )
 {
     $results = new WP_Query( array( 'post_type' => 'poi', 'posts_per_page' => -1) );
     
@@ -24,4 +24,4 @@ $wm_save_poi = function( $args, $assoc_args )
 
 };
 
-WP_CLI::add_command( 'wm-save-poi', $wm_save_poi );
+WP_CLI::add_command( 'wm-save-pois', $wm_save_pois );
