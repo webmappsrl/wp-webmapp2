@@ -44,12 +44,7 @@ function update_track_job_hoqu( $post_id){
 
                 $wm_post = wm_get_original_post_it($post_id);
 
-                $has_gpx = get_field('n7webmap_geojson',$wm_post['id']);
-                if ($has_gpx) {
-                    $job = 'update_track';
-                } else {
-                    $job = 'update_track_metadata';
-                }
+                $job = 'update_track';
                 
                 $risposta = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
 
@@ -72,9 +67,7 @@ function update_track_translation_job_hoqu( $post_id, $post, $update){
         if ( $post->post_type == 'track' ) {
             $wm_post = wm_get_original_post_it($post_id);
             if ($post->post_status == 'publish') {
-                if ($wm_post['is_translation'] == true ) {
-                    $job = 'update_track';
-                }
+                $job = 'update_track';
             }
             if ($post->post_status == 'draft') {
                 $job = 'delete_track';
@@ -100,18 +93,7 @@ function wm_acf_input_admin_footer() {
     <script type="text/javascript">
     (function($) {
         $(window).load(function() {
-            // $("button.editor-post-save-draft").click(function() { 
-            //     jQuery.ajax({
-            //         url: ajaxurl,
-            //         type: 'post',
-            //         data: {
-            //             "action": "my_axction"
-            //         },
-            //         success: function(response){
-            //                 $('div#wpbody-content').prepend('<div class="error"><p>'+response+'</p></div>');
-            //         }
-            //     });
-            // });
+
             var osmid;
             osmid = $( "#acf-wm_track_osmid" ).val();
             $( "#acf-wm_track_osmid" ).keyup(function( e ) { 
@@ -151,6 +133,7 @@ function wm_acf_input_admin_footer() {
     }
 add_action('acf/input/admin_footer', 'wm_acf_input_admin_footer');
 
+
 // action that process ajax call : wm_acf_input_admin_footer() to update osmid ACF
 // Updates's track osmid on demand function
 add_action( 'wp_ajax_acf_osmid_update_hoqu', 'acf_osmid_update_hoqu' );
@@ -165,7 +148,7 @@ function acf_osmid_update_hoqu(){
     if ($hoqu_token && $hoqu_baseurl) {
         if ( $post->post_type == 'track' ) {
             if ($post->post_status == 'publish') {
-                $job = 'update_track_geometry';
+                $job = 'update_track_osmid';
                 $risposta = wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl);
             }
         }
@@ -174,15 +157,7 @@ function acf_osmid_update_hoqu(){
     wp_die();
 }
 
-// Same handler function...
-// add_action( 'wp_ajax_my_axction', 'my_axction' );
-// function my_axction() {
-// 	global $wpdb;
-// 	$whatever = $_SESSION['hoquids'];
-// 	$whatever = 'pedramhoqu';
-//     return $whatever;
-// 	wp_die();
-// }
+
 
 // Function that adds hoqu job to route save and create
 function update_route_job_hoqu( $post_id, $post, $update ){
@@ -217,7 +192,6 @@ function update_taxonomy_job_hoqu( $term_id, $tt_id, $taxonomy ){
     $hoqu_baseurl = get_option("webmapp_hoqu_baseurl");
 
     if ($hoqu_token && $hoqu_baseurl) {
-        $term = get_term_by('id', $term_id, $taxonomy);
 
         $job = 'update_taxonomy';
         $response = wm_hoqu_job_api($term_id, $job, $hoqu_token, $hoqu_baseurl);
@@ -239,13 +213,26 @@ function wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl) {
     $home_url = home_url();
     $home_url = preg_replace('#^https?://#', '', $home_url); //removes https:// and https:// from home url
 
-    $requestJson = array(
-        'instance' => $home_url,
-        'job' => $job,
-        'parameters' => array(
-            'id' => $post_id
-        )
-    );
+    $requestJson = array();
+    if ($job == 'update_track_osmid') {
+        $requestJson = array(
+            'instance' => $home_url,
+            'job' => 'update_track',
+            'parameters' => array(
+                'id' => $post_id,
+                'update_geometry' => true 
+            )
+        );
+    } else {
+        $requestJson = array(
+            'instance' => $home_url,
+            'job' => $job,
+            'parameters' => array(
+                'id' => $post_id,
+            )
+        );
+    }
+
 
     $response = wp_remote_post(
         "$hoqu_baseurl/store",
@@ -296,11 +283,13 @@ function wm_get_original_post_it($post_id) {
         $wm_post_id['id'] = $post_default_language_id;
     }
 
-    if ($post_lang['language_code'] !== $default_lang ) {
-        $wm_post_id['is_translation'] = true;
-    } else {
-        $wm_post_id['is_translation'] = false;
-    }
+    // if ($post_lang['language_code'] !== $default_lang ) {
+    //     $wm_post_id['is_translation'] = true;
+    // } else {
+    //     $wm_post_id['is_translation'] = false;
+    // } 
+    // add_action(wpml_set_element_language_detail
+    // .ajaxComplete()
 
     return $wm_post_id;
 }

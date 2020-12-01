@@ -6,7 +6,7 @@
 # Success: bar qux
 
 /**
- * Returns all post meta of post id provided
+ * Updates all the custom post types ROUTE
  *
  *
  * @when after_wp_load
