@@ -105,6 +105,7 @@ function wm_acf_input_admin_footer() {
             $( "#update_button_track_osmid" ).on( "click", function() {
                 var post_id = jQuery("#post_ID").val();
                 $("#update_button_track_osmid_success").css({"display":"none"});
+                $("#osmid-hoqu-id-response").remove();
                 var data = {
                     'action': 'acf_osmid_update_hoqu',
                     'osmid': osmid,
@@ -120,7 +121,9 @@ function wm_acf_input_admin_footer() {
                     success : function( response ) {
                         $("#update_button_track_osmid_success").css({"display":"inline","color":"green"});
                     },
-                    complete:function(data){
+                    complete:function(response){
+                        obj = JSON.parse(response.responseText);
+                        $("<span id='osmid-hoqu-id-response' value="+obj.id+"></span>").appendTo("#update_button_track_osmid_success")
                         $("#osmid_ajax_spinner").removeClass("is-active");
                     }
                 });
@@ -153,7 +156,7 @@ function acf_osmid_update_hoqu(){
             }
         }
     }
-    return $risposta;
+    echo json_encode($risposta);
     wp_die();
 }
 
