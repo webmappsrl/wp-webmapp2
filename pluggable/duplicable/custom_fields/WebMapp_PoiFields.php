@@ -274,7 +274,42 @@
             'instructions' => 'Check this if you believe that the point of interest can be considered accessible with regard to mobility',
             'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
-
+        array(
+            'key' => 'wm_access_mobility_level',
+            'label' => 'Mobility Access Level',
+            'name' => 'access_mobility_level',
+            'type' => 'select',
+            'instructions' => 'Select the level of accessibility with regard to mobility impairment',
+            'required' => 0,
+            'conditional_logic' => array (
+                array (
+                    array (
+                        'field' => 'wm_access_mobility_check',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                'accessible_independently' => 'Accessible independently',
+                'accessible_with_assistance' => 'Accessible with assistance',
+                'accessible_with_a_guide' => 'Accessible with a guide',
+            ),
+            'default_value' => array(
+            ),
+            'allow_null' => 0,
+            'multiple' => 0,
+            'ui' => 0,
+            'return_format' => 'value',
+            'ajax' => 0,
+            'placeholder' => '',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
+        ),
         array(
             'key' => 'wm_access_mobility_description',
             'label' => 'Mobility Impairment Description',
@@ -290,16 +325,51 @@
         // HEARING hearing
         array(
             'key' => 'wm_access_hearing_check',
-            'label' => 'hearing Impairment',
+            'label' => 'Hearing Impairment',
             'name' => 'access_hearing_check',
             'type' => 'true_false',
             'instructions' => 'Check this if you believe that the point of interest can be considered accessible with regard to hearing',
             'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
-
+        array(
+            'key' => 'wm_access_hearing_level',
+            'label' => 'Hearing Access Level',
+            'name' => 'access_hearing_level',
+            'type' => 'select',
+            'instructions' => 'Select the level of accessibility with regard to hearing',
+            'required' => 0,
+            'conditional_logic' => array (
+                array (
+                    array (
+                        'field' => 'wm_access_hearing_check',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                'accessible_independently' => 'Accessible independently',
+                'accessible_with_assistance' => 'Accessible with assistance',
+                'accessible_with_a_guide' => 'Accessible with a guide',
+            ),
+            'default_value' => array(
+            ),
+            'allow_null' => 0,
+            'multiple' => 0,
+            'ui' => 0,
+            'return_format' => 'value',
+            'ajax' => 0,
+            'placeholder' => '',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
+        ),
         array(
             'key' => 'wm_access_hearing_description',
-            'label' => 'hearing Impairment Description',
+            'label' => 'Hearing Impairment Description',
             'name' => 'access_hearing_description',
             'type' => 'wysiwyg',
             'instructions' => 'Describe in detail the accessibility of the point of interest for the hearing impairment',
@@ -312,16 +382,51 @@
         // VISION vision
         array(
             'key' => 'wm_access_vision_check',
-            'label' => 'vision Impairment',
+            'label' => 'Vision Impairment',
             'name' => 'access_vision_check',
             'type' => 'true_false',
             'instructions' => 'Check this if you believe that the point of interest can be considered accessible with regard to vision',
             'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
-
+        array(
+            'key' => 'wm_access_vision_level',
+            'label' => 'Vision Access Level',
+            'name' => 'access_vision_level',
+            'type' => 'select',
+            'instructions' => 'Select the level of accessibility with regard to vision',
+            'required' => 0,
+            'conditional_logic' => array (
+                array (
+                    array (
+                        'field' => 'wm_access_vision_check',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                'accessible_independently' => 'Accessible independently',
+                'accessible_with_assistance' => 'Accessible with assistance',
+                'accessible_with_a_guide' => 'Accessible with a guide',
+            ),
+            'default_value' => array(
+            ),
+            'allow_null' => 0,
+            'multiple' => 0,
+            'ui' => 0,
+            'return_format' => 'value',
+            'ajax' => 0,
+            'placeholder' => '',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
+        ),
         array(
             'key' => 'wm_access_vision_description',
-            'label' => 'vision Impairment Description',
+            'label' => 'Vision Impairment Description',
             'name' => 'access_vision_description',
             'type' => 'wysiwyg',
             'instructions' => 'Describe in detail the accessibility of the point of interest for the vision impairment',
@@ -334,16 +439,51 @@
         // COGNITIVE cognitive
         array(
             'key' => 'wm_access_cognitive_check',
-            'label' => 'cognitive Impairment',
+            'label' => 'Cognitive Impairment',
             'name' => 'access_cognitive_check',
             'type' => 'true_false',
             'instructions' => 'Check this if you believe that the point of interest can be considered accessible with regard to cognitive',
             'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
         ),
-
+        array(
+            'key' => 'wm_access_cognitive_level',
+            'label' => 'Cognitive Access Level',
+            'name' => 'access_cognitive_level',
+            'type' => 'select',
+            'instructions' => 'Select the level of accessibility with regard to cognitive',
+            'required' => 0,
+            'conditional_logic' => array (
+                array (
+                    array (
+                        'field' => 'wm_access_cognitive_check',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                'accessible_independently' => 'Accessible independently',
+                'accessible_with_assistance' => 'Accessible with assistance',
+                'accessible_with_a_guide' => 'Accessible with a guide',
+            ),
+            'default_value' => array(
+            ),
+            'allow_null' => 0,
+            'multiple' => 0,
+            'ui' => 0,
+            'return_format' => 'value',
+            'ajax' => 0,
+            'placeholder' => '',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
+        ),
         array(
             'key' => 'wm_access_cognitive_description',
-            'label' => 'cognitive Impairment Description',
+            'label' => 'Cognitive Impairment Description',
             'name' => 'access_cognitive_description',
             'type' => 'wysiwyg',
             'instructions' => 'Describe in detail the accessibility of the point of interest for the cognitive impairment',
@@ -357,7 +497,7 @@
 
         array(
             'key' => 'wm_access_food_check',
-            'label' => 'food Impairment',
+            'label' => 'Food Impairment',
             'name' => 'access_food_check',
             'type' => 'true_false',
             'instructions' => 'Check this if you believe that the point of interest can be considered accessible with regard to food intolerance',
@@ -366,7 +506,7 @@
 
         array(
             'key' => 'wm_access_food_description',
-            'label' => 'food Impairment Description',
+            'label' => 'Food Impairment Description',
             'name' => 'access_food_description',
             'type' => 'wysiwyg',
             'instructions' => 'Describe in detail the accessibility of the point of interest for the food intolerance',
@@ -378,9 +518,104 @@
 
     );
 
-
-
     $poi_fields8 = array(
+
+        // Reachability
+        array(
+            'key' => 'wm_poi_tab_reachability',
+            'label' => 'Reachability',
+            'type' => 'tab',
+            'required' => 0,
+            'placement' => 'top',
+            'endpoint' => 0,
+        ),
+        // BIKE
+        array(
+            'key' => 'wm_poi_reachability_by_bike_check',
+            'label' => 'Reachable By Bike',
+            'name' => 'reachability_by_bike_check',
+            'type' => 'true_false',
+            'instructions' => 'Check this if you believe that the point of interest can be considered reachable by bike',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
+        ),
+        array(
+            'key' => 'wm_poi_reachability_by_bike_description',
+            'label' => 'Reachable By Bike Description',
+            'name' => 'reachability_by_bike_description',
+            'type' => 'wysiwyg',
+            'instructions' => 'Describe in detail the reachability of the point of interest by bike',
+            'tabs' => 'all',
+            'toolbar' => 'basic',
+            'media_upload' => 1,
+            'delay' => 1
+        ),
+
+        // FOOT
+        array(
+            'key' => 'wm_poi_reachability_on_foot_check',
+            'label' => 'Reachable On Foot',
+            'name' => 'reachability_on_foot_check',
+            'type' => 'true_false',
+            'instructions' => 'Check this if you believe that the point of interest can be considered reachable on foot',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
+        ),
+        array(
+            'key' => 'wm_poi_reachability_on_foot_description',
+            'label' => 'Reachable On Foot Description',
+            'name' => 'reachability_on_foot_description',
+            'type' => 'wysiwyg',
+            'instructions' => 'Describe in detail the reachability of the point of interest on foot',
+            'tabs' => 'all',
+            'toolbar' => 'basic',
+            'media_upload' => 1,
+            'delay' => 1
+        ),
+
+        // CAR
+        array(
+            'key' => 'wm_poi_reachability_by_car_check',
+            'label' => 'Reachability By Car',
+            'name' => 'reachability_by_car_check',
+            'type' => 'true_false',
+            'instructions' => 'Check this if you believe that the point of interest can be considered reachable by car',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
+        ),
+        array(
+            'key' => 'wm_poi_reachability_by_car_description',
+            'label' => 'Reachability By Car Description',
+            'name' => 'reachability_by_car_description',
+            'type' => 'wysiwyg',
+            'instructions' => 'Describe in detail the reachability of the point of interest by car',
+            'tabs' => 'all',
+            'toolbar' => 'basic',
+            'media_upload' => 1,
+            'delay' => 1
+        ),
+
+        // PUBLIC TRANSPORTATION
+        array(
+            'key' => 'wm_poi_reachability_by_public_transportation_check',
+            'label' => 'Reachability By Public Transportation',
+            'name' => 'reachability_by_public_transportation_check',
+            'type' => 'true_false',
+            'instructions' => 'Check this if you believe that the point of interest can be considered reachable by public transportaion',
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
+        ),
+        array(
+            'key' => 'wm_poi_reachability_by_public_transportation_description',
+            'label' => 'Reachability By Public Transportation Description',
+            'name' => 'reachability_by_public_transportation_description',
+            'type' => 'wysiwyg',
+            'instructions' => 'Describe in detail the reachability of the point of interest by public transportaion',
+            'tabs' => 'all',
+            'toolbar' => 'basic',
+            'media_upload' => 1,
+            'delay' => 1
+        ),
+
+    );
+
+    $poi_fields9 = array(
         array(
             'key' => 'wm_poi_tab_advanced',
             'label' => 'Advanced',
@@ -444,7 +679,8 @@
             $poi_fields5,
             $poi_fields6,
             $poi_fields7,
-            $poi_fields8
+            $poi_fields8,
+            $poi_fields9
         ),
         'location' => array(
             array(
