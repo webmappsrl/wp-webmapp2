@@ -221,49 +221,61 @@ class WebMapp_TemplateSingle
             $html = '<div class="webmapp-theInfo-template-single"><table>';
             foreach ( $t as $key => $data )
             {
-                if ( ! empty( $data ) ) :
+                if ( ! empty( $data ) ) {
                 ob_start();
-                ?>
-                <tr>
-                   <?php
-                   if ( isset( $WebMapp_IconsConf[$key] ) )
-                       echo "<th><i class='$WebMapp_IconsConf[$key]'></i></th>";
-                   ?>
-                    <td>
-                        <?php
-                        if ( is_array($data ) )
-                        {
-                            echo "<ul>";
-                            foreach ( $data as $d )
-                            {
-                                echo "<li>";
-
-                                if ( $key == 'links' )
-                                {
-                                    $link_title = $post_title . ' Link';
-                                    echo "<a href='$d' target='_blank' title='$link_title'>$d</a>";
-                                }
-                                else
-                                    echo $d;
-
-                                echo "</li>";
-
-                            }
-                            echo "</ul>";
-
-                        }
-                        else
-                            echo $data;
+                    if ( !is_array($data ) ) {
                         ?>
-                    </td>
-                </tr>
+                        <tr>
+                        <?php
+                        if ( isset( $WebMapp_IconsConf[$key] ) ) {
+                            echo "<th><i class='$WebMapp_IconsConf[$key]'></i></th>";
+                        }
+                        ?>
+                            <td>
+                                <?php
+                                    echo $data;
+                                ?>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    elseif ( is_array($data ) )
+                    {
+                        foreach ( $data as $d )
+                        {
+                            ?>
+                            <tr>
+                            <?php
+                            if ( strpos($d, 'facebook') ) {
+                                echo "<th><i class='wm-icon-social-facebook'></i></th>";
+                            } elseif (strpos($d, 'instagram')) {
+                                echo "<th><i class='wm-icon-social-instagram'></i></th>";
+                            } else {
+                                echo "<th><i class='$WebMapp_IconsConf[$key]'></i></th>";
+                            }
+                            ?>
+                                <td>
+                                    <?php
+                                        if ( $key == 'links' )
+                                        {
+                                            $link_title = $post_title . ' Link';
+                                            echo "<a href='$d' target='_blank' title='$link_title'>$d</a>";
+                                        }
+                                        else {
+                                            echo $d;
+                                        }
+                                    ?>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+
+                    }
 
 
-
-                <?php
+                    };//if ( !is_array($data ) ) :
                 $html .= ob_get_clean();
-                endif;//if ( ! empty( $data ) ) :
-            }
+                };//if ( ! empty( $data ) ) :
 
             $html .= '</table></div>';
 
