@@ -13,7 +13,7 @@
  */
 $wm_save_tracks = function( $args, $assoc_args )
 {
-    $results = new WP_Query( array( 'post_type' => 'track', 'posts_per_page' => -1) );
+    $results = new WP_Query( array( 'post_type' => 'track','post_status' => 'public', 'posts_per_page' => -1) );
     
             foreach ( $results->posts as $post ) {
                 WP_CLI::success('Updating track ID # ' . $post->ID);
