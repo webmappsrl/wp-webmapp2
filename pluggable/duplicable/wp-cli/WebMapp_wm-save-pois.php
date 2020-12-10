@@ -13,7 +13,7 @@
  */
 $wm_save_pois = function( $args, $assoc_args )
 {
-    $results = new WP_Query( array( 'post_type' => 'poi','post_status' => 'public', 'posts_per_page' => -1) );
+    $results = new WP_Query( array( 'post_type' => 'poi','post_status' => 'publish', 'posts_per_page' => -1) );
     
             foreach ( $results->posts as $post ) {
                 WP_CLI::success('Updating poi ID # ' . $post->ID);
