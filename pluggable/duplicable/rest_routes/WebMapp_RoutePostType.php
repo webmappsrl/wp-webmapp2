@@ -44,7 +44,12 @@ $args = array(
                 return is_numeric($param);
             }
         ),
-    )
+    ),
+    'permission_callback' => function () {
+      $user_id = get_current_user_id();
+      if (isset($user_id) && !empty($user_id) && $user_id > 0)
+          return true;
+  }
 );
 $WebMapp_V1UserMapsRoute = new WebMapp_RegisterRestRoute( $namespace , $route, $args );
 

@@ -18,6 +18,11 @@ function WebMapp_V1BboxRoute($data) {
 }
 $namespace = 'webmapp/v1';
 $route = '/bbox';
-$args = array( 'methods' => 'GET', 'callback' => 'WebMapp_V1BboxRoute' );
+$args = array( 'methods' => 'GET', 'callback' => 'WebMapp_V1BboxRoute' ,
+'permission_callback' => function () {
+  $user_id = get_current_user_id();
+  if (isset($user_id) && !empty($user_id) && $user_id > 0)
+      return true;
+});
 $WebMapp_V1BboxRoute = new WebMapp_RegisterRestRoute( $namespace , $route, $args );
 

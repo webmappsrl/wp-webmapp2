@@ -34,7 +34,12 @@ $namespace = 'webmapp/v1';
 $route = '/route/(?P<id>\d+).geojson';
 $args = array(
     'methods' => 'GET',
-    'callback' => 'WebMapp_V1GeoJsonDataRoute'
+    'callback' => 'WebMapp_V1GeoJsonDataRoute',
+    'permission_callback' => function () {
+      $user_id = get_current_user_id();
+      if (isset($user_id) && !empty($user_id) && $user_id > 0)
+          return true;
+  }
 );
 $WebMapp_V1GeoJsonDataRoute = new WebMapp_RegisterRestRoute( $namespace , $route, $args );
 
@@ -59,7 +64,12 @@ $namespace = 'webmapp/v1';
 $route = '/track/(?P<id>\d+).geojson';
 $args = array(
     'methods' => 'GET',
-    'callback' => 'WebMapp_V1TrackGeoJsonRoute'
+    'callback' => 'WebMapp_V1TrackGeoJsonRoute',
+    'permission_callback' => function () {
+      $user_id = get_current_user_id();
+      if (isset($user_id) && !empty($user_id) && $user_id > 0)
+          return true;
+  }
 );
 $WebMapp_V1TrackGeoJsonRoute = new WebMapp_RegisterRestRoute( $namespace , $route, $args );
 
@@ -98,6 +108,11 @@ $namespace = 'webmapp/v1';
 $route = '/poi/(?P<id>\d+).geojson';
 $args = array(
     'methods' => 'GET',
-    'callback' => 'WebMapp_V1PoiGeoJsonRoute'
+    'callback' => 'WebMapp_V1PoiGeoJsonRoute',
+    'permission_callback' => function () {
+      $user_id = get_current_user_id();
+      if (isset($user_id) && !empty($user_id) && $user_id > 0)
+          return true;
+  }
 );
 $WebMapp_V1PoiGeoJsonRoute = new WebMapp_RegisterRestRoute( $namespace , $route, $args );

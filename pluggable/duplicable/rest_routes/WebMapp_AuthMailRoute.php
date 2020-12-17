@@ -103,7 +103,12 @@ $namespace = 'webmapp/v1';
 $route = '/mail';
 $args = array(
     'methods' => 'POST',
-    'callback' => 'WebMapp_V1SendMailRoute'
+    'callback' => 'WebMapp_V1SendMailRoute',
+    'permission_callback' => function () {
+      $user_id = get_current_user_id();
+      if (isset($user_id) && !empty($user_id) && $user_id > 0)
+          return true;
+  }
 );
 new WebMapp_RegisterRestRoute( $namespace , $route, $args );
 
@@ -178,7 +183,12 @@ $namespace = 'webmapp/v1';
 $route = '/authorize/';
 $args = array(
     'methods' => 'GET',
-    'callback' => 'WebMapp_V1AuthorizeRequestRoute'
+    'callback' => 'WebMapp_V1AuthorizeRequestRoute',
+    'permission_callback' => function () {
+      $user_id = get_current_user_id();
+      if (isset($user_id) && !empty($user_id) && $user_id > 0)
+          return true;
+  }
 );
 new WebMapp_RegisterRestRoute( $namespace , $route, $args );
 
@@ -244,6 +254,11 @@ $namespace = 'webmapp/v1';
 $route = '/deny';
 $args = array(
     'methods' => 'GET',
-    'callback' => 'WebMapp_V1DenyRequestRoute'
+    'callback' => 'WebMapp_V1DenyRequestRoute',
+    'permission_callback' => function () {
+      $user_id = get_current_user_id();
+      if (isset($user_id) && !empty($user_id) && $user_id > 0)
+          return true;
+  }
 );
 new WebMapp_RegisterRestRoute( $namespace , $route, $args );

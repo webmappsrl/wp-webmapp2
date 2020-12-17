@@ -28,7 +28,12 @@ $namespace = 'webmapp/v1';
 $route = '/wpml/list';
 $args = array(
     'methods' => 'GET',
-    'callback' => 'WebMapp_V1WPMLList'
+    'callback' => 'WebMapp_V1WPMLList',
+    'permission_callback' => function () {
+      $user_id = get_current_user_id();
+      if (isset($user_id) && !empty($user_id) && $user_id > 0)
+          return true;
+  }
 );
 $WebMapp_V1WPMLList = new WebMapp_RegisterRestRoute( $namespace , $route, $args );
 

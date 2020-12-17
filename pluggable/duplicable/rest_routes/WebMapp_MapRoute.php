@@ -41,7 +41,12 @@ $args = array(
                 return is_numeric($param);
             }
         ),
-    )
+    ),
+    'permission_callback' => function () {
+      $user_id = get_current_user_id();
+      if (isset($user_id) && !empty($user_id) && $user_id > 0)
+          return true;
+  }
 );
 $WebMapp_V1MapsRoute = new WebMapp_RegisterRestRoute( $namespace , $route, $args );
 
@@ -79,6 +84,11 @@ $namespace = 'webmapp/v1';
 $route = '/map/(?P<id>\d+).conf';
 $args = array(
     'methods' => 'GET',
-    'callback' => 'WebMapp_V1MapConfRoute'
+    'callback' => 'WebMapp_V1MapConfRoute',
+    'permission_callback' => function () {
+      $user_id = get_current_user_id();
+      if (isset($user_id) && !empty($user_id) && $user_id > 0)
+          return true;
+  }
 );
 $WebMapp_V1MapConfRoute = new WebMapp_RegisterRestRoute( $namespace , $route, $args );

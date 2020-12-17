@@ -6,7 +6,7 @@
 
 
 /** FIX orderby rand pagination */
-session_start();
+// session_start();
 add_filter('posts_orderby', 'wm_edit_posts_rand_orderby', 10, 2);
 function wm_edit_posts_rand_orderby($orderby_statement, $wp_query) {
     if ( $wp_query->get('orderby') == 'rand' )

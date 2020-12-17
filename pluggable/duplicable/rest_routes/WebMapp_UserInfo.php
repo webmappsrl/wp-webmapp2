@@ -27,7 +27,12 @@ $namespace = 'webmapp/v1';
 $route = '/userinfo';
 $args = array(
     'methods' => 'GET',
-    'callback' => 'WebMapp_UserInfo'
+    'callback' => 'WebMapp_UserInfo',
+    'permission_callback' => function () {
+      $user_id = get_current_user_id();
+      if (isset($user_id) && !empty($user_id) && $user_id > 0)
+          return true;
+  }
 );
 $WebMapp_UserInfo = new WebMapp_RegisterRestRoute( $namespace , $route, $args );
 
