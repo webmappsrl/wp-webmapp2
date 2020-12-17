@@ -215,6 +215,8 @@ function wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl) {
     
     $home_url = home_url();
     $home_url = preg_replace('#^https?://#', '', $home_url); //removes https:// and https:// from home url
+    $home_url = preg_replace('#www.#', '', $home_url); //removes www. from home url
+    $home_url = preg_replace('#/[a-z]*#', '', $home_url); //removes / and anything after the domain name from home url
 
     $requestJson = array();
     if ($job == 'update_track_osmid') {
