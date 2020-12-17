@@ -25,8 +25,8 @@ $args = array(
     'methods' => 'POST',
     'callback' => 'WebMapp_V2Newsletter',
     'permission_callback' => function () {
-        $user_id = get_current_user_id();
-        if (isset($user_id) && !empty($user_id) && $user_id > 0)
+      $user_id = get_current_user_id();
+      if (isset($user_id) && !empty($user_id) && $user_id > 0)
             return true;
     }
 );

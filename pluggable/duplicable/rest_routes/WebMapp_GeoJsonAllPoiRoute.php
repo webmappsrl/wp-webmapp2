@@ -51,8 +51,6 @@ $args = array(
     'methods' => 'GET',
     'callback' => 'WebMapp_V1GeoJsonAllPoiRoute',
     'permission_callback' => function () {
-      $user_id = get_current_user_id();
-      if (isset($user_id) && !empty($user_id) && $user_id > 0)
           return true;
   }
 );
