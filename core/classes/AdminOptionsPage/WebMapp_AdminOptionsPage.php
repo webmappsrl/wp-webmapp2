@@ -204,7 +204,11 @@ class WebMapp_AdminOptionsPage
             <?php
             $this->current_tab = $this->get_current_tab();
             $this->render_tab_nav();
-            $this->render_tab_content();
+            if ($this->current_tab == 'hoqu_jobs') {
+                $this->render_tab_hoqu_jobs();
+            } else {
+                $this->render_tab_content();
+            }
             ?>
         </div>
         <?php
@@ -403,6 +407,17 @@ class WebMapp_AdminOptionsPage
             <?php submit_button(); ?>
         </form>
         <?php
+    }
+
+
+    /**
+     *
+     * Render hoqu jobs tab
+     *
+     */
+    protected function render_tab_hoqu_jobs()
+    {
+        AdminTabHoquJobs();
     }
 
     /**

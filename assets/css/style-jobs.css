@@ -1,0 +1,40 @@
+:root { 
+    --color-todo : rgba(195, 221, 253);
+    --color-done : rgba(188, 240, 218);
+    --color-error : rgba(251, 213, 213);
+}
+p.wm-jobs-relod-text {
+    font-size: 20px;
+    font-weight: 400;
+}
+.wm-jobs-relod-section {
+    margin-bottom: 30px;
+}
+.hoqu-jobs-tab-li-todo {
+    background-color: var(--color-todo)!important;  
+    background-image: none!important;  
+}
+.hoqu-jobs-tab-li-done {
+    background-color: var(--color-done)!important;   
+    background-image: none!important; 
+}
+.hoqu-jobs-tab-li-error {
+    background-color: var(--color-error)!important;
+    background-image: none!important;
+}
+.job-item-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+}
+@media screen and (max-width:900px) {
+    .job-item-row {
+        grid-template-columns: 1fr 1fr !important;
+    }
+}
+.job-item-cell {
+    padding: 10px;
+}
+.job-item-row:nth-child(even) {
+    background-color: #f5f5f5;
+}

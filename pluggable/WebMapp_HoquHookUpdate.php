@@ -213,10 +213,7 @@ add_action( "edit_term", "update_taxonomy_job_hoqu", 99, 3);
 // Function that sends a create API to hoqu
 function wm_hoqu_job_api($post_id, $job, $hoqu_token, $hoqu_baseurl) {
     
-    $home_url = home_url();
-    $home_url = preg_replace('#^https?://#', '', $home_url); //removes https:// and https:// from home url
-    $home_url = preg_replace('#www.#', '', $home_url); //removes www. from home url
-    $home_url = preg_replace('#/[a-z]*#', '', $home_url); //removes / and anything after the domain name from home url
+    $home_url = wm_create_clean_home_url();
 
     $requestJson = array();
     if ($job == 'update_track_osmid') {
@@ -297,4 +294,13 @@ function wm_get_original_post_it($post_id) {
     // .ajaxComplete()
 
     return $wm_post_id;
+}
+
+function wm_create_clean_home_url () {
+    $home_url = home_url();
+    $home_url = preg_replace('#^https?://#', '', $home_url); //removes https:// and https:// from home url
+    $home_url = preg_replace('#www.#', '', $home_url); //removes www. from home url
+    $home_url = explode('/',$home_url); // removes all the parameters after the domain name
+    $home_url = $home_url[0];
+    return $home_url;
 }

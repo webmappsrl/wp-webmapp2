@@ -6,6 +6,7 @@ $tabs = array(
     'taxonomies' =>  _x( "Taxonomies Details", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
     'wizards' =>  _x( "Wizards", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
     'hoqu' =>  _x( "Hoqu", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
+    'hoqu_jobs' =>  _x( "Hoqu Jobs", "Tab label in webmapp settings page", WebMapp_TEXTDOMAIN ),
 );
 
 
