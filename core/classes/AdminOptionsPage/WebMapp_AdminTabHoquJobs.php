@@ -4,7 +4,8 @@ function AdminTabHoquJobs () {
     ?>
     <div class="wrap">
             <div class="wm-jobs-relod-section">
-                <p class="wm-jobs-relod-text"><?php echo __("Click to get the latest results","webmap_net7") ?></p>
+                <p class="wm-jobs-relod-text-big"><?php echo __("List of the last 100 jobs per status processed by Hoqu.","webmap_net7") ?></p>
+                <p class="wm-jobs-relod-text-light"><?php echo __("Click to get the latest results.","webmap_net7") ?></p>
                 <button type="submit" id="hoqu-jobs-request" class="button-primary" value="Reload again"><?php echo __("Reload","webmap_net7") ?></button>
             </div>
         <div id="hoqu-jobs-get-result">

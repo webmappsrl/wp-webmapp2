@@ -3,9 +3,16 @@
     --color-done : rgba(188, 240, 218);
     --color-error : rgba(251, 213, 213);
 }
-p.wm-jobs-relod-text {
-    font-size: 20px;
+p.wm-jobs-relod-text-big {
+    font-size: 18px;
     font-weight: 400;
+}
+p.wm-jobs-relod-text-light {
+    font-size: 16px;
+    font-weight: 400;
+}
+#tabs ul li {
+    text-transform: capitalize;
 }
 .wm-jobs-relod-section {
     margin-bottom: 30px;
