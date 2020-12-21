@@ -37,16 +37,18 @@ function wm_hoqu_jobs_request_footer() {
                     },
                     complete:function(response){
                         // console.log(response.responseText);
+                        var activeTab = 0;
+                        try {
+                            activeTab = $('#tabs').tabs("option", "active");
+                        } catch (e) {
+                        }
                         $('#hoqu-jobs-get-result').html(response.responseText);
                         $( "#tabs" ).tabs();
+                        $( "#tabs" ).tabs("option", "active", activeTab );
                     }
                 });
             })
             $( '#hoqu-jobs-request' ).click();
-            setTimeout(function() {
-                $( "#tabs" ).tabs();
-            }, 800);
-        });
     })(jQuery);	
     </script>
     <?php
