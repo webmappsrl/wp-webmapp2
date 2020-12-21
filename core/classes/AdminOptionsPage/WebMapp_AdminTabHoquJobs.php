@@ -16,8 +16,7 @@ function AdminTabHoquJobs () {
 }
 
 
-// creates ajax function in admin footer that listens to update osmid button
-// Updates's track osmid on demand request
+// creates ajax function in admin footer of webmapp page
 function wm_hoqu_jobs_request_footer() {
     ?>
     <script type="text/javascript">
@@ -37,9 +36,7 @@ function wm_hoqu_jobs_request_footer() {
                     success : function( response ) {
                     },
                     complete:function(response){
-                        // obj = JSON.parse(response.responseText);
-                        // console.log(response);
-                        console.log(response.responseText);
+                        // console.log(response.responseText);
                         $('#hoqu-jobs-get-result').html(response.responseText);
                         $( "#tabs" ).tabs();
                     }
@@ -63,16 +60,16 @@ function wm_admin_css_load() {
     if ( 'toplevel_page_webmap_netseven' == $GLOBALS['hook_suffix']) {
         wp_enqueue_style('style-jobs', WebMapp_ASSETS .'css/style-jobs.css');
         wp_enqueue_style('jqeury-ui-tabs-style', 'https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css');
-        wp_enqueue_script('hubspot_contact_form', 'https://code.jquery.com/ui/1.12.1/jquery-ui.js', array('jquery'));
+        wp_enqueue_script('jquery-ui', 'https://code.jquery.com/ui/1.12.1/jquery-ui.js', array('jquery'));
     }
 }
 add_action('admin_enqueue_scripts', 'wm_admin_css_load');
 
-// action that process ajax call : wm_acf_input_admin_footer() to update osmid ACF
-// Updates's track osmid on demand function
+// action that process ajax call : wm_hoqu_jobs_request() to update Hoqu jobs in admin page
 add_action( 'wp_ajax_wm_hoqu_jobs_request', 'wm_hoqu_jobs_request' );
 function wm_hoqu_jobs_request(){
     $home_url = wm_create_clean_home_url();
+    $home_url = 'elm.be.webmapp.it';
     $hoqu_api_url = 'https://hoqustaging.webmapp.it/api/jobsByInstance/'.$home_url;
 
     $hoqu_token = get_option("webmapp_hoqu_token");
@@ -127,7 +124,7 @@ function create_content_jobs ($response) {
                         <?php if (empty($v)) { ?>
                             <p><?php echo __("No available job","webmap_net7"); ?></p>
                         <?php } else {  ?>
-                            <div class="job-item-row">
+                            <div class="job-item-row tabs-header">
                                 <div class="job-item-cell"><strong><?php echo __("Hoqu ID","webmap_net7") ?></strong></div>
                                 <div class="job-item-cell"><strong><?php echo __("Job name","webmap_net7")?></strong></div>
                                 <div class="job-item-cell"><strong><?php echo __("Parameters","webmap_net7")?></strong></div>
@@ -136,7 +133,7 @@ function create_content_jobs ($response) {
                                 <div class="job-item-cell"><strong><?php echo __("Update date","webmap_net7")?></strong></div>
                             </div> 
                             <?php foreach ($v as $i) {?>
-                                <div class="job-item-row">
+                                <div class="job-item-row tabs-body">
                                     <div class="job-item-cell"><?php echo $i['id']?></div>
                                     <div class="job-item-cell"><?php echo $i['job']?></div>
                                     <div class="job-item-cell"><?php echo $i['parameters']?></div>
