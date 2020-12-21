@@ -49,6 +49,7 @@ function wm_hoqu_jobs_request_footer() {
                 });
             })
             $( '#hoqu-jobs-request' ).click();
+        });
     })(jQuery);	
     </script>
     <?php
