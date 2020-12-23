@@ -6,7 +6,7 @@
 # Success: bar qux
 
 /**
- * Reset custom fields encoding in WPML options 
+ * Reset custom fields encoding in WPML options for Custom Fields Translation
  *
  *
  * @when after_wp_load
@@ -32,7 +32,7 @@ $wm_wpml_custom_fields_settings = function( $args, $assoc_args )
     }   
     else
     {
-        WP_CLI::error("No encoding are setted for custom fields");
+        WP_CLI::error("No encoding is set for custom fields");
     }
 
     WP_CLI::success("DONE!");

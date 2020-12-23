@@ -72,7 +72,6 @@ add_action('admin_enqueue_scripts', 'wm_admin_css_load');
 add_action( 'wp_ajax_wm_hoqu_jobs_request', 'wm_hoqu_jobs_request' );
 function wm_hoqu_jobs_request(){
     $home_url = wm_create_clean_home_url();
-    $home_url = 'elm.be.webmapp.it';
     $hoqu_api_url = 'https://hoqustaging.webmapp.it/api/jobsByInstance/'.$home_url;
 
     $hoqu_token = get_option("webmapp_hoqu_token");
