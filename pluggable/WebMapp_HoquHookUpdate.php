@@ -17,7 +17,7 @@ function update_poi_job_hoqu( $post_id, $post, $update ){
         }
         $response = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
         if ($response['id']) {
-            //set key montepisanotree_order_json in user session with json order
+            //set key hoquids after success response from hoqu
             if( ! session_id() ) {
                 session_start();
             }
@@ -74,7 +74,7 @@ function update_track_translation_job_hoqu( $post_id, $post, $update){
             }
             $response = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
             if ($response['id']) {
-                //set key montepisanotree_order_json in user session with json order
+                //set key hoquids after success response from hoqu
                 if( ! session_id() ) {
                     session_start();
                 }
@@ -178,7 +178,7 @@ function update_route_job_hoqu( $post_id, $post, $update ){
         }
         $response = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
         if ($response['id']) {
-            //set key montepisanotree_order_json in user session with json order
+            //set key hoquids after success response from hoqu
             if( ! session_id() ) {
                 session_start();
             }
@@ -199,7 +199,7 @@ function update_taxonomy_job_hoqu( $term_id, $tt_id, $taxonomy ){
         $job = 'update_taxonomy';
         $response = wm_hoqu_job_api($term_id, $job, $hoqu_token, $hoqu_baseurl);
         if ($response['id']) {
-            //set key montepisanotree_order_json in user session with json order
+            //set key hoquids after success response from hoqu
             if( ! session_id() ) {
                 session_start();
             }
@@ -304,3 +304,30 @@ function wm_create_clean_home_url () {
     $home_url = $home_url[0];
     return $home_url;
 }
+
+
+// Function that add hoqu jobs after admin column edit inline and bulk edit
+function bulk_update_admin_column_job_hoqu( $column, $id, $value ) {
+    $hoqu_token = get_option("webmapp_hoqu_token");
+    $hoqu_baseurl = get_option("webmapp_hoqu_baseurl");    
+
+    if ($hoqu_token && $hoqu_baseurl) {
+
+        // only applies when the column type is a 'osmid' and is from the post type 'track'
+        if ( 'wm_track_osmid' == $column->get_option('field') ) {
+            $job = 'update_track_osmid';
+        } else {
+            $post_type = $column->get_post_type();
+            $job = 'update_'.$post_type;
+        }
+        $response = wm_hoqu_job_api($id, $job, $hoqu_token, $hoqu_baseurl);
+        if ($response['id']) {
+            //set key hoquids after success response from hoqu
+            if( ! session_id() ) {
+                session_start();
+            }
+            $_SESSION['hoquids'][] = $response['id'];
+        }
+    }
+}
+add_action( 'acp/editing/saved', 'bulk_update_admin_column_job_hoqu', 10, 3 );
