@@ -13,14 +13,12 @@
  */
 $wm_save_all = function( $args, $assoc_args )
 {
-    $results = new WP_Query( array( 'post_type' => array('route', 'track', 'poi'),'post_status' => 'publish', 'posts_per_page' => -1) );
-    
-            foreach ( $results->posts as $post ) {
-                WP_CLI::success('Updating post ID # ' . $post->ID);
-                wp_update_post( $post );
-            }
-
-
+    $cmd = "wp wm-save-pois --allow-root";
+    system($cmd);
+    $cmd = "wp wm-save-tracks --allow-root";
+    system($cmd);
+    $cmd = "wp wm-save-routes --allow-root";
+    system($cmd);
 
 };
 
