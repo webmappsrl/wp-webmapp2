@@ -15,13 +15,15 @@ function update_poi_job_hoqu( $post_id, $post, $update ){
         if ($post->post_status == 'draft') {
             $job = 'delete_poi';
         }
-        $response = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
-        if ($response['id']) {
-            //set key hoquids after success response from hoqu
-            if( ! session_id() ) {
-                session_start();
+        if ($wm_post['id'] && $wm_post['id'] !== null) {
+            $response = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
+            if ($response['id']) {
+                //set key hoquids after success response from hoqu
+                if( ! session_id() ) {
+                    session_start();
+                }
+                $_SESSION['hoquids'][] = $response['id'];
             }
-            $_SESSION['hoquids'][] = $response['id'];
         }
     }
 }
@@ -45,8 +47,9 @@ function update_track_job_hoqu( $post_id){
                 $wm_post = wm_get_original_post_it($post_id);
 
                 $job = 'update_track';
-                
-                $risposta = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
+                if ($wm_post['id'] && $wm_post['id'] !== null) {
+                    $risposta = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
+                }
 
             }
         }
@@ -59,7 +62,7 @@ add_action( "acf/save_post", "update_track_job_hoqu", 99, 1);
 
 // Function that adds hoqu job to track save and create the translation
 function update_track_translation_job_hoqu( $post_id, $post, $update){
-
+        
     $hoqu_token = get_option("webmapp_hoqu_token");
     $hoqu_baseurl = get_option("webmapp_hoqu_baseurl");
 
@@ -72,13 +75,15 @@ function update_track_translation_job_hoqu( $post_id, $post, $update){
             if ($post->post_status == 'draft') {
                 $job = 'delete_track';
             }
-            $response = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
-            if ($response['id']) {
-                //set key hoquids after success response from hoqu
-                if( ! session_id() ) {
-                    session_start();
+            if ($wm_post['id'] && $wm_post['id'] !== null) {
+                $response = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
+                if ($response['id']) {
+                    //set key hoquids after success response from hoqu
+                    if( ! session_id() ) {
+                        session_start();
+                    }
+                    $_SESSION['hoquids'][] = $response['id'];
                 }
-                $_SESSION['hoquids'][] = $response['id'];
             }
         }
     }    
@@ -164,7 +169,7 @@ function acf_osmid_update_hoqu(){
 
 // Function that adds hoqu job to route save and create
 function update_route_job_hoqu( $post_id, $post, $update ){
-
+    
     $hoqu_token = get_option("webmapp_hoqu_token");
     $hoqu_baseurl = get_option("webmapp_hoqu_baseurl");
 
@@ -176,13 +181,15 @@ function update_route_job_hoqu( $post_id, $post, $update ){
         if ($post->post_status == 'draft') {
             $job = 'delete_route';
         }
-        $response = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
-        if ($response['id']) {
-            //set key hoquids after success response from hoqu
-            if( ! session_id() ) {
-                session_start();
+        if ($wm_post['id'] && $wm_post['id'] !== null) {
+            $response = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
+            if ($response['id']) {
+                //set key hoquids after success response from hoqu
+                if( ! session_id() ) {
+                    session_start();
+                }
+                $_SESSION['hoquids'][] = $response['id'];
             }
-            $_SESSION['hoquids'][] = $response['id'];
         }
     }
 }
