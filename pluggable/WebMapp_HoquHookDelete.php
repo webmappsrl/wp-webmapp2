@@ -23,15 +23,20 @@ function delete_track_job_hoqu( $post_id ){
         $response = wm_hoqu_job_api($wm_post['id'], $job, $hoqu_token, $hoqu_baseurl);
         
         if ($response['id']) {
-            //set key montepisanotree_order_json in user session with json order
+            //set key hoquids after success response from hoqu
             if( ! session_id() ) {
                 session_start();
             }
             $_SESSION['hoquids'][] = $response['id'];
         }
+
+        // after sending hoqu job to delete_track sends another job to update related routes
+        if ($post_type == 'track') {
+            wm_update_route_after_track_trashed_draft($wm_post['id'],$hoqu_token,$hoqu_baseurl);
+        } 
     }
 }
-add_action( "wp_trash_post", "delete_track_job_hoqu", 999, 1);
+add_action( "wp_trash_post", "delete_track_job_hoqu", 99, 1);
 
 // Function that adds hoqu job to taxonomy on delete
 function delete_taxonomy_job_hoqu( $term_id, $tt_id, $taxonomy ){
@@ -45,7 +50,7 @@ function delete_taxonomy_job_hoqu( $term_id, $tt_id, $taxonomy ){
         $job = 'delete_taxonomy';
         $response = wm_hoqu_job_api($term_id, $job, $hoqu_token, $hoqu_baseurl);
         if ($response['id']) {
-            //set key montepisanotree_order_json in user session with json order
+            //set key hoquids after success response from hoqu
             if( ! session_id() ) {
                 session_start();
             }
@@ -55,7 +60,7 @@ function delete_taxonomy_job_hoqu( $term_id, $tt_id, $taxonomy ){
 }
 add_action( "delete_term", "delete_taxonomy_job_hoqu", 99, 3);
 
-function sample_admin_notice__success() {
+function wm_admin_notice__success() {
     $hoquids = $_SESSION['hoquids'];
     if (!empty($hoquids)) {
         ?>
@@ -67,4 +72,27 @@ function sample_admin_notice__success() {
 
     $_SESSION['hoquids'] = null;
 }
-add_action( 'admin_notices', 'sample_admin_notice__success' );
+add_action( 'admin_notices', 'wm_admin_notice__success' );
+
+// Sends a update_route job to hoqu when the track and route relation is deleted on track status being changed to Draft
+function wm_update_route_after_track_trashed_draft($post_id,$hoqu_token,$hoqu_baseurl) {
+
+    $home_url = home_url();
+    $related_routes = "$home_url/wp-json/webmapp/v1/track/related_routes/$post_id";
+    $c = json_decode(file_get_contents($related_routes),TRUE);
+    $routes_id = $c['related_routes'];
+    if ($routes_id){
+        foreach($routes_id as $id) {
+            $job = 'update_route';
+            $response = wm_hoqu_job_api($id, $job, $hoqu_token, $hoqu_baseurl);
+                
+            if ($response['id']) {
+                //set key hoquids after success response from hoqu
+                if( ! session_id() ) {
+                    session_start();
+                }
+                $_SESSION['hoquids'][] = $response['id'];
+            }
+        }
+    }
+} 

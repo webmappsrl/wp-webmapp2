@@ -85,6 +85,11 @@ function update_track_translation_job_hoqu( $post_id, $post, $update){
                     $_SESSION['hoquids'][] = $response['id'];
                 }
             }
+
+            // after sending hoqu job to delete_track sends another job to update related routes
+            if ($post->post_status == 'draft') {
+                wm_update_route_after_track_trashed_draft($wm_post['id'],$hoqu_token,$hoqu_baseurl);
+            }
         }
     }    
 }
