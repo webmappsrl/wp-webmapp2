@@ -325,20 +325,23 @@ function bulk_update_admin_column_job_hoqu( $column, $id, $value ) {
 
     if ($hoqu_token && $hoqu_baseurl) {
 
-        // only applies when the column type is a 'osmid' and is from the post type 'track'
-        if ( 'wm_track_osmid' == $column->get_option('field') ) {
-            $job = 'update_track_osmid';
-        } else {
-            $post_type = $column->get_post_type();
-            $job = 'update_'.$post_type;
-        }
-        $response = wm_hoqu_job_api($id, $job, $hoqu_token, $hoqu_baseurl);
-        if ($response['id']) {
-            //set key hoquids after success response from hoqu
-            if( ! session_id() ) {
-                session_start();
+        $post_type = $column->get_post_type();
+        if ($post_type == 'track' || $post_type == 'route' || $post_type == 'poi') {
+
+            // only applies when the column type is a 'osmid' and is from the post type 'track'
+            if ( 'wm_track_osmid' == $column->get_option('field') ) {
+                $job = 'update_track_osmid';
+            } else {
+                $job = 'update_'.$post_type;
             }
-            $_SESSION['hoquids'][] = $response['id'];
+            $response = wm_hoqu_job_api($id, $job, $hoqu_token, $hoqu_baseurl);
+            if ($response['id']) {
+                //set key hoquids after success response from hoqu
+                if( ! session_id() ) {
+                    session_start();
+                }
+                $_SESSION['hoquids'][] = $response['id'];
+            }
         }
     }
 }

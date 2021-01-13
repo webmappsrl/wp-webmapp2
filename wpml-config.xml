@@ -15,7 +15,12 @@
         </custom-types>
         <taxonomies>
                 <taxonomy translate="1">webmapp_category</taxonomy>
-            </taxonomies>
+                <taxonomy translate="1">activity</taxonomy>
+                <taxonomy translate="1">theme</taxonomy>
+                <taxonomy translate="1">where</taxonomy>
+                <taxonomy translate="1">when</taxonomy>
+                <taxonomy translate="1">who</taxonomy>
+        </taxonomies>
         <!--  <admin-texts>
                 <key name="my_plugins_options">
                     <key name="option_name_1" />
