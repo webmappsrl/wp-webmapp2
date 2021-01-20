@@ -11,41 +11,14 @@ function WebMapp_FeatureLastModified( WP_REST_Request $request ) {
  
     $resp=array();
     $feature_id = $request->get_param("id");
-    $feature = get_post($feature_id);
-    $feature_type = $feature->post_type;
-    
 
-    // Get the list of availible languages
-    $languages = apply_filters( 'wpml_active_languages', NULL, 'orderby=id&order=desc' );
+    //get post default language id
+    $wm_post_id = wm_get_original_post_it($feature_id);
 
-    // Get the default language 
-    $default_lang = apply_filters('wpml_default_language', NULL );
-
-    $enabled_languages = array();
-
-    if ( !empty( $languages ) ) {
-        foreach( $languages as $l ) {
-            if ( $l['language_code'] !== $default_lang)
-            $enabled_languages[] = $l['language_code'];
-        }
-    }
+    $feature = get_post($wm_post_id['id']);
     $feature_modified = new DateTime($feature->post_modified);
-    if(!empty( $enabled_languages )) {
-        foreach($enabled_languages as $l) {
-            $post_lang_id = apply_filters( 'wpml_object_id', $feature_id, $feature_type, FALSE, $l );
-            $post = get_post($post_lang_id);
-            $post_last_modified = new DateTime($post->post_modified);
-            if ($feature_modified > $post_last_modified){
-                $last_modified = $feature_modified;
-            }else {
-                $last_modified = $post_last_modified;
-            }
-        }
-        $last_modified = $last_modified->format('Y-m-d H:i:s');
-        $resp['last_modified']=$last_modified;
-    } else {
-        $resp['last_modified']=$feature->post_modified;
-    }
+    $last_modified = $feature_modified->format('Y-m-d H:i:s');
+    $resp['last_modified']=$last_modified;
     
     return new WP_REST_Response($resp,200);
 
