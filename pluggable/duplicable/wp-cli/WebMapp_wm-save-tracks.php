@@ -6,7 +6,7 @@
 # Success: bar qux
 
 /**
- * Updates all the custom post types TRACK and updates osmid if exists. plus checks for the image size pdf-large
+ * Updates all the custom post types TRACK and updates osmid if exists. and generates all image sizes
  *
  *
  * @when after_wp_load
@@ -73,10 +73,10 @@ $wm_save_tracks = function( $args, $assoc_args )
             WP_CLI::success('Hoqu update job ID # ' . $response['id']);
         }
         
-        // Create image siz pdf-large if it does not exists
+        // Create all image siz if it does not exists
         $feature_id = get_post_thumbnail_id($post->ID);
         if ($feature_id && !empty($feature_id)) {
-            $cmd = "wp media regenerate $feature_id --image_size=pdf-large --allow-root";
+            $cmd = "wp media regenerate $feature_id --allow-root";
             system($cmd);
         } else {
             WP_CLI::warning( "Track #$post->ID has no featured image");
