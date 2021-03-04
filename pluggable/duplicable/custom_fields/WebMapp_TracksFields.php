@@ -36,6 +36,55 @@ $WebMapp_RegisterTrackFields1 = new WebMapp_RegisterFieldsGroup('track' ,$args )
 
 //getTrackCustomFields()
 $fields2 = array(
+    array(
+			'key' => 'wm_track_not_accessible',
+			'label' => 'Path not accessible',
+			'name' => 'not_accessible',
+			'type' => 'true_false',
+			'instructions' => 'Select this option if this track is not accessible.',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'acfe_permissions' => '',
+			'message' => '',
+			'default_value' => 0,
+			'ui' => 0,
+			'ui_on_text' => '',
+			'ui_off_text' => '',
+		),
+		array(
+			'key' => 'wm_track_not_accessible_message',
+			'label' => 'Path not accessible message',
+			'name' => 'not_accessible_description',
+			'type' => 'textarea',
+			'instructions' => 'Describe why the path is not accessible.',
+			'required' => 0,
+			'conditional_logic' => array(
+				array(
+					array(
+						'field' => 'wm_track_not_accessible',
+						'operator' => '==',
+						'value' => '1',
+					),
+				),
+			),
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'acfe_permissions' => '',
+			'default_value' => '',
+			'placeholder' => '',
+			'maxlength' => '',
+			'rows' => '',
+			'new_lines' => '',
+			'acfe_textarea_code' => 0,
+		),
     array (
         'default_value' => '',
         'key' => 'field_58c7ef836e6e2',
