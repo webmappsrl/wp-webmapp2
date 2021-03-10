@@ -6,7 +6,7 @@
 
 
 /** FIX orderby rand pagination */
-// session_start();
+
 add_filter('posts_orderby', 'wm_edit_posts_rand_orderby', 10, 2);
 function wm_edit_posts_rand_orderby($orderby_statement, $wp_query) {
     if ( $wp_query->get('orderby') == 'rand' )
@@ -381,3 +381,16 @@ function wpdocs_theme_setup() {
     add_image_size( 'pdf-large', 1080, 608, array( 'center', 'center' ) ); // Hard crop center
 
 }
+
+
+
+function wm_session_start() {
+    // starts  asession if its not already started 
+    // it is needed for hoqu API calls to store the IDs
+    if( ! session_id() ) {
+        session_start();
+    }
+
+}
+
+add_action('admin_init', 'wm_session_start');

@@ -61,6 +61,7 @@ function delete_taxonomy_job_hoqu( $term_id, $tt_id, $taxonomy ){
 add_action( "delete_term", "delete_taxonomy_job_hoqu", 99, 3);
 
 function wm_admin_notice__success() {
+    
     $hoquids = $_SESSION['hoquids'];
     if (!empty($hoquids)) {
         ?>
