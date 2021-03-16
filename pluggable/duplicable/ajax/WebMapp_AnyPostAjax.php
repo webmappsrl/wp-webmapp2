@@ -9,6 +9,7 @@ function get_anypost_shortcode_page( $options = false ) {
             'post_type' => 'any',
             'term_ids' => '',//a string with a list of term id separated by comma
             'term_id' => '',//backward compatibility, if set term_ids, this parameter will ignored
+            'exclude_term_ids' => '',//a string with a list of term id separated by comma, to be excluded
             'rows' => '2',
             'posts_per_page' => get_option( 'posts_per_page' ),
             'post_id' => '',
@@ -104,7 +105,24 @@ function get_anypost_shortcode_page( $options = false ) {
 
     }//end elseif //endif
 
-
+    // exclude taxonomies from query
+    $exclude_term_ids_arr = isset( $exclude_term_ids ) ? ( array ) explode(',',$exclude_term_ids) : array();
+    if ($exclude_term_ids_arr) {
+        foreach( $exclude_term_ids_arr as $taxId )
+            {
+                $tempTerm = get_term( $taxId );
+                $tempTax = isset( $tempTerm->taxonomy ) && taxonomy_exists( $tempTerm->taxonomy ) ? $tempTerm->taxonomy : false;
+                if ( $tempTax )
+                {
+                    $taxQuery[] = array(
+                        'taxonomy' => $tempTax,
+                        'terms' => array($taxId),
+                        'field' => 'term_id',
+                        'operator' => 'NOT IN',
+                    );
+                }
+            }
+    }
     //set query arguments
     $query_args[ 'paged' ] = $paged;
     $query_args[ 'post_status' ] = 'publish';

@@ -9,6 +9,7 @@ function WebMapp_AnyPostShortcode( $atts ) {
             'post_type' => 'any',
             'term_id' => '',
             'term_ids' => '',
+            'exclude_term_ids' => '',
             'rows' => '2',
             'posts_per_page' => get_option( 'posts_per_page' ),
             'post_id' => '',
@@ -35,6 +36,7 @@ function WebMapp_AnyPostShortcode( $atts ) {
         "paged" =>  '1',//paged
         "term_id" =>  $term_id ,//posts term id
         "term_ids" =>  $term_ids ,//posts term ids
+        "exclude_term_ids" =>  $exclude_term_ids ,//posts term ids
         "post_id" =>  $post_id ,//post id, to display an unique post
         "posts_per_page" =>  $posts_per_page ,//posts per page, please set it
         "rows" =>  $rows ,//rows per page, please set it
@@ -82,6 +84,7 @@ function WebMapp_AnyPostShortcode( $atts ) {
                 paged: '1',//paged
                 term_id: '<?php echo $term_id ?>',//posts term id
                 term_ids: '<?php echo $term_ids ?>',//posts term ids
+                exclude_term_ids: '<?php echo $exclude_term_ids ?>',//posts term ids
                 post_id: '<?php echo $post_id ?>',//post id, to display an unique post
                 posts_per_page: '<?php echo $posts_per_page ?>',//posts per page, please set it
                 rows: '<?php echo $rows ?>',//rows per page, please set it
