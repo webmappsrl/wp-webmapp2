@@ -398,7 +398,7 @@ $fields3 = array(
         'label' => 'Distance (lenght of the track)',
         'name' => 'distance',
         'type' => 'text',
-        'instructions' => 'Insert the total lenght of the track. Use meter as unit.',
+        'instructions' => 'Insert the total lenght of the track. Use Kilometers as unit.',
         'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
     ),
     array(
