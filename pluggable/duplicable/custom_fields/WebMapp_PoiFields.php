@@ -283,6 +283,7 @@
 			'display_format' => 'd-m-Y',
 			'return_format' => 'd-m-Y',
 			'first_day' => 1,
+            'wpml_cf_preferences' => WEBMAPP_COPY_CUSTOM_FIELD,
 		),
         // GENERIC PDF ACCESSIBILITY INFORMATION
         array(
@@ -305,6 +306,7 @@
 			'min_size' => '',
 			'max_size' => '',
 			'mime_types' => 'pdf',
+            'wpml_cf_preferences' => WEBMAPP_TRANSLATE_CUSTOM_FIELD,
 		),
         // MOBILITY
         array(
