@@ -256,7 +256,7 @@
 
     $poi_fields7 = array(
 
-        // MOBILITY
+        // ACCESSIBILITY
         array(
             'key' => 'wm_poi_tab_accessibility',
             'label' => 'Accessibility',
@@ -265,7 +265,48 @@
             'placement' => 'top',
             'endpoint' => 0,
         ),
-
+        // VALIDITY DATE
+        array(
+			'key' => 'wm_poi_accessibility_validity_date',
+			'label' => 'Specific date of validity of the information',
+			'name' => 'accessibility_validity_date',
+			'type' => 'date_picker',
+			'instructions' => 'Insert the date when the information has been last verified',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'acfe_permissions' => '',
+			'display_format' => 'd-m-Y',
+			'return_format' => 'd-m-Y',
+			'first_day' => 1,
+		),
+        // GENERIC PDF ACCESSIBILITY INFORMATION
+        array(
+			'key' => 'wm_poi_accessibility_pdf',
+			'label' => 'Detailed information on accessibility (PDF)',
+			'name' => 'accessibility_pdf',
+			'type' => 'file',
+			'instructions' => 'Generic information on accessibility (only PDF allowed)',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'acfe_permissions' => '',
+			'acfe_uploader' => 'wp',
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => 'pdf',
+		),
+        // MOBILITY
         array(
             'key' => 'wm_access_mobility_check',
             'label' => 'Mobility Impairment',
