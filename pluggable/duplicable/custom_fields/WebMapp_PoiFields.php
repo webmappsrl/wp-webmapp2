@@ -288,10 +288,10 @@
         // GENERIC PDF ACCESSIBILITY INFORMATION
         array(
 			'key' => 'wm_poi_accessibility_pdf',
-			'label' => 'Detailed information on accessibility (PDF)',
+			'label' => 'Generic information on accessibility (PDF)',
 			'name' => 'accessibility_pdf',
 			'type' => 'file',
-			'instructions' => 'Generic information on accessibility (only PDF allowed)',
+			'instructions' => 'Upload a PDF with generic information on accessibility (only PDF allowed). Below you can insert the detailed information for each section',
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array(
