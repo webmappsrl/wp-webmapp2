@@ -438,24 +438,15 @@ add_action( 'rest_api_init', function () {
                         remove_filter('terms_clauses', array($sitepress, 'terms_clauses'));
                         
                         
-                        $thisPost = get_term($post_id,);
+                        $thisPost = get_term($post_id,$object['taxonomy']);
                         
                         add_filter('get_term', array($sitepress,'get_term_adjust_id'), 1, 1);
                         add_filter('terms_clauses', array($sitepress, 'terms_clauses'));
 
-                        // $href= apply_filters( 'WPML_filter_link', $language[ 'url' ], $language );
-                        // if (strpos($href, '?') !== false) {
-                        //     $href = str_replace('?', '/' . $thisPost->slug . '/?', $href);
-                        // } else {
-
-                        //     if (substr($href, -1) !== '/') {
-                        //         $href .= '/';
-                        //     }
-
-                        //     $href .= $thisPost->slug . '/';
-                        // }
-                        // , 'href' => $href
-                        $translations[] = array('locale' => $language['default_locale'], 'id' => $thisPost->term_id, 'name' => $thisPost->name);
+                        $href = home_url();
+                        $href .= '/wp-json/wp/v2/'.$object['taxonomy'] . '/'.$post_id;
+                        
+                        $translations[] = array('locale' => $language['default_locale'], 'id' => $thisPost->term_id, 'name' => $thisPost->name, 'source' => $href);
                     }
 
                     return $translations; 
