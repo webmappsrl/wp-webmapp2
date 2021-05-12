@@ -394,3 +394,75 @@ function wm_session_start() {
 }
 
 add_action('admin_init', 'wm_session_start');
+
+
+add_filter( 'rest_webmapp_category_query', 'add_wpml_to_taxonomy', 10, 2 );
+function add_wpml_to_taxonomy() {
+
+}
+
+
+add_action( 'rest_api_init', function () {
+    $term_types = get_taxonomies( array( ), 'objects' );
+	foreach( $term_types as $term_type ) {
+		register_rest_field( $term_type->name,
+            'wpml_current_locale',
+            array(
+                'get_callback'    => function ($object) {
+                    global $sitepress;
+                    $args = array(
+                        'element_id' => $object['id'],
+                        'element_type' => $object['taxonomy']
+                    );
+                    $langInfo = apply_filters( 'wpml_element_language_code', null, $args );
+                    return $sitepress->get_locale( $langInfo );
+                },
+                'update_callback' => null,
+                'schema'          => null,
+            )
+	    );
+
+        register_rest_field( $term_type->name,
+            'wpml_translations',
+            array(
+                'get_callback'    => function ($object) {
+                    global $sitepress;
+                    $languages = apply_filters('wpml_active_languages', null);
+                    $translations = [];
+
+                    foreach ($languages as $language) {
+                        $post_id = wpml_object_id_filter($object['id'], $object['taxonomy'], false, $language['language_code']);
+                        if ($post_id === null || $post_id == $object['id']) continue;
+                        
+                        remove_filter('get_term', array($sitepress,'get_term_adjust_id'), 1, 1);
+                        remove_filter('terms_clauses', array($sitepress, 'terms_clauses'));
+                        
+                        
+                        $thisPost = get_term($post_id,);
+                        
+                        add_filter('get_term', array($sitepress,'get_term_adjust_id'), 1, 1);
+                        add_filter('terms_clauses', array($sitepress, 'terms_clauses'));
+
+                        // $href= apply_filters( 'WPML_filter_link', $language[ 'url' ], $language );
+                        // if (strpos($href, '?') !== false) {
+                        //     $href = str_replace('?', '/' . $thisPost->slug . '/?', $href);
+                        // } else {
+
+                        //     if (substr($href, -1) !== '/') {
+                        //         $href .= '/';
+                        //     }
+
+                        //     $href .= $thisPost->slug . '/';
+                        // }
+                        // , 'href' => $href
+                        $translations[] = array('locale' => $language['default_locale'], 'id' => $thisPost->term_id, 'name' => $thisPost->name);
+                    }
+
+                    return $translations; 
+                },
+                'update_callback' => null,
+                'schema'          => null,
+            )
+	    );
+	}
+} );
