@@ -438,7 +438,7 @@ add_action( 'rest_api_init', function () {
                         remove_filter('terms_clauses', array($sitepress, 'terms_clauses'));
                         
                         
-                        $thisPost = get_term($post_id,$object['taxonomy']);
+                        $thisPost = get_term($post_id);
                         
                         add_filter('get_term', array($sitepress,'get_term_adjust_id'), 1, 1);
                         add_filter('terms_clauses', array($sitepress, 'terms_clauses'));
