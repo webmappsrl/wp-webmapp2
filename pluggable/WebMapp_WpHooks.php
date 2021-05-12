@@ -422,38 +422,38 @@ add_action( 'rest_api_init', function () {
             )
 	    );
 
-        register_rest_field( $term_type->name,
-            'wpml_translations',
-            array(
-                'get_callback'    => function ($object) {
-                    global $sitepress;
-                    $languages = apply_filters('wpml_active_languages', null);
-                    $translations = [];
+        // register_rest_field( $term_type->name,
+        //     'wpml_translations',
+        //     array(
+        //         'get_callback'    => function ($object) {
+        //             global $sitepress;
+        //             $languages = apply_filters('wpml_active_languages', null);
+        //             $translations = [];
 
-                    foreach ($languages as $language) {
-                        $post_id = wpml_object_id_filter($object['id'], $object['taxonomy'], false, $language['language_code']);
-                        if ($post_id === null || $post_id == $object['id']) continue;
+        //             foreach ($languages as $language) {
+        //                 $post_id = wpml_object_id_filter($object['id'], $object['taxonomy'], false, $language['language_code']);
+        //                 if ($post_id === null || $post_id == $object['id']) continue;
                         
-                        remove_filter('get_term', array($sitepress,'get_term_adjust_id'), 1, 1);
-                        remove_filter('terms_clauses', array($sitepress, 'terms_clauses'));
+        //                 remove_filter('get_term', array($sitepress,'get_term_adjust_id'), 1, 1);
+        //                 remove_filter('terms_clauses', array($sitepress, 'terms_clauses'));
                         
                         
-                        $thisPost = get_term($post_id);
+        //                 $thisPost = get_term($post_id);
                         
-                        add_filter('get_term', array($sitepress,'get_term_adjust_id'), 1, 1);
-                        add_filter('terms_clauses', array($sitepress, 'terms_clauses'));
+        //                 add_filter('get_term', array($sitepress,'get_term_adjust_id'), 1, 1);
+        //                 add_filter('terms_clauses', array($sitepress, 'terms_clauses'));
 
-                        $href = home_url();
-                        $href .= '/wp-json/wp/v2/'.$object['taxonomy'] . '/'.$post_id;
+        //                 $href = home_url();
+        //                 $href .= '/wp-json/wp/v2/'.$object['taxonomy'] . '/'.$post_id;
                         
-                        $translations[] = array('locale' => $language['default_locale'], 'id' => $thisPost->term_id, 'name' => $thisPost->name, 'source' => $href);
-                    }
+        //                 $translations[] = array('locale' => $language['default_locale'], 'id' => $thisPost->term_id, 'name' => $thisPost->name, 'source' => $href);
+        //             }
 
-                    return $translations; 
-                },
-                'update_callback' => null,
-                'schema'          => null,
-            )
-	    );
+        //             return $translations; 
+        //         },
+        //         'update_callback' => null,
+        //         'schema'          => null,
+        //     )
+	    // );
 	}
 } );
