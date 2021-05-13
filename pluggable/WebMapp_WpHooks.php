@@ -438,9 +438,13 @@ add_action( 'rest_api_init', function () {
                         add_filter('terms_clauses', array($sitepress, 'terms_clauses'));
 
                         $href = home_url();
-                        $href .= '/wp-json/wp/v2/'.$object['taxonomy'] . '/'.$post_id;
+                        $href .= '/wp-json/wp/v2/'.$object['taxonomy'] . '/'.$post_id.'?lang='.$language['language_code'];
                         
-                        $translations[] = array('locale' => $language['default_locale'], 'id' => $thisPost->term_id, 'name' => $thisPost->name, 'source' => $href);
+                        $translations[] = array(
+                            'locale' => $language['default_locale'], 
+                            'id' => $thisPost->term_id, 
+                            'name' => $thisPost->name, 
+                            'source' => $href);
                     }
 
                     return $translations; 
