@@ -396,12 +396,6 @@ function wm_session_start() {
 add_action('admin_init', 'wm_session_start');
 
 
-add_filter( 'rest_webmapp_category_query', 'add_wpml_to_taxonomy', 10, 2 );
-function add_wpml_to_taxonomy() {
-
-}
-
-
 add_action( 'rest_api_init', function () {
     $term_types = get_taxonomies( array( ), 'objects' );
 	foreach( $term_types as $term_type ) {
