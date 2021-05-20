@@ -20,7 +20,7 @@ wp-content/plugins/hello.php
 /sitemap.xml.gz
 /uploads
 
-uploads
+#uploads
 
 *.DS_Store
 */.DS_Store
