@@ -72,6 +72,7 @@ function wm_admin_notice__success() {
     }
 
     $_SESSION['hoquids'] = null;
+    session_write_close();
 }
 add_action( 'admin_notices', 'wm_admin_notice__success' );
 
